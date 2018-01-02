@@ -170,6 +170,10 @@ class Woo_Category_Slider {
         require PLVR_WCS_PATH . '/framework/class-framework.php';
         require PLVR_WCS_INCLUDES . '/functions.php';
         require PLVR_WCS_INCLUDES . '/class-cpt.php';
+
+        if ( is_admin() ) {
+            require PLVR_WCS_INCLUDES . '/class-admin.php';
+        }
     }
 
     /**
@@ -192,6 +196,7 @@ class Woo_Category_Slider {
      */
     private function instantiate() {
         new \Pluginever\WCS\CPT();
+//        new \Pluginever\WCS\Shortcode();
     }
 
     /**
