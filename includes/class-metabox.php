@@ -7,8 +7,8 @@ class Metabox {
      */
     public function __construct() {
         add_action( 'admin_init', [ $this, 'init_category_settings_metabox' ] );
-        add_action( 'admin_init', [ $this, 'init_display_settings_metabox' ] );
-        add_action( 'admin_init', [ $this, 'init_slider_settings_metabox' ] );
+//        add_action( 'admin_init', [ $this, 'init_display_settings_metabox' ] );
+//        add_action( 'admin_init', [ $this, 'init_slider_settings_metabox' ] );
     }
 
     public function init_category_settings_metabox() {
@@ -34,14 +34,12 @@ class Metabox {
                 ),
                 array(
                     'type'        => 'select',
-                    'name'        => 'categories',
+                    'name'        => 'selected_categories',
                     'label'       => 'Select Categories',
                     'value'       => 'all',
+                    'multiple'       => true,
                     'class'       => 'select2',
                     'sanitize'    => 'intval',
-                    'custom_attr' => array(
-                        'multiple' => true,
-                    ),
                     'condition'   => array(
                         'depend_on'    => 'selection_type',
                         'depend_value' => 'custom',
@@ -161,6 +159,11 @@ class Metabox {
                     'options'  => array(
                         '1' => 'Yes',
                         '0' => 'No'
+                    ),
+                    'condition'   => array(
+                        'depend_on'    => 'show_content',
+                        'depend_value' => '1',
+                        'depend_cond'  => '==',
                     ),
                 ),
                 array(
