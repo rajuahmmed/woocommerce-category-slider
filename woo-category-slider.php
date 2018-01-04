@@ -170,6 +170,7 @@ class Woo_Category_Slider {
         require PLVR_WCS_PATH . '/framework/class-framework.php';
         require PLVR_WCS_INCLUDES . '/functions.php';
         require PLVR_WCS_INCLUDES . '/class-cpt.php';
+        require PLVR_WCS_INCLUDES . '/class-shortcode.php';
 
         if ( is_admin() ) {
             require PLVR_WCS_INCLUDES . '/class-admin.php';
@@ -196,7 +197,7 @@ class Woo_Category_Slider {
      */
     private function instantiate() {
         new \Pluginever\WCS\CPT();
-//        new \Pluginever\WCS\Shortcode();
+        new \Pluginever\WCS\Shortcode();
     }
 
     /**
@@ -208,8 +209,8 @@ class Woo_Category_Slider {
      */
     function load_assets() {
         $suffix = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? '' : '.min';
-        wp_register_style( 'woo-category-slider', PLVR_WCS_ASSETS . '/css/woo-category-slider{$suffix}.css', [], date( 'i' ) );
-        wp_register_script( 'woo-category-slider', PLVR_WCS_ASSETS . '/js/woo-category-slider{$suffix}.js', [ 'jquery' ], date( 'i' ), true );
+        wp_register_style( 'woo-category-slider', PLVR_WCS_ASSETS . "/css/woo-category-slider{$suffix}.css", [], date( 'i' ) );
+        wp_register_script( 'woo-category-slider', PLVR_WCS_ASSETS . "/js/woo-category-slider{$suffix}.js", [ 'jquery' ], date( 'i' ), true );
         wp_localize_script( 'woo-category-slider', 'jsobject', [ 'ajaxurl' => admin_url( 'admin-ajax.php' ) ] );
         wp_enqueue_style( 'woo-category-slider' );
         wp_enqueue_script( 'woo-category-slider' );

@@ -15,7 +15,10 @@ window.Woo_Category_Slider = (function(window, document, $, undefined){
 	var app = {};
 
 	app.init = function() {
-
+	    $('.plvr-category-slider').each(function () {
+            var config = $(this).data('sliderconfig');
+            $(this).slick(config);
+        });
 	};
 
 	$(document).ready( app.init );
