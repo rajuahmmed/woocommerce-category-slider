@@ -167,7 +167,7 @@ class Woo_Category_Slider {
      * @return void
      */
     private function includes() {
-        require PLVR_WCS_PATH . '/framework/class-framework.php';
+        require PLVR_WCS_PATH . '/metabox/class-metabox.php';
         require PLVR_WCS_INCLUDES . '/functions.php';
         require PLVR_WCS_INCLUDES . '/class-cpt.php';
         require PLVR_WCS_INCLUDES . '/class-shortcode.php';

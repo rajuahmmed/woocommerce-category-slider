@@ -184,6 +184,31 @@ class Shortcode {
             'woo-category-slider-loading'
         );
 
+
+        if($settings['show_content'] !=='1'){
+            $classes[] = 'no-content';
+        }
+        if($settings['border'] == '1'){
+            $classes[] = 'has-border';
+        }
+        if($settings['show_button'] !== '1'){
+            $classes[] = 'no-btn';
+        }
+        if($settings['show_count'] !== '1'){
+            $classes[] = 'no-count';
+        }
+        if($settings['show_name'] !== '1'){
+            $classes[] = 'no-name';
+        }
+        if(in_array($settings['nav_position'], array('top-left','top-right', 'bottom-left', 'bottom-right'))){
+            $classes[] = 'nav-'.esc_attr($settings['nav_position']);
+        }
+
+        if($settings['has_image_hover'] == '1'){
+            $classes[] = 'has-hover-effect';
+        }
+
+
         return $classes;
     }
 
@@ -194,7 +219,7 @@ class Shortcode {
     protected function get_category_image( $category ) {
         $thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
         if ( ! empty( $thumbnail_id ) ) {
-            $img = wp_get_attachment_image( $thumbnail_id, 'single_shop' );
+            $img = wp_get_attachment_image( $thumbnail_id, 'large' );
         } else {
             $img = '';
         }
