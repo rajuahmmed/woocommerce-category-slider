@@ -82,6 +82,7 @@ class Shortcode {
             'show_nav'       => '1',
             'nav_position'   => 'top-right',
             'hover_effect'   => '1',
+            'border'         => '1',
             //slider
             'autoplay'       => '1',
             'responsive'     => '1',
@@ -109,11 +110,13 @@ class Shortcode {
         $default  = array(
             'selection_type' => 'all',
             'include'        => [],
+            'exclude'        => [],
             'limit'          => 20,
             'hide_empty'     => 1,
             'hide_no_image'  => 1,
-            'order'          => 'title',
+            'order'          => 'name',
             'order_by'       => 'ASC',
+            'hierarchical'   => true,
         );
         $settings = wp_parse_args( $settings, $default );
         if ( $settings['selection_type'] == 'all' ) {
@@ -139,10 +142,10 @@ class Shortcode {
     protected function get_slider_config( $settings ) {
         $config = array(
             'dots'           => false,
-            'arrows'         => false,
+            'arrows'         => empty( $settings['show_nav'] ) ? false : true,
             'slidesToShow'   => 4,
             'slidesToScroll' => 1,
-            'autoplay'       => false,
+            'autoplay'       => empty( $settings['autoplay'] ) ? false : true,
             'autoplaySpeed'  => 3000,
             'pauseOnHover'   => false,
             'responsive'     => array(
@@ -185,26 +188,26 @@ class Shortcode {
         );
 
 
-        if($settings['show_content'] !=='1'){
+        if ( $settings['show_content'] !== '1' ) {
             $classes[] = 'no-content';
         }
-        if($settings['border'] == '1'){
+        if ( $settings['border'] == '1' ) {
             $classes[] = 'has-border';
         }
-        if($settings['show_button'] !== '1'){
+        if ( $settings['show_button'] !== '1' ) {
             $classes[] = 'no-btn';
         }
-        if($settings['show_count'] !== '1'){
+        if ( $settings['show_count'] !== '1' ) {
             $classes[] = 'no-count';
         }
-        if($settings['show_name'] !== '1'){
+        if ( $settings['show_name'] !== '1' ) {
             $classes[] = 'no-name';
         }
-        if(in_array($settings['nav_position'], array('top-left','top-right', 'bottom-left', 'bottom-right'))){
-            $classes[] = 'nav-'.esc_attr($settings['nav_position']);
+        if ( in_array( $settings['nav_position'], array( 'top-left', 'top-right', 'bottom-left', 'bottom-right' ) ) ) {
+            $classes[] = 'nav-' . esc_attr( $settings['nav_position'] );
         }
 
-        if($settings['has_image_hover'] == '1'){
+        if ( $settings['hover_effect'] == '1' ) {
             $classes[] = 'has-hover-effect';
         }
 

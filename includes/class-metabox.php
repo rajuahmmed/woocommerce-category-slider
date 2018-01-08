@@ -9,8 +9,8 @@ class Metabox {
         add_action( 'admin_init', [ $this, 'init_category_settings_metabox' ] );
         add_action( 'admin_init', [ $this, 'init_display_settings_metabox' ] );
         add_action( 'admin_init', [ $this, 'init_slider_settings_metabox' ] );
-        add_action( 'add_meta_boxes', [$this, 'init_shortcode_metabox'] );
-        add_action( 'add_meta_boxes', [$this, 'init_promotion_metabox'] );
+        add_action( 'add_meta_boxes', [ $this, 'init_shortcode_metabox' ] );
+        add_action( 'add_meta_boxes', [ $this, 'init_promotion_metabox' ] );
     }
 
     public function init_category_settings_metabox() {
@@ -35,19 +35,19 @@ class Metabox {
                     ),
                 ),
                 array(
-                    'type'        => 'select',
-                    'name'        => 'include',
-                    'label'       => 'Select Categories',
-                    'value'       => 'all',
-                    'multiple'       => true,
-                    'class'       => 'select2',
-                    'sanitize'    => 'intval',
-                    'condition'   => array(
+                    'type'      => 'select',
+                    'name'      => 'include',
+                    'label'     => 'Select Categories',
+                    'value'     => 'all',
+                    'multiple'  => true,
+                    'class'     => 'select2',
+                    'sanitize'  => 'intval',
+                    'condition' => array(
                         'depend_on'    => 'selection_type',
                         'depend_value' => 'custom',
                         'depend_cond'  => '==',
                     ),
-                    'options'     => $this->get_wc_category_list(),
+                    'options'   => $this->get_wc_category_list(),
                 ),
                 array(
                     'type'     => 'select',
@@ -78,6 +78,30 @@ class Metabox {
                     'value'    => '20',
                     'sanitize' => 'intval',
                 ),
+                array(
+                    'type'    => 'select',
+                    'name'    => 'orderby',
+                    'label'   => __( 'Order By', 'woocatslider' ),
+                    'value'   => 'name',
+                    'options' => array(
+                        'id'          => 'Term ID',
+                        'name'        => 'Term Name',
+                        'description' => 'Term Description',
+                        'term_group'  => 'Term Group',
+                        'count'       => 'Count',
+                        'none'        => 'none',
+                    ),
+                ),
+                array(
+                    'type'    => 'select',
+                    'name'    => 'order',
+                    'label'   => __( 'Order', 'woocatslider' ),
+                    'value'   => 'ASC',
+                    'options' => array(
+                        'ASC'  => 'ASC',
+                        'DESC' => 'DESC',
+                    ),
+                ),
             ),
         );
         $metabox->init( apply_filters( 'woo_category_slider_metabox_config', $config ) );
@@ -104,32 +128,32 @@ class Metabox {
                     ),
                 ),
                 array(
-                    'type'     => 'select',
-                    'name'     => 'show_button',
-                    'label'    => __( 'Show Button', 'woocatslider' ),
-                    'value'    => '1',
-                    'sanitize' => 'intval',
-                    'options'  => array(
+                    'type'      => 'select',
+                    'name'      => 'show_button',
+                    'label'     => __( 'Show Button', 'woocatslider' ),
+                    'value'     => '1',
+                    'sanitize'  => 'intval',
+                    'options'   => array(
                         '1' => 'Yes',
                         '0' => 'No'
                     ),
-                    'condition'   => array(
+                    'condition' => array(
                         'depend_on'    => 'show_content',
                         'depend_value' => '1',
                         'depend_cond'  => '==',
                     ),
                 ),
                 array(
-                    'type'     => 'select',
-                    'name'     => 'show_name',
-                    'label'    => __( 'Show Name', 'woocatslider' ),
-                    'value'    => '0',
-                    'sanitize' => 'intval',
-                    'options'  => array(
+                    'type'      => 'select',
+                    'name'      => 'show_name',
+                    'label'     => __( 'Show Name', 'woocatslider' ),
+                    'value'     => '0',
+                    'sanitize'  => 'intval',
+                    'options'   => array(
                         '1' => 'Yes',
                         '0' => 'No'
                     ),
-                    'condition'   => array(
+                    'condition' => array(
                         'depend_on'    => 'show_content',
                         'depend_value' => '1',
                         'depend_cond'  => '==',
@@ -137,53 +161,64 @@ class Metabox {
                 ),
 
                 array(
-                    'type'     => 'select',
-                    'name'     => 'show_count',
-                    'label'    => __( 'Show Count', 'woocatslider' ),
-                    'value'    => '0',
-                    'sanitize' => 'intval',
-                    'options'  => array(
+                    'type'      => 'select',
+                    'name'      => 'show_count',
+                    'label'     => __( 'Show Count', 'woocatslider' ),
+                    'value'     => '0',
+                    'sanitize'  => 'intval',
+                    'options'   => array(
                         '1' => 'Yes',
                         '0' => 'No'
                     ),
-                    'condition'   => array(
+                    'condition' => array(
                         'depend_on'    => 'show_content',
                         'depend_value' => '1',
                         'depend_cond'  => '==',
                     ),
                 ),
                 array(
-                    'type'     => 'select',
-                    'name'     => 'show_nav',
-                    'label'    => __( 'Show Navigation', 'woocatslider' ),
-                    'value'    => '0',
-                    'sanitize' => 'intval',
-                    'options'  => array(
+                    'type'      => 'select',
+                    'name'      => 'show_nav',
+                    'label'     => __( 'Show Navigation', 'woocatslider' ),
+                    'value'     => '0',
+                    'sanitize'  => 'intval',
+                    'options'   => array(
                         '1' => 'Yes',
                         '0' => 'No'
                     ),
-                    'condition'   => array(
+                    'condition' => array(
                         'depend_on'    => 'show_content',
                         'depend_value' => '1',
                         'depend_cond'  => '==',
                     ),
                 ),
                 array(
-                    'type'     => 'select',
-                    'name'     => 'nav_position',
-                    'label'    => __( 'Navigation Position', 'woocatslider' ),
-                    'value'    => 'top-right',
-                    'sanitize' => 'sanitize_key',
-                    'options'  => array(
-                        'top-right' => 'Top Right',
-                        'top-left' => 'Top Left',
+                    'type'      => 'select',
+                    'name'      => 'nav_position',
+                    'label'     => __( 'Navigation Position', 'woocatslider' ),
+                    'value'     => 'top-right',
+                    'sanitize'  => 'sanitize_key',
+                    'options'   => array(
+                        'top-right'    => 'Top Right',
+                        'top-left'     => 'Top Left',
                         'bottom-right' => 'Bottom Right',
-                        'bottom-left' => 'Bottom Left'
+                        'bottom-left'  => 'Bottom Left'
                     ),
-                    'condition'   => array(
+                    'condition' => array(
                         'depend_on'    => 'show_nav',
                         'depend_value' => '1',
                         'depend_cond'  => '==',
+                    ),
+                ),
+                array(
+                    'type'     => 'select',
+                    'name'     => 'border',
+                    'label'    => __( 'Add Border', 'woocatslider' ),
+                    'value'    => '1',
+                    'sanitize' => 'intval',
+                    'options'  => array(
+                        '1' => 'Yes',
+                        '0' => 'No'
                     ),
                 ),
                 array(
@@ -239,19 +274,28 @@ class Metabox {
     }
 
     public function init_shortcode_metabox() {
-        add_meta_box( 'woo-cat-slider-shotcode', __( 'Shotcode', 'woocatslider' ), [$this, 'shortcode_metabox_callback'], 'woocatslider', 'side' );
-    }
-    public function init_promotion_metabox() {
-        add_meta_box( 'woo-cat-slider-promotion', __( 'What More?', 'woocatslider' ), [$this, 'shortcode_promotion_callback'], 'woocatslider', 'side' );
-    }
-    public function shortcode_metabox_callback($post){
-        echo "<pre><code>[woo_category_slider id='{$post->ID}']</code></pre>";
-        echo '<p>'.__('Use the shortocode to render the slider anywhere in page or post.','woocatslider').'</p>';
+        add_meta_box( 'woo-cat-slider-shotcode', __( 'Shotcode', 'woocatslider' ), [
+            $this,
+            'shortcode_metabox_callback'
+        ], 'woocatslider', 'side' );
     }
 
-    public function shortcode_promotion_callback(){
-    ?>
-        <img src="<?php echo PLVR_WCS_ASSETS. '/images/woo-category-slider-pro.png'; ?>" alt="WOO Category Slider Pro" style="width: 100%;margin-bottom: 10px;">
+    public function init_promotion_metabox() {
+        add_meta_box( 'woo-cat-slider-promotion', __( 'What More?', 'woocatslider' ), [
+            $this,
+            'shortcode_promotion_callback'
+        ], 'woocatslider', 'side' );
+    }
+
+    public function shortcode_metabox_callback( $post ) {
+        echo "<pre><code>[woo_category_slider id='{$post->ID}']</code></pre>";
+        echo '<p>' . __( 'Use the shortocode to render the slider anywhere in page or post.', 'woocatslider' ) . '</p>';
+    }
+
+    public function shortcode_promotion_callback() {
+        ?>
+        <img src="<?php echo PLVR_WCS_ASSETS . '/images/woo-category-slider-pro.png'; ?>" alt="WOO Category Slider Pro"
+             style="width: 100%;margin-bottom: 10px;">
         <h4 style="margin: 0;padding: 0;border-bottom: 1px solid #333;">Pro Features</h4>
         <ul style="padding-left: 25px;list-style: disc;">
             <li>10+ Eye Catching Design</li>
@@ -271,7 +315,7 @@ class Metabox {
             <li>And Many More</li>
         </ul>
         <a href="#">Upgrade To PRO Now</a>
-    <?php
+        <?php
     }
 
     protected function get_wc_category_list() {
@@ -284,7 +328,6 @@ class Metabox {
 
         return $list;
     }
-
 
 
 }

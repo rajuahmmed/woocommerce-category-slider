@@ -16,10 +16,11 @@ function woocatslider_get_wc_categories( $args = array() ) {
     $categories = array();
     $default = array(
         'number'     => '',
-        'orderby'    => 'title',
+        'orderby'    => 'name',
         'order'      => 'ASC',
         'hide_empty' => false,
-        'include'    => array()
+        'include'    => array(),
+        'exclude'    => array(),
     );
     if ( version_compare( $wp_version, '4.5.0', '<' ) ) {
         $args               = wp_parse_args( $args, $default );
