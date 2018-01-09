@@ -10,7 +10,9 @@ class Metabox {
         add_action( 'admin_init', [ $this, 'init_display_settings_metabox' ] );
         add_action( 'admin_init', [ $this, 'init_slider_settings_metabox' ] );
         add_action( 'add_meta_boxes', [ $this, 'init_shortcode_metabox' ] );
-        add_action( 'add_meta_boxes', [ $this, 'init_promotion_metabox' ] );
+        if( ! woocatslider_is_pro_active() ){
+            add_action( 'add_meta_boxes', [ $this, 'init_promotion_metabox' ] );
+        }
     }
 
     public function init_category_settings_metabox() {
@@ -296,25 +298,27 @@ class Metabox {
         ?>
         <img src="<?php echo PLVR_WCS_ASSETS . '/images/woo-category-slider-pro.png'; ?>" alt="WOO Category Slider Pro"
              style="width: 100%;margin-bottom: 10px;">
-        <h4 style="margin: 0;padding: 0;border-bottom: 1px solid #333;">Pro Features</h4>
+        <h4 style="margin: 0;padding: 0;border-bottom: 1px solid #333;"><?php _e('Pro Features', 'woocatslider'); ?></h4>
         <ul style="padding-left: 25px;list-style: disc;">
-            <li>10+ Eye Catching Design</li>
-            <li>Ability to Change Almost Everything</li>
+            <li>10+ Eye-Catching ready-made theme</li>
+            <li>Custom Image size</li>
+            <li>Custom WooCommerce Category Order</li>
+            <li>Custom Column Size</li>
+            <li>Ability to Customize Almost Everything</li>
             <li>Custom Content Color</li>
             <li>Custom Content Background Color</li>
-            <li>Different Button Type Transparent/Solid</li>
             <li>Custom Button Color</li>
             <li>Custom Button Background Color</li>
-            <li>Custom Class Support</li>
+            <li>Custom CSS class</li>
             <li>Custom Autoplay Speed</li>
+            <li>Excluding any categories</li>
+            <li>9+ Hover effects</li>
+            <li>Different button type</li>
             <li>Slider Loop Support</li>
             <li>RTL Support</li>
-            <li>Center Mode Support</li>
-            <li>Custom Image Size Support (small/medium/large)</li>
-            <li>Custom Category Order</li>
             <li>And Many More</li>
         </ul>
-        <a href="#">Upgrade To PRO Now</a>
+        <a href="https://www.pluginever.com/plugins/woo-category-slider/?utm_source=site&utm_medium=banner&utm_campaign=woocatsliderUpgrade" target="_blank" style="text-align: center;font-weight: bold;">Upgrade To PRO Now</a>
         <?php
     }
 
@@ -331,3 +335,5 @@ class Metabox {
 
 
 }
+
+new Metabox();

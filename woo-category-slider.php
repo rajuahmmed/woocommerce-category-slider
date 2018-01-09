@@ -3,7 +3,7 @@
  * Plugin Name: Woo Category Slider
  * Plugin URI:  https://pluginever.com/woo-category-slider
  * Description: Showcase Your WooCommerce powered Shop's category in a more appealing way to expand your sell.
- * Version:     1.2.4
+ * Version:     3.0.0
  * Author:      PluginEver
  * Author URI:  http://pluginever.com
  * Donate link: https://pluginever.com/woo-category-slider
@@ -48,7 +48,7 @@ class Woo_Category_Slider {
      * @since 1.0.0
      * @var  string
      */
-    public $version = '1.2.4';
+    public $version = '3.0.0';
 
     /**
      * Initializes the class
@@ -77,7 +77,6 @@ class Woo_Category_Slider {
      *
      * @since 1.0.0
      *
-     * @return void
      */
     public function __construct() {
         // Localize our plugin
@@ -102,7 +101,7 @@ class Woo_Category_Slider {
         $this->instantiate();
 
         // Loaded action
-        do_action( 'woo_category_slider' );
+        do_action( 'woo_category_slider_loaded' );
     }
 
     /**
@@ -167,13 +166,12 @@ class Woo_Category_Slider {
      * @return void
      */
     private function includes() {
-        require PLVR_WCS_PATH . '/metabox/class-metabox.php';
         require PLVR_WCS_INCLUDES . '/functions.php';
+        require PLVR_WCS_PATH . '/metabox/class-metabox.php';
         require PLVR_WCS_INCLUDES . '/class-cpt.php';
         require PLVR_WCS_INCLUDES . '/class-shortcode.php';
-
-        if ( is_admin() ) {
-            require PLVR_WCS_INCLUDES . '/class-admin.php';
+        if( is_admin() ){
+            require PLVR_WCS_INCLUDES . '/class-metabox.php';
         }
     }
 
@@ -214,31 +212,6 @@ class Woo_Category_Slider {
         wp_localize_script( 'woo-category-slider', 'jsobject', [ 'ajaxurl' => admin_url( 'admin-ajax.php' ) ] );
         wp_enqueue_style( 'woo-category-slider' );
         wp_enqueue_script( 'woo-category-slider' );
-    }
-
-
-    /**
-     * Logger for the plugin
-     *
-     * @since    1.2.4
-     *
-     * @param  $message
-     *
-     * @return  string
-     */
-    public static function log( $message ) {
-        if ( WP_DEBUG !== true ) {
-            return;
-        }
-        if ( is_array( $message ) || is_object( $message ) ) {
-            $message = print_r( $message, true );
-        }
-        $debug_file = WP_CONTENT_DIR . '/custom-debug.log';
-        if ( ! file_exists( $debug_file ) ) {
-            @touch( $debug_file );
-        }
-
-        return error_log( date( "Y-m-d\tH:i:s" ) . "\t\t" . strip_tags( $message ) . "\n", 3, $debug_file );
     }
 
 }
