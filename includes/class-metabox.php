@@ -29,6 +29,7 @@ class Metabox {
                     'name'     => 'selection_type',
                     'label'    => 'Selection Type',
                     'value'    => 'all',
+                    'tooltip'    => __('Select all categories or any custom categories','woocatslider'),
                     'sanitize' => 'sanitize_key',
                     'required' => 'true',
                     'options'  => array(
@@ -55,6 +56,7 @@ class Metabox {
                     'type'     => 'select',
                     'name'     => 'hide_empty',
                     'label'    => __( 'Hide Empty Categories', 'woocatslider' ),
+                    'tooltip'    => __('Automatically hides Category without products','woocatslider'),
                     'value'    => '1',
                     'sanitize' => 'intval',
                     'options'  => array(
@@ -66,6 +68,7 @@ class Metabox {
                     'type'     => 'select',
                     'name'     => 'hide_no_image',
                     'label'    => __( 'Hide Categories Without Image', 'woocatslider' ),
+                    'tooltip'    => __('Automatically hides Category without category image','woocatslider'),
                     'value'    => '1',
                     'sanitize' => 'intval',
                     'options'  => array(
@@ -76,6 +79,7 @@ class Metabox {
                 array(
                     'type'     => 'number',
                     'name'     => 'limit',
+                    'tooltip'    => __('Limit the number of category appear on the slider','woocatslider'),
                     'label'    => __( 'Limit Items', 'woocatslider' ),
                     'value'    => '20',
                     'sanitize' => 'intval',
@@ -192,6 +196,7 @@ class Metabox {
                     'type'     => 'select',
                     'name'     => 'border',
                     'label'    => __( 'Add Border', 'woocatslider' ),
+                    'tooltip'    => __('Show border around slider image?','woocatslider'),
                     'value'    => '1',
                     'sanitize' => 'intval',
                     'options'  => array(
@@ -212,7 +217,8 @@ class Metabox {
                 ),
             ),
         );
-        $metabox->init( apply_filters( 'woo_category_slider_display_config', $config ) );
+        $metabox_config = apply_filters( 'woo_category_slider_display_config', $config );
+        $metabox->init( $metabox_config );
     }
 
     public function init_slider_settings_metabox() {
@@ -228,6 +234,7 @@ class Metabox {
                     'type'     => 'select',
                     'name'     => 'autoplay',
                     'label'    => __( 'Slider Autoplay', 'woocatslider' ),
+                    'tooltip'    => __('Slider will automatically start playing is set Yes.','woocatslider'),
                     'value'    => '1',
                     'sanitize' => 'intval',
                     'options'  => array(
@@ -311,5 +318,4 @@ class Metabox {
 
 
 }
-
 new Metabox();
