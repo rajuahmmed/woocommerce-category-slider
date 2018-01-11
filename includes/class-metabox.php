@@ -80,33 +80,9 @@ class Metabox {
                     'value'    => '20',
                     'sanitize' => 'intval',
                 ),
-                array(
-                    'type'    => 'select',
-                    'name'    => 'orderby',
-                    'label'   => __( 'Order By', 'woocatslider' ),
-                    'value'   => 'name',
-                    'options' => array(
-                        'id'          => 'Term ID',
-                        'name'        => 'Term Name',
-                        'description' => 'Term Description',
-                        'term_group'  => 'Term Group',
-                        'count'       => 'Count',
-                        'none'        => 'none',
-                    ),
-                ),
-                array(
-                    'type'    => 'select',
-                    'name'    => 'order',
-                    'label'   => __( 'Order', 'woocatslider' ),
-                    'value'   => 'ASC',
-                    'options' => array(
-                        'ASC'  => 'ASC',
-                        'DESC' => 'DESC',
-                    ),
-                ),
             ),
         );
-        $metabox->init( apply_filters( 'woo_category_slider_metabox_config', $config ) );
+        $metabox->init( apply_filters( 'woo_category_slider_settings_config', $config ) );
     }
 
     public function init_display_settings_metabox() {
@@ -236,7 +212,7 @@ class Metabox {
                 ),
             ),
         );
-        $metabox->init( apply_filters( 'woo_category_slider_metabox_config', $config ) );
+        $metabox->init( apply_filters( 'woo_category_slider_display_config', $config ) );
     }
 
     public function init_slider_settings_metabox() {
@@ -272,7 +248,7 @@ class Metabox {
                 ),
             ),
         );
-        $metabox->init( apply_filters( 'woo_category_slider_metabox_config', $config ) );
+        $metabox->init( apply_filters( 'woo_category_slider_slider_config', $config ) );
     }
 
     public function init_shortcode_metabox() {
