@@ -55,7 +55,7 @@ module.exports = function(grunt) {
             }
         }
     },
-        
+
         sass:   {
             all: {
                 files: {
@@ -64,17 +64,17 @@ module.exports = function(grunt) {
             }
         },
 
-        
+
         cssmin: {
             options: {
                 banner: bannerTemplate
             },
             minify: {
                 expand: true,
-                
+
                 cwd: 'assets/css/',
                 src: ['woo-category-slider.css'],
-                
+
                 dest: 'assets/css/',
                 ext: '.min.css'
             }
@@ -103,7 +103,7 @@ module.exports = function(grunt) {
              options: {
                 livereload: true,
             },
-            
+
             sass: {
                 files: ['assets/css/sass/*.scss'],
                 tasks: ['sass', 'cssmin'],
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
                     debounceDelay: 500
                 }
             },
-            
+
             scripts: {
                 files: ['assets/js/src/**/*.js', 'assets/js/vendor/**/*.js'],
                 tasks: ['jshint', 'concat', 'uglify'],
@@ -161,9 +161,17 @@ module.exports = function(grunt) {
             src: [
                 '**',
                 '!node_modules/**',
-                '!.codekit-cache/**',
-                '!.idea/**',
+                '!**/js/src/**',
+                '!**/css/src/**',
+                '!**/js/vendor/**',
+                '!**/css/vendor/**',
+                '!**/images/src/**',
+                '!**/sass/**',
                 '!build/**',
+                '!**/*.md',
+                '!**/*.map',
+                '!**/*.sh',
+                '!.idea/**',
                 '!bin/**',
                 '!.git/**',
                 '!Gruntfile.js',
@@ -171,7 +179,6 @@ module.exports = function(grunt) {
                 '!composer.json',
                 '!composer.lock',
                 '!debug.log',
-                '!phpunit.xml',
                 '!.gitignore',
                 '!.gitmodules',
                 '!npm-debug.log',
@@ -180,14 +187,10 @@ module.exports = function(grunt) {
                 '!config.codekit',
                 '!nbproject/*',
                 '!tests/**',
-                '!README.md',
-                '!CONTRIBUTING.md',
-                '!**/*~',
                 '!.csscomb.json',
                 '!.editorconfig',
                 '!.jshintrc',
-                '!.tmp',
-                '!assets/src/**',
+                '!.tmp'
             ],
                 dest: 'build/'
         }
@@ -225,17 +228,17 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks( 'grunt-wp-i18n' );
     grunt.loadNpmTasks('grunt-contrib-compress');
-    
+
     grunt.loadNpmTasks('grunt-contrib-sass');
-    
+
     grunt.loadNpmTasks('grunt-contrib-watch');
-    
+
     grunt.loadNpmTasks('grunt-phpcs');
-    
+
     // Default task.
-    
+
     grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'sass', 'cssmin', 'imagemin', 'notify:server'] );
-    
+
 
     grunt.registerTask('release', ['makepot', 'zip']);
     grunt.registerTask('zip', ['clean', 'copy', 'compress']);

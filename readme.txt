@@ -81,6 +81,9 @@ Set "show content" to No from the slider settings in display settings section
 
 
 == Changelog ==
+= 3.0.1 =
+[Enhance] Added tooltip
+
 = 3.0.0 =
 [Enhance] Add shortcode builder
 [Enhance] Add Order by feature

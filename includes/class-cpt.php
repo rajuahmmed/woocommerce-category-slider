@@ -17,8 +17,8 @@ class CPT {
     public function __construct() {
         $this->slug = 'woocatslider';
         add_action( 'init', array( $this, 'register_shortcode_post' ), 0 );
-        add_filter( 'manage_woocatsliderpro_posts_columns', array( $this, 'set_shortocode_column' ) );
-        add_filter( 'manage_woocatsliderpro_posts_custom_column', array( $this, 'shortocode_column_data' ), 10, 2 );
+        add_filter( 'manage_woocatslider_posts_columns', array( $this, 'set_shortocode_column' ) );
+        add_filter( 'manage_woocatslider_posts_custom_column', array( $this, 'shortocode_column_data' ), 10, 2 );
     }
 
 

@@ -23,7 +23,6 @@ class Shortcode {
         $categories    = $this->get_selected_categories( $settings );
         $slider_config = $this->get_slider_config( $settings );
         $css_classes   = $this->get_wrapper_class( $settings );
-
         $id   = $this->get_random_id();
         $html = '';
         if ( ! is_array( $categories ) || empty( $categories ) ) {
@@ -35,7 +34,7 @@ class Shortcode {
                  data-sliderconfig='<?php echo $slider_config; ?>'>
                 <?php foreach ( $categories as $category ): ?>
                     <div>
-                        <?php echo $this->get_category_image( $category ); ?>
+                        <?php echo $this->get_category_image( $category, $settings ); ?>
                         <a href="<?php echo get_term_link( $category->term_id ) ?>" class="abs-link"></a>
                         <div class="slider-caption">
                             <h3 class="slider-caption-title"><?php echo $category->name ?></h3>
@@ -47,6 +46,8 @@ class Shortcode {
                     </div>
                 <?php endforeach; ?>
             </div>
+            <?php do_action( 'woo_category_slider_after_html', $settings, $id ); ?>
+
             <?php
             $html = ob_get_contents();
             ob_get_clean();
@@ -73,7 +74,9 @@ class Shortcode {
             'include'        => [],
             'hide_empty'     => '1',
             'hide_no_image'  => '1',
-            'limit'          => '20',
+            'include_child'  => '1',
+            'number'          => '20',
+
             //design
             'show_content'   => '1',
             'show_button'    => '1',
@@ -86,6 +89,7 @@ class Shortcode {
             //slider
             'autoplay'       => '1',
             'responsive'     => '1',
+            'cols'           => '4',
         );
 
         $default_fields = apply_filters( 'woo_category_slider_default_meta_fields', $default );
@@ -93,7 +97,7 @@ class Shortcode {
         if ( $post_id !== null && get_post_status( $post_id ) ) {
             foreach ( $default_fields as $key => $value ) {
                 $saved = get_post_meta( $post_id, $key, true );
-                if ( $saved !== false ) {
+                if ( $saved == '0' || ! empty( $saved ) ) {
                     $settings[ $key ] = $saved;
                 } else {
                     $settings[ $key ] = $value;
@@ -111,12 +115,13 @@ class Shortcode {
             'selection_type' => 'all',
             'include'        => [],
             'exclude'        => [],
-            'limit'          => 20,
-            'hide_empty'     => 1,
-            'hide_no_image'  => 1,
+            'number'          => 20,
+            'hide_empty'     => 0,
+            'hide_no_image'  => 0,
             'order'          => 'name',
             'order_by'       => 'ASC',
             'hierarchical'   => true,
+            'include_child'  => '1',
         );
         $settings = wp_parse_args( $settings, $default );
         if ( $settings['selection_type'] == 'all' ) {
@@ -124,6 +129,18 @@ class Shortcode {
         }
         //get categories
         $categories = woocatslider_get_wc_categories( $settings );
+        if( !empty($settings['include_child']) && ( $settings['selection_type'] !== 'all')){
+           $child_settings = $settings;
+
+           $child_keys = ['hide_empty', 'order', 'order_by'];
+           $child_settings = array_intersect_key($child_settings, array_flip($child_keys));
+           foreach ( $settings['include'] as $cat_id ){
+               $child_settings['child_of'] = $cat_id;
+               $child_categories  = woocatslider_get_wc_categories( $child_settings );
+               $categories = array_merge( $categories, $child_categories);
+           }
+           //child_of
+        }
 
         //if hide empty image then filter the result
         $is_exclude_no_image = empty( $settings['hide_no_image'] ) ? 0 : 1;
@@ -143,7 +160,7 @@ class Shortcode {
         $config = array(
             'dots'           => false,
             'arrows'         => empty( $settings['show_nav'] ) ? false : true,
-            'slidesToShow'   => 4,
+            'slidesToShow'   => $settings['cols'],
             'slidesToScroll' => 1,
             'autoplay'       => empty( $settings['autoplay'] ) ? false : true,
             'autoplaySpeed'  => 3000,
@@ -206,23 +223,23 @@ class Shortcode {
         if ( in_array( $settings['nav_position'], array( 'top-left', 'top-right', 'bottom-left', 'bottom-right' ) ) ) {
             $classes[] = 'nav-' . esc_attr( $settings['nav_position'] );
         }
-
         if ( $settings['hover_effect'] == '1' ) {
             $classes[] = 'has-hover-effect';
         }
 
 
-        return $classes;
+        return apply_filters( 'woo_cat_slider_wrapper_classes', $classes, $settings );
     }
 
     protected function get_random_id() {
         return 'woo-cat-slider-' . strtolower( wp_generate_password( 5, false, false ) );
     }
 
-    protected function get_category_image( $category ) {
+    protected function get_category_image( $category, $settings ) {
+        $image_size   = apply_filters( 'woo_cat_slider_image_size', 'large', $settings );
         $thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
         if ( ! empty( $thumbnail_id ) ) {
-            $img = wp_get_attachment_image( $thumbnail_id, 'large' );
+            $img = wp_get_attachment_image( $thumbnail_id, $image_size );
         } else {
             $img = '';
         }

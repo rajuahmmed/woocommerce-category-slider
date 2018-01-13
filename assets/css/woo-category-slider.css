@@ -93,7 +93,8 @@
   [dir="rtl"] .slick-slide {
     float: right; }
   .slick-slide img {
-    display: block; }
+    display: block;
+    box-shadow: none !important; }
   .slick-slide.slick-loading img {
     display: none; }
   .slick-slide.dragging img {
@@ -302,7 +303,9 @@
   /* HAS BORDER */
   /* HAS PADDING*/ }
   .plvr-slider img {
-    max-width: 100%; }
+    max-width: 100%;
+    box-shadow: none !important;
+    border-radius: 0 !important; }
   .plvr-slider .slick-slide {
     margin: 10px;
     position: relative; }
@@ -2901,12 +2904,5 @@
 @keyframes shine {
   100% {
     left: 125%; } }
-.slick-track {
-  display: flex; }
-  .slick-track .slick-slide {
-    display: flex;
-    height: auto;
-    align-items: center;
-    justify-content: center; }
 
 /*# sourceMappingURL=woo-category-slider.css.map */

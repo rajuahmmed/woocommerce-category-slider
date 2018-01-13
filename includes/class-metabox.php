@@ -54,6 +54,18 @@ class Metabox {
                 ),
                 array(
                     'type'     => 'select',
+                    'name'     => 'include_child',
+                    'label'    => __( 'Include Children', 'woocatslider' ),
+                    'tooltip'    => __('Will include subcategories of the selected categories','woocatslider'),
+                    'value'    => '1',
+                    'sanitize' => 'intval',
+                    'options'  => array(
+                        '1' => 'Yes',
+                        '0' => 'No'
+                    ),
+                ),
+                array(
+                    'type'     => 'select',
                     'name'     => 'hide_empty',
                     'label'    => __( 'Hide Empty Categories', 'woocatslider' ),
                     'tooltip'    => __('Automatically hides Category without products','woocatslider'),
@@ -78,7 +90,7 @@ class Metabox {
                 ),
                 array(
                     'type'     => 'number',
-                    'name'     => 'limit',
+                    'name'     => 'number',
                     'tooltip'    => __('Limit the number of category appear on the slider','woocatslider'),
                     'label'    => __( 'Limit Items', 'woocatslider' ),
                     'value'    => '20',
@@ -102,6 +114,7 @@ class Metabox {
                     'type'     => 'select',
                     'name'     => 'show_content',
                     'label'    => __( 'Show Content', 'woocatslider' ),
+                    'tooltip'    => __('Show or hide category name, button, product count','woocatslider'),
                     'value'    => '1',
                     'sanitize' => 'intval',
                     'options'  => array(
@@ -128,7 +141,7 @@ class Metabox {
                 array(
                     'type'      => 'select',
                     'name'      => 'show_name',
-                    'label'     => __( 'Show Name', 'woocatslider' ),
+                    'label'     => __( 'Show Category Name', 'woocatslider' ),
                     'value'     => '0',
                     'sanitize'  => 'intval',
                     'options'   => array(
@@ -145,7 +158,7 @@ class Metabox {
                 array(
                     'type'      => 'select',
                     'name'      => 'show_count',
-                    'label'     => __( 'Show Count', 'woocatslider' ),
+                    'label'     => __( 'Show Product Count', 'woocatslider' ),
                     'value'     => '0',
                     'sanitize'  => 'intval',
                     'options'   => array(
@@ -197,17 +210,6 @@ class Metabox {
                     'name'     => 'border',
                     'label'    => __( 'Add Border', 'woocatslider' ),
                     'tooltip'    => __('Show border around slider image?','woocatslider'),
-                    'value'    => '1',
-                    'sanitize' => 'intval',
-                    'options'  => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
-                ),
-                array(
-                    'type'     => 'select',
-                    'name'     => 'hover_effect',
-                    'label'    => __( 'Hover Effect', 'woocatslider' ),
                     'value'    => '1',
                     'sanitize' => 'intval',
                     'options'  => array(
@@ -307,7 +309,8 @@ class Metabox {
 
     protected function get_wc_category_list() {
 
-        $categories = woocatslider_get_wc_categories();
+        $categories = woocatslider_get_wc_categories(['number' => 1000]);
+
         $list       = array();
         foreach ( $categories as $key => $category ) {
             $list[ $category->term_id ] = $category->name;

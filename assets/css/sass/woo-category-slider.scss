@@ -35,14 +35,17 @@
 @import "_partials/pluginever-slider";
 @import "_partials/font-awesome";
 @import "_partials/product-slider";
+
 //flex stuff
 .slick-track{
-    display: flex;
-
-    .slick-slide{
-        display: flex;
-        height: auto;
-        align-items: center; //optional
-        justify-content: center; //optional
-    }
+    //display: flex;
+    //
+    //.slick-slide{
+    //    display: flex;
+    //    height: auto;
+    //    align-items: center; //optional
+    //    justify-content: center; //optional
+    //}
 }
+
+

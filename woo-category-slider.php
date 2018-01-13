@@ -3,7 +3,7 @@
  * Plugin Name: Woo Category Slider
  * Plugin URI:  https://pluginever.com/woo-category-slider
  * Description: Showcase Your WooCommerce powered Shop's category in a more appealing way to expand your sell.
- * Version:     3.0.0
+ * Version:     3.0.1
  * Author:      PluginEver
  * Author URI:  http://pluginever.com
  * Donate link: https://pluginever.com/woo-category-slider
@@ -48,7 +48,13 @@ class Woo_Category_Slider {
      * @since 1.0.0
      * @var  string
      */
-    public $version = '3.0.0';
+    public $version = '3.0.1';
+
+    /**
+     * @since 1.0.0
+     * @var
+     */
+    public static $doc_link;
 
     /**
      * Initializes the class
@@ -79,6 +85,8 @@ class Woo_Category_Slider {
      *
      */
     public function __construct() {
+        self::$doc_link = 'https://www.pluginever.com/docs/woo-category-slider';
+
         // Localize our plugin
         add_action( 'init', [ $this, 'localization_setup' ] );
 
@@ -170,7 +178,7 @@ class Woo_Category_Slider {
         require PLVR_WCS_PATH . '/metabox/class-metabox.php';
         require PLVR_WCS_INCLUDES . '/class-cpt.php';
         require PLVR_WCS_INCLUDES . '/class-shortcode.php';
-        if( is_admin() ){
+        if ( is_admin() ) {
             require PLVR_WCS_INCLUDES . '/class-metabox.php';
         }
     }
@@ -184,6 +192,7 @@ class Woo_Category_Slider {
      */
     private function init_actions() {
         add_action( 'wp_enqueue_scripts', array( $this, 'load_assets' ) );
+        add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( __CLASS__, 'plugin_action_links' ) );
     }
 
     /**
@@ -212,6 +221,22 @@ class Woo_Category_Slider {
         wp_localize_script( 'woo-category-slider', 'jsobject', [ 'ajaxurl' => admin_url( 'admin-ajax.php' ) ] );
         wp_enqueue_style( 'woo-category-slider' );
         wp_enqueue_script( 'woo-category-slider' );
+    }
+
+    /**
+     * @param $links
+     *
+     * @return array
+     */
+    public static function plugin_action_links( $links ) {
+        $action_links = [];
+        if ( ! woocatslider_is_pro_active() ) {
+            $action_links['Upgrade'] = '<a target="_blank" href="https://www.pluginever.com/plugins/woo-category-slider-pro/" title="' . esc_attr( __( 'Upgrade To Pro', 'woocatlider' ) ) . '" style="color:red;font-weight:bold;">' . __( 'Upgrade To Pro', 'woocatlider' ) . '</a>';
+        }
+        $action_links['Documentation'] = '<a target="_blank" href="' . self::$doc_link . '" title="' . esc_attr( __( 'View Plugin\'s Documentation', 'woocatlider' ) ) . '">' . __( 'Documentation', 'woocatlider' ) . '</a>';
+
+
+        return array_merge( $action_links, $links );
     }
 
 }

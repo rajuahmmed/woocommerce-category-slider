@@ -17,13 +17,16 @@ function woocatslider_get_wc_categories( $args = array() ) {
     global $wp_version;
     $categories = array();
     $default    = array(
-        'number'     => '',
+        'number'     => '20',
         'orderby'    => 'name',
         'order'      => 'ASC',
         'hide_empty' => false,
         'include'    => array(),
         'exclude'    => array(),
+        'child_of'    => 0,
     );
+    //$args = array_intersect_key( $args, $default);
+
     if ( version_compare( $wp_version, '4.5.0', '<' ) ) {
         $args       = wp_parse_args( $args, $default );
         $categories = get_terms( 'product_cat', $args );
