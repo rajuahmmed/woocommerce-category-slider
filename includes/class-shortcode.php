@@ -16,6 +16,9 @@ class Shortcode {
      * @since 2.0.0
      *
      * @param $attr
+     *
+     * @return string|void
+     *
      */
     public function woo_cat_slider_callback( $attr ) {
         $params        = shortcode_atts( [ 'id' => null ], $attr );
@@ -23,8 +26,8 @@ class Shortcode {
         $categories    = $this->get_selected_categories( $settings );
         $slider_config = $this->get_slider_config( $settings );
         $css_classes   = $this->get_wrapper_class( $settings );
-        $id   = $this->get_random_id();
-        $html = '';
+        $id            = $this->get_random_id();
+        $html          = '';
         if ( ! is_array( $categories ) || empty( $categories ) ) {
             $html = __( 'No Category Found', 'woocatslider' );
         } else {
@@ -75,7 +78,7 @@ class Shortcode {
             'hide_empty'     => '1',
             'hide_no_image'  => '1',
             'include_child'  => '1',
-            'number'          => '20',
+            'number'         => '20',
 
             //design
             'show_content'   => '1',
@@ -86,6 +89,8 @@ class Shortcode {
             'nav_position'   => 'top-right',
             'hover_effect'   => '1',
             'border'         => '1',
+            'nav_style'      => '1',
+
             //slider
             'autoplay'       => '1',
             'responsive'     => '1',
@@ -115,7 +120,7 @@ class Shortcode {
             'selection_type' => 'all',
             'include'        => [],
             'exclude'        => [],
-            'number'          => 20,
+            'number'         => 20,
             'hide_empty'     => 0,
             'hide_no_image'  => 0,
             'order'          => 'name',
@@ -129,17 +134,17 @@ class Shortcode {
         }
         //get categories
         $categories = woocatslider_get_wc_categories( $settings );
-        if( !empty($settings['include_child']) && ( $settings['selection_type'] !== 'all')){
-           $child_settings = $settings;
+        if ( ! empty( $settings['include_child'] ) && ( $settings['selection_type'] !== 'all' ) ) {
+            $child_settings = $settings;
 
-           $child_keys = ['hide_empty', 'order', 'order_by'];
-           $child_settings = array_intersect_key($child_settings, array_flip($child_keys));
-           foreach ( $settings['include'] as $cat_id ){
-               $child_settings['child_of'] = $cat_id;
-               $child_categories  = woocatslider_get_wc_categories( $child_settings );
-               $categories = array_merge( $categories, $child_categories);
-           }
-           //child_of
+            $child_keys     = [ 'hide_empty', 'order', 'order_by' ];
+            $child_settings = array_intersect_key( $child_settings, array_flip( $child_keys ) );
+            foreach ( $settings['include'] as $cat_id ) {
+                $child_settings['child_of'] = $cat_id;
+                $child_categories           = woocatslider_get_wc_categories( $child_settings );
+                $categories                 = array_merge( $categories, $child_categories );
+            }
+            //child_of
         }
 
         //if hide empty image then filter the result
@@ -223,8 +228,8 @@ class Shortcode {
         if ( in_array( $settings['nav_position'], array( 'top-left', 'top-right', 'bottom-left', 'bottom-right' ) ) ) {
             $classes[] = 'nav-' . esc_attr( $settings['nav_position'] );
         }
-        if ( $settings['hover_effect'] == '1' ) {
-            $classes[] = 'has-hover-effect';
+        if ( !empty($settings['hover_style']) && $settings['hover_style'] !== 'no-hover' ) {
+            $classes[] = esc_attr($settings['hover_style']);
         }
 
 

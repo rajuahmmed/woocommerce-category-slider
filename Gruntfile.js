@@ -160,7 +160,7 @@ module.exports = function(grunt) {
         main: {
             src: [
                 '**',
-                '!node_modules/**',
+                '!**/node_modules/**',
                 '!**/js/src/**',
                 '!**/css/src/**',
                 '!**/js/vendor/**',

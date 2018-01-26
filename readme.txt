@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: manikmist09,pluginever
 Tags: WooCommerce, Slider, Category Slider, Slider, Category Details, woo, commerce, e-commerce, ecommerce, gallery, pluginever, product, shop, WooCommerce Category, WooCommerce Slider, WooCommerce Category Slider,WooCommerce Product Category Slider
-Requires at least: 3.1
+Requires at least: 3.3
 Tested up to: 4.9.1
 Stable tag: trunk
 License: GPLv2 or later
@@ -81,6 +81,13 @@ Set "show content" to No from the slider settings in display settings section
 
 
 == Changelog ==
+= 3.0.3 =
+[Enhance] Add hover effect
+[Fix] Conflict with Woocommerce
+
+= 3.0.2 =
+[Fix] Conflict with Woocommerce
+
 = 3.0.1 =
 [Enhance] Added tooltip
 
