@@ -1,11 +1,12 @@
 === Plugin Name ===
 Contributors: manikmist09,pluginever
-Tags: WooCommerce, Slider, Category Slider, Slider, Category Details, woo, commerce, e-commerce, ecommerce, gallery, pluginever, product, shop, WooCommerce Category, WooCommerce Slider, WooCommerce Category Slider,WooCommerce Product Category Slider
-Requires at least: 3.3
-Tested up to: 4.9.1
+Tags: WooCommerce Category Slider, WooCommerce, Slider, Category Slider, Slider, Category Details, woo, commerce, e-commerce, ecommerce, gallery, pluginever, product, shop, WooCommerce Category, WooCommerce Slider,WooCommerce Product Category Slider
+Requires at least: 4.4
+Tested up to: 4.9.4
+Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Showcase Your WooCommerce powered store's categories/subcategories in a more appealing way to expand your sell.
 
@@ -81,6 +82,9 @@ Set "show content" to No from the slider settings in display settings section
 
 
 == Changelog ==
+= 3.0.4 =
+[Add] Add extra Basic Theme
+
 = 3.0.3 =
 [Enhance] Add hover effect
 [Fix] Conflict with Woocommerce
