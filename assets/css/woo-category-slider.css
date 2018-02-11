@@ -2659,6 +2659,18 @@
   display: none; }
 .plvr-category-slider.limit-height .slick-slide {
   max-height: 550px !important; }
+.plvr-category-slider.basic .slick-slide {
+  padding: 5px;
+  background: #ededed; }
+.plvr-category-slider.basic .slider-caption {
+  position: relative;
+  background: transparent;
+  color: #222;
+  font-family: 'Lato', "Open Sans", Arial; }
+  .plvr-category-slider.basic .slider-caption .slider-btn {
+    background: #00aeef;
+    color: #fff;
+    font-weight: normal; }
 .plvr-category-slider.style-1 .slider-caption {
   position: relative;
   background: transparent;

@@ -133,8 +133,9 @@ class Woo_Category_Slider {
      * @return void
      */
     function install() {
-
-
+        if ( false == get_option( 'woocatslider_install_date' ) ) {
+            update_option( 'woocatslider_install_date', current_time( 'timestamp' ) );
+        }
     }
 
     /**

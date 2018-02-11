@@ -9,7 +9,7 @@ class Metabox {
         add_action( 'admin_init', [ $this, 'init_category_settings_metabox' ] );
         add_action( 'admin_init', [ $this, 'init_display_settings_metabox' ] );
         add_action( 'admin_init', [ $this, 'init_slider_settings_metabox' ] );
-        add_action( 'add_meta_boxes', [ $this, 'init_shortcode_metabox' ] );
+        add_action( 'add_meta_boxes', [ $this, 'init_shortcode_metabox' ], 999 );
         if ( ! woocatslider_is_pro_active() ) {
             add_action( 'add_meta_boxes', [ $this, 'init_promotion_metabox' ] );
         }
@@ -228,6 +228,16 @@ class Metabox {
                         'hover-zoom-in' => 'Zoom In',
                     ) )
                 ),
+                array(
+                    'type'    => 'select',
+                    'name'    => 'theme',
+                    'label'   => __( 'Theme', 'woocatslider' ),
+                    'value'   => 'default',
+                    'options' => apply_filters('woo_category_slider_themes', array(
+                        'default-style' => 'Default',
+                        'basic'       => 'Basic',
+                    )),
+                ),
             ),
         );
         $metabox_config = apply_filters( 'woo_category_slider_display_config', $config );
@@ -314,7 +324,7 @@ class Metabox {
             <li>RTL Support</li>
             <li>And Many More</li>
         </ul>
-        <a href="https://www.pluginever.com/plugins/woo-category-slider/?utm_source=site&utm_medium=banner&utm_campaign=woocatsliderUpgrade"
+        <a href="http://bit.ly/woo-category-slider-pro"
            target="_blank" style="text-align: center;font-weight: bold;">Upgrade To PRO Now</a>
         <?php
     }
@@ -322,7 +332,6 @@ class Metabox {
     protected function get_wc_category_list() {
 
         $categories = woocatslider_get_wc_categories( [ 'number' => 1000 ] );
-
         $list = array();
         foreach ( $categories as $key => $category ) {
             $list[ $category->term_id ] = $category->name;

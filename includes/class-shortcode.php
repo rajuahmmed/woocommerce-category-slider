@@ -90,7 +90,7 @@ class Shortcode {
             'hover_effect'   => '1',
             'border'         => '1',
             'nav_style'      => '1',
-
+            'theme'         => 'default',
             //slider
             'autoplay'       => '1',
             'responsive'     => '1',
@@ -209,6 +209,9 @@ class Shortcode {
             'woo-category-slider-loading'
         );
 
+        if ( ! empty( $settings['theme'] ) ) {
+            $classes[] = sanitize_key( $settings['theme'] );
+        }
 
         if ( $settings['show_content'] !== '1' ) {
             $classes[] = 'no-content';

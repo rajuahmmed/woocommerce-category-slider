@@ -105,7 +105,7 @@ module.exports = function(grunt) {
             },
 
             sass: {
-                files: ['assets/css/sass/*.scss'],
+                files: ['assets/css/sass/**/*.scss'],
                 tasks: ['sass', 'cssmin'],
                 options: {
                     debounceDelay: 500

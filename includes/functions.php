@@ -47,9 +47,6 @@ function woocatslider_get_wc_categories( $args = array() ) {
  * @return bool
  */
 function woocatslider_is_pro_active() {
-    if ( class_exists( 'Woo_Category_Slider_Pro' ) ) {
-        return true;
-    }
 
-    return false;
+    return defined('WCSP_VERSION');
 }

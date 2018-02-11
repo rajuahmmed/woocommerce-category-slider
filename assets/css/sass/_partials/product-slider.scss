@@ -69,6 +69,24 @@
     max-height: 550px !important;
   }
 
+    &.basic{
+        .slick-slide{
+            padding: 5px;
+            background: #ededed;
+        }
+        .slider-caption{
+            position: relative;
+            background: transparent;
+            color: #222;
+            font-family: 'Lato', "Open Sans", Arial;
+            .slider-btn {
+                background: #00aeef;
+                color: #fff;
+                font-weight: normal;
+            }
+        }
+    }
+
   &.style-1{
     .slider-caption{
       position: relative;
