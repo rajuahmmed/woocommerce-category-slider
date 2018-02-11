@@ -39,6 +39,7 @@ dist/
 .tmp/
 .DS_Store
 framework
+.idea
 
 ### WordPress ###
 *.log
