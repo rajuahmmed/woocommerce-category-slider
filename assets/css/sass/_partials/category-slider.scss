@@ -1,0 +1,45 @@
+.ever-category-slider {
+
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+
+    .ever-slider-caption-title {
+        font-size: 16px;
+        line-height: 1.2;
+        margin: 0 0 5px;
+        padding-bottom: .5em;
+        font-family: inherit;
+        color: inherit
+    }
+    .ever-slider-caption-subtitle {
+        font-size: 14px;
+        font-weight: normal;
+        display: block;
+        line-height: 1;
+        font-family: inherit;
+        color: inherit
+    }
+
+    .ever-slider-caption-btn {
+        background-color: $theme_color;
+        border: 1px solid $theme_color;
+        color: #fff;
+        border-radius: 0;
+        box-shadow: none;
+        display: block;
+        font-size: 14px;
+        left: auto;
+        margin: 10px auto;
+        opacity: 1;
+        padding: 5px 0;
+        position: relative;
+        right: auto;
+        text-shadow: none;
+        top: auto;
+        width: 80%;
+        font-family: inherit;
+        font-weight: 300;
+        text-align: center
+    }
+}

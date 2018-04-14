@@ -33,23 +33,53 @@ class Shortcode {
         } else {
             ob_start();
             ?>
-            <div class="<?php echo implode( ' ', $css_classes ); ?>" id="<?php echo $id; ?>"
-                 data-sliderconfig='<?php echo $slider_config; ?>'>
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider border">
                 <?php foreach ( $categories as $category ): ?>
-                    <div>
-                        <?php echo $this->get_category_image( $category, $settings ); ?>
-                        <a href="<?php echo get_term_link( $category->term_id ) ?>" class="abs-link"></a>
-                        <div class="slider-caption">
-                            <h3 class="slider-caption-title"><?php echo $category->name ?></h3>
+                    <div class="ever-slider-item">
+                        <div class="ever-slider-image-wrapper easyContainer">
+                            <?php echo $this->get_category_image( $category, $settings ); ?>
+                        </div>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
                             <span
-                                class="slider-caption-sub-header product-count"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></span>
+                                class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></span>
                             <a href="<?php echo get_term_link( $category->term_id ) ?>"
-                               class="slider-btn"> <?php echo $category->name ?></a>
+                               class="ever-slider-caption-btn"> <?php echo $category->name ?></a>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
-            <?php do_action( 'woo_category_slider_after_html', $settings, $id ); ?>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider theme-free">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <div class="ever-slider-image-wrapper easyContainer">
+                            <?php echo $this->get_category_image( $category, $settings ); ?>
+                        </div>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <span
+                                class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></span>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn transparent-btn"> <?php echo $category->name ?></a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-1">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <?php echo $this->get_category_image( $category, $settings ); ?>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn"> <?php echo $category->name ?></a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
 
             <?php
             $html = ob_get_contents();
@@ -90,7 +120,7 @@ class Shortcode {
             'hover_effect'   => '1',
             'border'         => '1',
             'nav_style'      => '1',
-            'theme'         => 'default',
+            'theme'          => 'default',
             //slider
             'autoplay'       => '1',
             'responsive'     => '1',
@@ -170,28 +200,11 @@ class Shortcode {
             'autoplay'       => empty( $settings['autoplay'] ) ? false : true,
             'autoplaySpeed'  => 3000,
             'pauseOnHover'   => false,
-            'responsive'     => array(
-                array(
-                    'breakpoint' => 1024,
-                    'settings'   => array(
-                        'slidesToShow' => 4
-                    ),
-                ),
-                array(
-                    'breakpoint' => 600,
-                    'settings'   => array(
-                        'slidesToShow'   => 2,
-                        'slidesToScroll' => 2,
-                    ),
-                ),
-                array(
-                    'breakpoint' => 480,
-                    'settings'   => array(
-                        'slidesToShow'   => 1,
-                        'slidesToScroll' => 1,
-                    ),
-                )
-            ),
+            'loop'           => true,
+            'margin'         => 10,
+            'nav'            => true,
+
+
         );
 
 
@@ -231,8 +244,8 @@ class Shortcode {
         if ( in_array( $settings['nav_position'], array( 'top-left', 'top-right', 'bottom-left', 'bottom-right' ) ) ) {
             $classes[] = 'nav-' . esc_attr( $settings['nav_position'] );
         }
-        if ( !empty($settings['hover_style']) && $settings['hover_style'] !== 'no-hover' ) {
-            $classes[] = esc_attr($settings['hover_style']);
+        if ( ! empty( $settings['hover_style'] ) && $settings['hover_style'] !== 'no-hover' ) {
+            $classes[] = esc_attr( $settings['hover_style'] );
         }
 
 
