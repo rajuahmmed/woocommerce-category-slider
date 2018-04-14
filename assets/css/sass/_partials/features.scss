@@ -1,0 +1,23 @@
+.ever-slider{
+    .ever-slider-caption-btn{
+        transition: all 0.3s;
+        &:focus,&:active,&:hover{
+            -webkit-tap-highlight-color: transparent;
+            outline: none !important;
+            opacity: 0.8;
+        }
+
+        &.transparent-btn{
+            background: transparent;
+            color: $theme_color;
+        }
+    }
+
+    &.border{
+
+        .owl-item{
+            border: 1px solid rgba(0,0,0,.15);
+        }
+    }
+
+}
