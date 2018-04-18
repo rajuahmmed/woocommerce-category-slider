@@ -17,7 +17,7 @@ class Shortcode {
      *
      * @param $attr
      *
-     * @return string|void
+     * @return string
      *
      */
     public function woo_cat_slider_callback( $attr ) {
@@ -33,55 +33,45 @@ class Shortcode {
         } else {
             ob_start();
             ?>
-            <div class="owl-carousel owl-theme ever-slider ever-category-slider border">
+            <div class="<?php echo implode( ' ', $css_classes ); ?>" id="<?php echo $id; ?>"
+                 data-slider-config='<?php echo $slider_config; ?>'>
                 <?php foreach ( $categories as $category ): ?>
                     <div class="ever-slider-item">
-                        <div class="ever-slider-image-wrapper easyContainer">
-                            <?php echo $this->get_category_image( $category, $settings ); ?>
-                        </div>
-                        <div class="ever-slider-caption">
-                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
-                            <span
-                                class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></span>
-                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
-                               class="ever-slider-caption-btn"> <?php echo $category->name ?></a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
 
-            <div class="owl-carousel owl-theme ever-slider ever-category-slider theme-free">
-                <?php foreach ( $categories as $category ): ?>
-                    <div class="ever-slider-item">
-                        <div class="ever-slider-image-wrapper easyContainer">
-                            <?php echo $this->get_category_image( $category, $settings ); ?>
-                        </div>
-                        <div class="ever-slider-caption">
-                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
-                            <span
-                                class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></span>
-                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
-                               class="ever-slider-caption-btn transparent-btn"> <?php echo $category->name ?></a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+                        <?php if ( empty( $settings['hide_image'] ) ): ?>
+                            <div class="ever-slider-image-wrapper">
+                                <?php echo $category['image']; ?>
+                            </div>
+                        <?php endif; ?>
 
-            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-1">
-                <?php foreach ( $categories as $category ): ?>
-                    <div class="ever-slider-item">
-                        <?php echo $this->get_category_image( $category, $settings ); ?>
-                        <div class="ever-slider-caption">
-                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
-                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
-                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
-                               class="ever-slider-caption-btn"> <?php echo $category->name ?></a>
-                        </div>
+                        <?php if ( empty( $settings['hide_content'] ) ): ; ?>
+                            <div
+                                class="ever-slider-caption <?php echo ! empty( $settings['hide_image'] ) ? 'position-relative' : ''; ?>">
+
+                                <?php if ( empty( $settings['hide_name'] ) ) { ?>
+                                    <h3 class="ever-slider-caption-title"><?php echo $category['name'] ?></h3>
+                                <?php } ?>
+
+                                <?php if ( empty( $settings['hide_count'] ) ) { ?>
+                                    <span
+                                        class="ever-slider-caption-subtitle"><?php echo sprintf( _n( '%s product', '%s products', $category['count'], 'woocatslider' ), $category['count'] ); ?></span>
+                                <?php } ?>
+
+                                <?php if ( empty( $settings['hide_button'] ) ) { ?>
+                                    <a href="<?php echo $category['url'] ?>"
+                                       class="ever-slider-caption-btn"><?php echo wp_kses_post( $settings['button_text'] ); ?></a>
+                                <?php } ?>
+
+                            </div>
+
+                        <?php endif; ?>
+
                     </div>
                 <?php endforeach; ?>
             </div>
 
             <?php
+            do_action('woo_category_slider_after_html', $settings, $id);
             $html = ob_get_contents();
             ob_get_clean();
         }
@@ -105,26 +95,31 @@ class Shortcode {
         $default  = array(
             'selection_type' => 'all',
             'include'        => [],
-            'hide_empty'     => '1',
-            'hide_no_image'  => '1',
+            'hide_empty'     => '0',
             'include_child'  => '1',
             'number'         => '20',
 
             //design
-            'show_content'   => '1',
-            'show_button'    => '1',
-            'show_name'      => '1',
-            'show_count'     => '1',
-            'show_nav'       => '1',
-            'nav_position'   => 'top-right',
-            'hover_effect'   => '1',
-            'border'         => '1',
-            'nav_style'      => '1',
+            'hide_image'     => '0',
+            'hide_content'   => '0',
+            'hide_button'    => '0',
+            'hide_name'      => '0',
+            'hide_count'     => '0',
+            'hide_nav'       => '0',
+            'hover_style'    => 'hover-zoom-in',
+            'hide_border'    => '0',
             'theme'          => 'default',
+            'button_text'    => 'Shop Now',
+
             //slider
             'autoplay'       => '1',
-            'responsive'     => '1',
             'cols'           => '4',
+            'tab_cols'       => '2',
+            'phone_cols'     => '1',
+            'slider_speed'   => '2000',
+            'loop'           => '1',
+            'column_gap'     => '10',
+            'lazy_load'      => '1',
         );
 
         $default_fields = apply_filters( 'woo_category_slider_default_meta_fields', $default );
@@ -152,7 +147,6 @@ class Shortcode {
             'exclude'        => [],
             'number'         => 20,
             'hide_empty'     => 0,
-            'hide_no_image'  => 0,
             'order'          => 'name',
             'order_by'       => 'ASC',
             'hierarchical'   => true,
@@ -174,35 +168,54 @@ class Shortcode {
                 $child_categories           = woocatslider_get_wc_categories( $child_settings );
                 $categories                 = array_merge( $categories, $child_categories );
             }
-            //child_of
+        }
+        $results = [];
+
+        foreach ( $categories as $category ) {
+            $results[] = [
+                'term_id'     => $category->term_id,
+                'name'        => $category->name,
+                'slug'        => $category->slug,
+                'url'         => get_term_link( $category->term_id ),
+                'description' => $category->description,
+                'count'       => $category->count,
+                'image'       => $this->get_category_image( $category, $settings ),
+            ];
+
         }
 
-        //if hide empty image then filter the result
-        $is_exclude_no_image = empty( $settings['hide_no_image'] ) ? 0 : 1;
-        $categories          = array_filter( $categories, function ( $category ) use ( $is_exclude_no_image ) {
-            $thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
-            if ( $is_exclude_no_image && empty( $thumbnail_id ) ) {
-                return false;
-            }
 
-            return true;
-        } );
-
-        return $categories;
+        return $results;
     }
 
     protected function get_slider_config( $settings ) {
         $config = array(
-            'dots'           => false,
-            'arrows'         => empty( $settings['show_nav'] ) ? false : true,
-            'slidesToShow'   => $settings['cols'],
-            'slidesToScroll' => 1,
-            'autoplay'       => empty( $settings['autoplay'] ) ? false : true,
-            'autoplaySpeed'  => 3000,
-            'pauseOnHover'   => false,
-            'loop'           => true,
-            'margin'         => 10,
-            'nav'            => true,
+            'dots'               => false,
+            'autoHeight'         => true,
+            'singleItem'         => true,
+            'autoplay'           => empty( $settings['autoplay'] ) ? false : true,
+            'loop'               => empty( $settings['loop'] ) ? false : true,
+            'lazyLoad'           => empty( $settings['lazy_load'] ) ? false : true,
+            'margin'             => intval( $settings['column_gap'] ),
+            'autoplayTimeout'    => intval( $settings['slider_speed'] ),
+            'autoplayHoverPause' => true,
+            'fluidSpeed'         => intval( $settings['slider_speed'] ),
+            'smartSpeed'         => intval( $settings['slider_speed'] ),
+            'nav'                => empty( $settings['hide_nav'] ) ? true : false,
+            'navText'            => [ '<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>' ],
+            'stagePadding'       => 4,
+            'items'              => empty( $settings['cols'] ) ? 4 : intval( $settings['cols'] ),
+            'responsive'         => [
+                '0'    => [
+                    'items' => empty( $settings['phone_cols'] ) ? 4 : intval( $settings['phone_cols'] ),
+                ],
+                '600'  => [
+                    'items' => empty( $settings['tab_cols'] ) ? 4 : intval( $settings['tab_cols'] ),
+                ],
+                '1000' => [
+                    'items' => empty( $settings['cols'] ) ? 4 : intval( $settings['cols'] ),
+                ],
+            ],
 
 
         );
@@ -215,36 +228,29 @@ class Shortcode {
 
     protected function get_wrapper_class( $settings ) {
         $classes = array(
-            'plvr-slider',
-            'plvr-category-slider',
-            'woo-category-slider',
-            'has-padding',
-            'woo-category-slider-loading'
+            'owl-carousel',
+            'owl-theme',
+            'ever-slider',
+            'ever-category-slider'
         );
 
         if ( ! empty( $settings['theme'] ) ) {
             $classes[] = sanitize_key( $settings['theme'] );
         }
 
-        if ( $settings['show_content'] !== '1' ) {
-            $classes[] = 'no-content';
+        if ( empty( $settings['hide_border'] ) ) {
+            $classes[] = 'border';
         }
-        if ( $settings['border'] == '1' ) {
-            $classes[] = 'has-border';
+
+        if ( !empty( $settings['button_type'] ) ) {
+            $classes[] = sanitize_key($settings['button_type']);
         }
-        if ( $settings['show_button'] !== '1' ) {
-            $classes[] = 'no-btn';
+
+        if ( intval( $settings['cols'] ) < 2 ) {
+            $classes[] = 'single-slide';
         }
-        if ( $settings['show_count'] !== '1' ) {
-            $classes[] = 'no-count';
-        }
-        if ( $settings['show_name'] !== '1' ) {
-            $classes[] = 'no-name';
-        }
-        if ( in_array( $settings['nav_position'], array( 'top-left', 'top-right', 'bottom-left', 'bottom-right' ) ) ) {
-            $classes[] = 'nav-' . esc_attr( $settings['nav_position'] );
-        }
-        if ( ! empty( $settings['hover_style'] ) && $settings['hover_style'] !== 'no-hover' ) {
+
+        if ( ! empty( $settings['hover_style'] ) || $settings['hover_style'] !== 'no-hover' ) {
             $classes[] = esc_attr( $settings['hover_style'] );
         }
 
@@ -252,17 +258,31 @@ class Shortcode {
         return apply_filters( 'woo_cat_slider_wrapper_classes', $classes, $settings );
     }
 
+    /**
+     * Get slider ID
+     *
+     * @return string
+     */
     protected function get_random_id() {
         return 'woo-cat-slider-' . strtolower( wp_generate_password( 5, false, false ) );
     }
 
+    /**
+     * get category image
+     *
+     * @param $category
+     * @param $settings
+     *
+     * @return string
+     */
     protected function get_category_image( $category, $settings ) {
         $image_size   = apply_filters( 'woo_cat_slider_image_size', 'large', $settings );
         $thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
         if ( ! empty( $thumbnail_id ) ) {
             $img = wp_get_attachment_image( $thumbnail_id, $image_size );
         } else {
-            $img = '';
+            $src = PLVR_WCS_ASSETS . '/images/placeholder.png';
+            $img = "<img src='{$src}' alt='$category->name'/>";
         }
 
         return apply_filters( 'woo_category_slider_category_image', $img, $thumbnail_id, $category );

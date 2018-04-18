@@ -6,7 +6,15 @@
 .ever-slider {
     text-align: center;
     margin-top: 60px;
+    visibility: hidden;
+    min-height: 450px;
+    //max-height: 450px;
+    transition: opacity 1s ease;
 
+    &.owl-loaded{
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
     //same height
     .ever-slider-item {
         height: 100%;
@@ -15,24 +23,28 @@
     }
 
 
-    .own-carousel.owl-carousel .owl-stage {
+    .owl-stage {
         display: flex;
         flex-direction: row;
     }
 
-    .own-carousel.owl-carousel .owl-stage::after {
+    .owl-stage::after {
         display: none;
     }
 
-    .own-carousel.owl-carousel .owl-item {
+    .owl-item {
         float: none;
+    }
+
+    .owl-item{
+        overflow: hidden;
     }
 
     //navigation
     .owl-nav {
         position: absolute;
         top: -60px;
-        right: 0;
+        right: 5px;
         margin-top: 0;
         button.owl-prev, button.owl-next{
             background: $theme_color;
@@ -43,13 +55,17 @@
             border-radius: 0;
             font-size: 14px !important;
             transition:all 0.3s;
-
-            &:focus,&:active,&:hover{
+            &:focus,&:active{
+                -webkit-tap-highlight-color: transparent;
+                outline: none !important;
+            }
+            &:hover{
                 -webkit-tap-highlight-color: transparent;
                 outline: none !important;
                 background: $theme_color;
                 opacity: 0.6;
             }
+
         }
     }
 
@@ -76,6 +92,13 @@
         padding: 20px 10px;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
+
     }
+}
+
+
+//Utilities
+.position-relative{
+    position: relative !important;
 }
 

@@ -1,5 +1,5 @@
 /**
- * Woo Category Slider - v1.0.0 - 2018-04-14
+ * Woo Category Slider - v1.0.0 - 2018-04-17
  * https://pluginever.com/woo-category-slider
  *
  * Copyright (c) 2018;
@@ -3420,51 +3420,79 @@
 /*jslint browser: true */
 /*global jQuery:false */
 
-window.Woo_Category_Slider = (function(window, document, $, undefined){
-	'use strict';
+window.Woo_Category_Slider = (function (window, document, $, undefined) {
+    'use strict';
 
-	var app = {};
+    var app = {};
 
-	app.init = function() {
-        // $('.plvr-category-slider').each(function () {
-        //     var config = $(this).data('sliderconfig');
-        //     $(this).slick(config);
-        // });
-
-
-        $('.owl-carousel').owlCarousel({
-            loop:true,
-            margin:10,
-            items:4,
-            autoHeight: true,
-            // autoplay:true,
-            autoplayTimeout:3000,
-            autoplayHoverPause:true,
-            nav : true,
-            dots: true, //Make this true
-            navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
-            onInitialized: setOwlStageHeight,
-            onResized: setOwlStageHeight,
-            onTranslated: setOwlStageHeight,
-
+    app.init = function () {
+        $('.ever-category-slider').each(function (index, el) {
+            var config = $(el).data('slider-config');
+            Woo_Category_Slider.initSlider(config, el);
         });
-        function setOwlStageHeight(event) {
-            console.log(event);
+
+    };
+
+    app.initSlider = function (config, el) {
+
+        config.onInitialized = function (event) {
+            var slider = $(event.currentTarget);
+
+            if (slider.hasClass('single-slide')) {
+                return false;
+            }
+
             var maxHeight = 0;
-            $('.owl-item.active').each(function () { // LOOP THROUGH ACTIVE ITEMS
-                var thisHeight = parseInt( $(this).find('img').height() );
-                maxHeight=(maxHeight>=thisHeight?maxHeight:thisHeight);
+            slider.find('.owl-item.active').each(function () {
+                var thisHeight = parseInt(slider.find('img').height());
+                maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
             });
-            $('.owl-carousel img').css('height', maxHeight );
-           // $('.owl-stage-outer').css('height', maxHeight ); // CORRECT DRAG-AREA SO BUTTONS ARE CLICKABLE
-        }
+            slider.find('.ever-slider-image-wrapper').css('height', maxHeight);
+
+            slider.find('.ever-slider-item').css('border-width', 0);
+            slider.find('.ever-slider-item').css('border-width', '1px');
+        };
+
+        config.onResized = function (event) {
+            var slider = $(event.currentTarget);
+
+            if (slider.hasClass('single-slide')) {
+                return false;
+            }
+
+            var maxHeight = 0;
+            slider.find('.owl-item.active').each(function () {
+                var thisHeight = parseInt(slider.find('img').height());
+                maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
+            });
+            slider.find('.ever-slider-image-wrapper').css('height', maxHeight);
+        };
+
+        config.onTranslated = function (event) {
+            var slider = $(event);
+
+            if (slider.hasClass('single-slide')) {
+                return false;
+            }
+
+            var maxHeight = 0;
+            slider.find('.owl-item.active').each(function () {
+                var thisHeight = parseInt(slider.find('img').height());
+                maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
+            });
+            slider.find('.ever-slider-image-wrapper').css('height', maxHeight);
+        };
+
+        $(el).owlCarousel(config);
+
+    };
 
 
-	};
+    $(document).ready(app.init);
+    // $(window).on('onload', app.init);
+    // window.onload(app.init);
 
-	$(document).ready( app.init );
-
-	return app;
+    return app;
 
 
 })(window, document, jQuery);

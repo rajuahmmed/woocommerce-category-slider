@@ -1,0 +1,425 @@
+<?php
+
+namespace Pluginever\WCS;
+class Shortcode {
+
+    /**
+     * Shortcode constructor.
+     */
+    public function __construct() {
+        add_shortcode( 'woo_category_slider', array( $this, 'woo_cat_slider_callback' ) );
+    }
+
+    /**
+     * Render the shortcode
+     *
+     * @since 2.0.0
+     *
+     * @param $attr
+     *
+     * @return string|void
+     *
+     */
+    public function woo_cat_slider_callback( $attr ) {
+        $params        = shortcode_atts( [ 'id' => null ], $attr );
+        $settings      = $this->get_slider_settings( $params['id'] );
+        $categories    = $this->get_selected_categories( $settings );
+        $slider_config = $this->get_slider_config( $settings );
+        $css_classes   = $this->get_wrapper_class( $settings );
+        $id            = $this->get_random_id();
+        $html          = '';
+        if ( ! is_array( $categories ) || empty( $categories ) ) {
+            $html = __( 'No Category Found', 'woocatslider' );
+        } else {
+            ob_start();
+            ?>
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <div class="ever-slider-image-wrapper">
+                            <?php echo $this->get_category_image( $category, $settings ); ?>
+                        </div>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <span
+                                class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></span>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider theme-free">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <div class="ever-slider-image-wrapper easyContainer">
+                            <?php echo $this->get_category_image( $category, $settings ); ?>
+                        </div>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <span
+                                class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></span>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn transparent-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-1 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <?php echo $this->get_category_image( $category, $settings ); ?>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-2 pro-sadie border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <?php echo $this->get_category_image( $category, $settings ); ?>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-3 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <?php echo $this->get_category_image( $category, $settings ); ?>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-4 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <?php echo $this->get_category_image( $category, $settings ); ?>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-5 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <?php echo $this->get_category_image( $category, $settings ); ?>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-6 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <?php echo $this->get_category_image( $category, $settings ); ?>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-7 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <?php echo $this->get_category_image( $category, $settings ); ?>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-8 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <div class="ever-slider-image-wrapper">
+                            <?php echo $this->get_category_image( $category, $settings ); ?>
+                        </div>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <p class="ever-slider-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequatur delectus, enim error laudantium natus quae quaerat quasi quia reprehenderit?</p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-9 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <div class="ever-slider-image-wrapper">
+                            <?php echo $this->get_category_image( $category, $settings ); ?>
+                        </div>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <p class="ever-slider-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequatur delectus, enim error laudantium natus quae quaerat quasi quia reprehenderit?</p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-10 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <div class="ever-slider-image-wrapper">
+                            <?php echo $this->get_category_image( $category, $settings ); ?>
+                        </div>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <p class="ever-slider-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequatur delectus, enim error laudantium natus quae quaerat quasi quia reprehenderit?</p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="owl-carousel owl-theme ever-slider ever-category-slider pro-11 border">
+                <?php foreach ( $categories as $category ): ?>
+                    <div class="ever-slider-item">
+                        <div class="ever-slider-image-wrapper">
+                            <?php echo $this->get_category_image( $category, $settings ); ?>
+                        </div>
+                        <div class="ever-slider-caption">
+                            <h3 class="ever-slider-caption-title"><?php echo $category->name ?></h3>
+                            <p class="ever-slider-caption-subtitle"><?php _e( $category->count . ' Product(s)', 'woocatslider' ) ?></p>
+                            <p class="ever-slider-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequatur delectus, enim error laudantium natus quae quaerat quasi quia reprehenderit?</p>
+                            <a href="<?php echo get_term_link( $category->term_id ) ?>"
+                               class="ever-slider-caption-btn">Shop Now</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+
+            <?php
+            $html = ob_get_contents();
+            ob_get_clean();
+        }
+
+
+        return $html;
+    }
+
+
+    /**
+     * Get the slider settings
+     *
+     * @since 2.0.0
+     *
+     * @param null $post_id
+     *
+     * @return array
+     */
+    protected function get_slider_settings( $post_id = null ) {
+        $settings = array();
+        $default  = array(
+            'selection_type' => 'all',
+            'include'        => [],
+            'hide_empty'     => '1',
+            'hide_no_image'  => '1',
+            'include_child'  => '1',
+            'number'         => '20',
+
+            //design
+            'show_content'   => '1',
+            'show_button'    => '1',
+            'show_name'      => '1',
+            'show_count'     => '1',
+            'show_nav'       => '1',
+            'nav_position'   => 'top-right',
+            'hover_effect'   => '1',
+            'border'         => '1',
+            'nav_style'      => '1',
+            'theme'          => 'default',
+            //slider
+            'autoplay'       => '1',
+            'responsive'     => '1',
+            'cols'           => '4',
+        );
+
+        $default_fields = apply_filters( 'woo_category_slider_default_meta_fields', $default );
+
+        if ( $post_id !== null && get_post_status( $post_id ) ) {
+            foreach ( $default_fields as $key => $value ) {
+                $saved = get_post_meta( $post_id, $key, true );
+                if ( $saved == '0' || ! empty( $saved ) ) {
+                    $settings[ $key ] = $saved;
+                } else {
+                    $settings[ $key ] = $value;
+                }
+            }
+
+            return $settings;
+        }
+
+        return $default;
+    }
+
+    protected function get_selected_categories( $settings ) {
+        $default  = array(
+            'selection_type' => 'all',
+            'include'        => [],
+            'exclude'        => [],
+            'number'         => 20,
+            'hide_empty'     => 0,
+            'hide_no_image'  => 0,
+            'order'          => 'name',
+            'order_by'       => 'ASC',
+            'hierarchical'   => true,
+            'include_child'  => '1',
+        );
+        $settings = wp_parse_args( $settings, $default );
+        if ( $settings['selection_type'] == 'all' ) {
+            $settings['include'] = array();
+        }
+        //get categories
+        $categories = woocatslider_get_wc_categories( $settings );
+        if ( ! empty( $settings['include_child'] ) && ( $settings['selection_type'] !== 'all' ) ) {
+            $child_settings = $settings;
+
+            $child_keys     = [ 'hide_empty', 'order', 'order_by' ];
+            $child_settings = array_intersect_key( $child_settings, array_flip( $child_keys ) );
+            foreach ( $settings['include'] as $cat_id ) {
+                $child_settings['child_of'] = $cat_id;
+                $child_categories           = woocatslider_get_wc_categories( $child_settings );
+                $categories                 = array_merge( $categories, $child_categories );
+            }
+            //child_of
+        }
+
+        //if hide empty image then filter the result
+        $is_exclude_no_image = empty( $settings['hide_no_image'] ) ? 0 : 1;
+        $categories          = array_filter( $categories, function ( $category ) use ( $is_exclude_no_image ) {
+            $thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
+            if ( $is_exclude_no_image && empty( $thumbnail_id ) ) {
+                return false;
+            }
+
+            return true;
+        } );
+
+        return $categories;
+    }
+
+    protected function get_slider_config( $settings ) {
+        $config = array(
+            'dots'           => false,
+            'arrows'         => empty( $settings['show_nav'] ) ? false : true,
+            'slidesToShow'   => $settings['cols'],
+            'slidesToScroll' => 1,
+            'autoplay'       => empty( $settings['autoplay'] ) ? false : true,
+            'autoplaySpeed'  => 3000,
+            'pauseOnHover'   => false,
+            'loop'           => true,
+            'margin'         => 10,
+            'nav'            => true,
+
+
+        );
+
+
+        $config = apply_filters( 'woo_category_slider_slider_config', $config );
+
+        return json_encode( $config );
+    }
+
+    protected function get_wrapper_class( $settings ) {
+        $classes = array(
+            'plvr-slider',
+            'plvr-category-slider',
+            'woo-category-slider',
+            'has-padding',
+            'woo-category-slider-loading'
+        );
+
+        if ( ! empty( $settings['theme'] ) ) {
+            $classes[] = sanitize_key( $settings['theme'] );
+        }
+
+        if ( $settings['show_content'] !== '1' ) {
+            $classes[] = 'no-content';
+        }
+        if ( $settings['border'] == '1' ) {
+            $classes[] = 'has-border';
+        }
+        if ( $settings['show_button'] !== '1' ) {
+            $classes[] = 'no-btn';
+        }
+        if ( $settings['show_count'] !== '1' ) {
+            $classes[] = 'no-count';
+        }
+        if ( $settings['show_name'] !== '1' ) {
+            $classes[] = 'no-name';
+        }
+        if ( in_array( $settings['nav_position'], array( 'top-left', 'top-right', 'bottom-left', 'bottom-right' ) ) ) {
+            $classes[] = 'nav-' . esc_attr( $settings['nav_position'] );
+        }
+        if ( ! empty( $settings['hover_style'] ) && $settings['hover_style'] !== 'no-hover' ) {
+            $classes[] = esc_attr( $settings['hover_style'] );
+        }
+
+
+        return apply_filters( 'woo_cat_slider_wrapper_classes', $classes, $settings );
+    }
+
+    protected function get_random_id() {
+        return 'woo-cat-slider-' . strtolower( wp_generate_password( 5, false, false ) );
+    }
+
+    protected function get_category_image( $category, $settings ) {
+        $image_size   = apply_filters( 'woo_cat_slider_image_size', 'large', $settings );
+        $thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
+        if ( ! empty( $thumbnail_id ) ) {
+            $img = wp_get_attachment_image( $thumbnail_id, $image_size );
+        } else {
+            $img = '';
+        }
+
+        return apply_filters( 'woo_category_slider_category_image', $img, $thumbnail_id, $category );
+    }
+}

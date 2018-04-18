@@ -15,7 +15,7 @@
 
     }
 
-    &.pro-1, &.pro-layla{
+    &.pro-1{
 
         .ever-slider-caption {
             padding: 3em;
@@ -74,7 +74,6 @@
             transform: translate3d(0,-10px,0);
         }
 
-        img,
         .ever-slider-caption-title {
             -webkit-transform: translate3d(0,-30px,0);
             transform: translate3d(0,-30px,0);
@@ -117,6 +116,288 @@
         .ever-slider-item:hover img {
             -webkit-transition-delay: 0.15s;
             transition-delay: 0.15s;
+        }
+
+    }
+
+    &.pro-2{
+        .ever-slider-item {
+            img {
+                opacity: 0.7;
+                -webkit-transition: opacity 0.35s;
+                transition: opacity 0.35s;
+            }
+
+            .ever-slider-caption{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: transparent;
+                &::before,&::after{
+                    position: absolute;
+                    top: 30px;
+                    right: 30px;
+                    bottom: 30px;
+                    left: 30px;
+                    content: '';
+                    opacity: 0;
+                    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                    transition: opacity 0.35s, transform 0.35s;
+                }
+
+                &::before{
+                    border-top: 1px solid $theme_color;
+                    border-bottom: 1px solid $theme_color;
+                    -webkit-transform: scale(0,1);
+                    transform: scale(0,1);
+                }
+
+                &::after{
+                    border-right: 1px solid $theme_color;
+                    border-left: 1px solid $theme_color;
+                    -webkit-transform: scale(1,0);
+                    transform: scale(1,0);
+                }
+            }
+
+            .ever-slider-caption-title {
+                padding-top: 30%;
+                -webkit-transition: -webkit-transform 0.35s;
+                transition: transform 0.35s;
+                -webkit-transform: translate3d(0,-20px,0);
+                transform: translate3d(0,-20px,0);
+            }
+
+            .ever-slider-caption-subtitle {
+                opacity: 0;
+                -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                transition: opacity 0.35s, transform 0.35s;
+                -webkit-transform: translate3d(0,20px,0);
+                transform: translate3d(0,20px,0);
+            }
+            .ever-slider-caption-btn{
+                opacity: 0;
+                -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                transition: opacity 0.35s, transform 0.35s;
+                -webkit-transform: translate3d(0,20px,0);
+                transform: translate3d(0,20px,0);
+            }
+
+            &:hover{
+                img {
+                    opacity: 0.4;
+                }
+
+                .ever-slider-caption{
+                    &::before,&::after{
+                        opacity: 1;
+                        -webkit-transform: scale(1);
+                        transform: scale(1);
+                    }
+                }
+
+                .ever-slider-caption-title, p, .ever-slider-caption-btn{
+                    opacity: 1;
+                    -webkit-transform: translate3d(0,0,0);
+                    transform: translate3d(0,0,0);
+                }
+            }
+        }
+
+
+    }
+
+    &.pro-3{
+        .ever-slider-item{
+
+            .ever-slider-caption{
+                background: transparent;
+                top: 60%;
+                bottom: auto;
+                transform: translateY(calc(-50% - .5px));
+                transition: all .6s;
+                position: absolute;
+                width: 100%;
+            }
+            .ever-slider-caption-subtitle{
+                transition: all .6s;
+                opacity: 0;
+                -webkit-transform: translateY(15%) translateZ(0);
+                transform: translateY(15%) translateZ(0);
+                text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+                margin-bottom: 10px !important;
+            }
+            .ever-slider-caption-btn{
+                transition: all .6s;
+                opacity: 0;
+            }
+            .ever-slider-caption-title{
+                font-weight: 700;
+                transition: all .6s;
+            }
+
+
+            &:hover{
+                .ever-slider-caption{
+                    top: 50%;
+                }
+                .ever-slider-caption-subtitle, .ever-slider-caption-btn{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &.pro-4{
+        .ever-slider-caption{
+            color: inherit;
+            background: rgba(255,255,255,0.5);
+            top: 50%;
+            bottom: auto;
+            transform: translateY(calc(-50% - .5px));
+            transition: all .6s;
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+        }
+        .ever-slider-item{
+            &:hover{
+                .ever-slider-caption{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &.pro-5{
+        .ever-slider-caption{
+            color: inherit;
+            background: rgba(255,255,255,0.5);
+            top: 50%;
+            bottom: auto;
+            transform: translateY(calc(-50% - .5px));
+            transition: all .6s;
+            position: absolute;
+            width: 100%;
+        }
+        .ever-slider-item{
+            &:hover{
+                .ever-slider-caption{
+                    bottom: 0;
+                    top: auto;
+                    transform: none;
+                }
+            }
+        }
+    }
+
+    &.pro-6{
+        .ever-slider-caption{
+            color: inherit;
+            background: rgba(255,255,255,0.5);
+            top: 100%;
+            bottom: auto;
+            transition: all .6s;
+            position: absolute;
+            width: 100%;
+        }
+        .ever-slider-item{
+            &:hover{
+                .ever-slider-caption{
+                    top: 50%;
+                    bottom: auto;
+                    transform: translateY(calc(-50% - .5px));
+                }
+            }
+        }
+    }
+
+    &.pro-7{
+        .ever-slider-caption{
+            color: inherit;
+            background: rgba(255,255,255,0.5);
+            top: auto;
+            bottom: -100%;
+            transition: bottom .6s;
+            width: 100%;
+            position: absolute;
+        }
+        .ever-slider-caption-title{
+            margin: 0;
+            padding: 0;
+        }
+
+        .ever-slider-item{
+            &:hover{
+                .ever-slider-caption{
+                    bottom: 0;
+                    top: auto;
+                }
+            }
+
+        }
+    }
+
+
+    &.pro-8{
+        .ever-slider-image-wrapper img{
+            //max-width: auto !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            width: auto !important;
+            display: block;
+            margin: 0 auto;
+        }
+        .ever-slider-image-wrapper, .ever-slider-caption{
+            float: left;
+            width: 50%;
+            height: 100%;
+        }
+        .ever-slider-caption{
+            padding: 30px 20px;
+            background: #fff;
+            text-align: left;
+        }
+    }
+
+    &.pro-9{
+        .ever-slider-item{
+            transition: all 0.3s;
+
+            &:hover{
+                border-color: $theme_color;
+            }
+        }
+    }
+
+
+    &.pro-10{
+        .ever-slider-caption{
+            position: relative;
+        }
+
+        .ever-slider-desc{
+            display: none;
+        }
+
+        .ever-slider-caption-btn{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -60px;
+            width: 90%;
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+
+        .ever-slider-item{
+            &:hover{
+                .ever-slider-caption-btn{
+                    opacity: 1;
+                }
+            }
         }
     }
 }

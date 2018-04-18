@@ -53,40 +53,18 @@ class Metabox {
                     'options'   => $this->get_wc_category_list(),
                 ),
                 array(
-                    'type'     => 'select',
-                    'name'     => 'include_child',
-                    'label'    => __( 'Include Children', 'woocatslider' ),
-                    'tooltip'  => __( 'Will include subcategories of the selected categories', 'woocatslider' ),
-                    'value'    => '1',
-                    'sanitize' => 'intval',
-                    'options'  => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
+                    'type'    => 'checkbox',
+                    'name'    => 'include_child',
+                    'label'   => __( 'Include Children', 'woocatslider' ),
+                    'tooltip' => __( 'Will include subcategories of the selected categories', 'woocatslider' ),
+                    'title'   => __( 'Yes', 'woocatslider' ),
                 ),
                 array(
-                    'type'     => 'select',
-                    'name'     => 'hide_empty',
-                    'label'    => __( 'Hide Empty Categories', 'woocatslider' ),
-                    'tooltip'  => __( 'Automatically hides Category without products', 'woocatslider' ),
-                    'value'    => '1',
-                    'sanitize' => 'intval',
-                    'options'  => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
-                ),
-                array(
-                    'type'     => 'select',
-                    'name'     => 'hide_no_image',
-                    'label'    => __( 'Hide Categories Without Image', 'woocatslider' ),
-                    'tooltip'  => __( 'Automatically hides Category without category image', 'woocatslider' ),
-                    'value'    => '1',
-                    'sanitize' => 'intval',
-                    'options'  => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
+                    'type'    => 'checkbox',
+                    'name'    => 'hide_empty',
+                    'label'   => __( 'Hide Empty Categories', 'woocatslider' ),
+                    'tooltip' => __( 'Automatically hides Category without products', 'woocatslider' ),
+                    'title'   => __( 'Yes', 'woocatslider' ),
                 ),
                 array(
                     'type'     => 'number',
@@ -111,116 +89,64 @@ class Metabox {
             'lazy_loading' => 'true',
             'fields'       => array(
                 array(
-                    'type'     => 'select',
-                    'name'     => 'show_content',
-                    'label'    => __( 'Show Content', 'woocatslider' ),
-                    'tooltip'  => __( 'Show or hide category name, button, product count', 'woocatslider' ),
-                    'value'    => '1',
-                    'sanitize' => 'intval',
-                    'options'  => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
+                    'type'  => 'checkbox',
+                    'name'  => 'hide_image',
+                    'label' => __( 'Hide Image', 'woocatslider' ),
+                    'value' => '0',
+                    'title' => __( 'Yes', 'woocatslider' ),
                 ),
                 array(
-                    'type'      => 'select',
-                    'name'      => 'show_button',
-                    'label'     => __( 'Show Button', 'woocatslider' ),
-                    'value'     => '1',
-                    'sanitize'  => 'intval',
-                    'options'   => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
-                    'condition' => array(
-                        'depend_on'    => 'show_content',
-                        'depend_value' => '1',
-                        'depend_cond'  => '==',
-                    ),
+                    'type'    => 'checkbox',
+                    'name'    => 'hide_content',
+                    'label'   => __( 'Hide Content', 'woocatslider' ),
+                    'tooltip' => __( 'Hide category name, button, product count', 'woocatslider' ),
+                    'value'   => '0',
+                    'title'   => __( 'Yes', 'woocatslider' ),
+
                 ),
                 array(
-                    'type'      => 'select',
-                    'name'      => 'show_name',
-                    'label'     => __( 'Show Category Name', 'woocatslider' ),
-                    'value'     => '0',
-                    'sanitize'  => 'intval',
-                    'options'   => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
-                    'condition' => array(
-                        'depend_on'    => 'show_content',
-                        'depend_value' => '1',
-                        'depend_cond'  => '==',
-                    ),
+                    'type'  => 'checkbox',
+                    'name'  => 'hide_button',
+                    'label' => __( 'Hide Button', 'woocatslider' ),
+                    'value' => '0',
+                    'title' => __( 'Yes', 'woocatslider' ),
+
+                ),
+                array(
+                    'type'  => 'checkbox',
+                    'name'  => 'hide_name',
+                    'title' => __( 'Yes', 'woocatslider' ),
+                    'label' => __( 'Hide Category Name', 'woocatslider' ),
+                    'value' => '0',
                 ),
 
                 array(
-                    'type'      => 'select',
-                    'name'      => 'show_count',
-                    'label'     => __( 'Show Product Count', 'woocatslider' ),
-                    'value'     => '0',
-                    'sanitize'  => 'intval',
-                    'options'   => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
-                    'condition' => array(
-                        'depend_on'    => 'show_content',
-                        'depend_value' => '1',
-                        'depend_cond'  => '==',
-                    ),
+                    'type'  => 'checkbox',
+                    'name'  => 'hide_count',
+                    'title' => __( 'Yes', 'woocatslider' ),
+                    'label' => __( 'Hide Product Count', 'woocatslider' ),
+                    'value' => '0',
                 ),
                 array(
-                    'type'      => 'select',
-                    'name'      => 'show_nav',
-                    'label'     => __( 'Show Navigation', 'woocatslider' ),
-                    'value'     => '0',
-                    'sanitize'  => 'intval',
-                    'options'   => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
-                    'condition' => array(
-                        'depend_on'    => 'show_content',
-                        'depend_value' => '1',
-                        'depend_cond'  => '==',
-                    ),
+                    'type'  => 'checkbox',
+                    'name'  => 'hide_nav',
+                    'title' => __( 'Yes', 'woocatslider' ),
+                    'label' => __( 'Hide Navigation', 'woocatslider' ),
+                    'value' => '0',
+
                 ),
                 array(
-                    'type'      => 'select',
-                    'name'      => 'nav_position',
-                    'label'     => __( 'Navigation Position', 'woocatslider' ),
-                    'value'     => 'top-right',
-                    'sanitize'  => 'sanitize_key',
-                    'options'   => array(
-                        'top-right'    => 'Top Right',
-                        'top-left'     => 'Top Left',
-                        'bottom-right' => 'Bottom Right',
-                        'bottom-left'  => 'Bottom Left'
-                    ),
-                    'condition' => array(
-                        'depend_on'    => 'show_nav',
-                        'depend_value' => '1',
-                        'depend_cond'  => '==',
-                    ),
-                ),
-                array(
-                    'type'     => 'select',
-                    'name'     => 'border',
-                    'label'    => __( 'Add Border', 'woocatslider' ),
-                    'tooltip'  => __( 'Show border around slider image?', 'woocatslider' ),
-                    'value'    => '1',
-                    'sanitize' => 'intval',
-                    'options'  => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
+                    'type'    => 'checkbox',
+                    'name'    => 'hide_border',
+                    'title'   => __( 'Yes', 'woocatslider' ),
+                    'label'   => __( 'Hide Border', 'woocatslider' ),
+                    'tooltip' => __( 'Hide border around slider image?', 'woocatslider' ),
+                    'value'   => '0',
                 ),
                 array(
                     'type'     => 'select',
                     'name'     => 'hover_style',
-                    'label'    => __( 'Hover effect', 'woocatslider' ),
+                    'label'    => __( 'Image Hover effect', 'woocatslider' ),
                     'value'    => 'hover-zoom-in',
                     'sanitize' => 'sanitize_key',
                     'options'  => apply_filters( 'woo_category_slider_hover_styles', array(
@@ -233,10 +159,10 @@ class Metabox {
                     'name'    => 'theme',
                     'label'   => __( 'Theme', 'woocatslider' ),
                     'value'   => 'default',
-                    'options' => apply_filters('woo_category_slider_themes', array(
-                        'default-style' => 'Default',
-                        'basic'       => 'Basic',
-                    )),
+                    'options' => apply_filters( 'woo_category_slider_themes', array(
+                        'default'    => 'Default',
+                        'theme-free' => 'Basic',
+                    ) ),
                 ),
             ),
         );
@@ -258,17 +184,6 @@ class Metabox {
                     'name'     => 'autoplay',
                     'label'    => __( 'Slider Autoplay', 'woocatslider' ),
                     'tooltip'  => __( 'Slider will automatically start playing is set Yes.', 'woocatslider' ),
-                    'value'    => '1',
-                    'sanitize' => 'intval',
-                    'options'  => array(
-                        '1' => 'Yes',
-                        '0' => 'No'
-                    ),
-                ),
-                array(
-                    'type'     => 'select',
-                    'name'     => 'responsive',
-                    'label'    => __( 'Responsive', 'woocatslider' ),
                     'value'    => '1',
                     'sanitize' => 'intval',
                     'options'  => array(
@@ -332,7 +247,7 @@ class Metabox {
     protected function get_wc_category_list() {
 
         $categories = woocatslider_get_wc_categories( [ 'number' => 1000 ] );
-        $list = array();
+        $list       = array();
         foreach ( $categories as $key => $category ) {
             $list[ $category->term_id ] = $category->name;
         }
