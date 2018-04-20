@@ -36,6 +36,10 @@ window.Woo_Category_Slider = (function (window, document, $, undefined) {
                 var thisHeight = parseInt(slider.find('img').height());
                 maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
             });
+            if( maxHeight < 300 ){
+                maxHeight = 300;
+            }
+
             slider.find('.ever-slider-image-wrapper').css('height', maxHeight);
 
             slider.find('.ever-slider-item').css('border-width', 0);
@@ -54,6 +58,9 @@ window.Woo_Category_Slider = (function (window, document, $, undefined) {
                 var thisHeight = parseInt(slider.find('img').height());
                 maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
             });
+            if( maxHeight < 300 ){
+                maxHeight = 300;
+            }
             slider.find('.ever-slider-image-wrapper').css('height', maxHeight);
         };
 
@@ -69,6 +76,10 @@ window.Woo_Category_Slider = (function (window, document, $, undefined) {
                 var thisHeight = parseInt(slider.find('img').height());
                 maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
             });
+
+            if( maxHeight < 300 ){
+                maxHeight = 300;
+            }
             slider.find('.ever-slider-image-wrapper').css('height', maxHeight);
         };
 

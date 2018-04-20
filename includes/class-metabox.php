@@ -7,6 +7,7 @@ class Metabox {
      */
     public function __construct() {
         add_action( 'admin_init', [ $this, 'init_category_settings_metabox' ] );
+        add_action( 'admin_init', [ $this, 'init_custom_image_metabox' ] );
         add_action( 'admin_init', [ $this, 'init_display_settings_metabox' ] );
         add_action( 'admin_init', [ $this, 'init_slider_settings_metabox' ] );
         add_action( 'add_meta_boxes', [ $this, 'init_shortcode_metabox' ], 999 );
@@ -77,6 +78,27 @@ class Metabox {
             ),
         );
         $metabox->init( apply_filters( 'woo_category_slider_settings_config', $config ) );
+    }
+
+    public function init_custom_image_metabox(){
+        $metabox        = new \Pluginever\Framework\Metabox( 'woo_cat_custom_image_metabox' );
+        $config         = array(
+            'title'        => __( 'Custom Images', 'woocatslider' ),
+            'screen'       => 'woocatslider',
+            'context'      => 'normal',
+            'priority'     => 'high',
+            'lazy_loading' => 'true',
+            'fields'       => array(
+                array(
+                    'type'  => 'html',
+                    'name'  => 'html_title',
+                    'label' => __( 'Upgrade to PRO version for using custom images', 'woocatslider' ),
+                ),
+            )
+        );
+
+        $metabox_config = apply_filters( 'woo_cat_custom_image_metabox_config', $config );
+        $metabox->init( $metabox_config );
     }
 
     public function init_display_settings_metabox() {

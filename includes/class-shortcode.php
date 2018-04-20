@@ -22,8 +22,8 @@ class Shortcode {
      */
     public function woo_cat_slider_callback( $attr ) {
         $params        = shortcode_atts( [ 'id' => null ], $attr );
-        $settings      = $this->get_slider_settings( $params['id'] );
-        $categories    = $this->get_selected_categories( $settings );
+        $settings      = self::get_slider_settings( $params['id'] );
+        $categories    = self::get_selected_categories( $settings );
         $slider_config = $this->get_slider_config( $settings );
         $css_classes   = $this->get_wrapper_class( $settings );
         $id            = $this->get_random_id();
@@ -40,7 +40,8 @@ class Shortcode {
 
                         <?php if ( empty( $settings['hide_image'] ) ): ?>
                             <div class="ever-slider-image-wrapper">
-                                <?php echo $category['image']; ?>
+                                <img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" class="ever-slider-image">
+
                             </div>
                         <?php endif; ?>
 
@@ -71,7 +72,7 @@ class Shortcode {
             </div>
 
             <?php
-            do_action('woo_category_slider_after_html', $settings, $id);
+            do_action( 'woo_category_slider_after_html', $settings, $id );
             $html = ob_get_contents();
             ob_get_clean();
         }
@@ -90,13 +91,14 @@ class Shortcode {
      *
      * @return array
      */
-    protected function get_slider_settings( $post_id = null ) {
+    public static function get_slider_settings( $post_id = null ) {
         $settings = array();
         $default  = array(
+            'post_id'        => $post_id,
             'selection_type' => 'all',
             'include'        => [],
             'hide_empty'     => '0',
-            'include_child'  => '1',
+            'include_child'  => '0',
             'number'         => '20',
 
             //design
@@ -140,7 +142,7 @@ class Shortcode {
         return $default;
     }
 
-    protected function get_selected_categories( $settings ) {
+    public static function get_selected_categories( $settings ) {
         $default  = array(
             'selection_type' => 'all',
             'include'        => [],
@@ -156,8 +158,10 @@ class Shortcode {
         if ( $settings['selection_type'] == 'all' ) {
             $settings['include'] = array();
         }
+
         //get categories
         $categories = woocatslider_get_wc_categories( $settings );
+
         if ( ! empty( $settings['include_child'] ) && ( $settings['selection_type'] !== 'all' ) ) {
             $child_settings = $settings;
 
@@ -179,7 +183,7 @@ class Shortcode {
                 'url'         => get_term_link( $category->term_id ),
                 'description' => $category->description,
                 'count'       => $category->count,
-                'image'       => $this->get_category_image( $category, $settings ),
+                'image'       => woocatslider_get_category_image( $category, $settings['post_id'] ),
             ];
 
         }
@@ -242,8 +246,8 @@ class Shortcode {
             $classes[] = 'border';
         }
 
-        if ( !empty( $settings['button_type'] ) ) {
-            $classes[] = sanitize_key($settings['button_type']);
+        if ( ! empty( $settings['button_type'] ) ) {
+            $classes[] = sanitize_key( $settings['button_type'] );
         }
 
         if ( intval( $settings['cols'] ) < 2 ) {
@@ -267,24 +271,4 @@ class Shortcode {
         return 'woo-cat-slider-' . strtolower( wp_generate_password( 5, false, false ) );
     }
 
-    /**
-     * get category image
-     *
-     * @param $category
-     * @param $settings
-     *
-     * @return string
-     */
-    protected function get_category_image( $category, $settings ) {
-        $image_size   = apply_filters( 'woo_cat_slider_image_size', 'large', $settings );
-        $thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
-        if ( ! empty( $thumbnail_id ) ) {
-            $img = wp_get_attachment_image( $thumbnail_id, $image_size );
-        } else {
-            $src = PLVR_WCS_ASSETS . '/images/placeholder.png';
-            $img = "<img src='{$src}' alt='$category->name'/>";
-        }
-
-        return apply_filters( 'woo_category_slider_category_image', $img, $thumbnail_id, $category );
-    }
 }
