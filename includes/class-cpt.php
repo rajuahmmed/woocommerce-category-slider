@@ -24,10 +24,10 @@ class CPT {
 
     public function register_shortcode_post() {
         $labels = array(
-            'name'               => _x( 'Woo Category Slider Shortcode', 'post type general name', 'woocatslider' ),
-            'singular_name'      => _x( 'Woo Category Slider', 'post type singular name', 'woocatslider' ),
+            'name'               => _x( 'WooCommerce Category Slider Shortcode', 'post type general name', 'woocatslider' ),
+            'singular_name'      => _x( 'WooCommerce Category Slider', 'post type singular name', 'woocatslider' ),
             'menu_name'          => _x( 'Woo Cat Slider', 'admin menu', 'woocatslider' ),
-            'name_admin_bar'     => _x( 'Woo Category Slider', 'add new on admin bar', 'woocatslider' ),
+            'name_admin_bar'     => _x( 'WooCommerce Category Slider', 'add new on admin bar', 'woocatslider' ),
             'add_new'            => _x( 'Add New', 'book', 'woocatslider' ),
             'add_new_item'       => __( 'Add New Slider', 'woocatslider' ),
             'new_item'           => __( 'New Slider', 'woocatslider' ),

@@ -9,9 +9,9 @@ class Tracker extends \Pluginever_Insights {
 
     public function __construct() {
 
-        $notice = __( 'Want to help make <strong>WOO Category Slider</strong> even more awesome? Allow PluginEver to collect non-sensitive diagnostic data and usage information.', 'woocatslider' );
+        $notice = __( 'Want to help make <strong>WooCommerce Category Slider</strong> even more awesome? Allow PluginEver to collect non-sensitive diagnostic data and usage information.', 'woocatslider' );
 
-        parent::__construct( 'woo-category-slider-by-pluginever', 'Woo Category Slider', PLVR_WCS_FILE, $notice );
+        parent::__construct( 'woo-category-slider-by-pluginever', 'WooCommerce Category Slider', PLVR_WCS_FILE, $notice );
     }
 
     /**

@@ -1,5 +1,5 @@
 /**
- * Woo Category Slider - v1.0.0 - 2018-04-17
+ * Woo Category Slider - v1.0.0 - 2018-04-20
  * https://pluginever.com/woo-category-slider
  *
  * Copyright (c) 2018;
@@ -3447,6 +3447,10 @@ window.Woo_Category_Slider = (function (window, document, $, undefined) {
                 var thisHeight = parseInt(slider.find('img').height());
                 maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
             });
+            if( maxHeight < 300 ){
+                maxHeight = 300;
+            }
+
             slider.find('.ever-slider-image-wrapper').css('height', maxHeight);
 
             slider.find('.ever-slider-item').css('border-width', 0);
@@ -3465,6 +3469,9 @@ window.Woo_Category_Slider = (function (window, document, $, undefined) {
                 var thisHeight = parseInt(slider.find('img').height());
                 maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
             });
+            if( maxHeight < 300 ){
+                maxHeight = 300;
+            }
             slider.find('.ever-slider-image-wrapper').css('height', maxHeight);
         };
 
@@ -3480,6 +3487,10 @@ window.Woo_Category_Slider = (function (window, document, $, undefined) {
                 var thisHeight = parseInt(slider.find('img').height());
                 maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
             });
+
+            if( maxHeight < 300 ){
+                maxHeight = 300;
+            }
             slider.find('.ever-slider-image-wrapper').css('height', maxHeight);
         };
 
