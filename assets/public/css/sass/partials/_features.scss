@@ -1,0 +1,35 @@
+.ever-slider {
+    .ever-slider-caption-btn {
+        //transition: all 0.3s;
+        &:focus, &:hover {
+            -webkit-tap-highlight-color: transparent;
+            outline: none !important;
+            opacity: 0.8;
+        }
+    }
+
+    &.border {
+
+        .ever-slider-item {
+            border: 1px solid rgba(0, 0, 0, .15);
+        }
+    }
+
+    //hover
+
+    &.hover-zoom-in {
+        img {
+            transition: all 0.6s;
+        }
+
+        .ever-slider-item {
+            &:hover {
+                img {
+                    -webkit-transform: scale(1.1);
+                    -ms-transform: scale(1.1);
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
