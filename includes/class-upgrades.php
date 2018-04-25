@@ -12,8 +12,7 @@ class Woocommerce_Category_Slider_Upgrades {
      *
      * @var array
      */
-    private static $upgrades = array(
-        // '1.0'    => 'updates/update-1.0.php',
+    private static $upgrades = array(// '1.0'    => 'updates/update-1.0.php',
     );
 
     /**
@@ -31,6 +30,10 @@ class Woocommerce_Category_Slider_Upgrades {
      * @return boolean
      */
     public function needs_update() {
+
+        if ( empty( get_option( 'wc_category_slider_post_type_updated' ) ) ) {
+            $this->change_post_type();
+        }
 
         // may be it's the first install
         if ( ! $this->get_version() ) {
@@ -62,4 +65,14 @@ class Woocommerce_Category_Slider_Upgrades {
 
         update_option( 'wc_category_slider_version', 'WCS_VERSION' );
     }
+
+    function change_post_type() {
+        global $wpdb;
+        $sql = "UPDATE $wpdb->posts
+            SET post_type = REPLACE('post_type','woocatslider','wc_category_slider'),
+             guid = REPLACE('guid','woocatslider','wc_category_slider')
+             WHERE post_type = 'woocatslider'";
+        $wpdb->query($sql);
+    }
+
 }

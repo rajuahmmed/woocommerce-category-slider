@@ -20,7 +20,7 @@ class Shortcode {
         $post_id = $params['id'];
 
         $settings      = wc_category_slider_get_settings( $post_id );
-        $categories    = wc_category_slider_get_selected_categories( $settings );
+        $categories    = wc_category_slider_get_selected_categories( $settings, $post_id );
         $slider_config = $this->get_slider_config( $settings );
 
         $css_classes = $this->get_wrapper_class( $settings );
@@ -163,7 +163,7 @@ class Shortcode {
         }
 
 
-        return apply_filters( 'woo_cat_slider_wrapper_classes', $classes, $settings );
+        return apply_filters( 'wc_category_slider_wrapper_classes', $classes, $settings );
     }
 
     /**

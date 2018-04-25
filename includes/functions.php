@@ -63,7 +63,7 @@ function wc_category_slider_get_categories( $args = array(), $post_id = null ) {
         ];
     }
 
-    return apply_filters( 'wc_category_get_categories', $results, $post_id );
+    return apply_filters( 'wc_category_slider_get_categories', $results, $post_id );
 }
 
 /**
@@ -127,10 +127,11 @@ function wc_category_slider_get_settings( $post_id ) {
  * Get selected categories from the post id
  *
  * @param $args
+ * @param $post_id
  *
  * @return array $categories
  */
-function wc_category_slider_get_selected_categories( $args ) {
+function wc_category_slider_get_selected_categories( $args, $post_id = null ) {
     $default = array(
         'selection_type' => 'all',
         'include'        => [],
@@ -149,7 +150,7 @@ function wc_category_slider_get_selected_categories( $args ) {
     }
 
     //get categories
-    $categories = wc_category_slider_get_categories( $settings );
+    $categories = wc_category_slider_get_categories( $settings, $post_id );
 
     return $categories;
 }

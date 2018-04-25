@@ -23,8 +23,9 @@ window.WooCommerce_Category_Slider_Public = (function (window, document, $, unde
             $(".ever-slider-image-wrapper").imgLiquid({
                 fill: true,
                 horizontalAlign: "center",
-                verticalAlign: "top"
+                verticalAlign: "center"
             });
+
 
 
         },

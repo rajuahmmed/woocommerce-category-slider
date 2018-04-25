@@ -148,6 +148,33 @@ class Woocommerce_Category_Slider {
     }
 
     /**
+     * Init Hooks
+     *
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    private function init_hooks() {
+        // Localize our plugin
+        add_action( 'init', [ $this, 'localization_setup' ] );
+
+        add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
+
+        add_action( 'admin_init', [ $this, 'plugin_upgrades' ] );
+    }
+
+    /**
+     * Initialize plugin for localization
+     *
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    public function localization_setup() {
+        load_plugin_textdomain( 'wc_category_slider', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    }
+
+    /**
      * Do plugin upgrades
      *
      * @since 1.0.0
@@ -167,31 +194,6 @@ class Woocommerce_Category_Slider {
         if ( $upgrader->needs_update() ) {
             $upgrader->perform_updates();
         }
-    }
-
-    /**
-     * Init Hooks
-     *
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    private function init_hooks() {
-        // Localize our plugin
-        add_action( 'init', [ $this, 'localization_setup' ] );
-
-        add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
-    }
-
-    /**
-     * Initialize plugin for localization
-     *
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function localization_setup() {
-        load_plugin_textdomain( 'wc_category_slider', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
 
     /**
