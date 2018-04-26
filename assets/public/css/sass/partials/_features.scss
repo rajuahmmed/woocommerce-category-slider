@@ -16,18 +16,22 @@
     }
 
     //hover
-
-    &.hover-zoom-in {
-        img {
-            transition: all 0.6s;
+    &.hover-zoom-in{
+        .ever-slider-image-wrapper{
+            transition: all 0.3s;
+            position: relative;
+            &::before{
+                content:"";
+                position:absolute; top:0;right:0;bottom:0;left:0;
+                background:inherit;
+                transition:inherit;
+            }
         }
 
-        .ever-slider-item {
-            &:hover {
-                img {
-                    -webkit-transform: scale(1.1);
-                    -ms-transform: scale(1.1);
-                    transform: scale(1.1);
+        .ever-slider-item{
+            &:hover{
+                .ever-slider-image-wrapper::before{
+                    transform: scale(1.2);
                 }
             }
         }

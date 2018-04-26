@@ -68,11 +68,14 @@ class Woocommerce_Category_Slider_Upgrades {
 
     function change_post_type() {
         global $wpdb;
-        $sql = "UPDATE $wpdb->posts
-            SET post_type = REPLACE('post_type','woocatslider','wc_category_slider'),
-             guid = REPLACE('guid','woocatslider','wc_category_slider')
-             WHERE post_type = 'woocatslider'";
+        $sql = "UPDATE $wpdb->posts SET post_type = 'wc_category_slider' WHERE post_type = 'woocatslider'";
+        error_log($sql);
         $wpdb->query($sql);
+        $sql = "UPDATE $wpdb->posts SET post_type = 'wc_category_slider' WHERE post_type = 'woocatsliderpro'";
+        error_log($sql);
+        $wpdb->query($sql);
+
+        update_option( 'wc_category_slider_post_type_updated', 1 );
     }
 
 }

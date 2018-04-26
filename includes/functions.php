@@ -91,6 +91,7 @@ function wc_category_slider_get_settings( $post_id ) {
         'hide_nav'       => '0',
         'hover_style'    => 'hover-zoom-in',
         'hide_border'    => '0',
+        'show_desc'      => '0',
         'theme'          => 'default',
         'button_text'    => 'Shop Now',
 

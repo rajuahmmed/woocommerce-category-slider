@@ -26,7 +26,7 @@ class Shortcode {
         $css_classes = $this->get_wrapper_class( $settings );
         $id          = $this->get_slider_id( $post_id );
 
-
+        //var_dump($settings);
         if ( ! is_array( $categories ) || empty( $categories ) ) {
             $html = __( 'No Category Found', 'wc_category_slider' );
         } else {
@@ -59,6 +59,12 @@ class Shortcode {
                                     <span
                                         class="ever-slider-caption-subtitle"><?php echo sprintf( _n( '%s product', '%s products', $category['count'], 'woocatslider' ), $category['count'] ); ?></span>
                                 <?php } ?>
+
+                                <?php if (! empty( $settings['show_desc'] ) ) { ?>
+                                    <p
+                                        class="ever-slider-desc"><?php echo wp_kses_post($category['description']); ?></p>
+                                <?php } ?>
+
 
                                 <?php if ( empty( $settings['hide_button'] ) ) { ?>
                                     <a href="<?php echo $category['url'] ?>"
@@ -100,8 +106,8 @@ class Shortcode {
             'margin'             => intval( $settings['column_gap'] ),
             'autoplayTimeout'    => intval( $settings['slider_speed'] ),
             'autoplayHoverPause' => true,
-            'fluidSpeed'         => intval( $settings['slider_speed'] ),
-            'smartSpeed'         => intval( $settings['slider_speed'] ),
+//            'fluidSpeed'         => intval( $settings['slider_speed'] ),
+//            'smartSpeed'         => intval( $settings['slider_speed'] ),
             'nav'                => empty( $settings['hide_nav'] ) ? true : false,
             'navText'            => [ '<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>' ],
             'stagePadding'       => 4,
