@@ -1,5 +1,5 @@
 /**
- * woocommerce-category-slider - v1.0.0 - 2018-04-26
+ * woocommerce-category-slider - v1.0.0 - 2018-04-27
  * https://pluginever.com/woo-category-slider
  *
  * Copyright (c) 2018;

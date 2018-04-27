@@ -106,8 +106,6 @@ class Shortcode {
             'margin'             => intval( $settings['column_gap'] ),
             'autoplayTimeout'    => intval( $settings['slider_speed'] ),
             'autoplayHoverPause' => true,
-//            'fluidSpeed'         => intval( $settings['slider_speed'] ),
-//            'smartSpeed'         => intval( $settings['slider_speed'] ),
             'nav'                => empty( $settings['hide_nav'] ) ? true : false,
             'navText'            => [ '<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>' ],
             'stagePadding'       => 4,
@@ -127,7 +125,10 @@ class Shortcode {
 
         );
 
-
+        if( !empty($settings['fluid_speed'])){
+            $config['fluidSpeed'] = intval( $settings['slider_speed'] );
+            $config['smartSpeed'] = intval( $settings['slider_speed'] );
+        }
         $config = apply_filters( 'woo_category_slider_slider_config', $config );
 
         return json_encode( $config );
