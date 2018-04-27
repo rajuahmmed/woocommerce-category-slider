@@ -121,6 +121,12 @@ Set "show content" to No from the slider settings in display settings section
 
 
 == Changelog ==
+= 3.1.0 =
+[Enhance] Plugin rewrite
+[Enhance] Slider framework change
+[Enhance] Design improvement
+[Enhance] Compatible with latest WC
+
 = 3.0.4 =
 [Add] Add extra Basic Theme
 

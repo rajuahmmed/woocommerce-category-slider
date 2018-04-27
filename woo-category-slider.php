@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Category Slider
  * Plugin URI:  https://pluginever.com/woocommerce-category-slider
  * Description: Showcase Your WooCommerce powered Shop's category in a more appealing way to expand your sell.
- * Version:     3.0.4
+ * Version:     3.1.0
  * Author:      pluginever
  * Author URI:  http://pluginever.com
  * Donate link: https://pluginever.com/contact
@@ -48,7 +48,7 @@ class Woocommerce_Category_Slider {
      * @since 1.0.0
      * @var  string
      */
-    public $version = '3.0.4';
+    public $version = '3.1.0';
 
     /**
      * Minimum PHP version required
