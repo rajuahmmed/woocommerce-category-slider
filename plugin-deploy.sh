@@ -6,15 +6,11 @@ BRANCH=${2-'trunk'}
 
 # paths
 SRC_DIR=$(git rev-parse --show-toplevel)
+BUILD_DIR=$SRC_DIR/build
 DIR_NAME=$(basename $SRC_DIR)
-DEST_DIR=~/svn/wp-plugins/erp/$BRANCH
-echo $SRC_DIR
-exit
-# make sure we're deploying from the right dir
-if [ ! -d "$SRC_DIR/.git" ]; then
-    echo "$SRC_DIR doesn't seem to be a git repository"
-    exit
-fi
+DEST_DIR=~/svn/wp-plugins/woo-category-slider-by-pluginever/$BRANCH
+
+
 
 # make sure the destination dir exists
 svn mkdir $DEST_DIR 2> /dev/null
@@ -28,14 +24,12 @@ do
 done
 
 # copy everything over from git
-rsync -r --exclude='*.git*' --exclude="node_modules" --exclude="build" --exclude="vendor/danielstjules/stringy/tests" $SRC_DIR/* $DEST_DIR
+rsync -r --exclude='*.git*' --exclude="node_modules" --exclude="build" --exclude="vendor/danielstjules/stringy/tests" $BUILD_DIR/* $DEST_DIR
 # git checkout-index -a -f --prefix=$DEST_DIR/
 
 # delete readme.md from git checkout
-rm $DEST_DIR/readme.md
 
-# copy readme.txt to svn folder
-cp $SRC_DIR/readme.txt $DEST_DIR/readme.txt
+
 
 
 cd $DEST_DIR

@@ -10,6 +10,8 @@
  * License:     GPLv2+
  * Text Domain: wc_category_slider
  * Domain Path: /languages
+ * WC requires at least: 3.0.0
+ * WC tested up to: 3.3.5
  */
 
 /**

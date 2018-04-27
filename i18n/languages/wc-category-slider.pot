@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Category Slider 3.0.5\n"
+"Project-Id-Version: WooCommerce Category Slider 3.1.0\n"
 "Report-Msgid-Bugs-To: http://pluginever.com/support/\n"
-"POT-Creation-Date: 2018-04-27 10:43:06+00:00\n"
+"POT-Creation-Date: 2018-04-27 11:15:03+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -244,65 +244,65 @@ msgstr ""
 msgid "Example Metabox"
 msgstr ""
 
-#: woo-category-slider.php:225
+#: woo-category-slider.php:227
 msgid "Upgrade To Pro"
 msgstr ""
 
-#: woo-category-slider.php:227
+#: woo-category-slider.php:229
 msgid "View Plugin's Documentation"
 msgstr ""
 
-#: woo-category-slider.php:227
+#: woo-category-slider.php:229
 msgid "Documentation"
 msgstr ""
 
-#: woo-category-slider.php:261
+#: woo-category-slider.php:263
 msgid "Your installed PHP Version is: "
 msgstr ""
 
-#: woo-category-slider.php:262
+#: woo-category-slider.php:264
 msgid ""
 "The <strong>WooCommerce Category Slider</strong> plugin requires PHP "
 "version <strong>"
 msgstr ""
 
-#: woo-category-slider.php:262
+#: woo-category-slider.php:264
 msgid "</strong> or greater."
 msgstr ""
 
-#: woo-category-slider.php:282
+#: woo-category-slider.php:284
 msgid "<h1>An Error Occured</h1>"
 msgstr ""
 
-#: woo-category-slider.php:283
+#: woo-category-slider.php:285
 msgid "<h2>Your installed PHP Version is: "
 msgstr ""
 
-#: woo-category-slider.php:284
+#: woo-category-slider.php:286
 msgid ""
 "<p>The <strong>WooCommerce Category Slider</strong> plugin requires PHP "
 "version <strong>"
 msgstr ""
 
-#: woo-category-slider.php:284
+#: woo-category-slider.php:286
 msgid "</strong> or greater"
 msgstr ""
 
-#: woo-category-slider.php:285
+#: woo-category-slider.php:287
 msgid "<p>The version of your PHP is "
 msgstr ""
 
-#: woo-category-slider.php:285
+#: woo-category-slider.php:287
 msgid "unsupported and old"
 msgstr ""
 
-#: woo-category-slider.php:286
+#: woo-category-slider.php:288
 msgid ""
 "You should update your PHP software or contact your host regarding this "
 "matter.</p>"
 msgstr ""
 
-#: woo-category-slider.php:288
+#: woo-category-slider.php:290
 msgid "Plugin Activation Error"
 msgstr ""
 
