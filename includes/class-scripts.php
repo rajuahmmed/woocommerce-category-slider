@@ -25,11 +25,10 @@ class Scripts{
 	 * @return void
 	 */
 	function load_public_assets(){
-		$suffix = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? '' : '.min';
-		wp_register_style('wc-category-slider', WCS_ASSETS."/public/css/wc-category-slider-public{$suffix}.css", [], date('i'));
-		wp_register_script('owl-carousel', WCS_ASSETS."/public/js/owl-carousel{$suffix}.js", ['jquery'], date('i'), true);
-		wp_register_script('image-liquid', WCS_ASSETS."/public/js/image-liquid{$suffix}.js", ['jquery'], date('i'), true);
-		wp_register_script('wc-category-slider', WCS_ASSETS."/public/js/wc-category-slider-public{$suffix}.js", ['jquery', 'owl-carousel', 'image-liquid'], date('i'), true);
+		wp_register_style('wc-category-slider', WCS_ASSETS."/public/css/wc-category-slider-public.css", [], date('i'));
+		wp_register_script('owl-carousel', WCS_ASSETS."/public/js/owl-carousel.js", ['jquery'], date('i'), true);
+		wp_register_script('image-liquid', WCS_ASSETS."/public/js/image-liquid.js", ['jquery'], date('i'), true);
+		wp_register_script('wc-category-slider', WCS_ASSETS."/public/js/wc-category-slider-public.js", ['jquery', 'owl-carousel', 'image-liquid'], date('i'), true);
 		wp_localize_script('wc-category-slider', 'WCS', ['ajaxurl' => admin_url( 'admin-ajax.php' ), 'nonce' => 'wc-category-slider']);
 		wp_enqueue_style('wc-category-slider');
 		wp_enqueue_script('wc-category-slider');
@@ -43,9 +42,8 @@ class Scripts{
 	 * @return void
 	 */
 	function load_admin_assets(){
-		$suffix = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? '' : '.min';
-		wp_register_style('wc-category-slider', WCS_ASSETS."/admin/css/wc-category-slider-admin{$suffix}.css", [], date('i'));
-		wp_register_script('wc-category-slider', WCS_ASSETS."/admin/js/wc-category-slider-admin{$suffix}.js", ['jquery'], date('i'), true);
+		wp_register_style('wc-category-slider', WCS_ASSETS."/admin/css/wc-category-slider-admin.css", [], date('i'));
+		wp_register_script('wc-category-slider', WCS_ASSETS."/admin/js/wc-category-slider-admin.js", ['jquery'], date('i'), true);
 		wp_localize_script('wc-category-slider', 'WCS', ['ajaxurl' => admin_url( 'admin-ajax.php' ), 'nonce' => 'wc-category-slider']);
 		wp_enqueue_style('wc-category-slider');
 		wp_enqueue_script('wc-category-slider');

@@ -101,6 +101,7 @@ function wc_category_slider_get_settings( $post_id ) {
         'tab_cols'       => '2',
         'phone_cols'     => '1',
         'slider_speed'   => '3000',
+        'fluid_speed'    => '0',
         'loop'           => '1',
         'column_gap'     => '10',
         'lazy_load'      => '1',
@@ -166,9 +167,9 @@ function wc_category_slider_get_selected_categories( $args, $post_id = null ) {
  */
 function wc_category_get_category_image( $term_id, $post_id = null ) {
     $thumbnail_id = get_term_meta( $term_id, 'thumbnail_id', true );
-    $image_url = WCS_ASSETS . '/public/images/placeholder.png';
+    $image_url    = WCS_ASSETS . '/public/images/placeholder.png';
 
-    if( !empty( $thumbnail_id )){
+    if ( ! empty( $thumbnail_id ) ) {
         $image_url = wp_get_attachment_image_url( $thumbnail_id, 'large' );
     }
 

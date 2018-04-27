@@ -13,6 +13,9 @@ Showcase Your WooCommerce powered store's categories/subcategories in a more app
 == Description ==
 WooCommerce Category Slider plugin by PluginEver provides you the opportunity of showing WooCommerce product categories in a slider. You can show your product categories in a modern looking and descriptive slider that show details of your category. WooCommerce Category Slider plugin has lots of features that allows you to control the slider and its content.
 
+>[DEMO](http://demo.pluginever.com/woo-category-slider-demo-wordpress-plugin/) |  [Get The PRO Version](https://www.pluginever.com/plugins/woo-category-slider/)  |  [Support](https://www.pluginever.com/support/)  |  [Documentation ](https://www.pluginever.com/docs/woocommerce-category-slider/)
+
+
 == Why Would You Need WooCommerce Category Slider ==
 When you can display your products and their categories in a proper way to your customers, it attracts them the most. This means you are effectively showing your product categories in a professional looking slider. Thus, your users loves how they look and also understands what you are offering at a glance. This makes your WooCommerce store popular and you can sell more quickly.
 
@@ -36,8 +39,6 @@ Woo Category slider has a built-in very easy to use and user-friendly shortcode 
 
 Showing WooCommerce product categories in a slider help your visitors to find their category that they are looking for without struggling to find that all over the site.Which expands your sells.
 
->[DEMO](http://demo.pluginever.com/woo-category-slider-demo-wordpress-plugin/) |  [Get The PRO Version](https://www.pluginever.com/plugins/woo-category-slider/)  |  [Support](https://www.pluginever.com/support/)  |  [Documentation ](https://www.pluginever.com/docs/woocommerce-category-slider/)
-
 ###Shortocode
 `[woo_category_slider]`
 
@@ -60,6 +61,7 @@ Showing WooCommerce product categories in a slider help your visitors to find th
 == Pro Features of Woo Category Slider ==
 * 10+ Eye-Catching ready-made theme
 * Custom Image size
+* Custom Category Image
 * Custom WooCommerce Category Order
 * Custom Column Size
 * Ability to Customize Almost Everything
@@ -121,6 +123,12 @@ Set "show content" to No from the slider settings in display settings section
 
 
 == Changelog ==
+= 3.1.0 =
+[Enhance] Plugin rewrite
+[Enhance] Slider framework change
+[Enhance] Design improvement
+[Enhance] Compatible with latest WC
+
 = 3.0.4 =
 [Add] Add extra Basic Theme
 

@@ -241,7 +241,7 @@ module.exports = function (grunt) {
             main: {
                 options: {
                     mode: 'zip',
-                    archive: './build/-' + pkg.version + '.zip'
+                    archive: './build/woo-category-slider-pro-' + pkg.version + '.zip'
                 },
                 expand: true,
                 cwd: 'build/',
