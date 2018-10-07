@@ -2,7 +2,7 @@
 Contributors: manikmist09,pluginever
 Tags: WooCommerce Category Slider, WooCommerce Product Category Slider , WooCommerce, Slider, Category Slider, Slider, Category Details, woo, commerce, e-commerce, ecommerce, gallery, pluginever, product, shop, WooCommerce Category, WooCommerce Slider,WooCommerce Product Category Slider
 Requires at least: 4.4
-Tested up to: 4.9.5
+Tested up to: 4.9.8
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv2 or later
@@ -123,6 +123,9 @@ Set "show content" to No from the slider settings in display settings section
 
 
 == Changelog ==
+= 3.1.1 =
+[Fix] Mobile Scrolling issue
+[Compatibility] Compatibility with WooCommerce 3.4.5
 = 3.1.0 =
 [Enhance] Plugin rewrite
 [Enhance] Slider framework change
