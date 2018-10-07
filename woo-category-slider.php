@@ -50,7 +50,7 @@ class Woocommerce_Category_Slider {
      * @since 1.0.0
      * @var  string
      */
-    public $version = '3.1.0';
+    public $version = '3.1.1';
 
     /**
      * Minimum PHP version required
