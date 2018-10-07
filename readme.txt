@@ -15,6 +15,7 @@ WooCommerce Category Slider plugin by PluginEver provides you the opportunity of
 
 >[DEMO](http://demo.pluginever.com/woo-category-slider-demo-wordpress-plugin/) |  [Get The PRO Version](https://www.pluginever.com/plugins/woo-category-slider/)  |  [Support](https://www.pluginever.com/support/)  |  [Documentation ](https://www.pluginever.com/docs/woocommerce-category-slider/)
 
+
 == Why Would You Need WooCommerce Category Slider ==
 When you can display your products and their categories in a proper way to your customers, it attracts them the most. This means you are effectively showing your product categories in a professional looking slider. Thus, your users loves how they look and also understands what you are offering at a glance. This makes your WooCommerce store popular and you can sell more quickly.
 
@@ -59,6 +60,7 @@ Showing WooCommerce product categories in a slider help your visitors to find th
 
 == Pro Features of Woo Category Slider ==
 * 10+ Eye-Catching ready-made theme
+* Custom Image size
 * Custom Category Image
 * Custom WooCommerce Category Order
 * Custom Column Size

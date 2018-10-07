@@ -2620,4 +2620,8 @@
 .ever-slider.hover-zoom-in .ever-slider-item:hover .ever-slider-image-wrapper::before {
   transform: scale(1.2); }
 
+.owl-carousel .owl-stage, .owl-carousel.owl-drag .owl-item {
+  -ms-touch-action: auto;
+  touch-action: auto; }
+
 /*# sourceMappingURL=wc-category-slider-public.css.map */
