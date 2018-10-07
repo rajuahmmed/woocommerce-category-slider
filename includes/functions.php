@@ -13,8 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function wc_category_slider_is_pro_active() {
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    if ( in_array( 'woocommerce-category-slider-pro/wc-category-slider-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+        return true;
+    }
 
-    return is_plugin_active( 'woo-category-slider-pro/woo-category-slider-pro.php' );
+    return false;
+
 }
 
 
