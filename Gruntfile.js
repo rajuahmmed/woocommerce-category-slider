@@ -275,6 +275,7 @@ module.exports = function (grunt) {
     // Default task.
     grunt.registerTask('default', ['jshint', 'uglify', 'sass', 'cssmin', 'imagemin']);
     grunt.registerTask('release', ['default', 'makepot']);
+    grunt.registerTask('build', ['clean', 'copy']);
     grunt.registerTask('zip', ['clean', 'copy', 'compress']);
     grunt.util.linefeed = '\n';
 };
