@@ -123,6 +123,10 @@ Set "show content" to No from the slider settings in display settings section
 
 
 == Changelog ==
+= 3.1.2 =
+[Compatibility] Compatibility with WooCommerce 3.5.3
+[Compatibility] Compatibility with WordPress 5.0.2
+
 = 3.1.1 =
 [Fix] Mobile Scrolling issue
 [Compatibility] Compatibility with WooCommerce 3.4.5

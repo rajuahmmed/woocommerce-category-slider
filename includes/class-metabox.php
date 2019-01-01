@@ -249,7 +249,7 @@ class MetaBox {
      * @param $post
      */
     public function shortcode_metabox_callback( $post ) {
-        echo "<pre><code>[woo_category_slider id='{$post->ID}']</code></pre>";
+        echo "<code>[woo_category_slider id='{$post->ID}']</code>";
         echo '<p>' . __( 'Use the shortocode to render the slider anywhere in page or post.', 'wc_category_slider' ) . '</p>';
     }
 
