@@ -6,4 +6,4 @@ node_module
 .idea
 .sass-cache/
 node_modules
-
+*.zip
