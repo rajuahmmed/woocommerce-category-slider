@@ -2,7 +2,7 @@
 
 # args
 MSG=${1-'deploy from git'}
-MAINFILE="wc-category-showcase.php" # for version checking
+MAINFILE="woo-category-slider.php" # for version checking
 
 # paths
 SRC_DIR=$(git rev-parse --show-toplevel)
