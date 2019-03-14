@@ -260,7 +260,11 @@ class Woocommerce_Category_Slider {
      * Include required core files used in admin and on the frontend.
      */
     public function includes() {
+
+	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/functions.php' );
 	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-shortcode.php' );
+	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-cpt.php' );
+	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-metabox.php' );
 	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-scripts.php' );
         //admin
         if ( ! $this->is_pro_installed() ) {
