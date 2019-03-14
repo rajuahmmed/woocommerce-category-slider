@@ -261,6 +261,7 @@ class Woocommerce_Category_Slider {
      */
     public function includes() {
 	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-shortcode.php' );
+	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-scripts.php' );
         //admin
         if ( ! $this->is_pro_installed() ) {
             //require_once( WC_CATEGORY_SLIDER_INCLUDES . '/admin/class-promotion.php' );

@@ -18,15 +18,24 @@ class WC_Category_Slider_Shortcode {
 		?>
 		<style>
 			.wcsn-slider{
-				width: 400px !important;
+				width: 300px !important;
 				overflow: hidden;
+				float: left;
+				margin: 0 10px 10px 0;
+			}
+			.wrap{
+				width: 1200px !important;
 			}
 		</style>
 		<?php
-		$file = WC_CATEGORY_SLIDER_TEMPLATES . '/' . $attr['template'] . '.php';
-		if ( file_exists( $file ) ) {
+		$files = glob(WC_CATEGORY_SLIDER_TEMPLATES .'/*.php');
+		foreach ($files as $file){
 			include $file;
 		}
+//		$file = WC_CATEGORY_SLIDER_TEMPLATES . '/' . $attr['template'] . '.php';
+//		if ( file_exists( $file ) ) {
+//			include $file;
+//		}
 
 		$html = ob_get_contents();
 		ob_get_clean();
