@@ -1,8 +1,11 @@
 <?php
 
-namespace Pluginever\WoocommerceCategorySlider;
+/**
+ * Class WC_Category_Slider_CPT
+ */
 
-class CPT {
+class WC_Category_Slider_CPT {
+
     protected $slug;
 
     /**
@@ -91,3 +94,5 @@ class CPT {
 
     }
 }
+
+new WC_Category_Slider_CPT();
