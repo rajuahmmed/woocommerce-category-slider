@@ -266,7 +266,6 @@ class Woocommerce_Category_Slider {
 	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-cpt.php' );
 	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-metabox.php' );
 	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-scripts.php' );
-
         //admin
         if ( ! $this->is_pro_installed() ) {
             //require_once( WC_CATEGORY_SLIDER_INCLUDES . '/admin/class-promotion.php' );
