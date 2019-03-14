@@ -260,10 +260,10 @@ class Woocommerce_Category_Slider {
      * Include required core files used in admin and on the frontend.
      */
     public function includes() {
-
+	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-shortcode.php' );
         //admin
         if ( ! $this->is_pro_installed() ) {
-            require_once( WC_CATEGORY_SLIDER_INCLUDES . '/admin/class-promotion.php' );
+            //require_once( WC_CATEGORY_SLIDER_INCLUDES . '/admin/class-promotion.php' );
         }
 
     }
@@ -292,7 +292,7 @@ class Woocommerce_Category_Slider {
  * @return object
  */
 function wc_category_slider() {
-    return Woocommerce_Category_Slider::init();
+    return Woocommerce_Category_Slider::instance();
 }
 
 // kick-off

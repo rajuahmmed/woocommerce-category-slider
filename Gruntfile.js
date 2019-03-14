@@ -141,7 +141,7 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				options: {
-					potFilename: 'wc-serial-numbers.pot',
+					potFilename: 'wc-category-slider.pot',
 					exclude: [
 						'includes/class-updater.php',
 						'apigen/.*',
@@ -156,7 +156,7 @@ module.exports = function (grunt) {
 		// Check textdomain errors.
 		checktextdomain: {
 			options: {
-				text_domain: 'wc-serial-numbers',
+				text_domain: 'woo-category-slider-by-pluginever',
 				keywords: [
 					'__:1,2d',
 					'_e:1,2d',
