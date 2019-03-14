@@ -1,0 +1,20 @@
+.wcsn-pro-3.wcsn-slider {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.wcsn-slider {
+
+		&-image-wrapper, &-content-wrapper {
+			flex-wrap: wrap;
+		}
+
+		&-content-wrapper {
+			//position: absolute;
+			background: transparent;
+			//top: 50%;
+			//transform: translate(-50%);
+			height: auto;
+		}
+	}
+}
+
