@@ -18,7 +18,7 @@ class WC_Category_Slider_Shortcode {
 		?>
 		<style>
 			.wcsn-slider{
-				/*width: 300px !important;*/
+				width: 300px !important;
 				overflow: hidden;
 				float: left;
 				margin: 0 10px 10px 0;
