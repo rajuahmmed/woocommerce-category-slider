@@ -65,7 +65,7 @@ function wc_slider_render_category_settings_metabox() {
 
 	echo wc_category_slider()->elements->select( array(
 		'label'            => __( 'Select Categories', 'woo-category-slider-by-pluginever' ),
-		'name'             => 'selection_type',
+		'name'             => 'selected_categories',
 		'placeholder'      => '',
 		'show_option_all'  => '',
 		'show_option_none' => '',
