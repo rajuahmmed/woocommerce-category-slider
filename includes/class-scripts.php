@@ -51,7 +51,9 @@ class WC_Slider_Scripts {
 		}
 		?>
 		<?php
-		wp_register_style( 'wc-category-slider', WC_SLIDER_ASSETS_URL . "/css/admin.css", [], date( 'i' ) );
+		wp_register_style( 'wccs-fontawesome', WC_SLIDER_ASSETS_URL . "/vendor/font-awesome/css/font-awesome.css", [], date( 'i' ) );
+
+		wp_register_style( 'wc-category-slider', WC_SLIDER_ASSETS_URL . "/css/admin.css", ['wccs-fontawesome'], date( 'i' ) );
 		wp_register_script( 'wc-category-slider', WC_SLIDER_ASSETS_URL . "/js/wc-category-slider-admin.js", [ 'jquery', 'wp-util' ], date( 'i' ), true );
 		//wp_localize_script('wc-category-slider', 'WCS', ['ajaxurl' => admin_url( 'admin-ajax.php' ), 'nonce' => 'wc-category-slider']);
 		wp_enqueue_style( 'wc-category-slider' );

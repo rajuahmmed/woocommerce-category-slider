@@ -13,7 +13,7 @@ jQuery(document).ready(function ($, window, document, undefined) {
 	'use strict';
 	$.wc_category_slider_admin = {
 		init: function () {
-			$('#include_child, #selection_type, #limit_number, #include_child, #hide_empty').on('change', this.regenerateSlides);
+			$('#selection_type, #selected_categories, #limit_number, #include_child, #hide_empty').on('change', this.regenerateSlides);
 		},
 		regenerateSlides: function () {
 			var data = {

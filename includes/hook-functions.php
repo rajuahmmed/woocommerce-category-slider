@@ -3,14 +3,26 @@
 function wc_slider_get_categories_ajax_callback() {
 	$selection_type      = empty( $_REQUEST['selection_type'] ) ? 'all' : sanitize_key( $_REQUEST['selection_type'] );
 	$selected_categories = empty( $_REQUEST['selected_categories'] ) ? [] : wp_parse_id_list( $_REQUEST['selected_categories'] );
-	$include_child       = empty( $_REQUEST['include_child'] ) ? 'no' : sanitize_key( $_REQUEST['selected_categories'] );
-	$hide_empty          = empty( $_REQUEST['hide_empty'] ) ? 'no' : sanitize_key( $_REQUEST['hide_empty'] );
+	$include_child       = empty( $_REQUEST['include_child'] ) || 'on' !== $_REQUEST['include_child'] ? false : true;
+	$hide_empty          = empty( $_REQUEST['hide_empty'] ) || 'on' !== $_REQUEST['hide_empty'] ? false : true;
 	$number              = empty( $_REQUEST['number'] ) ? 10 : intval( $_REQUEST['number'] );
 	$orderby             = empty( $_REQUEST['orderby'] ) ? 'name' : sanitize_key( $_REQUEST['orderby'] );
 	$order               = empty( $_REQUEST['order'] ) ? 'ASC' : sanitize_key( $_REQUEST['order'] );
 	$slider_id           = empty( $_REQUEST['slider_id'] ) ? null : sanitize_key( $_REQUEST['slider_id'] );
+	if($selection_type == 'all'){
+		$selected_categories = [];
+	}
 
-	$categories = wc_category_slider_get_categories( array() );
+	$categories = wc_category_slider_get_categories( array(
+		'number'     => $number,
+		'orderby'    => $orderby,
+		'order'      => $order,
+		'hide_empty' => $hide_empty,
+		'include'    => $selected_categories,
+		'exclude'    => array(),
+		'child_of'   => 0,
+		'post_id'    => $slider_id,
+	) );
 	wp_send_json_success( $categories );
 }
 
@@ -52,7 +64,13 @@ function wc_category_slider_print_js_template() {
 						<!--icon-->
 						<div class="ever-slide-icon">
 							<select name="{{data.term_id}}[icon]" id="{{data.term_id}}[icon]">
-								<option value="">Select Icon</option>
+								<option value="">No Icon</option>
+								<?php
+								$icons = wc_category_slider_get_icon_list();
+								foreach ($icons as $key => $value){
+									echo "<option value='$key'>&#x{$value}; {$key}</option>";
+								}
+								?>
 								<option value="">demo-fontawesome-icon (Demo Icon)</option>
 							</select>
 						</div><!--/icon-->

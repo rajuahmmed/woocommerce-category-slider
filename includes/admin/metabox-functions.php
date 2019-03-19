@@ -93,7 +93,7 @@ function wc_slider_render_category_settings_metabox() {
 	) );
 
 	echo wc_category_slider()->elements->switcher( array(
-		'name'  => 'empty',
+		'name'  => 'hide_empty',
 		'label' => __( 'Empty Categories', 'woo-category-slider-by-pluginever' ),
 		'desc'  => __( 'Show/hide Category without products', 'woo-category-slider-by-pluginever' ),
 	) );
