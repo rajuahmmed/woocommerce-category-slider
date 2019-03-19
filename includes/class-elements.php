@@ -462,7 +462,7 @@ class WC_Slider_Elements {
 	public function switcher( $args = array() ) {
 		$defaults = array(
 			'name'           => 'switcher',
-			'value'          => 'off',
+			'value'          => 'on',
 			'label'          => 'Switcher',
 			'desc'           => null,
 			'class'          => '',
@@ -518,11 +518,13 @@ class WC_Slider_Elements {
 		$attributes .= $this->get_data_attributes( $args['data'] );
 		$attributes .= $this->get_attributes( $args['attrs'] );
 
+		$checked = $args['value'] == 'on' ? 'checked="checked" ' : '';
+
 		$output .= '<div class="ever-col-1">:</div>';
 
-		$output .= '<div class="ever-col-4 switch-container">
-<label class="switch" for="' . $args['id'] . '" class="ever-label">
-					  ' . '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '"  />' . '
+		$output
+			.= '<div class="ever-col-4 switch-container"><label class="switch" for="' . $args['id'] . '" class="ever-label">
+					  ' . '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '" ' . $checked . '  />' . '
 					  <span class="slider round"></span>
 					  <span class="switch-text"></span>
 					</label>
