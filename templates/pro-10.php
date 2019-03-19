@@ -1,7 +1,6 @@
-<h3>Pro style 1</h3>
+<h4>Carousel Style 10</h4>
 
-<!-- Pro Demo Style 1 -->
-<div class="wcsn-slider wcsn-pro-1">
+<div class="wcsn-slider wcsn-pro-10">
 	<div class="wcsn-slider-image-wrapper">
 		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
 	</div>

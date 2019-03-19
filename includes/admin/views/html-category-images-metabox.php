@@ -6,7 +6,7 @@
 					Slider Image
 				</div>
 				<div class="ever-slide-headerright">
-					<a href="#" class="ever-close">&times;</a>
+					<a href="#" class="ever-close"><i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></i></a>
 				</div>
 			</div>
 			<div class="ever-slide-main">
@@ -21,12 +21,12 @@
 
 					<!--title-->
 					<div class="ever-slide-title">
-						<input class="ever-slide-url-inputbox regular-text" placeholder="TITLE" type="url">
+						<input class="ever-slide-url-inputbox regular-text" placeholder="Title" type="url">
 					</div><!--/title-->
 
 					<!--description-->
 					<div class="ever-slide-captionarea">
-						<textarea name="" id="caption" class="ever-slide-captionarea-textfield" placeholder="Description"></textarea>
+						<textarea name="" id="caption" class="ever-slide-captionarea-textfield" data-gramm_editor="false" placeholder="Description"></textarea>
 					</div><!--/description-->
 
 					<!--icon-->
@@ -46,47 +46,6 @@
 						</div>
 					</div><!--/url-->
 
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="ever-col-6">
-		<div class="ever-slide">
-			<div class="ever-slide-header">
-				<div class="ever-slide-headerleft">
-					Slider Image
-				</div>
-				<div class="ever-slide-headerright">
-					<a href="#">X</a>
-				</div>
-			</div>
-			<div class="ever-slide-main">
-				<div class="ever-slide-thumbnail">
-					<img src="https://via.placeholder.com/150x150.png" alt="">
-				</div>
-				<div class="ever-slide-inner">
-					<div class="ever-slide-title">
-						<h3>lorem ipsum dolor site </h3>
-					</div>
-
-					<div class="ever-slide-captionarea">
-
-						<input class="ever-slide-captionarea-checkbox" type="checkbox">
-						<label class="ever-slide-captionarea-label">Use the Image caption</label>
-
-						<label for="caption">Caption</label>
-						<textarea name="" id="caption" class="ever-slide-captionarea-textfield"></textarea>
-
-					</div>
-
-					<div class="ever-slide-url">
-						<input class="ever-slide-url-inputbox" placeholder="URL" type="url">
-						<div class="ever-slide-url-checkbox">
-							<input class="ever-slide-captionarea-checkbox" type="checkbox">
-							<label class="ever-slide-captionarea-label">Open In a new Tab</label>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

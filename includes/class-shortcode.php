@@ -18,7 +18,7 @@ class WC_Category_Slider_Shortcode {
 		?>
 		<style>
 			.wcsn-slider{
-				width: 300px !important;
+				/*width: 300px !important;*/
 				overflow: hidden;
 				float: left;
 				margin: 0 10px 10px 0;
@@ -28,7 +28,7 @@ class WC_Category_Slider_Shortcode {
 			}
 		</style>
 		<?php
-		$files = glob(WC_CATEGORY_SLIDER_TEMPLATES .'/*.php');
+		$files = glob(WC_SLIDER_TEMPLATES .'/*.php');
 		foreach ($files as $file){
 			include $file;
 		}

@@ -1,0 +1,35 @@
+.wcsn-pro-17.wcsn-slider {
+  .wcsn-slider-content-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: auto;
+    .wcsn-slider-content-top {
+      position: absolute;
+      top: 0;
+    }
+    .wcsn-slider-content-bottom {
+
+    }
+
+    &:before,&:after{}
+
+    &:before{
+
+    }
+
+    &::after {
+
+    }
+
+  }
+  .wcsn-slider-description{
+    display: none;
+  }
+
+  &:hover{
+
+
+
+  }
+}
