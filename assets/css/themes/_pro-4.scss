@@ -1,0 +1,19 @@
+.wcsn-pro-4.wcsn-slider {
+	max-width: 600px;
+	width: 100% !important;
+	overflow: hidden;
+	display: flex;
+	.wcsn-slider-image-wrapper{
+		max-width: 50%;
+		width: 100%;
+	}
+	.wcsn-slider-content-wrapper {
+		max-width: 50%;
+		width: 100%;
+		background-color:transparent;
+		text-align: left;
+		padding:30px 20px;
+
+
+	}
+}
