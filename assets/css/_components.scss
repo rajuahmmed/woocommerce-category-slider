@@ -1,9 +1,17 @@
-.ever-close{
+[class^=ever-] {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+.ever-close {
 	background: $red;
 	padding: 1px 5px;
 	border-radius: 50%;
 	color: white;
-	&:hover{
+	&:hover {
 		background: $red_hover;
 		color: #000;
 	}
