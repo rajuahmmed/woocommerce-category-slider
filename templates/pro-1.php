@@ -1,3 +1,5 @@
+<h3>Pro style 1</h3>
+
 <!-- Pro Demo Style 1 -->
 <div class="wcsn-slider wcsn-pro-1">
 	<div class="wcsn-slider-image-wrapper">

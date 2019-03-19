@@ -1,6 +1,7 @@
-<h3>Pro style 7</h3>
-<!-- Pro Demo Style 7-->
-<div class="wcsn-slider wcsn-pro-7">
+<h3>Pro style 8</h3>
+
+<!-- Pro Demo Style 8-->
+<div class="wcsn-slider wcsn-pro-8">
 	<div class="wcsn-slider-image-wrapper">
 		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_CATEGORY_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
 	</div>
@@ -15,6 +16,7 @@
 				<li class="wcsn-slider-child-item" style="color: #fff;"><a href="#" class="wcsn-slider-link">Child item (3)</a></li>
 			</ul>
 			<p class="wcsn-slider-description" style="color: #fff;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, eaque!</p>
+
 		</div>
 		<div class="wcsn-after-hover">
 			<a href="#" class="wcsn-slider-link"><h3 class="wcsn-slider-title" style="color:#fff" >Fox Fur Coat</h3></a>

@@ -1,3 +1,5 @@
+<h3>Free style 1</h3>
+
 <div class="wcsn-slider wcsn-free-1">
 	<div class="wcsn-slider-image-wrapper">
 		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_CATEGORY_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>

@@ -1,4 +1,4 @@
-.wcsn-pro-6.wcsn-slider {
+.wcsn-pro-20.wcsn-slider {
 	position: relative;
     overflow: hidden;
 	.wcsn-slider-image-wrapper{
@@ -14,8 +14,8 @@
 			    bottom: 0;
 			    left: 0;
 			    right: 0;
-			    // background: rgba(0,0,0,.4);
-			    background: transparent;
+			    background: rgba(0,0,0,.4);
+			    // background: transparent;
     		}
     	}
     	&:before,&:after{
@@ -31,15 +31,18 @@
 
 	}
 	.wcsn-before-hover{
-		transform: translateY(0%);
+		transform: translateY(-50%) scale(1);
 		transition: all .6s;
+		top: 50%;
+    	position: absolute;
 	}
 	.wcsn-after-hover {
 	    position: absolute;
 	    left: 0;
 	    right: 0;
-	    top: 50%;
-	    transform: translateY(200%);
+	    top: auto;
+	    bottom: 0;
+		transform: translateY(-50%) scale(0);
 	    opacity: 0;
 	    visibility: hidden;
 		transition: all .6s;
@@ -61,31 +64,33 @@
 	    position: absolute;
 	    left: 0;
 	    right: 0;
-	    top: 50%;
-	    transform: translateY(-50%);
+	    top: 0;
 	    background: transparent;
 	    transition: all .3s;
+	    bottom: 0;
 	}
 
 	&:hover{
-
-		.wcsn-before-hover{		}
 		.wcsn-after-hover {
 		    position: absolute;
 		    left: 0;
 		    right: 0;
-		    top: 50%;
-		    transform: translateY(-50%);
+		    top: auto;
+		    bottom: 0;
+			transform: translateY(-100%) scale(1);
 		    opacity: 1;
 		    visibility: visible;
 		}
 		.wcsn-before-hover {
-		    transform: translateY(-200%);
+			transform: translateY(-50%) scale(0);
+			opacity: 0;
+			visibility: hidden;
 		}
 		.wcsn-slider-content-wrapper{
+			transform: translateY(0%);
 	    	transition: all .3s;
+	    	top: 0;
+	    	bottom: 0;
 		}
-
-
 	}
 }

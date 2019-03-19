@@ -1,7 +1,7 @@
-<h3>Pro style 2</h3>
+<h3>Pro style 5</h3>
 
-<!-- Pro Demo Style 2 -->
-<div class="wcsn-slider wcsn-pro-2">
+<!-- Pro Demo Style 5-->
+<div class="wcsn-slider wcsn-pro-5">
 	<div class="wcsn-slider-image-wrapper">
 		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_CATEGORY_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
 	</div>
