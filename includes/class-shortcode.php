@@ -28,7 +28,7 @@ class WC_Category_Slider_Shortcode {
 			}
 		</style>
 		<?php
-		$files = glob(WC_CATEGORY_SLIDER_TEMPLATES .'/*.php');
+		$files = glob(WC_SLIDER_TEMPLATES .'/*.php');
 		foreach ($files as $file){
 			include $file;
 		}

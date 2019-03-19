@@ -151,8 +151,9 @@ input[type="checkbox"].ever-checkbox {
 
 // Checkbox Input Design
 .ever-form-group{
-	overflow: hidden;
 
+	overflow: hidden;
+	padding: 0 2px 0 0;
 	&._sponsored_field {
 		position: relative;
 		display: inline-block;
