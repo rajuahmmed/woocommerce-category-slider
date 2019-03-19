@@ -5,11 +5,13 @@
         <a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
     </div>
 
-    <div class="wcsn-slider-content-wrapper">
+    <div class="wcsn-slider-content-wrapper" style="background: rgba(0, 0, 0, 0.55);color: #fff;">
         <div class="wcsn-slider-content-top">
             <i class="fa fa-bicycle wcsn-slider-icon fa-2x" aria-hidden="true"></i>
             <span class="wcsn-slider-product-count">5 products</span>
         </div>
+
+        <a href="#" class="wcsn-slider-heading"><h3 class="wcsn-slider-title">Fox Fur Coat</h3></a>
 
         <div class="wcsn-slider-content-bottom">
             <a href="#" class="wcsn-slider-link"><h3 class="wcsn-slider-title">Fox Fur Coat</h3></a>
