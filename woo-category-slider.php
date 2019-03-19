@@ -109,7 +109,7 @@ class Woocommerce_Category_Slider {
         if ( $this->is_plugin_compatible() ) {
             $this->define_constants();
             $this->includes();
-            //$this->elements = new Ever_Elements();
+            $this->elements = new WC_Slider_Elements();
         }
     }
 
@@ -247,13 +247,13 @@ class Woocommerce_Category_Slider {
      * since 1.0.0
      */
     private function define_constants() {
-        define( 'WC_CATEGORY_SLIDER_VERSION', $this->version );
-        define( 'WC_CATEGORY_SLIDER_FILE', __FILE__ );
-        define( 'WC_CATEGORY_SLIDER_PATH', dirname( WC_CATEGORY_SLIDER_FILE ) );
-        define( 'WC_CATEGORY_SLIDER_INCLUDES', WC_CATEGORY_SLIDER_PATH . '/includes' );
-        define( 'WC_CATEGORY_SLIDER_URL', plugins_url( '', WC_CATEGORY_SLIDER_FILE ) );
-        define( 'WC_CATEGORY_SLIDER_ASSETS_URL', WC_CATEGORY_SLIDER_URL . '/assets' );
-        define( 'WC_CATEGORY_SLIDER_TEMPLATES', WC_CATEGORY_SLIDER_PATH . '/templates' );
+        define( 'WC_SLIDER_VERSION', $this->version );
+        define( 'WC_SLIDER_FILE', __FILE__ );
+        define( 'WC_SLIDER_PATH', dirname( WC_SLIDER_FILE ) );
+        define( 'WC_SLIDER_INCLUDES', WC_SLIDER_PATH . '/includes' );
+        define( 'WC_SLIDER_URL', plugins_url( '', WC_SLIDER_FILE ) );
+        define( 'WC_SLIDER_ASSETS_URL', WC_SLIDER_URL . '/assets' );
+        define( 'WC_SLIDER_TEMPLATES', WC_SLIDER_PATH . '/templates' );
     }
 
     /**
@@ -261,14 +261,15 @@ class Woocommerce_Category_Slider {
      */
     public function includes() {
 
-	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/functions.php' );
-	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-shortcode.php' );
-	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-cpt.php' );
-	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-metabox.php' );
-	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-scripts.php' );
+	    require_once( WC_SLIDER_INCLUDES . '/class-elements.php' );
+	    require_once( WC_SLIDER_INCLUDES . '/functions.php' );
+	    require_once( WC_SLIDER_INCLUDES . '/class-shortcode.php' );
+	    require_once( WC_SLIDER_INCLUDES . '/class-cpt.php' );
+	    require_once( WC_SLIDER_INCLUDES . '/admin/metabox-functions.php' );
+	    require_once( WC_SLIDER_INCLUDES . '/class-scripts.php' );
         //admin
         if ( ! $this->is_pro_installed() ) {
-            //require_once( WC_CATEGORY_SLIDER_INCLUDES . '/admin/class-promotion.php' );
+            //require_once( WC_SLIDER_INCLUDES . '/admin/class-promotion.php' );
         }
 
     }

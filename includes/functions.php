@@ -171,11 +171,39 @@ function wc_category_slider_get_selected_categories( $args, $post_id = null ) {
  */
 function wc_category_get_category_image( $term_id, $post_id = null ) {
     $thumbnail_id = get_term_meta( $term_id, 'thumbnail_id', true );
-    $image_url    = WCS_ASSETS . '/public/images/placeholder.png';
+    $image_url    = WC_SLIDER_ASSETS_URL . '/public/images/placeholder.png';
 
     if ( ! empty( $thumbnail_id ) ) {
         $image_url = wp_get_attachment_image_url( $thumbnail_id, 'large' );
     }
 
     return $image_url;
+}
+
+/**
+ * Sanitizes a string key for Metabox Settings
+ *
+ * Keys are used as internal identifiers. Alphanumeric characters, dashes, underscores, stops, colons and slashes are allowed
+ * since 1.0.0
+ *
+ * @param $key
+ *
+ * @return string
+ */
+function wc_slider_sanitize_key( $key ) {
+
+	return preg_replace( '/[^a-zA-Z0-9_\-\.\:\/]/', '', $key );
+}
+
+/**
+ * Get category list
+ *
+ * @return array
+ */
+function wc_slider_get_category_list() {
+
+	$categories = wc_category_slider_get_categories( [ 'number' => 1000 ] );
+	$list       = wp_list_pluck( $categories, 'name', 'term_id' );
+
+	return $list;
 }
