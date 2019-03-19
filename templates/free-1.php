@@ -2,7 +2,7 @@
 
 <div class="wcsn-slider wcsn-free-1">
 	<div class="wcsn-slider-image-wrapper">
-		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_CATEGORY_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
+		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
 	</div>
 	<div class="wcsn-slider-content-wrapper">
 		<i class="fa fa-bicycle wcsn-slider-icon fa-2x" aria-hidden="true"></i>

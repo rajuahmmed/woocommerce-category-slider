@@ -2,7 +2,7 @@
 
 <div class="wcsn-slider wcsn-pro-14">
 	<div class="wcsn-slider-image-wrapper">
-		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_CATEGORY_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
+		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
 	</div>
 	<div class="wcsn-slider-content-wrapper">
 
