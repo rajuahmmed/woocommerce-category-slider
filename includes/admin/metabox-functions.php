@@ -156,4 +156,6 @@ function wc_slider_render_display_settings_metabox() {
 		'desc'           => __( 'Border around slider image?', 'woo-category-slider-by-pluginever' ),
 	) );
 
+
+
 }
