@@ -13,24 +13,35 @@ jQuery(document).ready(function ($, window, document, undefined) {
 	'use strict';
 	$.wc_category_slider_admin = {
 		init: function () {
-
+			$('#include_child, #selection_type, #limit_number, #include_child, #hide_empty').on('change', this.regenerateSlides);
 		},
-		regenerateSlides:function () {
+		regenerateSlides: function () {
 			var data = {
-				selection_type : $('#selection_type').val() || 'all',
-				selected_categories : $('#selected_categories').val() || [],
-				include_child : $('#include_child').val() || 'no',
-				hide_empty : $('#hide_empty').val() || 'no',
-				number : $('#number').val() || 10,
-				orderby : $('#orderby').val() || 'name',
-				order : $('#order').val() || 'ASC'
+				selection_type: $('#selection_type').val() || 'all',
+				selected_categories: $('#selected_categories').val() || [],
+				include_child: $('#include_child').val() || 'no',
+				hide_empty: $('#hide_empty').val() || 'no',
+				number: $('#limit_number').val() || 10,
+				orderby: $('#orderby').val() || 'name',
+				order: $('#order').val() || 'ASC',
+				slider_id: $('#post_ID').val() || null
 			};
+			var mountPoint = $('.wc-category-slides-wrapper');
+			mountPoint.removeClass('loaded');
 			wp.ajax.send('wc_slider_get_categories', {
-				data:data,
-				success:function (res) {
-					console.log(res);
+				data: data,
+				success: function (categories) {
+					console.log(categories);
+					mountPoint.find('.ever-col-6').remove();
+					mountPoint.addClass('loaded');
+					categories.forEach(function (category) {
+						var template = wp.template( 'wc-category-slide' );
+						mountPoint.append(template( category ));
+						// $el.html( template( category ) );
+						// console.log(template( category ));
+					});
 				},
-				error:function (res) {
+				error: function (res) {
 					console.log(res);
 				}
 			});

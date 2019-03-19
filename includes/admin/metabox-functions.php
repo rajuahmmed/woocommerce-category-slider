@@ -76,6 +76,14 @@ function wc_slider_render_category_settings_metabox() {
 		'desc'             => __( '', 'woo-category-slider-by-pluginever' ),
 	) );
 
+	echo wc_category_slider()->elements->input( array(
+		'name'           => 'limit_number',
+		'label'          => __( 'Limit Items', 'woo-category-slider-by-pluginever' ),
+		'double_columns' => false,
+		'type'           => 'number',
+		'desc'           => __( 'Limit the number of category appear on the slider', 'woo-category-slider-by-pluginever' ),
+	) );
+
 	echo wc_category_slider()->elements->switcher( array(
 		'label'          => __( 'Include Children', 'woo-category-slider-by-pluginever' ),
 		'name'           => 'include_child',
@@ -89,13 +97,6 @@ function wc_slider_render_category_settings_metabox() {
 		'desc'             => __( 'Automatically hides Category without products', 'woo-category-slider-by-pluginever' ),
 	) );
 
-	echo wc_category_slider()->elements->input( array(
-		'name'           => 'limit_number',
-		'label'          => __( 'Limit Items', 'woo-category-slider-by-pluginever' ),
-		'double_columns' => false,
-		'type'           => 'number',
-		'desc'           => __( 'Limit the number of category appear on the slider', 'woo-category-slider-by-pluginever' ),
-	) );
 
 	echo wc_category_slider()->elements->switcher( array(
 		'name'           => 'switcher',

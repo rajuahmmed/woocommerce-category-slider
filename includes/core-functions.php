@@ -25,6 +25,7 @@ function wc_category_slider_get_categories( $args = array() ) {
 		'include'    => array(),
 		'exclude'    => array(),
 		'child_of'   => 0,
+		'post_id'    => null,
 	);
 	if ( version_compare( $wp_version, '4.5.0', '<' ) ) {
 		$args       = wp_parse_args( $args, $default );
@@ -36,18 +37,56 @@ function wc_category_slider_get_categories( $args = array() ) {
 
 	}
 
-//	$results = [];
-//	foreach ( $categories as $category ) {
-//		$results[] = [
-//			'term_id'     => $category->term_id,
-//			'name'        => $category->name,
-//			'slug'        => $category->slug,
-//			'url'         => get_term_link( $category->term_id ),
-//			'description' => $category->description,
-//			'count'       => $category->count,
-//			'image'       => '',
-//		];
-//	}
+	$results = [];
+	foreach ( $categories as $category ) {
+		$image        = WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg';
+		$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
+		if ( ! empty( $thumbnail_id ) ) {
+			$size  = is_admin() ? 'thumbnail' : apply_filters( 'wc_category_slider_image_size', 'medium', $args );
+			$attachment = wp_get_attachment_image_src( $thumbnail_id, $size );
+			if(is_array($attachment) && !empty($attachment[0])){
+				$image = esc_url($attachment[0]);
+			}
+		}
 
-	return apply_filters( 'wc_category_slider_get_categories', $categories );
+		$results[] = [
+			'term_id'     => $category->term_id,
+			'name'        => $category->name,
+			'url'         => get_term_link( $category->term_id, 'product_cat' ),
+			'description' => $category->description,
+			'count'       => $category->count,
+			'image'       => $image,
+		];
+	}
+
+	return apply_filters( 'wc_category_slider_get_categories', $results, $args );
+}
+
+
+/**
+ * Sanitizes a string key for Metabox Settings
+ *
+ * Keys are used as internal identifiers. Alphanumeric characters, dashes, underscores, stops, colons and slashes are allowed
+ * since 1.0.0
+ *
+ * @param $key
+ *
+ * @return string
+ */
+function wc_slider_sanitize_key( $key ) {
+
+	return preg_replace( '/[^a-zA-Z0-9_\-\.\:\/]/', '', $key );
+}
+
+/**
+ * Get category list
+ *
+ * @return array
+ */
+function wc_slider_get_category_list() {
+
+	$categories = wc_category_slider_get_categories( [ 'number' => 1000 ] );
+	$list       = wp_list_pluck( $categories, 'name', 'term_id' );
+
+	return $list;
 }
