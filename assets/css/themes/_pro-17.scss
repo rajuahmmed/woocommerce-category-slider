@@ -1,0 +1,39 @@
+.wcsn-pro-17.wcsn-slider {
+  .wcsn-slider-content-wrapper {
+    display: block;
+    height: 300px;
+    background: #ededed;
+    margin-bottom: 10px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    overflow: hidden;
+    position: absolute;
+
+    &:before,&:after{
+
+
+    &:before{
+      display: block;
+      height: 300px;
+      background: #ededed;
+      margin-bottom: 10px;
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+      overflow: hidden;
+      position: relative;
+    }
+
+    &::after {
+
+    }
+
+  }
+  .wcsn-slider-description{
+    display: none;
+  }
+
+  &:hover{
+
+
+  }
+}
