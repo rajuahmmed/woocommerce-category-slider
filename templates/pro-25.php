@@ -1,6 +1,6 @@
 <h3>Pro style 24</h3>
 <!-- Pro Demo Style 20-->
-<div class="wcsn-slider wcsn-pro-24">
+<!-- <div class="wcsn-slider wcsn-pro-24">
 	<div class="wcsn-slider-image-wrapper">
 		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
 	</div>
@@ -18,9 +18,11 @@
 
 		</div>
 		<div class="wcsn-after-hover">
+			<a href="#" class="wcsn-slider-link"><h3 class="wcsn-slider-title" style="color:#fff" >Fox Fur Coat</h3></a>
+			<span class="wcsn-slider-product-count" style="color:#fff">5 products</span>
 			<a href="#" class="wcsn-slider-button">Shop Now</a>
 		</div>
 	</div>
-</div>
+</div> -->
 
 
