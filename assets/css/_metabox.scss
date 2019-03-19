@@ -4,8 +4,8 @@
 	box-shadow: none;
 	.hndle, button.handlediv {
 		display: none;
+		
 	}
-
 	.inside {
 		overflow: hidden;
 	}
@@ -39,11 +39,14 @@
 			font-weight: 400;
 			color: #666;
 		}
+
 		&-headerright {
 			a {
 				text-decoration: none;
 			}
 		}
+		
+
 		&-thumbnail {
 			max-width: 150px;
 			width: 100%;
@@ -58,7 +61,6 @@
 			&:hover .ever-slide-thumbnail-tools {
 				top: 0;
 			}
-
 			&-tools {
 				display: flex;
 				position: absolute;
