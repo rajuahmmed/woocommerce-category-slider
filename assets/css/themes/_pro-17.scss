@@ -1,26 +1,23 @@
 .wcsn-pro-17.wcsn-slider {
   .wcsn-slider-content-wrapper {
-    display: block;
-    height: 300px;
-    background: #ededed;
-    margin-bottom: 10px;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-    overflow: hidden;
     position: absolute;
+    left: 50%;
+    top: 50%;
+    height: auto;
+    .wcsn-slider-content-top {
+      position: absolute;
+      top: 0;
+    }
+    .wcsn-slider-content-bottom {
+
+    }
 
     &:before,&:after{}
 
+    }
 
     &:before{
-      display: block;
-      height: 300px;
-      background: #ededed;
-      margin-bottom: 10px;
-      -webkit-transition: 0.3s;
-      transition: 0.3s;
-      overflow: hidden;
-      position: relative;
+
     }
 
     &::after {
@@ -33,6 +30,7 @@
   }
 
   &:hover{
+
 
 
   }
