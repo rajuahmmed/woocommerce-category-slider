@@ -25,6 +25,7 @@ function wc_slider_register_meta_boxes() {
 	add_meta_box( 'wc-slider-images', __( 'Category Images', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_images_settings_metabox', $post_type, 'normal', 'high' );
 	add_meta_box( 'wc_slider_category_settings', __( 'Category Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_category_settings_metabox', $post_type, 'side', 'high' );
 	add_meta_box( 'wc_slider_display_settings', __( 'Display Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_display_settings_metabox', $post_type, 'side', 'high' );
+	add_meta_box( 'wc_slider_slider_settings', __( 'Slider Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_slider_settings_metabox', $post_type, 'side', 'high' );
 }
 
 add_action( 'add_meta_boxes', 'wc_slider_register_meta_boxes', 10 );
@@ -84,9 +85,9 @@ function wc_slider_render_category_settings_metabox() {
 	) );
 
 	echo wc_category_slider()->elements->switcher( array(
-		'name'             => 'hide_empty',
-		'label'            => __( 'Hide Empty Categories', 'woo-category-slider-by-pluginever' ),
-		'desc'             => __( 'Automatically hides Category without products', 'woo-category-slider-by-pluginever' ),
+		'name'  => 'empty',
+		'label' => __( 'Empty Categories', 'woo-category-slider-by-pluginever' ),
+		'desc'  => __( 'Show/hide Category without products', 'woo-category-slider-by-pluginever' ),
 	) );
 
 	echo wc_category_slider()->elements->input( array(
@@ -94,12 +95,6 @@ function wc_slider_render_category_settings_metabox() {
 		'label'          => __( 'Limit Items', 'woo-category-slider-by-pluginever' ),
 		'double_columns' => false,
 		'type'           => 'number',
-		'desc'           => __( 'Limit the number of category appear on the slider', 'woo-category-slider-by-pluginever' ),
-	) );
-
-	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'switcher',
-		'label'          => __( 'Switch', 'woo-category-slider-by-pluginever' ),
 		'desc'           => __( 'Limit the number of category appear on the slider', 'woo-category-slider-by-pluginever' ),
 	) );
 
@@ -156,6 +151,47 @@ function wc_slider_render_display_settings_metabox() {
 		'desc'           => __( 'Border around slider image?', 'woo-category-slider-by-pluginever' ),
 	) );
 
+	echo wc_category_slider()->elements->select( array(
+		'label'            => __( 'Image Hover effect', 'woo-category-slider-by-pluginever' ),
+		'name'             => 'hover_style',
+		'placeholder'      => '',
+		'show_option_all'  => '',
+		'show_option_none' => '',
+		'double_columns'   => false,
+		'value'            => 'default',
+		'options'          => apply_filters( 'wc_category_slider_hover_styles', array(
+			'no-hover'      => 'No Hover',
+			'hover-zoom-in' => 'Zoom In',
+		) )
+	) );
+	echo wc_category_slider()->elements->select( array(
+		'name'             => 'theme',
+		'label'            => __( 'Theme', 'wc_category_slider' ),
+		'placeholder'      => '',
+		'show_option_all'  => '',
+		'show_option_none' => '',
+		'double_columns'   => false,
+		'value'            => 'default',
+		'options'          => apply_filters( 'wc_category_slider_themes', array(
+			'default'    => 'Default',
+			'theme-free' => 'Basic',
+		) ),
 
+	) );
 
+}
+
+/**
+ * Slider settings metabox
+ *
+ * @since 3.1.3
+ */
+
+function wc_slider_render_slider_settings_metabox(){
+	echo wc_category_slider()->elements->switcher( array(
+		'name'           => 'autoplay',
+		'label'          => __( 'Slider Autoplay', 'woo-category-slider-by-pluginever' ),
+		'double_columns' => false,
+		'desc'           => __( 'Slider will automatically start playing is set Yes.', 'woo-category-slider-by-pluginever' ),
+	) );
 }
