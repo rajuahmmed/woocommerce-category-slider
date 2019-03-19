@@ -99,7 +99,6 @@ function wc_slider_render_category_settings_metabox() {
 	) );
 
 
-
 }
 
 /**
@@ -119,6 +118,7 @@ function wc_slider_render_display_settings_metabox() {
 		'name'           => 'content',
 		'label'          => __( 'Content', 'woo-category-slider-by-pluginever' ),
 		'double_columns' => false,
+		'default'        => 'no',
 		'desc'           => __( '', 'woo-category-slider-by-pluginever' ),
 	) );
 	echo wc_category_slider()->elements->switcher( array(
@@ -188,7 +188,7 @@ function wc_slider_render_display_settings_metabox() {
  * @since 3.1.3
  */
 
-function wc_slider_render_slider_settings_metabox(){
+function wc_slider_render_slider_settings_metabox() {
 	echo wc_category_slider()->elements->switcher( array(
 		'name'           => 'autoplay',
 		'label'          => __( 'Slider Autoplay', 'woo-category-slider-by-pluginever' ),
