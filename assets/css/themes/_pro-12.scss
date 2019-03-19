@@ -1,0 +1,27 @@
+.wcsn-pro-12.wcsn-slider {
+	position: relative;
+	.wcsn-slider-content-wrapper {
+		background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+		left: -100%;
+		color: rgb(255, 255, 255);
+		position: absolute;
+		transition: all 0.5s ease 0s;
+		width: 100%;
+		bottom: 0;
+
+		.wcsn-slider-child-items {
+			margin-bottom: 0;
+		}
+
+	}
+	.wcsn-slider-description{
+		display: none;
+	}
+
+	&:hover{
+		.wcsn-slider-content-wrapper {
+			left: 0;
+		}
+
+	}
+}
