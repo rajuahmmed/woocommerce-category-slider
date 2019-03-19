@@ -261,7 +261,7 @@ class Woocommerce_Category_Slider {
      */
     public function includes() {
 
-	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/functions.php' );
+	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/core-functions.php' );
 	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-shortcode.php' );
 	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-cpt.php' );
 	    require_once( WC_CATEGORY_SLIDER_INCLUDES . '/class-metabox.php' );

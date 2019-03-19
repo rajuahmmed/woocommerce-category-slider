@@ -22,7 +22,11 @@ class WC_Category_Slider_MetaBox {
 
 	public function images_metabox() {
 		ob_start();
-		include WC_CATEGORY_SLIDER_INCLUDES . '/admin/views/html-category-images-metabox.php';
+		$categories = wc_category_slider_get_categories();
+		foreach ( $categories as $category ) {
+			include WC_CATEGORY_SLIDER_INCLUDES . '/admin/views/html-category-images-metabox.php';
+		}
+
 		$html = ob_get_clean();
 		echo $html;
 	}
