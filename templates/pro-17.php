@@ -1,6 +1,6 @@
 <h4>Carousel Style 17</h4>
 
-<div class="wcsn-slider wcsn-free-17">
+<div class="wcsn-slider wcsn-pro-17">
     <div class="wcsn-slider-image-wrapper">
         <a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
     </div>

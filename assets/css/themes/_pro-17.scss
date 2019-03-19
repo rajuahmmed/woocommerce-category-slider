@@ -1,15 +1,23 @@
 .wcsn-pro-17.wcsn-slider {
   .wcsn-slider-content-wrapper {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    height: auto;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+
     .wcsn-slider-content-top {
       position: absolute;
-      top: 0;
+      left: 10px;
+      top: 10px;
+      text-align: left;
     }
-    .wcsn-slider-content-bottom {
 
+    .wcsn-slider-content-bottom {
+      position: absolute;
+      right: 24px;
+      bottom: 16px;
+      text-align: right;
     }
 
     &:before,&:after{
@@ -25,6 +33,7 @@
     }
 
   }
+
   .wcsn-slider-description{
     display: none;
   }
