@@ -1,0 +1,42 @@
+.wcsn-pro-14.wcsn-slider {
+	.wcsn-slider-content-wrapper {
+		position: absolute;
+		width: 100%;
+
+		.wcsn-slider-title {
+			margin-bottom: 6px;
+		}
+		.wcsn-slider-icon {
+			bottom: 0px;
+			position: relative;
+			font-size: 26px;
+		}
+		.wcsn-slider-header, .wcsn-slider-footer {
+			position: absolute;
+			-webkit-transition: all 0.5s ease 0s;
+			transition: all 0.5s ease 0s;
+			width: 100%;
+			left: 0;
+		}
+		.wcsn-slider-header {
+			bottom: 40px;
+			padding: 12px 10px 4px;
+		}
+
+		.wcsn-slider-footer {
+			bottom: -176px;
+			padding: 20px 10px;
+		}
+
+	}
+
+	&:hover{
+		.wcsn-slider-footer {
+			bottom: 40px;
+		}
+		.wcsn-slider-header {
+			bottom: -40px;
+		}
+
+	}
+}

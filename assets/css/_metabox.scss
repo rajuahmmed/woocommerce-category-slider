@@ -1,17 +1,27 @@
-#wc-category-slider-images {
+[class^=ever-] {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+
+#wc-slider-images {
 	background: transparent;
 	border: none;
 	box-shadow: none;
 	.hndle, button.handlediv {
 		display: none;
+		
 	}
-
 	.inside {
 		overflow: hidden;
 	}
 
-	.ever-col-6 {
-		width: 47%;
+	.ever-row {
+		margin-left: -30px;
+		margin-right: -30px;
 	}
 
 	.ever-slide {
@@ -34,22 +44,26 @@
 			background: #fff;
 		}
 		&-headerleft {
-			font-size: 17px;
+			font-size: 1.3em;
+			font-weight: bold;
 			margin: 0;
-			font-weight: 400;
 			color: #666;
 		}
+
 		&-headerright {
 			a {
 				text-decoration: none;
 			}
 		}
+		
+
 		&-thumbnail {
 			max-width: 150px;
-			width: 100%;
 			float: left;
 			position: relative;
 			overflow: hidden;
+			height: 150px;
+			width: 150px;
 			img {
 				max-width: 100%;
 				width: 100%;
@@ -58,7 +72,6 @@
 			&:hover .ever-slide-thumbnail-tools {
 				top: 0;
 			}
-
 			&-tools {
 				display: flex;
 				position: absolute;
@@ -73,10 +86,10 @@
 					text-decoration: none;
 				}
 				.delete-image {
-					color: $red;
+					color: #a00;
 					text-decoration: none;
 					&:hover {
-						color: $red_hover;
+						color: #a00;
 					}
 
 				}
@@ -100,6 +113,7 @@
 		&-title {
 			.ever-slide-url-inputbox{
 				width: 100%;
+				border-radius: 3px;
 			}
 		}
 
@@ -119,6 +133,7 @@
 				margin-top: 5px;
 				box-sizing: border-box;
 				resize: none;
+				border-radius: 3px;
 			}
 		}
 
@@ -136,12 +151,42 @@
 				float: left;
 				//padding: 5px;
 				box-sizing: border-box;
+				border-radius: 3px;
+				margin-top: 5px;
 			}
 			&-checkbox {
 				float: right;
-				max-width: 200px;
+				max-width: 150px;
 				width: 100%;
 			}
+		}
+	}
+
+	.select2-container .select2-selection--single {
+		width: 295px;
+	}
+}
+
+.selected_categories_field{
+	.select2-selection--multiple{
+		border-radius: 5px;
+	}
+	label{
+		display: block;
+	}
+	display: none;
+}
+
+.select2-results, .select2-selection__rendered{
+	font-size: 16px;
+	font-family: FontAwesome,"Helvetica Neue";
+}
+
+#wc_slider_category_settings{
+	.inside{
+		overflow: hidden;
+		input[type=submit]{
+			float: right;
 		}
 	}
 }

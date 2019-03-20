@@ -1,0 +1,118 @@
+.wcsn-pro-25.wcsn-slider {
+	position: relative;
+    overflow: hidden;
+	.wcsn-slider-image-wrapper{
+    	position: relative;
+    	line-height: 0;
+    	.wcsn-slider-link{
+    		display: inline-block;
+    		&:after{
+			    content: "";
+			    position: absolute;
+			    top: 0;
+			    bottom: 0;
+			    left: 0;
+			    right: 0;
+			    background: rgba(0,0,0,.4);
+			    // background: transparent;
+    		}
+    	}
+    	&:before,&:after{
+    	}
+    	&:before{
+
+    	}
+    	&:after{
+
+    	}
+	}
+	.wcsn-before-hover{}
+	.wcsn-after-hover {}
+	.wcsn-slider-icon{
+		transition: all .3s;
+		font-size: 30px;
+		transform:translateX(-200px) rotate(-180deg);
+	}
+	.wcsn-slider-child-items,
+	.wcsn-slider-product-count,
+	.wcsn-slider-description,
+	.wcsn-slider-title{
+		transition: all .3s;
+		transform:translateX(-200%);
+	}
+	.wcsn-slider-button{
+		transition: all .3s;
+		transform:translateX(50%);
+	}
+	.wcsn-slider-description{
+		transition: all .3s;
+	}
+	.wcsn-slider-child-items{
+		transition: all .3s;
+	}
+	.wcsn-slider-button {
+	    background: transparent;
+	    border: 1px solid #ccc;
+	}
+	.wcsn-slider-content-wrapper {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: transparent;
+	}
+	.wcsn-before-hover {
+	    transform: translateY(-50%);
+	    top: 50%;
+	    position: absolute;
+	    left: 0;
+	    right: 0;
+	    text-align: left;
+	    padding: 30px;
+	}
+	.wcsn-slider-title {
+	    font-size: 30px;
+	    text-transform: uppercase;
+	}
+	&:hover{
+
+		.wcsn-slider-icon{
+			transform:translateX(0) rotate(-0deg);
+			// transition-delay: .1s;
+		}
+		.wcsn-slider-title{
+			transform:translateX(0) ;
+			transition-delay: .1s;
+		}
+		.wcsn-slider-product-count{
+			transform:translateX(0) ;
+			transition-delay: .2s;
+		}
+		.wcsn-slider-child-items{
+			transform:translateX(0) ;
+			transition-delay: .3s;
+		}
+		.wcsn-slider-button,
+		.wcsn-slider-description{
+			transform:translateX(0) ;
+			transition-delay: .4s;
+		}
+		.wcsn-slider-button{
+			transform:translateY(0);
+			// opacity: 1;
+			// visibility: visible;
+			transition-delay: .5s;
+
+		}
+		.wcsn-after-hover {
+
+		}
+		.wcsn-before-hover {
+
+		}
+		.wcsn-slider-content-wrapper{
+
+		}
+	}
+}

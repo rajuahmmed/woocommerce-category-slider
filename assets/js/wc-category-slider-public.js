@@ -11,12 +11,12 @@
 
 jQuery(document).ready(function ($, window, document, undefined) {
 	'use strict';
-	$.wc_category_slider = {
+	$.wc_category_slider_public = {
 		init: function () {
 
 		}
 	};
 
 
-	$.wc_category_slider.init();
+	$.wc_category_slider_public.init();
 });
