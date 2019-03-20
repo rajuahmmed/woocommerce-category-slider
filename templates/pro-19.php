@@ -1,10 +1,11 @@
-<h4>Pro Style 11</h4>
+<h3>Pro style 19</h3>
 
-<div class="wcsn-slider wcsn-pro-11">
+<!-- Pro Demo Style 1 -->
+<div class="wcsn-slider wcsn-pro-19">
 	<div class="wcsn-slider-image-wrapper">
-    <a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
+		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
 	</div>
-	<div class="wcsn-slider-content-wrapper" style="background-color: rgba(0, 0, 0, 0.4);">
+	<div class="wcsn-slider-content-wrapper">
 		<i class="fa fa-bicycle wcsn-slider-icon fa-2x" aria-hidden="true"></i>
 		<a href="#" class="wcsn-slider-link"><h3 class="wcsn-slider-title">Fox Fur Coat</h3></a>
 		<span class="wcsn-slider-product-count">5 products</span>

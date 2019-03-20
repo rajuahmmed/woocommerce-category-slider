@@ -1,4 +1,4 @@
-<h4>Carousel Style 13</h4>
+<h4>Pro Style 13</h4>
 
 <div class="wcsn-slider wcsn-pro-13">
 	<div class="wcsn-slider-image-wrapper">
