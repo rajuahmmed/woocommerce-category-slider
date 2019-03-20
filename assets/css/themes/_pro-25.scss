@@ -79,30 +79,30 @@
 
 		.wcsn-slider-icon{
 			transform:translateX(0) rotate(-0deg);
-			transition-delay: .1s;
+			// transition-delay: .1s;
 		}
 		.wcsn-slider-title{
 			transform:translateX(0) ;
-			transition-delay: .2s;
+			transition-delay: .1s;
 		}
 		.wcsn-slider-product-count{
 			transform:translateX(0) ;
-			transition-delay: .3s;
+			transition-delay: .2s;
 		}
 		.wcsn-slider-child-items{
 			transform:translateX(0) ;
-			transition-delay: .4s;
+			transition-delay: .3s;
 		}
 		.wcsn-slider-button,
 		.wcsn-slider-description{
 			transform:translateX(0) ;
-			transition-delay: .5s;
+			transition-delay: .4s;
 		}
 		.wcsn-slider-button{
 			transform:translateY(0);
 			// opacity: 1;
 			// visibility: visible;
-			transition-delay: .6s;
+			transition-delay: .5s;
 
 		}
 		.wcsn-after-hover {
