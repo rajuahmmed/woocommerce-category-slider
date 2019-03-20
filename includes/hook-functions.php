@@ -36,7 +36,7 @@ function wc_category_slider_print_js_template() {
 	?>
 	<script type="text/html" id="tmpl-wc-category-slide">
 		{{console.log(data)}}
-		<div class="ever-col-6">
+		<div class="ever-col-6 ever-slider-container">
 			<div class="ever-slide">
 				<div class="ever-slide-header">
 					<div class="ever-slide-headerleft">{{data.name}}</div>
@@ -46,8 +46,14 @@ function wc_category_slider_print_js_template() {
 						<img src="{{data.image}}" alt="">
 						<input type="hidden" name="{{data.term_id}}[image]" class="wccs-slider">
 						<div class="ever-slide-thumbnail-tools">
-							<a href="#" class="edit-image"><span class="dashicons dashicons-edit"></span></a>
-							<a href="#" class="delete-image"><span class="dashicons dashicons-trash"></span></a>
+							<div class="promotion-text">
+								<span>Upgrade to <a href="https://www.pluginever.com/plugins/woocommerce-category-slider-pro/">PRO</a>, to change the Image</span>
+							</div>
+							<div class="image-action">
+								<a href="#" class="edit-image" onclick="return false"><span class="dashicons dashicons-edit"></span></a>
+								<a href="#" class="delete-image" onclick="return false"><span class="dashicons dashicons-trash"></span></a>
+							</div>
+
 						</div>
 					</div>
 					<div class="ever-slide-inner">
@@ -73,17 +79,17 @@ function wc_category_slider_print_js_template() {
 
 								for ( $a = 0; $a < 2; $a ++ ) {
 
-									$offset = $a == 0 ? 0 : 10;
-									$length = $a == 0 ? 10 : -1;
+									$offset       = $a == 0 ? 0 : 10;
+									$length       = $a == 0 ? 10 : - 1;
 									$sliced_icons = array_slice( $icons, $offset, $length );
 
-									$label = sprintf( __( '%s Icons', 'woo-category-slider-by-pluginever' ), $a == 0 ? 'Free' : 'Pro' );
+									$label    = sprintf( __( '%s Icons', 'woo-category-slider-by-pluginever' ), $a == 0 ? 'Free' : 'Pro' );
 									$disabled = $a == 0 ? '' : 'disabled';
 
 									echo "<optgroup label='{$label}'>";
 
 									foreach ( $sliced_icons as $key => $value ) {
-										echo sprintf('<option value="%s" %s >&#x%s; &nbsp; %1$s</option>', $key, $disabled, $value);
+										echo sprintf( '<option value="%s" %s >&#x%s; &nbsp; %1$s</option>', $key, $disabled, $value );
 									}
 
 									echo '</optgroup>';
