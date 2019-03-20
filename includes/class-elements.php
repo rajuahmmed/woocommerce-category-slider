@@ -524,7 +524,7 @@ class WC_Slider_Elements {
 
 		$output
 			.= '<div class="ever-col-4 switch-container"><label class="switch" for="' . $args['id'] . '" class="ever-label">
-					  ' . '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '" ' . $checked . '  />' . '
+					  ' . '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" value= "'. $args['value'] .'" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '" ' . $checked . '  />' . '
 					  <span class="slider round"></span>
 					  <span class="switch-text"></span>
 					</label>

@@ -99,7 +99,7 @@ function wc_slider_get_category_list() {
  * @return array
  */
 
-function wc_category_slider_get_icon_list() {
+function wc_slider_get_icon_list() {
 	return array(
 		'fa-glass'                               => 'f000',
 		'fa-music'                               => 'f001',
@@ -754,3 +754,4 @@ function wc_slider_get_font_list(){
 	return $fonts;
 
 }
+

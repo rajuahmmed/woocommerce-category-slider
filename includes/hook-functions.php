@@ -29,13 +29,18 @@ function wc_slider_get_categories_ajax_callback() {
 add_action( 'wp_ajax_wc_slider_get_categories', 'wc_slider_get_categories_ajax_callback' );
 
 function wc_category_slider_print_js_template() {
+
 	global $current_screen;
+
 	if ( empty( $current_screen->id ) || ( 'wc_category_slider' !== $current_screen->id ) ) {
 		return;
 	}
+
+
+
 	?>
 	<script type="text/html" id="tmpl-wc-category-slide">
-		{{console.log(data)}}
+
 		<div class="ever-col-6 ever-slider-container">
 			<div class="ever-slide">
 				<div class="ever-slide-header">
@@ -44,7 +49,7 @@ function wc_category_slider_print_js_template() {
 				<div class="ever-slide-main">
 					<div class="ever-slide-thumbnail">
 						<img src="{{data.image}}" alt="">
-						<input type="hidden" name="{{data.term_id}}[image]" class="wccs-slider">
+						<input type="hidden" name="categories[{{data.term_id}}][image]" class="wccs-slider">
 						<div class="ever-slide-thumbnail-tools">
 							<div class="promotion-text">
 								<span>Upgrade to <a href="https://www.pluginever.com/plugins/woocommerce-category-slider-pro/">PRO</a>, to change the Image</span>
@@ -59,21 +64,21 @@ function wc_category_slider_print_js_template() {
 					<div class="ever-slide-inner">
 						<!--title-->
 						<div class="ever-slide-title">
-							<input class="ever-slide-url-inputbox regular-text" name="{{data.term_id}}[name]" placeholder="{{data.name}}" type="url" disabled="disabled">
+							<input class="ever-slide-url-inputbox regular-text" name="categories[{{data.term_id}}][name]" placeholder="{{data.name}}" type="url" disabled="disabled">
 						</div><!--/title-->
 
 						<!--description-->
 						<div class="ever-slide-captionarea">
-							<textarea name="{{data.term_id}}[description]" id="caption-{{data.term_id}}" class="ever-slide-captionarea-textfield" data-gramm_editor="false" placeholder="Description" disabled="disabled">{{data.description}}</textarea>
+							<textarea name="categories[{{data.term_id}}][description]" id="caption-{{data.term_id}}" class="ever-slide-captionarea-textfield" data-gramm_editor="false" placeholder="Description" disabled="disabled">{{data.description}}</textarea>
 						</div><!--/description-->
 
 						<!--icon-->
 						<div class="ever-slide-icon">
-							<select name="{{data.term_id}}[icon]" id="{{data.term_id}}[icon]" class="select-2">
+							<select name="categories[{{data.term_id}}][icon]" id="{{data.term_id}}[icon]" class="select-2">
 								<option value="">No Icon</option>
 								<?php
 								//todo before release block pro icons
-								$icons = wc_category_slider_get_icon_list();
+								$icons = wc_slider_get_icon_list();
 
 								ob_start();
 
@@ -107,9 +112,9 @@ function wc_category_slider_print_js_template() {
 
 						<!--url-->
 						<div class="ever-slide-url">
-							<input name="{{data.term_id}}[url]" class="ever-slide-url-inputbox regular-text" placeholder="{{data.url}}" type="url" disabled="disabled">
+							<input name="categories[{{data.term_id}}][url]" class="ever-slide-url-inputbox regular-text" placeholder="{{data.url}}" type="url" disabled="disabled">
 							<div class="ever-slide-url-checkbox">
-								<input name="{{data.term_id}}[new_tab]" class="ever-slide-captionarea-checkbox" type="checkbox" disabled="disabled">
+								<input name="categories[{{data.term_id}}][new_tab]" class="ever-slide-captionarea-checkbox" type="checkbox" disabled="disabled">
 								<label class="ever-slide-captionarea-label">Open In a new Tab</label>
 							</div>
 						</div><!--/url-->
