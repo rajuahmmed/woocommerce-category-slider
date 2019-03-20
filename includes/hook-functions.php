@@ -63,7 +63,7 @@ function wc_category_slider_print_js_template() {
 
 						<!--icon-->
 						<div class="ever-slide-icon">
-							<select name="{{data.term_id}}[icon]" id="{{data.term_id}}[icon]">
+							<select name="{{data.term_id}}[icon]" id="{{data.term_id}}[icon]" class="select-2">
 								<option value="">No Icon</option>
 								<?php
 								$icons = wc_category_slider_get_icon_list();
