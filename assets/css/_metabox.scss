@@ -178,5 +178,15 @@
 }
 
 .select2-results, .select2-selection__rendered{
+	font-size: 16px;
 	font-family: FontAwesome,"Helvetica Neue";
+}
+
+#wc_slider_category_settings{
+	.inside{
+		overflow: hidden;
+		input[type=submit]{
+			float: right;
+		}
+	}
 }

@@ -9,7 +9,7 @@ function wc_slider_get_categories_ajax_callback() {
 	$orderby             = empty( $_REQUEST['orderby'] ) ? 'name' : sanitize_key( $_REQUEST['orderby'] );
 	$order               = empty( $_REQUEST['order'] ) ? 'ASC' : sanitize_key( $_REQUEST['order'] );
 	$slider_id           = empty( $_REQUEST['slider_id'] ) ? null : sanitize_key( $_REQUEST['slider_id'] );
-	if($selection_type == 'all'){
+	if ( $selection_type == 'all' ) {
 		$selected_categories = [];
 	}
 
@@ -66,12 +66,36 @@ function wc_category_slider_print_js_template() {
 							<select name="{{data.term_id}}[icon]" id="{{data.term_id}}[icon]" class="select-2">
 								<option value="">No Icon</option>
 								<?php
+								//todo before release block pro icons
 								$icons = wc_category_slider_get_icon_list();
-								foreach ($icons as $key => $value){
-									echo "<option value='$key'>&#x{$value}; {$key}</option>";
+
+								ob_start();
+
+								for ( $a = 0; $a < 2; $a ++ ) {
+
+									$offset = $a == 0 ? 0 : 10;
+									$length = $a == 0 ? 10 : -1;
+									$sliced_icons = array_slice( $icons, $offset, $length );
+
+									$label = sprintf( __( '%s Icons', 'woo-category-slider-by-pluginever' ), $a == 0 ? 'Free' : 'Pro' );
+									$disabled = $a == 0 ? '' : 'disabled';
+
+									echo "<optgroup label='{$label}'>";
+
+									foreach ( $sliced_icons as $key => $value ) {
+										echo sprintf('<option value="%s" %s >&#x%s; &nbsp; %1$s</option>', $key, $disabled, $value);
+									}
+
+									echo '</optgroup>';
+
 								}
+
+								$output = ob_get_clean();
+
+								echo $output;
+
 								?>
-								<option value="">demo-fontawesome-icon (Demo Icon)</option>
+
 							</select>
 						</div><!--/icon-->
 
