@@ -67,7 +67,7 @@ function wc_slider_render_category_settings_metabox() {
 	echo wc_category_slider()->elements->select( array(
 		'label'            => __( 'Select Categories', 'woo-category-slider-by-pluginever' ),
 		'name'             => 'selected_categories',
-		'placeholder'      => '',
+		'class'            => 'select-2 select-categories',
 		'show_option_all'  => '',
 		'show_option_none' => '',
 		'double_columns'   => false,
@@ -75,6 +75,9 @@ function wc_slider_render_category_settings_metabox() {
 		'required'         => true,
 		'selected'         => '1',
 		'desc'             => __( '', 'woo-category-slider-by-pluginever' ),
+		'attrs'            => array(
+			'multiple' => 'multiple'
+		),
 	) );
 
 	echo wc_category_slider()->elements->input( array(

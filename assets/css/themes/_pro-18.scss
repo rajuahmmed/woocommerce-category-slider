@@ -1,0 +1,50 @@
+.wcsn-pro-18.wcsn-slider {
+
+	.wcsn-slider-product-count {
+		position: absolute;
+		color: #fff;
+		font-size: 10px;
+		line-height: 10px;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 700;
+		font-style: normal;
+		background-color: #fd5a27;
+		-webkit-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		transform: rotate(45deg);
+		top: 11px;
+		right: -29px;
+		text-align: center;
+		padding: 6px 24px;
+		width: 116px;
+		z-index: 2;
+		span {
+			font-size: 20px;
+		}
+	}
+	.wcsn-slider-content-wrapper {
+		background: linear-gradient( rgba(0, 0, 0, 0), #111 140%);
+		color: #ffffff;
+		position: absolute;
+		bottom: -58px;
+		width: 100%;
+		-webkit-transition: all .3s;
+		transition: all .3s;
+		padding: 15px 10px;
+	}
+
+	.wcsn-slider-description{
+		display: none;
+	}
+
+	&:hover{
+		.wcsn-slider-content-wrapper {
+			bottom: 0px;
+		}
+
+	}
+}
+
+
+

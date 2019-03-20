@@ -1,0 +1,33 @@
+.wcsn-pro-19.wcsn-slider {
+	.wcsn-slider-content-wrapper {
+		position: absolute;
+		background: transparent;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		height: auto;
+		color: #f32c52;
+
+		&:before,&:after{
+
+		}
+
+		&:before{
+
+		}
+
+		&::after {
+
+		}
+
+	}
+	.wcsn-slider-description{
+		display: none;
+	}
+
+	&:hover{
+
+
+	}
+}

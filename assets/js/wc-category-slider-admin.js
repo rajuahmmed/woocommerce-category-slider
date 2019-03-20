@@ -14,8 +14,11 @@ jQuery(document).ready(function ($, window, document, undefined) {
 	$.wc_category_slider_admin = {
 		init: function () {
 			$('#selection_type, #selected_categories, #limit_number, #include_child, #hide_empty').on('change', this.regenerateSlides);
+			$('#selection_type').on('change', this.handleSelectionType);
+			$('.select-2').select2();
 		},
 		regenerateSlides: function () {
+
 			var data = {
 				selection_type: $('#selection_type').val() || 'all',
 				selected_categories: $('#selected_categories').val() || [],
@@ -35,16 +38,27 @@ jQuery(document).ready(function ($, window, document, undefined) {
 					mountPoint.find('.ever-col-6').remove();
 					mountPoint.addClass('loaded');
 					categories.forEach(function (category) {
-						var template = wp.template( 'wc-category-slide' );
-						mountPoint.append(template( category ));
+						var template = wp.template('wc-category-slide');
+						mountPoint.append(template(category));
 						// $el.html( template( category ) );
 						// console.log(template( category ));
 					});
+
+					$('.select-2').select2();
+
 				},
 				error: function (res) {
 					console.log(res);
 				}
 			});
+		},
+
+		handleSelectionType: function () {
+
+			var $display = $(this).val() === 'custom' ? 'block' : 'none';
+
+			$('.selected_categories_field').css('display', $display);
+
 		}
 
 	};
