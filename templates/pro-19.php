@@ -1,4 +1,4 @@
-<h3>Pro style 19</h3>
+<h4>Pro style 19</h4>
 
 <!-- Pro Demo Style 1 -->
 <div class="wcsn-slider wcsn-pro-19">

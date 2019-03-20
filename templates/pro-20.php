@@ -1,28 +1,28 @@
-<h3>Pro style 20</h3>
-<!-- Pro Demo Style 20-->
-<!-- <div class="wcsn-slider wcsn-pro-20">
-	<div class="wcsn-slider-image-wrapper">
-		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
-	</div>
-	<div class="wcsn-slider-content-wrapper">
-		<div class="wcsn-before-hover">
-			<i class="fa fa-bicycle wcsn-slider-icon fa-2x" style="color:#fff" aria-hidden="true"></i>
-			<a href="#" class="wcsn-slider-link"><h3 class="wcsn-slider-title" style="color:#fff" >Fox Fur Coat</h3></a>
-			<span class="wcsn-slider-product-count" style="color:#fff">5 products</span>
-			<ul class="wcsn-slider-child-items" >
-				<li class="wcsn-slider-child-item" style="color: #fff;"><a href="#" class="wcsn-slider-link">Child item (3)</a></li>
-				<li class="wcsn-slider-child-item" style="color: #fff;"><a href="#" class="wcsn-slider-link">Child item (2)</a></li>
-				<li class="wcsn-slider-child-item" style="color: #fff;"><a href="#" class="wcsn-slider-link">Child item (3)</a></li>
-			</ul>
-			<p class="wcsn-slider-description" style="color: #fff;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, eaque!</p>
+<h4>Pro style 20</h4>
 
-		</div>
-		<div class="wcsn-after-hover">
-			<a href="#" class="wcsn-slider-link"><h3 class="wcsn-slider-title" style="color:#fff" >Fox Fur Coat</h3></a>
-			<span class="wcsn-slider-product-count" style="color:#fff">5 products</span>
-			<a href="#" class="wcsn-slider-button">Shop Now</a>
-		</div>
-	</div>
+<div class="wcsn-slider wcsn-pro-20">
+    <div class="wcsn-slider-image-wrapper">
+        <a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
+    </div>
+    <div class="wcsn-slider-content-wrapper" style="background: rgba(0,0,0,.5);color:#fff">
+        <div class="wcsn-slider-content-header">
+            <i class="fa fa-bicycle wcsn-slider-icon fa-2x" aria-hidden="true"></i>
+            <a href="#" class="wcsn-slider-link"><h3 class="wcsn-slider-title">Fox Fur Coat</h3></a>
+
+            <ul class="wcsn-slider-child-items">
+                <li class="wcsn-slider-child-item"><a href="#" class="wcsn-slider-link">Child item (3)</a></li>
+                <li class="wcsn-slider-child-item"><a href="#" class="wcsn-slider-link">Child item (2)</a></li>
+                <li class="wcsn-slider-child-item"><a href="#" class="wcsn-slider-link">Child item (3)</a></li>
+            </ul>
+            <p class="wcsn-slider-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, eaque!</p>
+        </div>
+
+        <div class="wcsn-slider-content-footer">
+            <span class="wcsn-slider-product-count">5 Products</span>
+            <a href="#" class="wcsn-slider-button">Shop Now</a>
+        </div>
+    </div>
 </div>
- -->
+
+
 

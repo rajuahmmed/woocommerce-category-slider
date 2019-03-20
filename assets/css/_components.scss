@@ -6,14 +6,3 @@
 	vertical-align: middle;
 }
 
-.ever-close {
-	background: $red;
-	padding: 1px 5px;
-	border-radius: 50%;
-	color: white;
-	&:hover {
-		background: $red_hover;
-		color: #000;
-	}
-}
-
