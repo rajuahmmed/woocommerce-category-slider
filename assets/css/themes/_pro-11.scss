@@ -23,9 +23,18 @@
 			transition: opacity .45s,-webkit-transform .45s;
 			transition: opacity .45s,transform .45s;
 			transition: opacity .45s,transform .45s,-webkit-transform .45s;
-			transform-origin: 4% 95%;
-		}
+			opacity: .7;
+			-webkit-transform: rotate3d(0,0,1,90deg);
+			transform: rotate3d(0,0,1,90deg);
+			transform-origin: 6% 94%;
+		}	
 
+	}
+	.wcsn-slider-description{
+		//display: none;
+	}
+
+	&:hover{
 		.wcsn-slider-button {
 			text-align: right;
 			float: right;
@@ -34,18 +43,11 @@
 			top: 6px;
 			text-decoration: none;
 		}
-
-	}
-	.wcsn-slider-description{
-		display: none;
-	}
-
-	&:hover{
 		.wcsn-slider-content-wrapper {
 			&:before {
-				opacity: 0.7;
-				-webkit-transform: rotate3d(0, 0, 1, 68deg);
-				transform: rotate3d(0, 0, 1, 68deg);
+				opacity: .7;
+				-webkit-transform: rotate3d(0,0,1,68deg);
+				transform: rotate3d(0,0,1,68deg);
 				-webkit-transform-origin: 6% 94%;
 				-ms-transform-origin: 6% 94%;
 				transform-origin: 6% 94%;
