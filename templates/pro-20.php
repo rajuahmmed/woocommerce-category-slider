@@ -1,6 +1,6 @@
 <h3>Pro style 20</h3>
 <!-- Pro Demo Style 20-->
-<div class="wcsn-slider wcsn-pro-20">
+<!-- <div class="wcsn-slider wcsn-pro-20">
 	<div class="wcsn-slider-image-wrapper">
 		<a href="#" class="wcsn-slider-link"><img class="wcsn-slider-image" src="<?php echo WC_SLIDER_ASSETS_URL .'/images/placeholder.jpg';?>" alt=""></a>
 	</div>
@@ -24,5 +24,5 @@
 		</div>
 	</div>
 </div>
-
+ -->
 
