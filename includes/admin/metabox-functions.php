@@ -25,6 +25,7 @@ function wc_slider_register_meta_boxes() {
 	add_meta_box( 'wc-slider-images', __( 'Category Images', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_images_settings_metabox', $post_type, 'normal', 'high' );
 	add_meta_box( 'wc_slider_category_settings', __( 'Category Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_category_settings_metabox', $post_type, 'side', 'high' );
 	add_meta_box( 'wc_slider_display_settings', __( 'Display Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_display_settings_metabox', $post_type, 'side', 'high' );
+	add_meta_box( 'wc_slider_font_settings', __( 'Font Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_font_settings_metabox', $post_type, 'side', 'high' );
 	add_meta_box( 'wc_slider_slider_settings', __( 'Slider Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_slider_settings_metabox', $post_type, 'side', 'high' );
 }
 
@@ -184,6 +185,54 @@ function wc_slider_render_display_settings_metabox() {
 
 	) );
 
+}
+
+/**
+ * Font settings metabox
+ *
+ * @since 3.1.3
+ */
+
+function wc_slider_render_font_settings_metabox(){
+
+	echo wc_category_slider()->elements->select( array(
+		'label'            => __( 'Title Font', 'woo-category-slider-by-pluginever' ),
+		'name'             => 'title_font',
+		'class'            => 'select-2 title-font',
+		'show_option_all'  => '',
+		'show_option_none' => '',
+		'double_columns'   => false,
+		'options'          => wc_slider_get_font_list(),
+		'required'         => false,
+		'selected'         => '',
+		'desc'             => __( 'Select the font family for title', 'woo-category-slider-by-pluginever' ),
+	) );
+
+	echo wc_category_slider()->elements->select( array(
+		'label'            => __( 'Description Font', 'woo-category-slider-by-pluginever' ),
+		'name'             => 'description_font',
+		'class'            => 'select-2 description-font',
+		'show_option_all'  => '',
+		'show_option_none' => '',
+		'double_columns'   => false,
+		'options'          => wc_slider_get_font_list(),
+		'required'         => false,
+		'selected'         => '',
+		'desc'             => __( 'Select the font family for details', 'woo-category-slider-by-pluginever' ),
+	) );
+
+	echo wc_category_slider()->elements->select( array(
+		'label'            => __( 'Button Font', 'woo-category-slider-by-pluginever' ),
+		'name'             => 'button_font',
+		'class'            => 'select-2 description-font',
+		'show_option_all'  => '',
+		'show_option_none' => '',
+		'double_columns'   => false,
+		'options'          => wc_slider_get_font_list(),
+		'required'         => false,
+		'selected'         => '',
+		'desc'             => __( 'Select the font family for buttons', 'woo-category-slider-by-pluginever' ),
+	) );
 }
 
 /**
