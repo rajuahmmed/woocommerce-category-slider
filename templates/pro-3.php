@@ -1,3 +1,4 @@
+
 <h3>Pro style 3</h3>
 
 <!-- Pro Demo Style 3-->
@@ -18,5 +19,3 @@
 		<a href="#" class="wcsn-slider-button">Shop Now</a>
 	</div>
 </div>
-
-
