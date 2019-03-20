@@ -72,7 +72,7 @@ function wc_slider_render_category_settings_metabox() {
 		'show_option_none' => '',
 		'double_columns'   => false,
 		'options'          => wc_slider_get_category_list(),
-		'required'         => true,
+		'required'         => false,
 		'selected'         => '1',
 		'desc'             => __( '', 'woo-category-slider-by-pluginever' ),
 		'attrs'            => array(
@@ -102,6 +102,7 @@ function wc_slider_render_category_settings_metabox() {
 	) );
 
 
+	echo '<input name="save" type="submit" class="button button-primary button-large" id="publish" value="'.__( 'Update Slider', 'woo-category-slider-by-pluginever' ).'"/>';
 }
 
 /**

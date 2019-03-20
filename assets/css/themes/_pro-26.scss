@@ -38,10 +38,12 @@
 	    right: 0;
 	    top: 50%;
 	    transform: translateY(-50%);
+	    z-index: 9;
 	}
 	&:hover{
 		.wcsn-slider-content-wrapper:before,.wcsn-slider-content-wrapper:after{
 			opacity: 1;
+			border-color: red;
 			// -webkit-transform: scale(1);
 			// transform: scale(1);
 		}
