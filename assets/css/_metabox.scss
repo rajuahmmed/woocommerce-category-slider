@@ -295,14 +295,21 @@ body.post-type-wc_category_slider {
 				line-height: 22px;
 				background: #2196f3;
 				color: white;
+				border: none;
 				&__remove{
 					color: rgba(202, 60, 60, .8);
 				}
 			}
+
 		}
-
-
 	}
+
+	.select2-container--focus{
+		.select2-selection--multiple{
+			border: 1px solid #ddd;
+		}
+	}
+
 	.select2-selection__placeholder{
 		color: #555 !important;
 	}
