@@ -27,11 +27,7 @@ function wc_slider_register_meta_boxes() {
 	$post_type = 'wc_category_slider';
 
 	add_meta_box( 'wc-slider-settings', __( 'Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_settings_metabox', $post_type, 'normal', 'high' );
-	//add_meta_box( 'wc-slider-images', __( 'Category Images', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_images_settings_metabox', $post_type, 'normal', 'high' );
 	add_meta_box( 'wc_slider_category_settings', __( 'Category Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_category_settings_metabox', $post_type, 'side', 'high' );
-	//add_meta_box( 'wc_slider_display_settings', __( 'Display Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_display_settings_metabox', $post_type, 'side', 'high' );
-	//add_meta_box( 'wc_slider_font_settings', __( 'Font Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_font_settings_metabox', $post_type, 'side', 'high' );
-	//add_meta_box( 'wc_slider_slider_settings', __( 'Slider Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_slider_settings_metabox', $post_type, 'side', 'high' );
 }
 
 add_action( 'add_meta_boxes', 'wc_slider_register_meta_boxes', 10 );
@@ -40,23 +36,13 @@ add_action( 'add_meta_boxes', 'wc_slider_register_meta_boxes', 10 );
  * Settings metabox
  */
 
-function wc_slider_settings_metabox($post) {
+function wc_slider_settings_metabox( $post ) {
 	ob_start();
 	include WC_SLIDER_INCLUDES . '/admin/views/metabox.php';
 	$html = ob_get_clean();
 	echo $html;
 }
 
-/**
- * Images Settings metabox
- */
-
-function wc_slider_render_images_settings_metabox() {
-	ob_start();
-	include WC_SLIDER_INCLUDES . '/admin/views/html-category-images-metabox.php';
-	$html = ob_get_clean();
-	echo $html;
-}
 
 /**
  * Category settings metabox
@@ -122,14 +108,53 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		'desc'  => __( 'Show/hide Category without products', 'woo-category-slider-by-pluginever' ),
 	) );
 
+	echo wc_category_slider()->elements->select( array(
+		'label'            => __( 'Order By', 'woo-category-slider-by-pluginever' ),
+		'name'             => 'orderby',
+		'class'            => 'orderby',
+		'show_option_all'  => '',
+		'show_option_none' => '',
+		'double_columns'   => false,
+		'options'          => array(
+			'id'          => 'Term ID',
+			'name'        => 'Term Name',
+			'description' => 'Term Description',
+			'term_group'  => 'Term Group',
+			'count'       => 'Count',
+			'none'        => 'none',
+		),
+		'disabled'         => true,
+		'required'         => false,
+		'selected'         => get_post_meta( $post->ID, 'orderby', true ),
+		'desc'             => __( 'Order category slider according to the selection type', 'woo-category-slider-by-pluginever' ),
+
+	) );
+
+	echo wc_category_slider()->elements->select( array(
+		'label'            => __( 'Order', 'woo-category-slider-by-pluginever' ),
+		'name'             => 'order',
+		'class'            => 'order',
+		'show_option_all'  => '',
+		'show_option_none' => '',
+		'double_columns'   => false,
+		'options'          => array(
+			'ASC'  => 'ASC',
+			'DESC' => 'DESC',
+		),
+		'required'         => false,
+		'disabled'         => true,
+		'selected'         => get_post_meta( $post->ID, 'order', true ),
+		'desc'             => __( 'Order category slider according to the selection type', 'woo-category-slider-by-pluginever' ),
+
+	) );
+
 	$action = empty( $_GET['action'] ) ? '' : esc_attr( $_GET['action'] );
 	?>
 	<input type="hidden" name="hidden_post_status" id="hidden_post_status" value="publish"/>
 
 	<?php if ( $action !== 'edit' ) { ?>
 		<input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e( 'Publish' ) ?>"/>
-		<?php submit_button( __( 'Create Slider', 'woo-category-slider-by-pluginever' ), 'primary button-large', 'publish', false ); ?>
-		<?php
+		<?php submit_button( __( 'Create Slider', 'woo-category-slider-by-pluginever' ), 'primary button-large', 'publish', false ); ?><?php
 	} else { ?>
 		<input name="original_publish" type="hidden" id="original_publish" value="publish"/>
 		<?php submit_button( __( 'Update Slider', 'woo-category-slider-by-pluginever' ), 'primary button-large', 'publish', false );
@@ -137,156 +162,3 @@ function wc_slider_render_category_settings_metabox( $post ) {
 
 }
 
-/**
- * Display settings metabox
- *
- * @since 3.1.3
- */
-
-function wc_slider_render_display_settings_metabox( $post ) {
-	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'show_image',
-		'label'          => __( 'Image', 'woo-category-slider-by-pluginever' ),
-		'double_columns' => false,
-		'value'          => get_post_meta( $post->ID, 'show_image', true ),
-		'desc'           => __( '', 'woo-category-slider-by-pluginever' ),
-	) );
-	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'show_content',
-		'label'          => __( 'Content', 'woo-category-slider-by-pluginever' ),
-		'double_columns' => false,
-		'value'          => get_post_meta( $post->ID, 'show_content', true ),
-		'default'        => 'no',
-		'desc'           => __( '', 'woo-category-slider-by-pluginever' ),
-	) );
-	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'show_button',
-		'label'          => __( 'Button', 'woo-category-slider-by-pluginever' ),
-		'double_columns' => false,
-		'value'          => get_post_meta( $post->ID, 'show_button', true ),
-		'desc'           => __( '', 'woo-category-slider-by-pluginever' ),
-	) );
-	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'show_name',
-		'label'          => __( 'Category Name', 'woo-category-slider-by-pluginever' ),
-		'double_columns' => false,
-		'value'          => get_post_meta( $post->ID, 'show_name', true ),
-		'desc'           => __( '', 'woo-category-slider-by-pluginever' ),
-	) );
-	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'show_product_count',
-		'label'          => __( 'Product Count', 'woo-category-slider-by-pluginever' ),
-		'double_columns' => false,
-		'value'          => get_post_meta( $post->ID, 'show_product_count', true ),
-		'desc'           => __( '', 'woo-category-slider-by-pluginever' ),
-	) );
-	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'show_nav',
-		'label'          => __( 'Navigation', 'woo-category-slider-by-pluginever' ),
-		'double_columns' => false,
-		'value'          => get_post_meta( $post->ID, 'show_nav', true ),
-		'desc'           => __( '', 'woo-category-slider-by-pluginever' ),
-	) );
-	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'show_border',
-		'label'          => __( 'Border', 'woo-category-slider-by-pluginever' ),
-		'double_columns' => false,
-		'value'          => get_post_meta( $post->ID, 'show_border', true ),
-		'desc'           => __( 'Border around slider image?', 'woo-category-slider-by-pluginever' ),
-	) );
-
-	echo wc_category_slider()->elements->select( array(
-		'label'            => __( 'Image Hover effect', 'woo-category-slider-by-pluginever' ),
-		'name'             => 'hover_style',
-		'placeholder'      => '',
-		'show_option_all'  => '',
-		'show_option_none' => '',
-		'double_columns'   => false,
-		'value'            => 'default',
-		'selected'         => get_post_meta( $post->ID, 'hover_style', true ),
-		'options'          => apply_filters( 'wc_category_slider_hover_styles', array(
-			'no-hover'      => 'No Hover',
-			'hover-zoom-in' => 'Zoom In',
-		) )
-	) );
-	echo wc_category_slider()->elements->select( array(
-		'name'             => 'theme',
-		'label'            => __( 'Theme', 'wc_category_slider' ),
-		'placeholder'      => '',
-		'show_option_all'  => '',
-		'show_option_none' => '',
-		'double_columns'   => false,
-		'selected'         => get_post_meta( $post->ID, 'theme', true ),
-		'value'            => 'default',
-		'options'          => apply_filters( 'wc_category_slider_themes', array(
-			'default'    => 'Default',
-			'theme-free' => 'Basic',
-		) ),
-
-	) );
-
-}
-
-/**
- * Font settings metabox
- *
- * @since 3.1.3
- */
-
-function wc_slider_render_font_settings_metabox( $post ) {
-
-	echo wc_category_slider()->elements->select( array(
-		'label'            => __( 'Title Font', 'woo-category-slider-by-pluginever' ),
-		'name'             => 'title_font',
-		'class'            => 'select-2 title-font',
-		'show_option_all'  => '',
-		'show_option_none' => '',
-		'double_columns'   => false,
-		'options'          => wc_slider_get_font_list(),
-		'required'         => false,
-		'selected'         => get_post_meta( $post->ID, 'title_font', true ),
-		'desc'             => __( 'Select the font family for title', 'woo-category-slider-by-pluginever' ),
-	) );
-
-	echo wc_category_slider()->elements->select( array(
-		'label'            => __( 'Description Font', 'woo-category-slider-by-pluginever' ),
-		'name'             => 'description_font',
-		'class'            => 'select-2 description-font',
-		'show_option_all'  => '',
-		'show_option_none' => '',
-		'double_columns'   => false,
-		'options'          => wc_slider_get_font_list(),
-		'required'         => false,
-		'selected'         => get_post_meta( $post->ID, 'description_font', true ),
-		'desc'             => __( 'Select the font family for details', 'woo-category-slider-by-pluginever' ),
-	) );
-
-	echo wc_category_slider()->elements->select( array(
-		'label'            => __( 'Button Font', 'woo-category-slider-by-pluginever' ),
-		'name'             => 'button_font',
-		'class'            => 'select-2 description-font',
-		'show_option_all'  => '',
-		'show_option_none' => '',
-		'double_columns'   => false,
-		'options'          => wc_slider_get_font_list(),
-		'required'         => false,
-		'selected'         => get_post_meta( $post->ID, 'button_font', true ),
-		'desc'             => __( 'Select the font family for buttons', 'woo-category-slider-by-pluginever' ),
-	) );
-}
-
-/**
- * Slider settings metabox
- *
- * @since 3.1.3
- */
-
-function wc_slider_render_slider_settings_metabox( $post ) {
-	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'autoplay',
-		'label'          => __( 'Slider Autoplay', 'woo-category-slider-by-pluginever' ),
-		'double_columns' => false,
-		'value'          => get_post_meta( $post->ID, 'autoplay', true ),
-		'desc'           => __( 'Slider will automatically start playing is set Yes.', 'woo-category-slider-by-pluginever' ),
-	) );
-}

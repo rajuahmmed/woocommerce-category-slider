@@ -1,5 +1,7 @@
 <?php
 
+echo sprintf('<h2 class="pro-feat-title">%s</h2>', 'Pro Features', 'woo-category-slider-by-pluginever');
+
 echo wc_category_slider()->elements->select( array(
 	'label'            => __( 'Title Font', 'woo-category-slider-by-pluginever' ),
 	'name'             => 'title_font',

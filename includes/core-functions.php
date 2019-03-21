@@ -754,3 +754,21 @@ function wc_slider_get_font_list(){
 	return $fonts;
 
 }
+
+
+/**
+ * get slider settings
+ *
+ * @since 1.0.0
+ *
+ * @param      $post_id
+ * @param      $key
+ * @param bool $default
+ *
+ * @return bool|mixed
+ */
+function wc_slider_get_slider_settings( $post_id, $key, $default = false ) {
+	$value = get_post_meta( $post_id, $key, true );
+
+	return ! empty( $value ) ? $value : $default;
+}

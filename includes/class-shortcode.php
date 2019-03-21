@@ -52,14 +52,14 @@ class WC_Category_Slider_Shortcode {
 		$post_id = $params['id'];
 
 		$selected_categories = 'all';
-		$theme               = self::get_slider_settings( $post_id, 'theme', 'default' );
-		$selection_type      = self::get_slider_settings( $post_id, 'selection_type', 'all' );
-		$limit_number        = self::get_slider_settings( $post_id, 'limit_number', '10' );
-		$include_child       = self::get_slider_settings( $post_id, 'include_child', 'off' );
-		$show_empty          = self::get_slider_settings( $post_id, 'show_empty', 'on' );
+		$theme               = wc_slider_get_slider_settings( $post_id, 'theme', 'default' );
+		$selection_type      = wc_slider_get_slider_settings( $post_id, 'selection_type', 'all' );
+		$limit_number        = wc_slider_get_slider_settings( $post_id, 'limit_number', '10' );
+		$include_child       = wc_slider_get_slider_settings( $post_id, 'include_child', 'off' );
+		$show_empty          = wc_slider_get_slider_settings( $post_id, 'show_empty', 'on' );
 
 		if ( 'all' != $selection_type ) {
-			$selected_category_ids = self::get_slider_settings( $post_id, 'selected_categories', [] );
+			$selected_category_ids = wc_slider_get_slider_settings( $post_id, 'selected_categories', [] );
 			if ( is_array( $selected_category_ids ) && ! empty( $selected_category_ids ) ) {
 				$selected_categories = wp_parse_id_list( $selected_category_ids );
 			}
@@ -101,22 +101,6 @@ class WC_Category_Slider_Shortcode {
 		return $html;
 	}
 
-	/**
-	 * get slider settings
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param      $post_id
-	 * @param      $key
-	 * @param bool $default
-	 *
-	 * @return bool|mixed
-	 */
-	public static function get_slider_settings( $post_id, $key, $default = false ) {
-		$value = get_post_meta( $post_id, $key, true );
-
-		return ! empty( $value ) ? $value : $default;
-	}
 
 	/**
 	 * Get slider settings

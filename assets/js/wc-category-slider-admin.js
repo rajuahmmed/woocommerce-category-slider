@@ -16,6 +16,7 @@ jQuery(document).ready(function ($, window, document, undefined) {
 			$('#selection_type, #selected_categories, #limit_number, #include_child, #hide_empty').on('change', this.regenerateSlides);
 			$('#selection_type').on('change', this.handleSelectionType);
 			$('.select-2').select2();
+			$('.ever-colorpicker').wpColorPicker();
 		},
 		regenerateSlides: function () {
 

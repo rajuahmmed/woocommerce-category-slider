@@ -65,7 +65,7 @@ class WC_Slider_Elements {
 			'readonly'         => false,
 			'required'         => false,
 			'disabled'         => false,
-			'double_columns'   => false,
+			'double_columns'   => true,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -122,7 +122,7 @@ class WC_Slider_Elements {
 			}
 
 			if ( $args['double_columns'] ) {
-				$output .= '<div class="ever-col-3"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
+				$output .= '<div class="ever-col-4"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
 			} else {
 				$output .= '<label for="' . $args['id'] . '" class="ever-label">' . $label . '</label>';
 			}
@@ -135,7 +135,7 @@ class WC_Slider_Elements {
 
 		if ( $args['double_columns'] ) {
 			$output .= '<div class="ever-col-1">:</div>';
-			$output .= '<div class="ever-col-8">';
+			$output .= '<div class="ever-col-7">';
 		}
 
 		$output .= '<select name="' . $name . '" id="' . esc_attr( $args['id'] ) . '" class="ever-field ' . $class . '"' . $attributes . '>';
@@ -352,14 +352,14 @@ class WC_Slider_Elements {
 			if ( $args['required'] == true ) {
 				$label .= ' <span class="ever-required-field">*</span>';
 			}
-			$output .= '<div class="ever-col-3"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
+			$output .= '<div class="ever-col-4"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
 		}
 
 		$attributes = '';
 		$attributes .= $this->get_data_attributes( $args['data'] );
 		$attributes .= $this->get_attributes( $args['attrs'] );
 		$output     .= '<div class="ever-col-1">:</div>';
-		$output     .= '<div class="ever-col-8">';
+		$output     .= '<div class="ever-col-7">';
 		$output     .= '<textarea name="' . esc_attr( $args['name'] ) . '" id="' . esc_attr( $args['id'] ) . '" class="' . $class . '"' . $attributes . '>' . $args['value'] . '</textarea>';
 
 		if ( ! empty( $args['desc'] ) ) {
@@ -430,7 +430,7 @@ class WC_Slider_Elements {
 			if ( $args['required'] == true ) {
 				$label .= ' <span class="ever-required-field">*</span>';
 			}
-			$output .= '<div class="ever-col-3"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
+			$output .= '<div class="ever-col-4"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
 		}
 
 		$attributes = '';
@@ -439,7 +439,7 @@ class WC_Slider_Elements {
 
 		$output .= '<div class="ever-col-1">:</div>';
 
-		$output .= '<div class="ever-col-8">';
+		$output .= '<div class="ever-col-7">';
 
 		$output .= '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '" ' . checked( 1, $args['value'], false ) . ' ' . $attributes . ' />';
 
@@ -511,7 +511,7 @@ class WC_Slider_Elements {
 			}
 			$output
 				.= '<div class="ever-switch">
-							<label for="' . $args['id'] . '" class="ever-col-7 ever-label ever-switch-label">' . $label . '</label>';
+							<label for="' . $args['id'] . '" class="ever-col-4 ever-label ever-switch-label">' . $label . '</label>';
 		}
 
 		$attributes = '';
@@ -523,8 +523,8 @@ class WC_Slider_Elements {
 		$output .= '<div class="ever-col-1">:</div>';
 
 		$output
-			.= '<div class="ever-col-4 switch-container"><label class="switch" for="' . $args['id'] . '" class="ever-label">
-					  ' . '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" value= "'. $args['value'] .'" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '" ' . $checked . '  />' . '
+			.= '<div class="ever-col-7 switch-container"><label class="switch" for="' . $args['id'] . '" class="ever-label">
+					  ' . '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" value= "' . $args['value'] . '" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '" ' . $checked . '  />' . '
 					  <span class="slider round"></span>
 					  <span class="switch-text"></span>
 					</label>
@@ -537,7 +537,6 @@ class WC_Slider_Elements {
 
 		return $output;
 	}
-	//!!aponK@an!!
 
 	/**
 	 *
@@ -592,7 +591,7 @@ class WC_Slider_Elements {
 			}
 
 			if ( $args['double_columns'] ) {
-				$output .= '<div class="ever-col-3"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
+				$output .= '<div class="ever-col-4"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
 			}
 
 			if ( ! $args['double_columns'] ) {
@@ -602,7 +601,7 @@ class WC_Slider_Elements {
 
 		if ( $args['double_columns'] ) {
 			$output .= '<div class="ever-col-1">:</div>';
-			$output .= '<div class="ever-col-8">';
+			$output .= '<div class="ever-col-7">';
 		}
 
 		$attributes = '';
@@ -682,7 +681,7 @@ class WC_Slider_Elements {
 			}
 
 			if ( $args['double_columns'] ) {
-				$output .= '<div class="ever-col-3"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
+				$output .= '<div class="ever-col-4"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
 			}
 
 			if ( ! $args['double_columns'] ) {
@@ -807,7 +806,7 @@ class WC_Slider_Elements {
 			}
 
 			if ( $args['double_columns'] ) {
-				$output .= '<div class="ever-col-3"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
+				$output .= '<div class="ever-col-4"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
 			} else {
 				$output .= '<label for="' . $args['id'] . '" class="ever-label">' . $label . '</label>';
 			}
@@ -817,7 +816,120 @@ class WC_Slider_Elements {
 
 		if ( $args['double_columns'] ) {
 			$output .= '<div class="ever-col-1">:</div>';
-			$output .= '<div class="ever-col-8">';
+			$output .= '<div class="ever-col-7">';
+		}
+
+
+		$attributes = '';
+		$attributes .= $this->get_data_attributes( $args['data'] );
+		$attributes .= $this->get_attributes( $args['attrs'] );
+
+		$output .= '<input type="' . esc_attr( $args['type'] ) . '" name="' . esc_attr( $args['name'] ) . '" id="' . esc_attr( $args['id'] ) . '" value="' . esc_attr( $args['value'] ) . '" class="' . $class . '" ' . $attributes . ' />';
+		if ( ! empty( $args['after'] ) ) {
+			$output .= $args['after'];
+		}
+		if ( $args['desc'] ) {
+			$output .= '<span class="ever-field-description">' . sanitize_text_field( $args['desc'] ) . '</span>';
+		}
+
+		if ( $args['double_columns'] ) {
+			$output .= '</div>';
+		}
+		$output .= '</div><!-- .ever-form-group-->';
+
+		return $output;
+	}
+
+	/**
+	 * Renders an HTML Text field
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $args Arguments for the text field
+	 *
+	 * @return string Text field
+	 */
+	public function colorpicker( $args = array() ) {
+
+		$defaults = array(
+			'id'             => '',
+			'name'           => '',
+			'value'          => '',
+			'type'           => 'text',
+			'required'       => false,
+			'label'          => '',
+			'desc'           => '',
+			'placeholder'    => '',
+			'wrapper_class'  => '',
+			'class'          => 'ever-colorpicker',
+			'disabled'       => false,
+			'double_columns' => true,
+			'autocomplete'   => 'false',
+			'data'           => array(),
+			'attrs'          => array(),
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		$args['class'] .= ' ever-field';
+
+		$class = implode( ' ', array_map( 'sanitize_html_class', explode( ' ', $args['class'] ) ) );
+		if ( empty( $args['id'] ) ) {
+			$args['id'] = esc_attr( wc_slider_sanitize_key( str_replace( '-', '_', $args['name'] ) ) );
+		}
+
+		if ( ! empty( $args['required'] ) ) {
+			$args['attrs']['required'] = 'required';
+		}
+
+		if ( $args['disabled'] ) {
+			$args['attrs']['disabled'] = 'disabled';
+		}
+		if ( $args['autocomplete'] ) {
+			$args['attrs']['autocomplete'] = esc_attr( $args['autocomplete'] );
+		}
+
+		if ( $args['placeholder'] ) {
+			$args['attrs']['placeholder'] = $args['placeholder'];
+		}
+
+		if ( isset( $args['readonly'] ) && $args['readonly'] ) {
+			$args['attrs']['readonly'] = 'readonly';
+		}
+
+		if ( isset( $args['disabled'] ) && $args['disabled'] ) {
+			$args['attrs']['disabled'] = 'disabled';
+		}
+
+		$args['wrapper_class'] .= ' ever-form-group ever-colorpicker-container ';
+
+		if ( $args['double_columns'] ) {
+			$args['wrapper_class'] .= ' ever-row';
+		}
+
+
+		$output = '';
+
+		$output .= '<div class="' . $args['wrapper_class'] . ' ' . wc_slider_sanitize_key( $args['name'] ) . '_field">';
+
+		if ( ! empty( $args['label'] ) ) {
+			$label = wp_kses_post( $args['label'] );
+			if ( ! empty( $args['required'] ) && $args['required'] == true ) {
+				$label .= ' <span class="ever-required-field">*</span>';
+			}
+
+			if ( $args['double_columns'] ) {
+				$output .= '<div class="ever-col-4"><label for="' . $args['id'] . '" class="ever-label">' . $label . '</label></div>';
+			} else {
+				$output .= '<label for="' . $args['id'] . '" class="ever-label">' . $label . '</label>';
+			}
+
+
+		}
+
+		if ( $args['double_columns'] ) {
+			$output .= '<div class="ever-col-1">:</div>';
+			$output .= '<div class="ever-col-7">';
 		}
 
 

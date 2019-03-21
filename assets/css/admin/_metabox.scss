@@ -166,6 +166,13 @@
 		height: 29px !important;
 	}
 
+	.pro-feat-title{
+		font-size: 24px;
+		padding: 15px 0;
+		border-bottom: 1px solid $primary;
+		margin-bottom: 15px;
+	}
+
 }
 
 .selected_categories_field {
@@ -189,7 +196,13 @@
 		}
 	}
 
-	.ever-switch .ever-switch-label {
-		width: 50%;
+	.ever-switch {
+		&-label{
+			width: 50%;
+		}
+		.switch-container{
+			padding-left: 0;
+			width: 30%;
+		}
 	}
 }
