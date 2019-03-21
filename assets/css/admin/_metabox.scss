@@ -205,4 +205,10 @@
 			width: 30%;
 		}
 	}
+
+	.select2-container--focus{
+		.select2-selection--multiple{
+			border: 1px solid #ddd;
+		}
+	}
 }
