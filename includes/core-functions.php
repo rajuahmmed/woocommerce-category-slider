@@ -730,3 +730,62 @@ function wc_category_slider_get_icon_list(){
 			'fa-font-awesome'                        => 'f2b4'
 		);
 }
+
+/**
+ * Get default shortcode settings
+ *
+ * @param $post_id
+ *
+ * @return array
+ */
+function wc_category_slider_get_settings( $post_id ) {
+	$default = array(
+		'post_id'        => $post_id,
+		'selection_type' => 'all',
+		'include'        => [],
+		'hide_empty'     => '0',
+		'include_child'  => '0',
+		'number'         => '20',
+
+		//design
+		'hide_image'     => '0',
+		'hide_content'   => '0',
+		'hide_button'    => '0',
+		'hide_name'      => '0',
+		'hide_count'     => '0',
+		'hide_nav'       => '0',
+		'hover_style'    => 'hover-zoom-in',
+		'hide_border'    => '0',
+		'show_desc'      => '0',
+		'theme'          => 'default',
+		'button_text'    => 'Shop Now',
+
+		//slider
+		'autoplay'       => '1',
+		'cols'           => '4',
+		'tab_cols'       => '2',
+		'phone_cols'     => '1',
+		'slider_speed'   => '3000',
+		'fluid_speed'    => '0',
+		'loop'           => '1',
+		'column_gap'     => '10',
+		'lazy_load'      => '1',
+	);
+	// those are fields which will be merged with post meta
+	$default_fields = apply_filters( 'wc_category_slider_default_settings', $default );
+	$settings       = array();
+
+	if ( $post_id !== null && get_post_status( $post_id ) ) {
+		foreach ( $default_fields as $key => $value ) {
+			$saved = get_post_meta( $post_id, $key, true );
+			if ( $saved == '0' || ! empty( $saved ) ) {
+				$settings[ $key ] = $saved;
+			} else {
+				$settings[ $key ] = $value;
+			}
+		}
+
+	}
+
+	return $settings;
+}
