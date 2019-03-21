@@ -26,14 +26,26 @@ add_action( 'add_meta_boxes', 'wc_slider_remove_meta_boxes', 10 );
 function wc_slider_register_meta_boxes() {
 	$post_type = 'wc_category_slider';
 
-	add_meta_box( 'wc-slider-images', __( 'Category Images', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_images_settings_metabox', $post_type, 'normal', 'high' );
+	add_meta_box( 'wc-slider-settings', __( 'Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_settings_metabox', $post_type, 'normal', 'high' );
+	//add_meta_box( 'wc-slider-images', __( 'Category Images', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_images_settings_metabox', $post_type, 'normal', 'high' );
 	add_meta_box( 'wc_slider_category_settings', __( 'Category Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_category_settings_metabox', $post_type, 'side', 'high' );
-	add_meta_box( 'wc_slider_display_settings', __( 'Display Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_display_settings_metabox', $post_type, 'side', 'high' );
-	add_meta_box( 'wc_slider_font_settings', __( 'Font Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_font_settings_metabox', $post_type, 'side', 'high' );
-	add_meta_box( 'wc_slider_slider_settings', __( 'Slider Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_slider_settings_metabox', $post_type, 'side', 'high' );
+	//add_meta_box( 'wc_slider_display_settings', __( 'Display Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_display_settings_metabox', $post_type, 'side', 'high' );
+	//add_meta_box( 'wc_slider_font_settings', __( 'Font Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_font_settings_metabox', $post_type, 'side', 'high' );
+	//add_meta_box( 'wc_slider_slider_settings', __( 'Slider Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_slider_settings_metabox', $post_type, 'side', 'high' );
 }
 
 add_action( 'add_meta_boxes', 'wc_slider_register_meta_boxes', 10 );
+
+/**
+ * Settings metabox
+ */
+
+function wc_slider_settings_metabox($post) {
+	ob_start();
+	include WC_SLIDER_INCLUDES . '/admin/views/metabox.php';
+	$html = ob_get_clean();
+	echo $html;
+}
 
 /**
  * Images Settings metabox
@@ -109,6 +121,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		'label' => __( 'Empty Categories', 'woo-category-slider-by-pluginever' ),
 		'desc'  => __( 'Show/hide Category without products', 'woo-category-slider-by-pluginever' ),
 	) );
+
 	$action = empty( $_GET['action'] ) ? '' : esc_attr( $_GET['action'] );
 	?>
 	<input type="hidden" name="hidden_post_status" id="hidden_post_status" value="publish"/>
@@ -121,6 +134,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		<input name="original_publish" type="hidden" id="original_publish" value="publish"/>
 		<?php submit_button( __( 'Update Slider', 'woo-category-slider-by-pluginever' ), 'primary button-large', 'publish', false );
 	}
+
 }
 
 /**

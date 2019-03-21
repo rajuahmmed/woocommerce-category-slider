@@ -511,7 +511,7 @@ class WC_Slider_Elements {
 			}
 			$output
 				.= '<div class="ever-switch">
-							<label for="' . $args['id'] . '" class="ever-col-5 ever-label ever-switch-label">' . $label . '</label>';
+							<label for="' . $args['id'] . '" class="ever-col-7 ever-label ever-switch-label">' . $label . '</label>';
 		}
 
 		$attributes = '';

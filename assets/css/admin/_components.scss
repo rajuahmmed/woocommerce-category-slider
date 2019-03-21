@@ -9,17 +9,22 @@ $primary: #2196f3;
 	background: $primary;
 	border: 1px solid white;
 	.tab-item{
-		padding: 20px;
+		padding: 15px;
 		color: white;
 		font-size: 16px;
 		text-decoration: none;
-		border-right: 1px solid white;
+		border: 1px solid $primary;
+		border-right-color: white;
 		text-transform: uppercase;
 		transition: all .3s ease-in-out;
-		&.active{
+		&.active, &:hover {
 			background: white;
 			color: $primary;
 			border: 1px solid $primary;
+			border-left-color: white;
+			&:first-child{
+				border-left-color: $primary;
+			}
 		}
 		&:focus{
 			box-shadow: none;
@@ -29,6 +34,16 @@ $primary: #2196f3;
 
 .tab-content{
 	background: white;
-	overflow: hidden;
 	padding: 20px 15px;
+	&-item{
+		overflow: hidden;
+		display: none;
+		&.active{
+			display: block;
+		}
+
+		.ever-form-group{
+			max-width: 600px;
+		}
+	}
 }

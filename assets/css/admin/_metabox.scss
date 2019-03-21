@@ -1,4 +1,4 @@
-#wc-slider-images {
+#wc-slider-settings {
 	background: transparent;
 	border: none;
 	box-shadow: none;
@@ -187,5 +187,9 @@
 		input[type=submit] {
 			float: right;
 		}
+	}
+
+	.ever-switch .ever-switch-label {
+		width: 50%;
 	}
 }
