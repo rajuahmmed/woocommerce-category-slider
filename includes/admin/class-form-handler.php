@@ -36,7 +36,7 @@ class WC_Slider_Form_Handler {
 		update_post_meta( $post_id, 'selected_categories', empty( $posted['selected_categories'] ) ? '' : $posted['selected_categories'] );
 		update_post_meta( $post_id, 'limit_number', empty( $posted['limit_number'] ) ? '' : intval( $posted['limit_number'] ) );
 		update_post_meta( $post_id, 'include_child', empty( $posted['include_child'] ) ? 'off' : 'on' );
-		update_post_meta( $post_id, 'hide_empty', empty( $posted['hide_empty'] ) ? 'on' : 'off' );
+		update_post_meta( $post_id, 'show_empty', empty( $posted['show_empty'] ) ? 'off' : 'on' );
 		update_post_meta( $post_id, 'hide_image', empty( $posted['hide_image'] ) ? 'on' : 'off' );
 		update_post_meta( $post_id, 'hide_content', empty( $posted['hide_content'] ) ? 'on' : 'off' );
 		update_post_meta( $post_id, 'hide_button', empty( $posted['hide_button'] ) ? 'on' : 'off' );
