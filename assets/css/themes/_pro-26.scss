@@ -1,5 +1,5 @@
-.wcsn-pro-26.wcsn-slider {
-	.wcsn-slider-content-wrapper {
+.wc-category-pro-26.wc-category-slider {
+	.wc-category-slider-content-wrapper {
 		position: absolute;
 		background: transparent;
 		right: 0;
@@ -29,10 +29,10 @@
 		}
 
 	}
-	.wcsn-slider-description{
+	.wc-category-slider-description{
 		display: none;
 	}
-	.wcsn-before-hover {
+	.wc-category-before-hover {
 	    position: absolute;
 	    left: 0;
 	    right: 0;
@@ -41,7 +41,7 @@
 	    z-index: 9;
 	}
 	&:hover{
-		.wcsn-slider-content-wrapper:before,.wcsn-slider-content-wrapper:after{
+		.wc-category-slider-content-wrapper:before,.wc-category-slider-content-wrapper:after{
 			opacity: 1;
 			border-color: red;
 			// -webkit-transform: scale(1);

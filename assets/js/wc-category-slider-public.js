@@ -13,7 +13,12 @@ jQuery(document).ready(function ($, window, document, undefined) {
 	'use strict';
 	$.wc_category_slider_public = {
 		init: function () {
-
+			$(".wc-category-slider").owlCarousel({
+				items:3,
+				loop:true,
+				margin:10,
+				nav:true,
+			});
 		}
 	};
 

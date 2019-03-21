@@ -1,11 +1,11 @@
-.wcsn-pro-6.wcsn-slider {
+.wc-category-pro-6.wc-category-slider {
 	position: relative;
     overflow: hidden;
-	.wcsn-slider-image-wrapper{
+	.wc-category-slider-image-wrapper{
     	position: relative;
     	line-height: 0;
 
-    	.wcsn-slider-link{
+    	.wc-category-slider-link{
     		display: inline-block;
     		&:after{
 			    content: "";
@@ -30,11 +30,11 @@
     	}
 
 	}
-	.wcsn-before-hover{
+	.wc-category-before-hover{
 		transform: translateY(0%);
 		transition: all .6s;
 	}
-	.wcsn-after-hover {
+	.wc-category-after-hover {
 	    position: absolute;
 	    left: 0;
 	    right: 0;
@@ -44,20 +44,20 @@
 	    visibility: hidden;
 		transition: all .6s;
 	}
-	.wcsn-slider-icon{
+	.wc-category-slider-icon{
 		transition: all .3s;
 	}
 
-	.wcsn-slider-description{
+	.wc-category-slider-description{
 		transition: all .3s;
 	}
 
-	.wcsn-slider-child-items{
+	.wc-category-slider-child-items{
 		transition: all .3s;
 
 	}
 
-	.wcsn-slider-content-wrapper {
+	.wc-category-slider-content-wrapper {
 	    position: absolute;
 	    left: 0;
 	    right: 0;
@@ -69,8 +69,8 @@
 
 	&:hover{
 
-		.wcsn-before-hover{		}
-		.wcsn-after-hover {
+		.wc-category-before-hover{		}
+		.wc-category-after-hover {
 		    position: absolute;
 		    left: 0;
 		    right: 0;
@@ -79,10 +79,10 @@
 		    opacity: 1;
 		    visibility: visible;
 		}
-		.wcsn-before-hover {
+		.wc-category-before-hover {
 		    transform: translateY(-200%);
 		}
-		.wcsn-slider-content-wrapper{
+		.wc-category-slider-content-wrapper{
 	    	transition: all .3s;
 		}
 

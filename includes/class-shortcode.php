@@ -52,30 +52,70 @@ class WC_Category_Slider_Shortcode {
 		$post_id = $params['id'];
 
 		$selected_categories = 'all';
-		$selection_type        = get_post_meta( $post_id, 'selection_type', true );
+		$theme               = self::get_slider_settings( $post_id, 'theme', 'default' );
+		$selection_type      = self::get_slider_settings( $post_id, 'selection_type', 'all' );
+		$limit_number        = self::get_slider_settings( $post_id, 'limit_number', '10' );
+		$include_child       = self::get_slider_settings( $post_id, 'include_child', 'off' );
+		$show_empty          = self::get_slider_settings( $post_id, 'show_empty', 'on' );
+
 		if ( 'all' != $selection_type ) {
-			$selected_category_ids = get_post_meta( $post_id, 'selected_categories', true );
-			if(is_array($selected_category_ids) && !empty($selected_category_ids))
-			$selected_categories = wp_parse_id_list($selected_category_ids);
+			$selected_category_ids = self::get_slider_settings( $post_id, 'selected_categories', [] );
+			if ( is_array( $selected_category_ids ) && ! empty( $selected_category_ids ) ) {
+				$selected_categories = wp_parse_id_list( $selected_category_ids );
+			}
 		}
 
-		var_dump($selected_categories);
+		$terms = get_terms( apply_filters( 'wc_category_slider_term_list_args', array(
+			'taxonomy'   => 'product_cat',
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+			'hide_empty' => $show_empty == 'on' ? true : false,
+			'include'    => $selected_categories,
+			'number'     => $limit_number,
+			'child_of'   => $include_child == 'on' ? $selected_categories : 0,
+			'childless'  => false,
+		) ), $post_id );
 
-		$terms = get_terms( array(
-			'taxonomy'               => 'product_cat',
-			'orderby'                => 'name',
-			'order'                  => 'ASC',
-			'hide_empty'             => false, //can be 1, '1' too
-			'include'                => $selected_categories, //empty string(''), false, 0 don't work, and return empty array
-			'number'                 => false, //can be 0, '0', '' too
-			'child_of'               => false, //can be 0, '0', '' too
-			'childless'              => false,
-		) );
+		$slider_class = 'wc-category-slider-' . $post_id;
+		ob_start();
+		?>
+		<div class="wc-category-slider">
+			<?php foreach ( $terms as $term ) { ?>
+				<div class="wcsn-slider">
+					<div class="wcsn-slider-image-wrapper">
+						<img src="https://picsum.photos/200/300" alt="">
+					</div>
+					<div class="wcsn-slider-content-wrapper">
+						<i class="fa fa-bicycle wcsn-slider-icon fa-2x" aria-hidden="true"></i>
+						<a href="#" class="wcsn-slider-link"><h3 class="wcsn-slider-title">Fox Fur Coat</h3></a>
+						<span class="wcsn-slider-product-count">5 products</span>
+						<a href="#" class="wcsn-slider-button">Shop Now</a>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+		<?php
+		$html = ob_get_contents();
+		ob_get_clean();
 
+		return $html;
+	}
 
-		var_dump( $terms );
+	/**
+	 * get slider settings
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param      $post_id
+	 * @param      $key
+	 * @param bool $default
+	 *
+	 * @return bool|mixed
+	 */
+	public static function get_slider_settings( $post_id, $key, $default = false ) {
+		$value = get_post_meta( $post_id, $key, true );
 
-
+		return ! empty( $value ) ? $value : $default;
 	}
 
 	/**
@@ -85,8 +125,9 @@ class WC_Category_Slider_Shortcode {
 	 *
 	 * @return object
 	 */
-	protected function get_slider_config( $settings ) {
-		$config = array(
+	protected function get_slider_config( $post_id ) {
+		$settings = array();
+		$config   = array(
 			'dots'               => false,
 			'autoHeight'         => true,
 			'singleItem'         => true,

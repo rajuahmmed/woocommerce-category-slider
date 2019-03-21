@@ -1,9 +1,9 @@
-.wcsn-pro-3.wcsn-slider {
+.wc-category-pro-3.wc-category-slider {
 	position: relative;
 	overflow: hidden;
-	.wcsn-slider-image-wrapper{
+	.wc-category-slider-image-wrapper{
 		position: relative;
-		.wcsn-slider-link{
+		.wc-category-slider-link{
 			position: relative;
 			display: block;
 			&:after{
@@ -39,44 +39,44 @@
 		}
 
 	}
-	.wcsn-slider-title{
+	.wc-category-slider-title{
 		// padding-bottom: 15px;
 		transition: all .3s ease 0s;
 	}
-	.wcsn-slider-product-count{
+	.wc-category-slider-product-count{
 		display:none;
 		opacity: 0;
 		padding-bottom: 5px;
 		transition: all .3s ease 0s;
 	}
 
-	.wcsn-slider-button {
+	.wc-category-slider-button {
 		display: none;
 		opacity: 0;
 		transition: all .9s ease 0s;
 	}
-	.wcsn-slider-description{
+	.wc-category-slider-description{
 		opacity: 1;
 		visibility: visible;
 		transition: all .3s ease 0s;
 	}
 
-	.wcsn-slider-child-items{
+	.wc-category-slider-child-items{
 		opacity: 1;
 		visibility: visible;
 		transition: all .3s ease 0s;
 
 	}
 
-	.wcsn-slider-link {
+	.wc-category-slider-link {
 
 	}
-	.wcsn-slider-button{
+	.wc-category-slider-button{
 		transition: all .3s ease 0s;
 		&:hover{ }
 	}
 
-	.wcsn-slider-content-wrapper{
+	.wc-category-slider-content-wrapper{
 		position: absolute;
 		top: 50%;
 		right: 50px;
@@ -107,31 +107,31 @@
 		border-bottom: 1px solid red;
 	}
 	&:hover{
-		.wcsn-slider-image-wrapper{
+		.wc-category-slider-image-wrapper{
 			&:before,&:after{
 				transform: scaleX(1);
 			}
 		}
-		.wcsn-slider-content-wrapper{
+		.wc-category-slider-content-wrapper{
 			// transform: translateY(-50%);
 			transition: all .3s ease 0s;
 		}
 
-		.wcsn-slider-title{
+		.wc-category-slider-title{
 			padding-bottom: 0;
 		}
-		.wcsn-slider-button {
+		.wc-category-slider-button {
 			transition: all .3s ease 0s;
 			display: inline-block;
 			opacity: 1;
 		}
-		.wcsn-slider-product-count{
+		.wc-category-slider-product-count{
 			display: block;
 			opacity: 1;
 			padding-bottom: 0;
 		}
 
-		.wcsn-slider-description{
+		.wc-category-slider-description{
 			transition: all .3s ease 0s;
 			opacity: 0;
 			height: 0;
@@ -139,7 +139,7 @@
 			visibility: hidden;
 		}
 
-		.wcsn-slider-child-items{
+		.wc-category-slider-child-items{
 			transition: all .3s ease 0s;
 			height: 0;
 			padding: 0;

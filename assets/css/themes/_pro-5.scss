@@ -1,10 +1,10 @@
-.wcsn-pro-5.wcsn-slider {
+.wc-category-pro-5.wc-category-slider {
 	position: relative;
     overflow: hidden;
-	.wcsn-slider-image-wrapper{
+	.wc-category-slider-image-wrapper{
     	position: relative;
     	line-height: 0;
-    	.wcsn-slider-link{
+    	.wc-category-slider-link{
     		display: inline-block;
     		&:after{
 		    content: "";
@@ -31,18 +31,18 @@
     	}
 
 	}
-	.wcsn-slider-icon{
+	.wc-category-slider-icon{
 		transition: all .3s;
 	}
-	.wcsn-slider-title{
+	.wc-category-slider-title{
 		// padding-bottom: 15px;
 
 	}
-	.wcsn-slider-product-count{
+	.wc-category-slider-product-count{
 
 	}
 
-	.wcsn-slider-button {
+	.wc-category-slider-button {
 		visibility: hidden;
 		height: 0;
 		opacity: 0;
@@ -56,7 +56,7 @@
 
 
 	}
-	.wcsn-slider-description{
+	.wc-category-slider-description{
 		// transition:0.3s;
 		// transition-timing-function: ease-in-out;
 		// transition: all .9s ;
@@ -66,7 +66,7 @@
 
 	}
 
-	.wcsn-slider-child-items{
+	.wc-category-slider-child-items{
 		// transition:0.3s;
 		// transition-timing-function: ease-in-out;
 		// transition: all .9s ;
@@ -75,15 +75,15 @@
 
 	}
 
-	.wcsn-slider-link{
+	.wc-category-slider-link{
 
 	}
-	.wcsn-slider-button{
+	.wc-category-slider-button{
 
 		&:hover{ }
 	}
 
-	.wcsn-slider-content-wrapper {
+	.wc-category-slider-content-wrapper {
 	    position: absolute;
 	    left: 0;
 	    right: 0;
@@ -103,12 +103,12 @@
 
 	}
 	&:hover{
-		.wcsn-slider-image-wrapper{
+		.wc-category-slider-image-wrapper{
 			&:before,&:after{
 
 			}
 		}
-		.wcsn-slider-icon{
+		.wc-category-slider-icon{
 			visibility:hidden;
 			opacity: 0;
 			height: 0;
@@ -116,14 +116,14 @@
 			overflow: hidden;
 			// transition: all .3s ;
 		}
-		.wcsn-slider-content-wrapper{
+		.wc-category-slider-content-wrapper{
 
 		}
 
-		.wcsn-slider-title{
+		.wc-category-slider-title{
 
 		}
-		.wcsn-slider-button {
+		.wc-category-slider-button {
 			visibility: visible;
 			height: auto;
 			opacity: 1;
@@ -134,11 +134,11 @@
 			height: auto;
 
 		}
-		.wcsn-slider-product-count{
+		.wc-category-slider-product-count{
 
 		}
 
-		.wcsn-slider-description{
+		.wc-category-slider-description{
 			visibility:hidden;
 			opacity: 0;
 			height: 0;
@@ -148,7 +148,7 @@
 			padding: 0;
 		}
 
-		.wcsn-slider-child-items{
+		.wc-category-slider-child-items{
 			visibility:hidden;
 			opacity: 0;
 			height: 0;
