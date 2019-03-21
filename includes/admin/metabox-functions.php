@@ -76,6 +76,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		'show_option_all'  => '',
 		'show_option_none' => '',
 		'double_columns'   => false,
+		'multiple'         => true,
 		'options'          => wc_slider_get_category_list(),
 		'required'         => false,
 		'selected'         => get_post_meta( $post->ID, 'selected_categories', true ),

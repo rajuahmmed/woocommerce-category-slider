@@ -293,6 +293,11 @@ body.post-type-wc_category_slider {
 				padding: 0 6px!important;
 				font-size: 15px !important;
 				line-height: 22px;
+				background: #2196f3;
+				color: white;
+				&__remove{
+					color: rgba(202, 60, 60, .8);
+				}
 			}
 		}
 
