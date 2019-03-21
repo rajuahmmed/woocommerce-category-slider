@@ -265,8 +265,9 @@ class Woocommerce_Category_Slider {
 		require_once( WC_SLIDER_INCLUDES . '/hook-functions.php' );
 		require_once( WC_SLIDER_INCLUDES . '/class-shortcode.php' );
 		require_once( WC_SLIDER_INCLUDES . '/class-cpt.php' );
-		require_once( WC_SLIDER_INCLUDES . '/admin/metabox-functions.php' );
 		require_once( WC_SLIDER_INCLUDES . '/scripts-functions.php' );
+		require_once( WC_SLIDER_INCLUDES . '/admin/metabox-functions.php' );
+		require_once( WC_SLIDER_INCLUDES . '/admin/class-form-handler.php' );
 		//admin
 		if ( ! $this->is_pro_installed() ) {
 			//require_once( WC_SLIDER_INCLUDES . '/admin/class-promotion.php' );

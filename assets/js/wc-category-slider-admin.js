@@ -54,8 +54,8 @@ jQuery(document).ready(function ($, window, document, undefined) {
 		},
 
 		handleSelectionType: function () {
-
-			var $display = $(this).val() === 'custom' ? 'block' : 'none';
+			var $select_type = $('#selection_type');
+			var $display = $select_type.val() === 'custom' ? 'block' : 'none';
 
 			$('.selected_categories_field').css('display', $display);
 
@@ -64,5 +64,6 @@ jQuery(document).ready(function ($, window, document, undefined) {
 	};
 
 	$.wc_category_slider_admin.init();
+	$.wc_category_slider_admin.handleSelectionType();
 	$.wc_category_slider_admin.regenerateSlides();
 });
