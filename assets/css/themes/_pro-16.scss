@@ -1,24 +1,24 @@
-.wcsn-pro-16.wcsn-slider {
+.wc-category-pro-16.wc-category-slider {
     background: -webkit-linear-gradient(-45deg, #f3cf3f 0%,#f33f58 100%);
     background: linear-gradient(-45deg, #f3cf3f 0%,#f33f58 100%);
     overflow: hidden;
     text-align: center;
     cursor: pointer;
 
-    .wcsn-slider-image-wrapper img {
+    .wc-category-slider-image-wrapper img {
       -webkit-transition: all 0.5s ease 0s;
       transition: all 0.5s ease 0s;
       z-index: 1;
     }
 
-    .wcsn-slider-image-wrapper {
+    .wc-category-slider-image-wrapper {
       position: relative;
       overflow: hidden;
       margin: 0;
       background: #3085a3;
       text-align: center;
       cursor: pointer;
-      .wcsn-slider-image {
+      .wc-category-slider-image {
         position: relative;
         display: block;
         min-height: 100%;
@@ -27,7 +27,7 @@
       }
     }
 
-	.wcsn-slider-content-wrapper {
+	.wc-category-slider-content-wrapper {
         background: -webkit-linear-gradient(-45deg, #f3cf3f 0%,#f33f58 100%);
         background: linear-gradient(-45deg, #f3cf3f 0%,#f33f58 100%);
         padding: 0;
@@ -38,13 +38,13 @@
         height: 100%;
 
 
-        .wcsn-slider-title {
+        .wc-category-slider-title {
             padding-top: 26%;
             -webkit-transition: all 0.5s ease 0s;
             transition: all 0.5s ease 0s;
         }
 
-        .wcsn-slider-content-bottom {
+        .wc-category-slider-content-bottom {
           padding: 10px 10px 20px;
           text-transform: none;
           color: #fff;
@@ -55,14 +55,14 @@
           transform: scale3d(0.8,0.8,1);
         }
 
-		.wcsn-slider-description {
+		.wc-category-slider-description {
 			//display: none;
 		}
 	}
 
 
 	&:hover {
-      .wcsn-slider-content-bottom {
+      .wc-category-slider-content-bottom {
           opacity: 1;
           position: absolute;
           transform: translate(0%, 0%);
@@ -74,8 +74,8 @@
           transform: scale3d(1.2,1.2,1);
       }
 
-      .wcsn-slider-content-wrapper {
-          .wcsn-slider-title {
+      .wc-category-slider-content-wrapper {
+          .wc-category-slider-title {
             padding-top: 30px;
           }
       }
