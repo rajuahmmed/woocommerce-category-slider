@@ -1,0 +1,34 @@
+$primary: #2196f3;
+/**
+*Tabs
+*/
+
+
+.ever-tabs{
+	display: flex;
+	background: $primary;
+	border: 1px solid white;
+	.tab-item{
+		padding: 20px;
+		color: white;
+		font-size: 16px;
+		text-decoration: none;
+		border-right: 1px solid white;
+		text-transform: uppercase;
+		transition: all .3s ease-in-out;
+		&.active{
+			background: white;
+			color: $primary;
+			border: 1px solid $primary;
+		}
+		&:focus{
+			box-shadow: none;
+		}
+	}
+}
+
+.tab-content{
+	background: white;
+	overflow: hidden;
+	padding: 20px 15px;
+}
