@@ -754,4 +754,3 @@ function wc_slider_get_font_list(){
 	return $fonts;
 
 }
-

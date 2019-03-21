@@ -109,9 +109,18 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		'label' => __( 'Empty Categories', 'woo-category-slider-by-pluginever' ),
 		'desc'  => __( 'Show/hide Category without products', 'woo-category-slider-by-pluginever' ),
 	) );
+	$action = empty( $_GET['action'] ) ? '' : esc_attr( $_GET['action'] );
+	?>
+	<input type="hidden" name="hidden_post_status" id="hidden_post_status" value="publish"/>
 
-
-	echo '<input name="save" type="submit" class="button button-primary button-large" id="publish" value="' . __( 'Update Slider', 'woo-category-slider-by-pluginever' ) . '"/>';
+	<?php if ( $action !== 'edit' ) { ?>
+		<input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e( 'Publish' ) ?>"/>
+		<?php submit_button( __( 'Create Slider', 'woo-category-slider-by-pluginever' ), 'primary button-large', 'publish', false ); ?>
+		<?php
+	} else { ?>
+		<input name="original_publish" type="hidden" id="original_publish" value="publish"/>
+		<?php submit_button( __( 'Update Slider', 'woo-category-slider-by-pluginever' ), 'primary button-large', 'publish', false );
+	}
 }
 
 /**
