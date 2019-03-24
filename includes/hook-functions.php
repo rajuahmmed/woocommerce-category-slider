@@ -113,10 +113,6 @@ function wc_category_slider_print_js_template() {
 						<!--url-->
 						<div class="ever-slide-url">
 							<input name="categories[{{data.term_id}}][url]" class="ever-slide-url-inputbox regular-text" placeholder="{{data.url}}" type="url" disabled="disabled">
-							<div class="ever-slide-url-checkbox">
-								<input name="categories[{{data.term_id}}][new_tab]" class="ever-slide-captionarea-checkbox" type="checkbox" disabled="disabled">
-								<label class="ever-slide-captionarea-label">Open In a new Tab</label>
-							</div>
 						</div><!--/url-->
 
 					</div>
