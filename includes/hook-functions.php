@@ -23,6 +23,7 @@ function wc_slider_get_categories_ajax_callback() {
 		'child_of'   => 0,
 		'post_id'    => $slider_id,
 	) );
+
 	wp_send_json_success( $categories );
 }
 
@@ -73,6 +74,7 @@ function wc_category_slider_print_js_template() {
 						</div><!--/description-->
 
 						<!--icon-->
+
 						<div class="ever-slide-icon">
 							<select name="categories[{{data.term_id}}][icon]" id="{{data.term_id}}[icon]" class="select-2">
 								<option value="">No Icon</option>
