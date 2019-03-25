@@ -51,15 +51,17 @@ function wc_category_slider_print_js_template() {
 				</div>
 				<div class="ever-slide-main">
 					<div class="ever-slide-thumbnail">
-						<img src="{{data.image}}" alt="">
-						<input type="hidden" name="categories[{{data.term_id}}][image_id]" class="wccs-slider" value="{{data.image_id}}">
+						<img src="{{data.image}}" class="img-prev" alt="{{data.name}}">
+						<input type="hidden" name="categories[{{data.term_id}}][image_id]" class="wccs-slider img-id" value="{{data.image_id}}">
 						<div class="ever-slide-thumbnail-tools">
-							<div class="promotion-text">
-								<span>Upgrade to <a href="https://www.pluginever.com/plugins/woocommerce-category-slider-pro/">PRO</a>, to change the Image</span>
-							</div>
-							<div class="image-action">
-								<a href="#" class="edit-image" onclick="return false"><span class="dashicons dashicons-edit"></span></a>
-								<a href="#" class="delete-image" onclick="return false"><span class="dashicons dashicons-trash"></span></a>
+							<?php if ( ! wc_category_slider()->is_pro_installed() ) { ?>
+								<div class="promotion-text">
+									<span>Upgrade to <a href="https://www.pluginever.com/plugins/woocommerce-category-slider-pro/">PRO</a>, to change the Image</span>
+								</div>
+							<?php } ?>
+							<div class="image-action <?php echo wc_category_slider()->is_pro_installed() ? 'change-img' : '' ?>">
+								<a href="#" class="edit-image"><span class="dashicons dashicons-edit"></span></a>
+								<a href="#" class="delete-image"><span class="dashicons dashicons-trash"></span></a>
 							</div>
 
 						</div>
@@ -138,3 +140,4 @@ function wc_category_slider_print_js_template() {
 }
 
 add_action( 'admin_footer', 'wc_category_slider_print_js_template' );
+

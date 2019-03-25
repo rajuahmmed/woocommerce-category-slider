@@ -11,10 +11,12 @@
 
 jQuery(document).ready(function ($, window, document, undefined) {
 	'use strict';
+
 	$.wc_category_slider_admin = {
 		init: function () {
 			$('#selection_type, #selected_categories, #limit_number, #include_child, #hide_empty').on('change', this.regenerateSlides);
 			$('#selection_type').on('change', this.handleSelectionType);
+			$('.edit-image').on('click', this.handleImageUpload);
 			$('.select-2').select2();
 			$('.ever-colorpicker').wpColorPicker();
 		},
@@ -51,6 +53,7 @@ jQuery(document).ready(function ($, window, document, undefined) {
 					console.log(res);
 				}
 			});
+
 		},
 
 		handleSelectionType: function () {
@@ -59,11 +62,36 @@ jQuery(document).ready(function ($, window, document, undefined) {
 
 			$('.selected_categories_field').css('display', $display);
 
+		},
+
+		handleImageUpload: function (e) {
+
+			e.preventDefault();
+
+			var $parent = jQuery(this).parentsUntil('.ever-slide-thumbnail');
+
+			var $img_prev = $parent.children('.img-prev');
+			var $img_id = $parent.children('.img-id');
+
+			var image = wp.media({
+				title: 'Upload Image'
+			}).open().on('select', function () {
+				var uploaded_image = image.state().get('selection').first();
+				console.log(uploaded_image);
+				var image_url = uploaded_image.toJSON().url;
+				var image_id = uploaded_image.toJSON().id;
+				$img_prev.prop('src', image_url);
+				$img_id.val(image_id);
+				return false;
+			});
+
 		}
+
 
 	};
 
 	$.wc_category_slider_admin.init();
 	$.wc_category_slider_admin.handleSelectionType();
 	$.wc_category_slider_admin.regenerateSlides();
+
 });
