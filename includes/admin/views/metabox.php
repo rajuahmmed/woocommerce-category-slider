@@ -89,7 +89,6 @@ $navs = array(
 
 		jQuery(this).addClass('active');
 
-		jQuery('.ever-colorpicker-container .wp-picker-container button').prop('disabled','disabled');
 		jQuery('.pro-feat-title').nextAll('.ever-form-group').find('input, select, button').prop('disabled','disabled');
 
 	});
