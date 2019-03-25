@@ -35,7 +35,6 @@ jQuery(document).ready(function ($, window, document, undefined) {
 			wp.ajax.send('wc_slider_get_categories', {
 				data: data,
 				success: function (categories) {
-					console.log(categories);
 					mountPoint.find('.ever-col-6').remove();
 					mountPoint.addClass('loaded');
 					categories.forEach(function (category) {

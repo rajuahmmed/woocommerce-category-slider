@@ -371,9 +371,9 @@ input[type="checkbox"].ever-checkbox {
 		.switch-text{
 			position: absolute;
 			transition: all .3s ease-in-out;
-			right: -150%;
+			right: -100%;
 			&:before{
-				content: 'Hidden';
+				content: 'OFF';
 				color: #dc3545;
 				font-weight: bold;
 			}

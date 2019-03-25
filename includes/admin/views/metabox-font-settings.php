@@ -1,8 +1,10 @@
 <?php
 
-echo sprintf('<h2 class="pro-feat-title">%s</h2>', 'Pro Features', 'woo-category-slider-by-pluginever');
+global $post;
 
-echo wc_category_slider()->elements->select( array(
+echo wc_category_slider()->is_pro_installed() ? '' : sprintf( '<h2 class="pro-feat-title">%s</h2>', 'Pro Features', 'woo-category-slider-by-pluginever' );
+
+echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_title_font_args', array(
 	'label'            => __( 'Title Font', 'woo-category-slider-by-pluginever' ),
 	'name'             => 'title_font',
 	'class'            => 'select-2 title-font',
@@ -12,11 +14,10 @@ echo wc_category_slider()->elements->select( array(
 	'options'          => wc_slider_get_font_list(),
 	'required'         => false,
 	'disabled'         => true,
-	'selected'         => get_post_meta( $post->ID, 'title_font', true ),
 	'desc'             => __( 'Select the font family for title', 'woo-category-slider-by-pluginever' ),
-) );
+), $post->ID ) );
 
-echo wc_category_slider()->elements->select( array(
+echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_description_font_args', array(
 	'label'            => __( 'Description Font', 'woo-category-slider-by-pluginever' ),
 	'name'             => 'description_font',
 	'class'            => 'select-2 description-font',
@@ -26,11 +27,10 @@ echo wc_category_slider()->elements->select( array(
 	'options'          => wc_slider_get_font_list(),
 	'required'         => false,
 	'disabled'         => true,
-	'selected'         => get_post_meta( $post->ID, 'description_font', true ),
 	'desc'             => __( 'Select the font family for details', 'woo-category-slider-by-pluginever' ),
-) );
+), $post->ID ));
 
-echo wc_category_slider()->elements->select( array(
+echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_button_font_args', array(
 	'label'            => __( 'Button Font', 'woo-category-slider-by-pluginever' ),
 	'name'             => 'button_font',
 	'class'            => 'select-2 description-font',
@@ -40,8 +40,7 @@ echo wc_category_slider()->elements->select( array(
 	'options'          => wc_slider_get_font_list(),
 	'required'         => false,
 	'disabled'         => true,
-	'selected'         => get_post_meta( $post->ID, 'button_font', true ),
 	'desc'             => __( 'Select the font family for buttons', 'woo-category-slider-by-pluginever' ),
-) );
+), $post->ID ) );
 
 

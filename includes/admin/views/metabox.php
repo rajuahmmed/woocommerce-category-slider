@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $navs = array(
 	'Categories',
 	'Display Settings',
@@ -16,7 +20,7 @@ $navs = array(
 			<?php
 
 			$content = '';
-			$active = 'active';
+			$active  = 'active';
 
 			foreach ( $navs as $nav ) {
 
@@ -37,9 +41,9 @@ $navs = array(
 						break;
 				}
 
-				$label = sprintf(__('%s', 'woo-category-slider-by-pluginever'), $nav); //tab nav label
+				$label = sprintf( __( '%s', 'woo-category-slider-by-pluginever' ), $nav ); //tab nav label
 
-				$template = sanitize_title($nav);
+				$template = sanitize_title( $nav );
 
 				ob_start();
 
@@ -49,7 +53,7 @@ $navs = array(
 
 				$content .= ob_get_clean();
 
-				echo sprintf( '<a href="#" class="tab-item %s" data-target="%s"><span class="fa fa-%s"></span> %s</a>', $active, $template , $icon, $label );
+				echo sprintf( '<a href="#" class="tab-item %s" data-target="%s"><span class="fa fa-%s"></span> %s</a>', $active, $template, $icon, $label );
 
 				$active = '';
 
@@ -72,7 +76,7 @@ $navs = array(
 
 	var $tab_item = jQuery('.tab-item');
 
-	$tab_item.click(function(e) {
+	$tab_item.click(function (e) {
 
 		e.preventDefault();
 
@@ -85,14 +89,19 @@ $navs = array(
 		});
 
 		var $target = jQuery(this).data('target');
-		jQuery('#'+$target).addClass('active');
+		jQuery('#' + $target).addClass('active');
 
 		jQuery(this).addClass('active');
 
-		jQuery('.pro-feat-title').nextAll('.ever-form-group').find('input, select, button').prop('disabled','disabled');
+		var $pro_title = jQuery('.pro-feat-title').nextAll('.ever-form-group');
+
+		<?php if(! wc_category_slider()->is_pro_installed()){ ?>
+		$pro_title.find('input, select, button').prop('disabled', 'disabled');
+		$pro_title.find('.ever-label').css('color', '#aaa');
+		<?php } ?>
+
 
 	});
-
 
 
 </script>

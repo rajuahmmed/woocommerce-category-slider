@@ -14,6 +14,7 @@ function wc_slider_get_categories_ajax_callback() {
 	}
 
 	$categories = wc_category_slider_get_categories( array(
+		'slider_id'  => $slider_id,
 		'number'     => $number,
 		'orderby'    => $orderby,
 		'order'      => $order,
@@ -23,6 +24,8 @@ function wc_slider_get_categories_ajax_callback() {
 		'child_of'   => 0,
 		'post_id'    => $slider_id,
 	) );
+
+	$categories = apply_filters( 'wc_category_slider_categories', $categories, $slider_id );
 
 	wp_send_json_success( $categories );
 }
@@ -38,7 +41,6 @@ function wc_category_slider_print_js_template() {
 	}
 
 
-
 	?>
 	<script type="text/html" id="tmpl-wc-category-slide">
 
@@ -50,7 +52,7 @@ function wc_category_slider_print_js_template() {
 				<div class="ever-slide-main">
 					<div class="ever-slide-thumbnail">
 						<img src="{{data.image}}" alt="">
-						<input type="hidden" name="categories[{{data.term_id}}][image]" class="wccs-slider">
+						<input type="hidden" name="categories[{{data.term_id}}][image_id]" class="wccs-slider" value="{{data.image_id}}">
 						<div class="ever-slide-thumbnail-tools">
 							<div class="promotion-text">
 								<span>Upgrade to <a href="https://www.pluginever.com/plugins/woocommerce-category-slider-pro/">PRO</a>, to change the Image</span>
@@ -65,42 +67,50 @@ function wc_category_slider_print_js_template() {
 					<div class="ever-slide-inner">
 						<!--title-->
 						<div class="ever-slide-title">
-							<input class="ever-slide-url-inputbox regular-text" name="categories[{{data.term_id}}][name]" placeholder="{{data.name}}" type="url" disabled="disabled">
+							<input class="ever-slide-url-inputbox regular-text" name="categories[{{data.term_id}}][name]" placeholder="{{data.name}}" type="text" value="{{data.name}}">
 						</div><!--/title-->
 
 						<!--description-->
 						<div class="ever-slide-captionarea">
-							<textarea name="categories[{{data.term_id}}][description]" id="caption-{{data.term_id}}" class="ever-slide-captionarea-textfield" data-gramm_editor="false" placeholder="Description" disabled="disabled">{{data.description}}</textarea>
+							<textarea name="categories[{{data.term_id}}][description]" id="caption-{{data.term_id}}" class="ever-slide-captionarea-textfield" data-gramm_editor="false" placeholder="Description">{{data.description}}</textarea>
 						</div><!--/description-->
 
 						<!--icon-->
 
 						<div class="ever-slide-icon">
-							<select name="categories[{{data.term_id}}][icon]" id="{{data.term_id}}[icon]" class="select-2">
+							<select name="categories[{{data.term_id}}][icon]" id="categories-{{data.term_id}}-icon" class="select-2">
 								<option value="">No Icon</option>
 								<?php
+
 								//todo before release block pro icons
 								$icons = wc_slider_get_icon_list();
 
 								ob_start();
 
-								for ( $a = 0; $a < 2; $a ++ ) {
+								if ( ! wc_category_slider()->is_pro_installed() ) {
 
-									$offset       = $a == 0 ? 0 : 10;
-									$length       = $a == 0 ? 10 : - 1;
-									$sliced_icons = array_slice( $icons, $offset, $length );
+									for ( $a = 0; $a < 2; $a ++ ) {
 
-									$label    = sprintf( __( '%s Icons', 'woo-category-slider-by-pluginever' ), $a == 0 ? 'Free' : 'Pro' );
-									$disabled = $a == 0 ? '' : 'disabled';
+										$offset       = $a == 0 ? 0 : 10;
+										$length       = $a == 0 ? 10 : - 1;
+										$sliced_icons = array_slice( $icons, $offset, $length );
 
-									echo "<optgroup label='{$label}'>";
+										$label    = sprintf( __( '%s Icons', 'woo-category-slider-by-pluginever' ), $a == 0 ? 'Free' : 'Pro' );
+										$disabled = $a == 0 ? '' : 'disabled';
 
-									foreach ( $sliced_icons as $key => $value ) {
-										echo sprintf( '<option value="%s" %s >&#x%s; &nbsp; %1$s</option>', $key, $disabled, $value );
+										echo "<optgroup label='{$label}'>";
+
+										foreach ( $sliced_icons as $key => $value ) {
+											echo sprintf( '<option value="%s" %s  <# if( data.icon == "' . $key . '" ){ #> selected <# } #> >&#x%s; &nbsp; %1$s</option>', $key, $disabled, $value );
+										}
+
+										echo '</optgroup>';
+
 									}
-
-									echo '</optgroup>';
-
+								} else {
+									foreach ( $icons as $key => $value ) {
+										echo sprintf( '<option value="%s"  <# if( data.icon == "' . $key . '" ){ #> selected <# } #> >&#x%s; &nbsp; %1$s</option>', $key, $value );
+									}
 								}
 
 								$output = ob_get_clean();
@@ -110,11 +120,13 @@ function wc_category_slider_print_js_template() {
 								?>
 
 							</select>
+
+
 						</div><!--/icon-->
 
 						<!--url-->
 						<div class="ever-slide-url">
-							<input name="categories[{{data.term_id}}][url]" class="ever-slide-url-inputbox regular-text" placeholder="{{data.url}}" type="url" disabled="disabled">
+							<input name="categories[{{data.term_id}}][url]" class="ever-slide-url-inputbox regular-text" placeholder="{{data.url}}" value="{{data.url}}" type="url">
 						</div><!--/url-->
 
 					</div>
