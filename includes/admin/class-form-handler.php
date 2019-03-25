@@ -51,7 +51,7 @@ class WC_Slider_Form_Handler {
 //		update_post_meta( $post_id, 'button_font', empty( $posted['button_font'] ) ? '' : sanitize_text_field( $posted['button_font'] ) );
 		update_post_meta( $post_id, 'autoplay', empty( $posted['autoplay'] ) ? 'on' : 'off' );
 
-		do_action( 'wc_update_slider_settings', $post_id, $posted );
+		do_action( 'wc_category_slider_settings_updated', $post_id, $posted );
 
 	}
 

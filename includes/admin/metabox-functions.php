@@ -108,7 +108,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		'desc'  => __( 'Show/hide Category without products', 'woo-category-slider-by-pluginever' ),
 	) );
 
-	echo wc_category_slider()->elements->select( array(
+	echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_orderby_args', array(
 		'label'            => __( 'Order By', 'woo-category-slider-by-pluginever' ),
 		'name'             => 'orderby',
 		'class'            => 'orderby',
@@ -125,10 +125,10 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		),
 		'disabled'         => true,
 		'required'         => false,
-		'selected'         => get_post_meta( $post->ID, 'orderby', true ),
+//		'selected'         => get_post_meta( $post->ID, 'orderby', true ),
 		'desc'             => __( 'Order category slider according to the selection type', 'woo-category-slider-by-pluginever' ),
 
-	) );
+	), $post->ID ) );
 
 	echo wc_category_slider()->elements->select( array(
 		'label'            => __( 'Order', 'woo-category-slider-by-pluginever' ),
