@@ -25,6 +25,7 @@ echo wc_category_slider()->elements->switcher( array(
 	'value' => wc_slider_get_settings( $post->ID, 'empty_button', 'off' ),
 	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ) );
+
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_name',
 	'label' => __( 'Hide Category Name', 'woo-category-slider-by-pluginever' ),
@@ -43,14 +44,12 @@ echo wc_category_slider()->elements->switcher( array(
 	'value' => wc_slider_get_settings( $post->ID, 'empty_nav', 'off' ),
 	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ) );
-
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_border',
 	'label' => __( 'Hide Border', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_slider_get_settings( $post->ID, 'empty_border', 'off' ),
 	'desc'  => __( 'Border around slider image?', 'woo-category-slider-by-pluginever' ),
 ) );
-
 echo wc_category_slider()->elements->select( array(
 	'label'            => __( 'Image Hover effect', 'woo-category-slider-by-pluginever' ),
 	'name'             => 'hover_style',
@@ -74,7 +73,7 @@ echo wc_category_slider()->elements->select( array(
 	'value'            => 'default',
 	'options'          => apply_filters( 'wc_category_slider_themes', array(
 		'default'    => 'Default',
-		'theme-free' => 'Basic',
+		'basic' => 'Basic',
 	) ),
 
 ) );

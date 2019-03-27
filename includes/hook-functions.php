@@ -4,7 +4,7 @@ function wc_slider_get_categories_ajax_callback() {
 	$selection_type      = empty( $_REQUEST['selection_type'] ) ? 'all' : sanitize_key( $_REQUEST['selection_type'] );
 	$selected_categories = empty( $_REQUEST['selected_categories'] ) ? [] : wp_parse_id_list( $_REQUEST['selected_categories'] );
 	$include_child       = empty( $_REQUEST['include_child'] ) || 'on' !== $_REQUEST['include_child'] ? false : true;
-	$hide_empty          = empty( $_REQUEST['hide_empty'] ) || 'on' !== $_REQUEST['hide_empty'] ? false : true;
+	$show_empty          = empty( $_REQUEST['show_empty'] ) || 'on' !== $_REQUEST['show_empty'] ? false : true;
 	$number              = empty( $_REQUEST['number'] ) ? 10 : intval( $_REQUEST['number'] );
 	$orderby             = empty( $_REQUEST['orderby'] ) ? 'name' : sanitize_key( $_REQUEST['orderby'] );
 	$order               = empty( $_REQUEST['order'] ) ? 'ASC' : sanitize_key( $_REQUEST['order'] );
@@ -19,7 +19,7 @@ function wc_slider_get_categories_ajax_callback() {
 		'number'     => $number,
 		'orderby'    => $orderby,
 		'order'      => $order,
-		'hide_empty' => $hide_empty,
+		'show_empty' => $show_empty,
 		'include'    => $selected_categories,
 		'exclude'    => array(),
 		'child_of'   => 0,

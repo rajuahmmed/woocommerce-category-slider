@@ -22,7 +22,7 @@ function wc_category_slider_get_categories( $args = array() ) {
 		'number'     => '20',
 		'orderby'    => 'name',
 		'order'      => 'ASC',
-		'hide_empty' => false,
+		'show_empty' => false,
 		'include'    => array(),
 		'exclude'    => array(),
 		'child_of'   => 0,
@@ -36,14 +36,15 @@ function wc_category_slider_get_categories( $args = array() ) {
 		$args             = wp_parse_args( $args, $default );
 		$args['taxonomy'] = 'product_cat';
 		$categories       = (array) get_terms( $args );
-
 	}
 
 	$results = [];
 	foreach ( $categories as $category ) {
 		$image = WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg';
 		$meta  = wc_slider_get_settings( $args['slider_id'], 'categories' );
+
 		$meta  = ! empty( $meta[$category->term_id] ) ? $meta[$category->term_id] : false;
+
 
 		$thumbnail_id = ! empty( $meta['image_id'] ) ? $meta['image_id'] : get_term_meta( $category->term_id, 'thumbnail_id', true );
 
@@ -788,7 +789,7 @@ function wc_slider_get_settings( $post_id, $key, $default = false ) {
 	return ! empty( $value ) ? $value : $default;
 }
 
-function wc_category_slider_categories_data( $categories, $slider_id ) {
+function wc_slider_get_categories_data( $categories, $slider_id ) {
 	$meta = wc_slider_get_settings( $slider_id, 'categories' );
 	//$categories = wp_parse_args($meta, $categories);
 
@@ -800,4 +801,4 @@ function wc_category_slider_categories_data( $categories, $slider_id ) {
 	return $categories;
 }
 
-add_filter( 'wc_category_slider_categories', 'wc_category_slider_categories_data', 10, 2 );
+add_filter( 'wc_category_slider_categories', 'wc_slider_get_categories_data', 10, 2 );

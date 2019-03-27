@@ -103,7 +103,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 
 	echo wc_category_slider()->elements->switcher( array(
 		'name'  => 'show_empty',
-		'value' => get_post_meta( $post->ID, 'show_empty', true ),
+		'value' => wc_slider_get_settings( $post->ID, 'show_empty', 'on' ),
 		'label' => __( 'Empty Categories', 'woo-category-slider-by-pluginever' ),
 		'desc'  => __( 'Show/hide Category without products', 'woo-category-slider-by-pluginever' ),
 	) );
@@ -190,9 +190,11 @@ function wc_category_slider_update_settings( $post_id ) {
 
 	$categories = array();
 
-	foreach ( $posted['categories'] as $key => $meta ) {
-		if ( ! empty( $meta['icon'] ) ) {
-			$categories[ $key ]['icon'] = sanitize_key( $meta['icon'] );
+	if(!empty($posted['categories'])) {
+		foreach ( $posted['categories'] as $key => $meta ) {
+			if ( ! empty( $meta['icon'] ) ) {
+				$categories[ $key ]['icon'] = sanitize_key( $meta['icon'] );
+			}
 		}
 	}
 

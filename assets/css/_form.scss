@@ -373,7 +373,7 @@ input[type="checkbox"].ever-checkbox {
 			transition: all .3s ease-in-out;
 			right: -100%;
 			&:before{
-				content: 'OFF';
+				content: 'No';
 				color: #dc3545;
 				font-weight: bold;
 			}
@@ -434,7 +434,7 @@ input[type="checkbox"].ever-checkbox {
 	input:checked + .slider + .switch-text{
 		right: -100%;
 		&:before{
-			content: 'ON';
+			content: 'Yes';
 			color: #28a745;
 			font-weight: bold;
 		}
