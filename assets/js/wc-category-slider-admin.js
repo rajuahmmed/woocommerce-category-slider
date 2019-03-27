@@ -14,11 +14,10 @@ jQuery(document).ready(function ($, window, document, undefined) {
 
 	$.wc_category_slider_admin = {
 		init: function () {
-			$('#selection_type, #selected_categories, #limit_number, #include_child, #hide_empty').on('change', this.regenerateSlides);
+			$('#selection_type, #selected_categories, #limit_number, #include_child, #hide_empty, #orderby, #order').on('change', this.regenerateSlides);
 			$('#selection_type').on('change', this.handleSelectionType);
-			$('.edit-image').on('click', this.handleImageUpload);
-			$('.select-2').select2();
-			$('.ever-colorpicker').wpColorPicker();
+			//$(document).on('click', '.edit-image', this.handleImageUpload);
+
 		},
 		regenerateSlides: function () {
 
@@ -70,8 +69,8 @@ jQuery(document).ready(function ($, window, document, undefined) {
 
 			var $parent = jQuery(this).parentsUntil('.ever-slide-thumbnail');
 
-			var $img_prev = $parent.children('.img-prev');
-			var $img_id = $parent.children('.img-id');
+			var $img_prev = $parent.siblings('.img-prev');
+			var $img_id = $parent.siblings('.img-id');
 
 			var image = wp.media({
 				title: 'Upload Image'
@@ -93,5 +92,7 @@ jQuery(document).ready(function ($, window, document, undefined) {
 	$.wc_category_slider_admin.init();
 	$.wc_category_slider_admin.handleSelectionType();
 	$.wc_category_slider_admin.regenerateSlides();
+	$('.select-2').select2();
+	$('.ever-colorpicker').wpColorPicker();
 
 });

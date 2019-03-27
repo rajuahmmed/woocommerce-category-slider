@@ -13,6 +13,7 @@ function wc_slider_get_categories_ajax_callback() {
 		$selected_categories = [];
 	}
 
+
 	$categories = wc_category_slider_get_categories( array(
 		'slider_id'  => $slider_id,
 		'number'     => $number,
@@ -40,6 +41,8 @@ function wc_category_slider_print_js_template() {
 		return;
 	}
 
+	$disabled = wc_category_slider()->is_pro_installed() ? '' : 'disabled';
+
 
 	?>
 	<script type="text/html" id="tmpl-wc-category-slide">
@@ -59,9 +62,9 @@ function wc_category_slider_print_js_template() {
 									<span>Upgrade to <a href="https://www.pluginever.com/plugins/woocommerce-category-slider-pro/">PRO</a>, to change the Image</span>
 								</div>
 							<?php } ?>
-							<div class="image-action <?php echo wc_category_slider()->is_pro_installed() ? 'change-img' : '' ?>">
-								<a href="#" class="edit-image"><span class="dashicons dashicons-edit"></span></a>
-								<a href="#" class="delete-image"><span class="dashicons dashicons-trash"></span></a>
+							<div class="image-action">
+								<a href="javascript:void(0)" class="edit-image"><span class="dashicons dashicons-edit"></span></a>
+								<a href="javascript:void(0)" class="delete-image"><span class="dashicons dashicons-trash"></span></a>
 							</div>
 
 						</div>
@@ -69,12 +72,12 @@ function wc_category_slider_print_js_template() {
 					<div class="ever-slide-inner">
 						<!--title-->
 						<div class="ever-slide-title">
-							<input class="ever-slide-url-inputbox regular-text" name="categories[{{data.term_id}}][name]" placeholder="{{data.name}}" type="text" value="{{data.name}}">
+							<input class="ever-slide-url-inputbox regular-text" name="categories[{{data.term_id}}][name]" placeholder="{{data.name}}" type="text" value="{{data.name}}" <?php echo $disabled ?>>
 						</div><!--/title-->
 
 						<!--description-->
 						<div class="ever-slide-captionarea">
-							<textarea name="categories[{{data.term_id}}][description]" id="caption-{{data.term_id}}" class="ever-slide-captionarea-textfield" data-gramm_editor="false" placeholder="Description">{{data.description}}</textarea>
+							<textarea name="categories[{{data.term_id}}][description]" id="caption-{{data.term_id}}" class="ever-slide-captionarea-textfield" data-gramm_editor="false" placeholder="Description" <?php echo $disabled ?>>{{data.description}}</textarea>
 						</div><!--/description-->
 
 						<!--icon-->
@@ -128,13 +131,59 @@ function wc_category_slider_print_js_template() {
 
 						<!--url-->
 						<div class="ever-slide-url">
-							<input name="categories[{{data.term_id}}][url]" class="ever-slide-url-inputbox regular-text" placeholder="{{data.url}}" value="{{data.url}}" type="url">
+							<input name="categories[{{data.term_id}}][url]" class="ever-slide-url-inputbox regular-text" placeholder="{{data.url}}" value="{{data.url}}" type="url" <?php echo $disabled ?>>
 						</div><!--/url-->
 
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<?php if(wc_category_slider()->is_pro_installed()){ ?>
+		<#
+
+		$(document).on('click', '.edit-image', function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+			e.stopImmediatePropagation();
+
+
+			var $parent = jQuery(this).parentsUntil('.ever-slide-thumbnail');
+
+			var $img_prev = $parent.siblings('.img-prev');
+			var $img_id = $parent.siblings('.img-id');
+
+			var image = wp.media({
+				title: 'Upload Image'
+				})
+				.open().on('select', function () {
+					var uploaded_image = image.state().get('selection').first();
+					var image_url = uploaded_image.toJSON().url;
+					var image_id = uploaded_image.toJSON().id;
+					$img_prev.prop('src', image_url);
+					$img_id.val(image_id);
+			});
+
+			});
+
+		$(document).on('click', '.delete-image', function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			e.stopImmediatePropagation();
+
+		var $parent = jQuery(this).parentsUntil('.ever-slide-thumbnail');
+
+		var $img_prev = $parent.siblings('.img-prev');
+		var $img_id = $parent.siblings('.img-id');
+		$img_prev.prop('src', '<?php echo WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg'; ?>');
+		$img_id.val('');
+
+		});
+
+		#>
+
+		<?php } ?>
+
 	</script>
 	<?php
 }
