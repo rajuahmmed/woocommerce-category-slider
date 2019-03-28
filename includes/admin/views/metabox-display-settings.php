@@ -72,8 +72,8 @@ echo wc_category_slider()->elements->select( array(
 	'selected'         => wc_slider_get_settings( $post->ID, 'theme', 'default' ),
 	'value'            => 'default',
 	'options'          => apply_filters( 'wc_category_slider_themes', array(
-		'default'    => 'Default',
-		'basic' => 'Basic',
+		'default' => 'Default',
+		'basic'   => 'Basic',
 	) ),
 
 ) );
@@ -118,9 +118,6 @@ echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_sl
 	'label' => __( 'Primary Color', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_slider_get_settings( $post->ID, 'primary_color', '#b0589f' ),
 	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
-	'attrs' => array(
-		'disabled' => 'disabled',
-	),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_secondary_color_args', array(
@@ -157,9 +154,6 @@ echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_sl
 	'name'  => 'border_color',
 	'label' => __( 'Border Color', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_slider_get_settings( $post->ID, 'primary_color', '#ddd' ),
-	'attrs' => array(
-		'disabled' => 'disabled',
-	),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_border_width_args', array(

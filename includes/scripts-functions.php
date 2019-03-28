@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return void
  */
-function load_public_assets( $hook ) {
+function wc_slider_load_public_assets( $hook ) {
 	wp_register_script( 'owl-carousel', WC_SLIDER_ASSETS_URL . "/vendor/owlcarousel/owl.carousel.js", [ 'jquery' ], date( 'i' ), true );
 	//		wp_register_script('image-liquid', WC_CATEGORY_SLIDER_ASSETS_URL."/public/js/image-liquid.js", ['jquery'], date('i'), true);
 	wp_register_script( 'wc-category-slider', WC_SLIDER_ASSETS_URL . "/js/wc-category-slider-public.js", [ 'jquery', 'owl-carousel' ], date( 'i' ), true );
@@ -24,7 +24,7 @@ function load_public_assets( $hook ) {
 	wp_enqueue_script( 'wc-category-slider' );
 }
 
-add_action( 'wp_enqueue_scripts', 'load_public_assets' );
+add_action( 'wp_enqueue_scripts', 'wc_slider_load_public_assets' );
 
 /**
  * Add all the assets required by the plugin
@@ -33,7 +33,7 @@ add_action( 'wp_enqueue_scripts', 'load_public_assets' );
  *
  * @return void
  */
-function load_admin_assets( $hook ) {
+function wc_slider_load_admin_assets( $hook ) {
 
 	if ( ! in_array( $hook, array( 'post-new.php', 'post.php' ) ) ) {
 		return;
@@ -62,6 +62,6 @@ function load_admin_assets( $hook ) {
 	wp_enqueue_script( 'wc-category-slider' );
 }
 
-add_action( 'admin_enqueue_scripts', 'load_admin_assets' );
+add_action( 'admin_enqueue_scripts', 'wc_slider_load_admin_assets' );
 
 

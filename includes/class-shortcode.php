@@ -60,8 +60,10 @@ class WC_Category_Slider_Shortcode {
 		$theme               = wc_slider_get_settings( $post_id, 'theme', 'default' );
 		$selection_type      = wc_slider_get_settings( $post_id, 'selection_type', 'all' );
 		$limit_number        = wc_slider_get_settings( $post_id, 'limit_number', '10' );
+		$orderby             = wc_slider_get_settings( $post_id, 'orderby', 'name' );
+		$order               = wc_slider_get_settings( $post_id, 'order', 'asc' );
 		$include_child       = wc_slider_get_settings( $post_id, 'include_child', 'on' );
-		$show_empty          = wc_slider_get_settings( $post_id, 'show_empty', 'off' );
+		$show_empty          = wc_slider_get_settings( $post_id, 'show_empty', 'on' );
 		$empty_name          = wc_slider_get_settings( $post_id, 'empty_name', 'off' );
 		$empty_image         = wc_slider_get_settings( $post_id, 'empty_image', 'off' );
 		$empty_content       = wc_slider_get_settings( $post_id, 'empty_content', 'off' );
@@ -80,9 +82,9 @@ class WC_Category_Slider_Shortcode {
 
 		$terms = get_terms( apply_filters( 'wc_category_slider_term_list_args', array(
 			'taxonomy'   => 'product_cat',
-			'orderby'    => 'name',
-			'order'      => 'ASC',
-			'show_empty' => $show_empty == 'on' ? true : false,
+			'orderby'    => $orderby,
+			'order'      => $order,
+			'hide_empty' => $show_empty == 'on' ? false : true,
 			'include'    => $selected_categories,
 			'number'     => $limit_number,
 			//'child_of'   => $include_child == 'on' ? $selected_categories : 0,
@@ -97,15 +99,10 @@ class WC_Category_Slider_Shortcode {
 
 		?>
 
-		<style>
-
-		</style>
-
 		<div class="wc-category-slider <?php echo $slider_class; ?>">
 			<?php
 
 			foreach ( $terms as $term ) {
-
 
 				$settings = wc_category_slider_get_categories( array(
 					'slider_id' => $post_id,
@@ -115,59 +112,70 @@ class WC_Category_Slider_Shortcode {
 
 				$image = $settings['image'] != WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg' ? esc_url( $settings['image'] ) : '';
 
-				//Add empty-image class if image is empty or off
-				$empty_image_class = '';
+				//add "empty-image" class if image is empty or hidden
+				$image_class = '';
 				if ( $empty_image == 'on' ) {
-					$empty_image_class = 'empty-image';
+					$image_class = 'empty-image';
 				} elseif ( empty( $image ) ) {
-					$empty_image_class = 'empty-image';
+					$image_class = 'empty-image';
 				}
 
-				$single_slide_class   = array();
-				$single_slide_class[] = $empty_image_class;
-				$single_slide_class[] = $empty_border == 'on' ? 'empty-border' : '';
-				$single_slide_class   = implode( ' ', $single_slide_class );
+				$single_classes   = array();
+				$single_classes[] = $image_class;
+				$single_classes[] = $empty_border == 'on' ? 'empty-border' : '';
+				$single_classes   = implode( ' ', $single_classes );
 
 				?>
 
-				<div class="wcsn-slide <?php echo $single_slide_class ?>">
-					<?php if ( empty( $empty_image_class ) && ! empty( $image ) ) { ?>
+				<div class="wcsn-slide <?php echo $single_classes ?>">
+
+					<!--Image-->
+					<?php if ( empty( $image_class ) && ! empty( $image ) ) { ?>
 						<div class="wcsn-slide-image-wrapper">
 							<?php echo sprintf( '<img src="%s" alt="%s">', $image, $term->name ) ?>
 						</div>
 					<?php } ?>
 
 					<div class="wcsn-slide-content-wrapper">
+
+						<!--Icon-->
 						<?php if ( ! empty( $settings['icon'] ) ) {
 							echo sprintf( '<i class="fa %s wcsn-slide-icon fa-2x" aria-hidden="true"></i>', esc_attr( $settings['icon'] ) );
-						}
-						?>
+						} ?>
 
+						<!--Title-->
 						<?php if ( $empty_name != 'on' ) { ?>
 							<a href="#" class="wcsn-slide-link">
 								<h3 class="wcsn-slide-title"><?php echo $term->name ?></h3></a>
 						<?php } ?>
 
+						<!--Product Count-->
 						<?php if ( $empty_product_count != 'on' ) { ?>
 							<span class="wcsn-slide-product-count"><?php echo $term->count ?> Products</span>
 						<?php } ?>
 
+						<!--Description-->
 						<?php if ( $empty_content != 'on' && ! empty( $term->description ) ) {
 							echo sprintf( '<p class="wcsn-slide-description">%s</p>', $term->description );
 						} ?>
 
+						<!--Button-->
 						<?php if ( $empty_button != 'on' ) {
-							echo sprintf( '<a href="%s" class="wcsn-slide-button">%s</a>', esc_url($settings['url']), 'Shop Now' );
+							echo sprintf( '<a href="%s" class="wcsn-slide-button">%s</a>', esc_url( $settings['url'] ), 'Shop Now' );
 						} ?>
 
 					</div>
 				</div>
-			<?php } ?>
+			<?php }
+
+			?>
 		</div>
+
 		<?php
+
 		do_action( 'wc_category_slider_after_html', $post_id );
-		$html = ob_get_contents();
-		ob_get_clean();
+
+		$html = ob_get_clean();
 
 		return $html;
 	}
