@@ -1,6 +1,25 @@
 .wc-category-pro-3.wc-category-slider {
 	position: relative;
 	overflow: hidden;
+	&:before,&:after {
+		content: "";
+		right: 100%;
+		left: 50px;
+		right: 50px;
+		position: absolute;
+		height: 0;
+		z-index: 1;
+		transition: all .3s ease 0s;
+		transform: scaleX(0);
+	}
+	&:before{
+		top: 50px;
+		border-top: 1px solid red;
+	}
+	&:after{
+		bottom: 50px;
+		border-bottom: 1px solid red;
+	}
 	.wc-category-slider-image-wrapper{
 		position: relative;
 		.wc-category-slider-link{

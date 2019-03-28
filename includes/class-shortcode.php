@@ -17,7 +17,7 @@ class WC_Category_Slider_Shortcode {
 		) );
 		?>
 		<style>
-			.wcsn-slider {
+			.wc-slider {
 				width: 300px !important;
 				overflow: hidden;
 				float: left;
@@ -99,7 +99,7 @@ class WC_Category_Slider_Shortcode {
 
 		?>
 
-		<div class="wc-category-slider <?php echo $slider_class; ?>">
+		<div class="wc-category-slider <?php echo $slider_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>">
 			<?php
 
 			foreach ( $terms as $term ) {
@@ -127,41 +127,41 @@ class WC_Category_Slider_Shortcode {
 
 				?>
 
-				<div class="wcsn-slide <?php echo $single_classes ?>">
+				<div class="wc-slide <?php echo $single_classes ?>">
 
 					<!--Image-->
 					<?php if ( empty( $image_class ) && ! empty( $image ) ) { ?>
-						<div class="wcsn-slide-image-wrapper">
-							<?php echo sprintf( '<img src="%s" alt="%s">', $image, $term->name ) ?>
+						<div class="wc-slide-image-wrapper">
+							<?php echo sprintf( '<a class="wc-slide-link" href="%s"><img src="%s" alt="%s"></a>', $settings['url'] , $image, $term->name ) ?>
 						</div>
 					<?php } ?>
 
-					<div class="wcsn-slide-content-wrapper">
+					<div class="wc-slide-content-wrapper">
 
 						<!--Icon-->
 						<?php if ( ! empty( $settings['icon'] ) ) {
-							echo sprintf( '<i class="fa %s wcsn-slide-icon fa-2x" aria-hidden="true"></i>', esc_attr( $settings['icon'] ) );
+							echo sprintf( '<i class="fa %s wc-slide-icon fa-2x" aria-hidden="true"></i>', esc_attr( $settings['icon'] ) );
 						} ?>
 
 						<!--Title-->
 						<?php if ( $empty_name != 'on' ) { ?>
-							<a href="#" class="wcsn-slide-link">
-								<h3 class="wcsn-slide-title"><?php echo $term->name ?></h3></a>
+							<a href="#" class="wc-slide-link">
+								<h3 class="wc-slide-title"><?php echo $term->name ?></h3></a>
 						<?php } ?>
 
 						<!--Product Count-->
 						<?php if ( $empty_product_count != 'on' ) { ?>
-							<span class="wcsn-slide-product-count"><?php echo $term->count ?> Products</span>
+							<span class="wc-slide-product-count"><?php echo $term->count ?> Products</span>
 						<?php } ?>
 
 						<!--Description-->
 						<?php if ( $empty_content != 'on' && ! empty( $term->description ) ) {
-							echo sprintf( '<p class="wcsn-slide-description">%s</p>', $term->description );
+							echo sprintf( '<p class="wc-slide-description">%s</p>', $term->description );
 						} ?>
 
 						<!--Button-->
 						<?php if ( $empty_button != 'on' ) {
-							echo sprintf( '<a href="%s" class="wcsn-slide-button">%s</a>', esc_url( $settings['url'] ), 'Shop Now' );
+							echo sprintf( '<a href="%s" class="wc-slide-button">%s</a>', esc_url( $settings['url'] ), 'Shop Now' );
 						} ?>
 
 					</div>
