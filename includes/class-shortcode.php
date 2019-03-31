@@ -99,7 +99,7 @@ class WC_Category_Slider_Shortcode {
 
 		?>
 
-		<div class="wc-category-slider <?php echo $slider_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>">
+		<div class="wc-category-slider <?php echo $slider_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>" data-slider-config='<?php echo $this->get_slider_config( $post_id ); ?>'>
 			<?php
 
 			foreach ( $terms as $term ) {
@@ -132,7 +132,7 @@ class WC_Category_Slider_Shortcode {
 					<!--Image-->
 					<?php if ( empty( $image_class ) && ! empty( $image ) ) { ?>
 						<div class="wc-slide-image-wrapper">
-							<?php echo sprintf( '<a class="wc-slide-link" href="%s"><img src="%s" alt="%s"></a>', $settings['url'] , $image, $term->name ) ?>
+							<?php echo sprintf( '<a class="wc-slide-link" href="%s"><img src="%s" alt="%s"></a>', $settings['url'], $image, $term->name ) ?>
 						</div>
 					<?php } ?>
 
@@ -189,75 +189,42 @@ class WC_Category_Slider_Shortcode {
 	 * @return object
 	 */
 	protected function get_slider_config( $post_id ) {
-		$settings = array();
-		$config   = array(
+
+		$config = array(
 			'dots'               => false,
 			'autoHeight'         => true,
 			'singleItem'         => true,
-			'autoplay'           => empty( $settings['autoplay'] ) ? false : true,
-			'loop'               => empty( $settings['loop'] ) ? false : true,
-			'lazyLoad'           => empty( $settings['lazy_load'] ) ? false : true,
-			'margin'             => intval( $settings['column_gap'] ),
-			'autoplayTimeout'    => intval( $settings['slider_speed'] ),
+			'autoplay'           => 'on' == wc_slider_get_settings( $post_id, 'autoplay' ) ? true : false,
+			'loop'               => 'on' == wc_slider_get_settings( $post_id, 'loop' ) ? true : false,
+			'lazyLoad'           => 'on' == wc_slider_get_settings( $post_id, 'lazy_load' )  ? true : false,
+			'margin'             => intval( wc_slider_get_settings( $post_id, 'column_gap', 10 ) ),
+			'autoplayTimeout'    => intval( wc_slider_get_settings( $post_id, 'slider_speed', 2000 ) ),
 			'autoplayHoverPause' => true,
-			'nav'                => empty( $settings['hide_nav'] ) ? true : false,
+			'nav'                => 'on' == wc_slider_get_settings( $post_id, 'hide_nav' ) ? true : false,
 			'navText'            => [ '<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>' ],
 			'stagePadding'       => 4,
-			'items'              => empty( $settings['cols'] ) ? 4 : intval( $settings['cols'] ),
+			'items'              => intval( wc_slider_get_settings( $post_id, 'cols', 3 ) ),
 			'responsive'         => [
 				'0'    => [
-					'items' => empty( $settings['phone_cols'] ) ? 4 : intval( $settings['phone_cols'] ),
+					'items' => intval( wc_slider_get_settings( $post_id, 'phone_cols', 3 ) ),
 				],
 				'600'  => [
-					'items' => empty( $settings['tab_cols'] ) ? 4 : intval( $settings['tab_cols'] ),
+					'items' => intval( wc_slider_get_settings( $post_id, 'tab_cols', 3 ) ),
 				],
 				'1000' => [
-					'items' => empty( $settings['cols'] ) ? 4 : intval( $settings['cols'] ),
+					'items' => intval( wc_slider_get_settings( $post_id, 'cols', 3 ) ),
 				],
 			],
 		);
 
-		if ( ! empty( $settings['fluid_speed'] ) ) {
-			$config['fluidSpeed'] = intval( $settings['slider_speed'] );
-			$config['smartSpeed'] = intval( $settings['slider_speed'] );
-		}
+//		if ( ! empty( $settings['fluid_speed'] ) ) {
+//			$config['fluidSpeed'] = intval( wc_slider_get_settings( $post_id, 'slider_speed' ) );
+//			$config['smartSpeed'] = intval( wc_slider_get_settings( $post_id, 'slider_speed' ) );
+//		}
 
-		$config = apply_filters( 'woo_category_slider_slider_config', $config );
+		$config = apply_filters( 'wc_slider_config', $config );
 
 		return json_encode( $config );
-	}
-
-	/**
-	 * Get slider wrapper classes
-	 *
-	 * @param $settings
-	 *
-	 * @return array
-	 */
-	protected function get_wrapper_class( $settings ) {
-		$classes = array(
-			'owl-carousel',
-			'owl-theme',
-			'ever-slider',
-			'ever-category-slider'
-		);
-		if ( ! empty( $settings['theme'] ) ) {
-			$classes[] = sanitize_key( $settings['theme'] );
-		}
-		if ( empty( $settings['hide_border'] ) ) {
-			$classes[] = 'border';
-		}
-		if ( ! empty( $settings['button_type'] ) ) {
-			$classes[] = sanitize_key( $settings['button_type'] );
-		}
-		if ( intval( $settings['cols'] ) < 2 ) {
-			$classes[] = 'single-slide';
-		}
-		if ( ! empty( $settings['hover_style'] ) || $settings['hover_style'] !== 'no-hover' ) {
-			$classes[] = esc_attr( $settings['hover_style'] );
-		}
-
-		return apply_filters( 'wc_category_slider_wrapper_classes', $classes, $settings );
 	}
 
 }

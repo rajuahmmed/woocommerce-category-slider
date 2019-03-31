@@ -16,9 +16,9 @@ jQuery(document).ready(function ($, window, document, undefined) {
 		init: function () {
 			$('#selection_type, #selected_categories, #limit_number, #include_child, #hide_empty, #orderby, #order').on('change', this.regenerateSlides);
 			$('#selection_type').on('change', this.handleSelectionType);
-			//$(document).on('click', '.edit-image', this.handleImageUpload);
 
 		},
+
 		regenerateSlides: function () {
 
 			var data = {
@@ -62,30 +62,6 @@ jQuery(document).ready(function ($, window, document, undefined) {
 			$('.selected_categories_field').css('display', $display);
 
 		},
-
-		handleImageUpload: function (e) {
-
-			e.preventDefault();
-
-			var $parent = jQuery(this).parentsUntil('.ever-slide-thumbnail');
-
-			var $img_prev = $parent.siblings('.img-prev');
-			var $img_id = $parent.siblings('.img-id');
-
-			var image = wp.media({
-				title: 'Upload Image'
-			}).open().on('select', function () {
-				var uploaded_image = image.state().get('selection').first();
-				console.log(uploaded_image);
-				var image_url = uploaded_image.toJSON().url;
-				var image_id = uploaded_image.toJSON().id;
-				$img_prev.prop('src', image_url);
-				$img_id.val(image_id);
-				return false;
-			});
-
-		}
-
 
 	};
 
