@@ -15,7 +15,6 @@ function wc_slider_get_categories_ajax_callback() {
 
 
 	$categories = wc_category_slider_get_categories( array(
-		'slider_id'  => $slider_id,
 		'number'     => $number,
 		'orderby'    => $orderby,
 		'order'      => $order,
@@ -32,6 +31,28 @@ function wc_slider_get_categories_ajax_callback() {
 }
 
 add_action( 'wp_ajax_wc_slider_get_categories', 'wc_slider_get_categories_ajax_callback' );
+
+function wc_category_slider_load_custom_category_attributes( $categories, $slider_id ) {
+	if ( ! $slider_id ) {
+		return $categories;
+	}
+
+	$custom_category_settings = wc_category_slider_get_meta( $slider_id, 'categories', [] );
+	foreach ( $categories as $category ) {
+		if ( isset( $custom_category_settings[ $category['term_id'] ] ) ) {
+			foreach ( $custom_category_settings[ $category['term_id'] ] as $cat_attr_key => $cat_attr_value ) {
+				if ( empty( $cat_attr_value ) ) {
+					continue;
+				}
+				$categories[ $cat_attr_key ] = $cat_attr_value;
+			}
+		}
+	}
+
+	return $categories;
+}
+
+add_filter( 'wc_category_slider_categories', 'wc_category_slider_load_custom_category_attributes', 10, 2 );
 
 function wc_category_slider_print_js_template() {
 
@@ -139,10 +160,10 @@ function wc_category_slider_print_js_template() {
 			</div>
 		</div>
 
-		<?php if(wc_category_slider()->is_pro_installed()){ ?>
-		<#
+		<?php if ( wc_category_slider()->is_pro_installed() ) { ?>
+			<#
 
-		$(document).on('click', '.edit-image', function (e) {
+			$(document).on('click', '.edit-image', function (e) {
 			e.preventDefault();
 			e.stopPropagation();
 			e.stopImmediatePropagation();
@@ -154,33 +175,33 @@ function wc_category_slider_print_js_template() {
 			var $img_id = $parent.siblings('.img-id');
 
 			var image = wp.media({
-				title: 'Upload Image'
-				})
-				.open().on('select', function () {
-					var uploaded_image = image.state().get('selection').first();
-					var image_url = uploaded_image.toJSON().url;
-					var image_id = uploaded_image.toJSON().id;
-					$img_prev.prop('src', image_url);
-					$img_id.val(image_id);
+			title: 'Upload Image'
+			})
+			.open().on('select', function () {
+			var uploaded_image = image.state().get('selection').first();
+			var image_url = uploaded_image.toJSON().url;
+			var image_id = uploaded_image.toJSON().id;
+			$img_prev.prop('src', image_url);
+			$img_id.val(image_id);
 			});
 
 			});
 
-		$(document).on('click', '.delete-image', function(e){
+			$(document).on('click', '.delete-image', function(e){
 			e.preventDefault();
 			e.stopPropagation();
 			e.stopImmediatePropagation();
 
-		var $parent = jQuery(this).parentsUntil('.ever-slide-thumbnail');
+			var $parent = jQuery(this).parentsUntil('.ever-slide-thumbnail');
 
-		var $img_prev = $parent.siblings('.img-prev');
-		var $img_id = $parent.siblings('.img-id');
-		$img_prev.prop('src', '<?php echo WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg'; ?>');
-		$img_id.val('');
+			var $img_prev = $parent.siblings('.img-prev');
+			var $img_id = $parent.siblings('.img-id');
+			$img_prev.prop('src', '<?php echo WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg'; ?>');
+			$img_id.val('');
 
-		});
+			});
 
-		#>
+			#>
 
 		<?php } ?>
 

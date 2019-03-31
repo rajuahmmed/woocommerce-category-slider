@@ -191,21 +191,18 @@ function wc_category_slider_update_settings( $post_id ) {
 	$categories = array();
 
 	if ( ! empty( $posted['categories'] ) ) {
-		foreach ( $posted['categories'] as $key => $meta ) {
-			if ( ! empty( $meta['icon'] ) ) {
-				$categories[ $key ] = array(
-					'name'        => '',
-					'url'         => '',
-					'description' => '',
-					'count'       => '',
-					'image_id'    => '',
-					'icon'        => sanitize_key( $meta['icon'] ),
-				);
-			}
+		foreach ( $posted['categories'] as $term_id => $meta ) {
+			$categories[ $term_id ] = apply_filters( 'wc_category_slider_custom_category_attributes', array(
+				'name'        => '',
+				'url'         => '',
+				'description' => '',
+				'image_id'    => '',
+				'icon'        => sanitize_key( $meta['icon'] ),
+			), $term_id, $posted['categories'][ $term_id ] );
 		}
 	}
 
-	update_post_meta( $post_id, 'categories', empty( $posted['categories'] ) ? '' : $categories );
+	update_post_meta( $post_id, 'categories', empty( $posted['categories'] ) ? [] : $categories );
 
 	update_post_meta( $post_id, 'selection_type', empty( $posted['selection_type'] ) ? '' : sanitize_key( $posted['selection_type'] ) );
 	update_post_meta( $post_id, 'selected_categories', empty( $posted['selected_categories'] ) ? '' : $posted['selected_categories'] );

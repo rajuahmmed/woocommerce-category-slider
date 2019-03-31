@@ -18,7 +18,6 @@ function wc_category_slider_get_categories( $args = array() ) {
 	global $wp_version;
 	$categories = array();
 	$default    = array(
-		'slider_id'  => '',
 		'number'     => '20',
 		'orderby'    => 'name',
 		'order'      => 'ASC',
@@ -26,7 +25,6 @@ function wc_category_slider_get_categories( $args = array() ) {
 		'include'    => array(),
 		'exclude'    => array(),
 		'child_of'   => 0,
-		'post_id'    => null,
 	);
 
 	if ( version_compare( $wp_version, '4.5.0', '<' ) ) {
@@ -40,20 +38,16 @@ function wc_category_slider_get_categories( $args = array() ) {
 
 	$results = [];
 	foreach ( $categories as $category ) {
-		$image = WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg';
-//		$meta  = wc_category_slider_get_meta( $args['slider_id'], 'categories' );
-//
-//		$meta  = ! empty( $meta[$category->term_id] ) ? $meta[$category->term_id] : false;
-//
+//		$image = WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg';
 		$thumbnail_id = ! empty( $meta['image_id'] ) ? $meta['image_id'] : get_term_meta( $category->term_id, 'thumbnail_id', true );
-
-		if ( ! empty( $thumbnail_id ) ) {
-			$size       = is_admin() ? 'thumbnail' : apply_filters( 'wc_category_slider_image_size', 'medium', $args );
-			$attachment = wp_get_attachment_image_src( $thumbnail_id, $size );
-			if ( is_array( $attachment ) && ! empty( $attachment[0] ) ) {
-				$image = esc_url( $attachment[0] );
-			}
-		}
+//
+//		if ( ! empty( $thumbnail_id ) ) {
+//			$size       = is_admin() ? 'thumbnail' : apply_filters( 'wc_category_slider_image_size', 'medium', $args );
+//			$attachment = wp_get_attachment_image_src( $thumbnail_id, $size );
+//			if ( is_array( $attachment ) && ! empty( $attachment[0] ) ) {
+//				$image = esc_url( $attachment[0] );
+//			}
+//		}
 
 		$results[] = [
 			'term_id'     => $category->term_id,
@@ -61,7 +55,6 @@ function wc_category_slider_get_categories( $args = array() ) {
 			'url'         => get_term_link( $category->term_id, 'product_cat' ),
 			'description' => $category->description,
 			'count'       => $category->count,
-			'image'       => $image,
 			'image_id'    => $thumbnail_id,
 			'icon'        => '',
 		];
