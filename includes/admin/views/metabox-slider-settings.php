@@ -4,7 +4,7 @@ echo wc_category_slider()->elements->switcher( array(
 	'name'           => 'autoplay',
 	'label'          => __( 'Slider Autoplay', 'woo-category-slider-by-pluginever' ),
 	'double_columns' => false,
-	'value'          => wc_slider_get_settings( $post->ID, 'autoplay', true ),
+	'value'          => wc_category_slider_get_meta( $post->ID, 'autoplay', true ),
 	'desc'           => __( 'Slider will automatically start playing is set Yes.', 'woo-category-slider-by-pluginever' ),
 ) );
 
@@ -13,7 +13,7 @@ echo wc_category_slider()->is_pro_installed() ? '' : sprintf( '<h2 class="pro-fe
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_lazy_load_args', array(
 	'name'  => 'lazy_load',
 	'label' => __( 'Lazy Load', 'woo-category-slider-by-pluginever' ),
-	'value' => wc_slider_get_settings( $post->ID, 'lazy_load', 'off' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'lazy_load', 'off' ),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_cols_args', array(

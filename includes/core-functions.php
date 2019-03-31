@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.0.0
  *
  * @param array $args
- * @param int $post_id
+ * @param int   $post_id
  *
  * @return array|int|\WP_Error
  */
@@ -41,11 +41,10 @@ function wc_category_slider_get_categories( $args = array() ) {
 	$results = [];
 	foreach ( $categories as $category ) {
 		$image = WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg';
-		$meta  = wc_slider_get_settings( $args['slider_id'], 'categories' );
-
-		$meta  = ! empty( $meta[$category->term_id] ) ? $meta[$category->term_id] : false;
-
-
+//		$meta  = wc_category_slider_get_meta( $args['slider_id'], 'categories' );
+//
+//		$meta  = ! empty( $meta[$category->term_id] ) ? $meta[$category->term_id] : false;
+//
 		$thumbnail_id = ! empty( $meta['image_id'] ) ? $meta['image_id'] : get_term_meta( $category->term_id, 'thumbnail_id', true );
 
 		if ( ! empty( $thumbnail_id ) ) {
@@ -58,13 +57,13 @@ function wc_category_slider_get_categories( $args = array() ) {
 
 		$results[] = [
 			'term_id'     => $category->term_id,
-			'name'        => ! empty( $meta['name'] ) ? $meta['name'] : $category->name,
-			'url'         => ! empty( $meta['url'] ) ? $meta['url'] : get_term_link( $category->term_id, 'product_cat' ),
-			'description' => ! empty( $meta['description'] ) ? $meta['description'] : $category->description,
+			'name'        => $category->name,
+			'url'         => get_term_link( $category->term_id, 'product_cat' ),
+			'description' => $category->description,
 			'count'       => $category->count,
 			'image'       => $image,
 			'image_id'    => $thumbnail_id,
-			'icon'        => ! empty( $meta['icon'] ) ? $meta['icon'] : '',
+			'icon'        => '',
 		];
 	}
 
@@ -783,14 +782,14 @@ function wc_slider_get_font_list() {
  *
  * @return bool|mixed
  */
-function wc_slider_get_settings( $post_id, $key, $default = false ) {
+function wc_category_slider_get_meta( $post_id, $key, $default = false ) {
 	$value = get_post_meta( $post_id, $key, true );
 
 	return ! empty( $value ) ? $value : $default;
 }
 
 function wc_slider_get_categories_data( $categories, $slider_id ) {
-	$meta = wc_slider_get_settings( $slider_id, 'categories' );
+	$meta = wc_category_slider_get_meta( $slider_id, 'categories' );
 	//$categories = wp_parse_args($meta, $categories);
 
 	//	foreach ($categories as $category){

@@ -57,28 +57,28 @@ class WC_Category_Slider_Shortcode {
 
 		$selected_categories = 'all';
 
-		$theme               = wc_slider_get_settings( $post_id, 'theme', 'default' );
-		$selection_type      = wc_slider_get_settings( $post_id, 'selection_type', 'all' );
-		$limit_number        = wc_slider_get_settings( $post_id, 'limit_number', '10' );
-		$orderby             = wc_slider_get_settings( $post_id, 'orderby', 'name' );
-		$order               = wc_slider_get_settings( $post_id, 'order', 'asc' );
-		$include_child       = wc_slider_get_settings( $post_id, 'include_child', 'on' );
-		$show_empty          = wc_slider_get_settings( $post_id, 'show_empty', 'on' );
-		$empty_name          = wc_slider_get_settings( $post_id, 'empty_name', 'off' );
-		$empty_image         = wc_slider_get_settings( $post_id, 'empty_image', 'off' );
-		$empty_content       = wc_slider_get_settings( $post_id, 'empty_content', 'off' );
-		$empty_product_count = wc_slider_get_settings( $post_id, 'empty_product_count', 'off' );
-		$empty_border        = wc_slider_get_settings( $post_id, 'empty_border', 'off' );
-		$empty_button        = wc_slider_get_settings( $post_id, 'empty_button', 'off' );
+		$theme               = wc_category_slider_get_meta( $post_id, 'theme', 'default' );
+		$selection_type      = wc_category_slider_get_meta( $post_id, 'selection_type', 'all' );
+		$limit_number        = wc_category_slider_get_meta( $post_id, 'limit_number', '10' );
+		$orderby             = wc_category_slider_get_meta( $post_id, 'orderby', 'name' );
+		$order               = wc_category_slider_get_meta( $post_id, 'order', 'asc' );
+		$include_child       = wc_category_slider_get_meta( $post_id, 'include_child', 'on' );
+		$show_empty          = wc_category_slider_get_meta( $post_id, 'show_empty', 'on' );
+		$empty_name          = wc_category_slider_get_meta( $post_id, 'empty_name', 'off' );
+		$empty_image         = wc_category_slider_get_meta( $post_id, 'empty_image', 'off' );
+		$empty_content       = wc_category_slider_get_meta( $post_id, 'empty_content', 'off' );
+		$empty_product_count = wc_category_slider_get_meta( $post_id, 'empty_product_count', 'off' );
+		$empty_border        = wc_category_slider_get_meta( $post_id, 'empty_border', 'off' );
+		$empty_button        = wc_category_slider_get_meta( $post_id, 'empty_button', 'off' );
+		$button_text        = wc_category_slider_get_meta( $post_id, 'button_text', __('Shop Now', 'woo-category-slider-by-pluginever') );
 
 		if ( 'all' != $selection_type ) {
-			$selected_category_ids = wc_slider_get_settings( $post_id, 'selected_categories', [] );
+			$selected_category_ids = wc_category_slider_get_meta( $post_id, 'selected_categories', [] );
 
 			if ( is_array( $selected_category_ids ) && ! empty( $selected_category_ids ) ) {
 				$selected_categories = wp_parse_id_list( $selected_category_ids );
 			}
 		}
-
 
 		$terms = get_terms( apply_filters( 'wc_category_slider_term_list_args', array(
 			'taxonomy'   => 'product_cat',
@@ -92,8 +92,9 @@ class WC_Category_Slider_Shortcode {
 			'childless'  => false,
 		), $post_id ) );
 
+
 		$theme_class   = 'wc-category-' . $theme;
-		$slider_class = 'wc-category-slider-' . $post_id;
+		$slider_class  = 'wc-category-slider-' . $post_id;
 		$wrapper_class = $theme_class . ' ' . $slider_class;
 		if ( 'on' == $empty_image ) {
 			$wrapper_class .= ' hide-image';
@@ -113,13 +114,13 @@ class WC_Category_Slider_Shortcode {
 
 		<div class="wc-category-slider <?php echo $wrapper_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>" data-slider-config='<?php echo $this->get_slider_config( $post_id ); ?>'>
 			<?php
-
 			foreach ( $terms as $term ) {
 
 				$settings = wc_category_slider_get_categories( array(
 					'slider_id' => $post_id,
 					'include'   => $term->term_id,
 				) );
+
 				$settings = reset( $settings );
 
 				$image = $settings['image'] != WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg' ? esc_url( $settings['image'] ) : '';
@@ -136,7 +137,6 @@ class WC_Category_Slider_Shortcode {
 				$single_classes[] = $image_class;
 				$single_classes[] = $empty_border == 'on' ? 'empty-border' : '';
 				$single_classes   = implode( ' ', $single_classes );
-
 				?>
 
 				<div class="wc-slide <?php echo $single_classes ?>">
@@ -163,7 +163,7 @@ class WC_Category_Slider_Shortcode {
 
 						<!--Product Count-->
 						<?php if ( $empty_product_count != 'on' ) { ?>
-							<span class="wc-slide-product-count"><?php echo $term->count ?> Products</span>
+							<span class="wc-slide-product-count"><?php _e(sprintf('%s Products', $term->count), 'woo-category-slider-by-pluginever');?></span>
 						<?php } ?>
 
 						<!--Description-->
@@ -182,14 +182,6 @@ class WC_Category_Slider_Shortcode {
 
 			?>
 		</div>
-		<style>
-			<?php if('basic' == $theme){ ?>
-			.<?php echo $slider_class;?> .owl-item {
-				min-height: 300px;
-			}
-
-			<?php } ?>
-		</style>
 		<?php
 
 		do_action( 'wc_category_slider_after_html', $post_id );
@@ -213,33 +205,33 @@ class WC_Category_Slider_Shortcode {
 			'dots'               => true,
 			'autoHeight'         => true,
 			'singleItem'         => true,
-			'autoplay'           => 'on' == wc_slider_get_settings( $post_id, 'autoplay' ) ? true : false,
-			'loop'               => 'on' == wc_slider_get_settings( $post_id, 'loop' ) ? true : false,
-			'lazyLoad'           => 'on' == wc_slider_get_settings( $post_id, 'lazy_load' ) ? true : false,
-			'margin'             => intval( wc_slider_get_settings( $post_id, 'column_gap', 10 ) ),
-			'autoplayTimeout'    => intval( wc_slider_get_settings( $post_id, 'slider_speed', 2000 ) ),
+			'autoplay'           => 'on' == wc_category_slider_get_meta( $post_id, 'autoplay' ) ? true : false,
+			'loop'               => 'on' == wc_category_slider_get_meta( $post_id, 'loop' ) ? true : false,
+			'lazyLoad'           => 'on' == wc_category_slider_get_meta( $post_id, 'lazy_load' ) ? true : false,
+			'margin'             => intval( wc_category_slider_get_meta( $post_id, 'column_gap', 10 ) ),
+			'autoplayTimeout'    => intval( wc_category_slider_get_meta( $post_id, 'slider_speed', 2000 ) ),
 			'autoplayHoverPause' => true,
-//			'nav'                => 'on' == wc_slider_get_settings( $post_id, 'hide_nav' ) ? true : false,
+//			'nav'                => 'on' == wc_category_slider_get_meta( $post_id, 'hide_nav' ) ? true : false,
 			'nav'                => true,
 			'navText'            => [ '<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>' ],
 			'stagePadding'       => 4,
-			'items'              => intval( wc_slider_get_settings( $post_id, 'cols', 3 ) ),
+			'items'              => intval( wc_category_slider_get_meta( $post_id, 'cols', 3 ) ),
 			'responsive'         => [
 				'0'    => [
-					'items' => intval( wc_slider_get_settings( $post_id, 'phone_cols', 3 ) ),
+					'items' => intval( wc_category_slider_get_meta( $post_id, 'phone_cols', 3 ) ),
 				],
 				'600'  => [
-					'items' => intval( wc_slider_get_settings( $post_id, 'tab_cols', 3 ) ),
+					'items' => intval( wc_category_slider_get_meta( $post_id, 'tab_cols', 3 ) ),
 				],
 				'1000' => [
-					'items' => intval( wc_slider_get_settings( $post_id, 'cols', 3 ) ),
+					'items' => intval( wc_category_slider_get_meta( $post_id, 'cols', 3 ) ),
 				],
 			],
 		);
 
 //		if ( ! empty( $settings['fluid_speed'] ) ) {
-//			$config['fluidSpeed'] = intval( wc_slider_get_settings( $post_id, 'slider_speed' ) );
-//			$config['smartSpeed'] = intval( wc_slider_get_settings( $post_id, 'slider_speed' ) );
+//			$config['fluidSpeed'] = intval( wc_category_slider_get_meta( $post_id, 'slider_speed' ) );
+//			$config['smartSpeed'] = intval( wc_category_slider_get_meta( $post_id, 'slider_speed' ) );
 //		}
 
 		$config = apply_filters( 'wc_slider_config', $config );
