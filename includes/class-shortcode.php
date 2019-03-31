@@ -94,12 +94,24 @@ class WC_Category_Slider_Shortcode {
 
 		$theme_class  = 'wc-category-' . $theme;
 		$slider_class = 'wc-category-slider-' . $post_id . ' ' . $theme_class;
+		$wrapper_class = $theme_class .' '.$slider_class;
+		if('on' == $empty_image){
+			$wrapper_class .= ' hide-image';
+		}
+
+		if('on' == $empty_content){
+			$wrapper_class .= ' hide-content';
+		}
+
+		if('on' == $empty_border){
+			$wrapper_class .= ' hide-border';
+		}
 
 		ob_start();
 
 		?>
 
-		<div class="wc-category-slider <?php echo $slider_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>" data-slider-config='<?php echo $this->get_slider_config( $post_id ); ?>'>
+		<div class="wc-category-slider <?php echo $wrapper_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>" data-slider-config='<?php echo $this->get_slider_config( $post_id ); ?>'>
 			<?php
 
 			foreach ( $terms as $term ) {
@@ -130,11 +142,11 @@ class WC_Category_Slider_Shortcode {
 				<div class="wc-slide <?php echo $single_classes ?>">
 
 					<!--Image-->
+					<div class="wc-slide-image-wrapper">
 					<?php if ( empty( $image_class ) && ! empty( $image ) ) { ?>
-						<div class="wc-slide-image-wrapper">
 							<?php echo sprintf( '<a class="wc-slide-link" href="%s"><img src="%s" alt="%s"></a>', $settings['url'], $image, $term->name ) ?>
-						</div>
 					<?php } ?>
+					</div>
 
 					<div class="wc-slide-content-wrapper">
 
@@ -191,7 +203,7 @@ class WC_Category_Slider_Shortcode {
 	protected function get_slider_config( $post_id ) {
 
 		$config = array(
-			'dots'               => false,
+			'dots'               => true,
 			'autoHeight'         => true,
 			'singleItem'         => true,
 			'autoplay'           => 'on' == wc_slider_get_settings( $post_id, 'autoplay' ) ? true : false,
@@ -200,7 +212,8 @@ class WC_Category_Slider_Shortcode {
 			'margin'             => intval( wc_slider_get_settings( $post_id, 'column_gap', 10 ) ),
 			'autoplayTimeout'    => intval( wc_slider_get_settings( $post_id, 'slider_speed', 2000 ) ),
 			'autoplayHoverPause' => true,
-			'nav'                => 'on' == wc_slider_get_settings( $post_id, 'hide_nav' ) ? true : false,
+//			'nav'                => 'on' == wc_slider_get_settings( $post_id, 'hide_nav' ) ? true : false,
+			'nav'                => true,
 			'navText'            => [ '<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>' ],
 			'stagePadding'       => 4,
 			'items'              => intval( wc_slider_get_settings( $post_id, 'cols', 3 ) ),

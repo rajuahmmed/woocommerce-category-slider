@@ -43,7 +43,9 @@ jQuery(document).ready(function ($, window, document, undefined) {
 					maxHeight = 300;
 				}
 
-				slider.find('.wc-slide-image-wrapper').css('height', maxHeight);
+				slider.find('.wc-slide-image-wrapper').css('min-height', maxHeight);
+				// slider.find('.wc-slide-image-wrapper img').css('height', maxHeight);
+				// slider.find('.wc-slide-image-wrapper img').css('width', 'auto');
 
 				slider.find('.wc-slide').css('border-width', 0);
 				slider.find('.wc-slide').css('border-width', '1px');

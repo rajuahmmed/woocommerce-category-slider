@@ -16,11 +16,9 @@ jQuery(document).ready(function ($, window, document, undefined) {
 		init: function () {
 			$('#selection_type, #selected_categories, #limit_number, #include_child, #hide_empty, #orderby, #order').on('change', this.regenerateSlides);
 			$('#selection_type').on('change', this.handleSelectionType);
-
 		},
 
 		regenerateSlides: function () {
-
 			var data = {
 				selection_type: $('#selection_type').val() || 'all',
 				selected_categories: $('#selected_categories').val() || [],
