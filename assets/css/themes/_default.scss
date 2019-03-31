@@ -1,4 +1,6 @@
+$theme_color: #b0589f;
 .wc-category-slider {
+	margin-top: 60px;
 	.wc-slide {
 		position: relative;
 		width: 100%;
@@ -31,6 +33,7 @@
 			padding: 0;
 			margin: 0;
 			display: flex;
+			overflow: hidden;
 			img{
 				border-radius: 0;
 				height: 100%;
@@ -58,7 +61,7 @@
 			text-decoration: none;
 			// font-family: initial;
 			position: relative;
-
+			width: 100%;
 		}
 
 		&-image {
@@ -117,7 +120,7 @@
 		}
 
 		&-button {
-			background: #b0589f;
+			background: $theme_color;
 			transition: background-color .3s;
 			display: inline-block;
 			line-height: 1.2;
@@ -159,5 +162,55 @@
 		}
 	}
 
+	//navigation
+	.owl-nav {
+		position: absolute;
+		top: -60px;
+		right: 5px;
+		margin-top: 0;
+		button.owl-prev, button.owl-next{
+			background: $theme_color;
+			color: #fff;
+			margin-right: 0;
+			margin-left: 10px;
+			padding: 4px 12px !important;
+			border-radius: 0;
+			font-size: 14px !important;
+			transition:all 0.3s;
+			&:focus,&:active{
+				-webkit-tap-highlight-color: transparent;
+				outline: none !important;
+			}
+			&:hover{
+				-webkit-tap-highlight-color: transparent;
+				outline: none !important;
+				background: $theme_color;
+				opacity: 0.6;
+			}
+
+		}
+	}
+
+	.owl-dots{
+		margin-top: 12px;
+		button.owl-dot{
+			background: none !important;
+
+			&:focus,&:active,&:hover,&.active{
+				-webkit-tap-highlight-color: transparent;
+				outline: none !important;
+				background: $theme_color;
+				opacity: 1;
+				span{
+					background: $theme_color ;
+				}
+			}
+		}
+	}
+
+	.owl-stage, .owl-drag .owl-item{
+		-ms-touch-action: auto;
+		touch-action: auto;
+	}
 }
 
