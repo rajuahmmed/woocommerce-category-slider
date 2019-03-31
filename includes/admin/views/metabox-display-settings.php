@@ -113,31 +113,32 @@ echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slide
 	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 
-echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_primary_color_args', array(
-	'name'  => 'primary_color',
-	'label' => __( 'Primary Color', 'woo-category-slider-by-pluginever' ),
-	'value' => wc_category_slider_get_meta( $post->ID, 'primary_color', '#b0589f' ),
+echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_button_bg_color_args', array(
+	'name'  => 'button_bg_color',
+	'label' => __( 'Button Background', 'woo-category-slider-by-pluginever' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'button_bg_color', '#b0589f' ),
 	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 
-echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_secondary_color_args', array(
-	'name'  => 'secondary_color',
-	'label' => __( 'Secondary Color', 'woo-category-slider-by-pluginever' ),
-	'value' => wc_category_slider_get_meta( $post->ID, 'primary_color', '#ffff' ),
+echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_button_color_args', array(
+	'name'  => 'button_color',
+	'label' => __( 'Button Color', 'woo-category-slider-by-pluginever' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'button_color', '#fff' ),
 	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
-	'attrs' => array(
-		'disabled' => 'disabled',
-	),
 ), $post->ID ) );
 
-echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_content_color_args', array(
-	'name'  => 'content_color',
-	'label' => __( 'Content Color', 'woo-category-slider-by-pluginever' ),
-	'value' => wc_category_slider_get_meta( $post->ID, 'primary_color', '#000000' ),
+echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_name_color_args', array(
+	'name'  => 'name_color',
+	'label' => __( 'Category Name Color', 'woo-category-slider-by-pluginever' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'name_color', '#000' ),
 	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
-	'attrs' => array(
-		'disabled' => 'disabled',
-	),
+), $post->ID ) );
+
+echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_description_color_args', array(
+	'name'  => 'description_color',
+	'label' => __( 'Description Color', 'woo-category-slider-by-pluginever' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'description_color', '#000' ),
+	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_content_bg_args', array(
@@ -153,21 +154,27 @@ echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_sl
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_border_color_args', array(
 	'name'  => 'border_color',
 	'label' => __( 'Border Color', 'woo-category-slider-by-pluginever' ),
-	'value' => wc_category_slider_get_meta( $post->ID, 'primary_color', '#ddd' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'border_color', '#ddd' ),
+), $post->ID ) );
+
+echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_border_hover_color_args', array(
+	'name'  => 'border_hover_color',
+	'label' => __( 'Border Hover Color', 'woo-category-slider-by-pluginever' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'border_hover_color', '#ddd' ),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_border_width_args', array(
 	'name'  => 'border_width',
 	'label' => __( 'Border Width', 'woo-category-slider-by-pluginever' ),
 	'type'  => 'number',
-	'value' => wc_category_slider_get_meta( $post->ID, 'number', '1' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'border_width', '1' ),
 	'desc'  => __( 'Unit is in px. only input number', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_custom_class_args', array(
 	'name'  => 'custom_class',
 	'label' => __( 'Custom CSS Class', 'woo-category-slider-by-pluginever' ),
-	'value' => wc_category_slider_get_meta( $post->ID, 'number' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'custom_class', '' ),
 	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 

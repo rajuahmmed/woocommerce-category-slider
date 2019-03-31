@@ -70,8 +70,8 @@ class WC_Category_Slider_Shortcode {
 		$empty_product_count = wc_category_slider_get_meta( $post_id, 'empty_product_count', 'off' );
 		$empty_border        = wc_category_slider_get_meta( $post_id, 'empty_border', 'off' );
 		$empty_button        = wc_category_slider_get_meta( $post_id, 'empty_button', 'off' );
-		$button_text        = wc_category_slider_get_meta( $post_id, 'button_text', __('Shop Now', 'woo-category-slider-by-pluginever') );
-
+		$button_text         = wc_category_slider_get_meta( $post_id, 'button_text', __( 'Shop Now', 'woo-category-slider-by-pluginever' ) );
+		$image_size          = 'large';
 		if ( 'all' != $selection_type ) {
 			$selected_category_ids = wc_category_slider_get_meta( $post_id, 'selected_categories', [] );
 
@@ -80,7 +80,7 @@ class WC_Category_Slider_Shortcode {
 			}
 		}
 
-		$terms = get_terms( apply_filters( 'wc_category_slider_term_list_args', array(
+		$terms = wc_category_slider_get_categories( apply_filters( 'wc_category_slider_term_list_args', array(
 			'taxonomy'   => 'product_cat',
 			'orderby'    => $orderby,
 			'order'      => $order,
@@ -92,6 +92,7 @@ class WC_Category_Slider_Shortcode {
 			'childless'  => false,
 		), $post_id ) );
 
+		$terms = apply_filters( 'wc_category_slider_categories', $terms, $post_id );
 
 		$theme_class   = 'wc-category-' . $theme;
 		$slider_class  = 'wc-category-slider-' . $post_id;
@@ -114,66 +115,42 @@ class WC_Category_Slider_Shortcode {
 
 		<div class="wc-category-slider <?php echo $wrapper_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>" data-slider-config='<?php echo $this->get_slider_config( $post_id ); ?>'>
 			<?php
-			foreach ( $terms as $term ) {
-
-				$settings = wc_category_slider_get_categories( array(
-					'slider_id' => $post_id,
-					'include'   => $term->term_id,
-				) );
-
-				$settings = reset( $settings );
-
-				$image = $settings['image'] != WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg' ? esc_url( $settings['image'] ) : '';
-
-				//add "empty-image" class if image is empty or hidden
-				$image_class = '';
-				if ( $empty_image == 'on' ) {
-					$image_class = 'empty-image';
-				} elseif ( empty( $image ) ) {
-					$image_class = 'empty-image';
-				}
-
-				$single_classes   = array();
-				$single_classes[] = $image_class;
-				$single_classes[] = $empty_border == 'on' ? 'empty-border' : '';
-				$single_classes   = implode( ' ', $single_classes );
-				?>
-
-				<div class="wc-slide <?php echo $single_classes ?>">
+			foreach ( $terms as $term ) { ?>
+				<div class="wc-slide">
 
 					<!--Image-->
 					<div class="wc-slide-image-wrapper">
-						<?php if ( empty( $image_class ) && ! empty( $image ) ) { ?>
-							<?php echo sprintf( '<a class="wc-slide-link" href="%s"><img src="%s" alt="%s"></a>', $settings['url'], $image, $term->name ) ?>
+						<?php if ( 'on' !== $empty_image && ! empty( $term['image_id'] ) ) { ?>
+							<?php echo sprintf( '<a class="wc-slide-link" href="%s">%s</a>', $term['url'], wp_get_attachment_image($term['image_id'], $image_size) ) ?>
 						<?php } ?>
 					</div>
 
 					<div class="wc-slide-content-wrapper">
 
 						<!--Icon-->
-						<?php if ( ! empty( $settings['icon'] ) ) {
-							echo sprintf( '<i class="fa %s wc-slide-icon fa-2x" aria-hidden="true"></i>', esc_attr( $settings['icon'] ) );
+						<?php if ( ! empty( $term['icon'] ) ) {
+							echo sprintf( '<i class="fa %s wc-slide-icon fa-2x" aria-hidden="true"></i>', esc_attr( $term['icon'] ) );
 						} ?>
 
 						<!--Title-->
 						<?php if ( $empty_name != 'on' ) { ?>
 							<a href="#" class="wc-slide-link">
-								<h3 class="wc-slide-title"><?php echo $term->name ?></h3></a>
+								<h3 class="wc-slide-title"><?php echo $term['name'] ?></h3></a>
 						<?php } ?>
 
 						<!--Product Count-->
 						<?php if ( $empty_product_count != 'on' ) { ?>
-							<span class="wc-slide-product-count"><?php _e(sprintf('%s Products', $term->count), 'woo-category-slider-by-pluginever');?></span>
+							<span class="wc-slide-product-count"><?php _e( sprintf( '%s Products', $term['count'] ), 'woo-category-slider-by-pluginever' ); ?></span>
 						<?php } ?>
 
 						<!--Description-->
-						<?php if ( $empty_content != 'on' && ! empty( $term->description ) ) {
-							echo sprintf( '<p class="wc-slide-description">%s</p>', $term->description );
+						<?php if ( $empty_content != 'on' && ! empty( $term['description'] ) ) {
+							echo sprintf( '<p class="wc-slide-description">%s</p>', $term['description'] );
 						} ?>
 
 						<!--Button-->
 						<?php if ( $empty_button != 'on' ) {
-							echo sprintf( '<a href="%s" class="wc-slide-button">%s</a>', esc_url( $settings['url'] ), 'Shop Now' );
+							echo sprintf( '<a href="%s" class="wc-slide-button">%s</a>', esc_url( $term['url'] ), 'Shop Now' );
 						} ?>
 
 					</div>
@@ -224,7 +201,7 @@ class WC_Category_Slider_Shortcode {
 					'items' => intval( wc_category_slider_get_meta( $post_id, 'tab_cols', 3 ) ),
 				],
 				'1000' => [
-					'items' => intval( wc_category_slider_get_meta( $post_id, 'cols', 3 ) ),
+					'items' => intval( wc_category_slider_get_meta( $post_id, 'cols', 4 ) ),
 				],
 			],
 		);

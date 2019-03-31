@@ -10,13 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 3.0.0
  *
  * @param array $args
- * @param int   $post_id
  *
  * @return array|int|\WP_Error
  */
 function wc_category_slider_get_categories( $args = array() ) {
-	global $wp_version;
-	$categories = array();
 	$default    = array(
 		'number'     => '20',
 		'orderby'    => 'name',
@@ -27,28 +24,13 @@ function wc_category_slider_get_categories( $args = array() ) {
 		'child_of'   => 0,
 	);
 
-	if ( version_compare( $wp_version, '4.5.0', '<' ) ) {
-		$args       = wp_parse_args( $args, $default );
-		$categories = (array) get_terms( 'product_cat', $args );
-	} else {
-		$args             = wp_parse_args( $args, $default );
-		$args['taxonomy'] = 'product_cat';
-		$categories       = (array) get_terms( $args );
-	}
+	$args             = wp_parse_args( $args, $default );
+	$args['taxonomy'] = 'product_cat';
+	$categories       = (array) get_terms( $args );
 
 	$results = [];
 	foreach ( $categories as $category ) {
-//		$image = WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg';
 		$thumbnail_id = ! empty( $meta['image_id'] ) ? $meta['image_id'] : get_term_meta( $category->term_id, 'thumbnail_id', true );
-//
-//		if ( ! empty( $thumbnail_id ) ) {
-//			$size       = is_admin() ? 'thumbnail' : apply_filters( 'wc_category_slider_image_size', 'medium', $args );
-//			$attachment = wp_get_attachment_image_src( $thumbnail_id, $size );
-//			if ( is_array( $attachment ) && ! empty( $attachment[0] ) ) {
-//				$image = esc_url( $attachment[0] );
-//			}
-//		}
-
 		$results[] = [
 			'term_id'     => $category->term_id,
 			'name'        => $category->name,
@@ -60,7 +42,7 @@ function wc_category_slider_get_categories( $args = array() ) {
 		];
 	}
 
-	return apply_filters( 'wc_category_slider_get_categories', $results, $args );
+	return $results;
 }
 
 
