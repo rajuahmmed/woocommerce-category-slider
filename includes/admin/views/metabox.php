@@ -74,38 +74,11 @@ $navs = array(
 
 <script>
 	jQuery(document).ready(function () {
-		//var $tab_item = jQuery('.tab-item');
-		//
-		//$tab_item.click(function (e) {
-		//
-		//	e.preventDefault();
-		//
-		//	$tab_item.each(function () {
-		//		jQuery(this).removeClass('active');
-		//	});
-		//
-		//	$tab_item.each(function () {
-		//		jQuery('.tab-content-item').removeClass('active');
-		//	});
-		//
-		//	var $target = jQuery(this).data('target');
-		//	jQuery('#' + $target).addClass('active');
-		//
-		//	jQuery(this).addClass('active');
-		//
-		//	if (typeof(localStorage) !== 'undefined') {
-		//		localStorage.setItem("wc_category_slider_activetab", $target);
-		//	}
-		//
-		//	var $pro_title = jQuery('.pro-feat-title').nextAll('.ever-form-group');
-		//
-		//	<?php //if(! wc_category_slider()->is_pro_installed()){ ?>
-		//	$pro_title.find('input, select, button').prop('disabled', 'disabled');
-		//	$pro_title.find('.ever-label').css('color', '#aaa');
-		//	<?php //} ?>
-		//
-		//
-		//});
+		var $pro_title = jQuery('.pro-feat-title').nextAll('.ever-form-group');
+		<?php if(! wc_category_slider()->is_pro_installed()){ ?>
+		$pro_title.find('input, select, button').prop('disabled', 'disabled');
+		$pro_title.find('.ever-label').css('color', '#aaa');
+		<?php } ?>
 
 		function CategorySliderSetActiveTab($target) {
 			jQuery('.tab-item, .tab-content-item').removeClass('active');

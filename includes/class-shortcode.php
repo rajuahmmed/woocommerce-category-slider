@@ -92,18 +92,18 @@ class WC_Category_Slider_Shortcode {
 			'childless'  => false,
 		), $post_id ) );
 
-		$theme_class  = 'wc-category-' . $theme;
-		$slider_class = 'wc-category-slider-' . $post_id . ' ' . $theme_class;
-		$wrapper_class = $theme_class .' '.$slider_class;
-		if('on' == $empty_image){
+		$theme_class   = 'wc-category-' . $theme;
+		$slider_class = 'wc-category-slider-' . $post_id;
+		$wrapper_class = $theme_class . ' ' . $slider_class;
+		if ( 'on' == $empty_image ) {
 			$wrapper_class .= ' hide-image';
 		}
 
-		if('on' == $empty_content){
+		if ( 'on' == $empty_content ) {
 			$wrapper_class .= ' hide-content';
 		}
 
-		if('on' == $empty_border){
+		if ( 'on' == $empty_border ) {
 			$wrapper_class .= ' hide-border';
 		}
 
@@ -143,9 +143,9 @@ class WC_Category_Slider_Shortcode {
 
 					<!--Image-->
 					<div class="wc-slide-image-wrapper">
-					<?php if ( empty( $image_class ) && ! empty( $image ) ) { ?>
+						<?php if ( empty( $image_class ) && ! empty( $image ) ) { ?>
 							<?php echo sprintf( '<a class="wc-slide-link" href="%s"><img src="%s" alt="%s"></a>', $settings['url'], $image, $term->name ) ?>
-					<?php } ?>
+						<?php } ?>
 					</div>
 
 					<div class="wc-slide-content-wrapper">
@@ -182,7 +182,14 @@ class WC_Category_Slider_Shortcode {
 
 			?>
 		</div>
+		<style>
+			<?php if('basic' == $theme){ ?>
+			.<?php echo $slider_class;?> .owl-item {
+				min-height: 300px;
+			}
 
+			<?php } ?>
+		</style>
 		<?php
 
 		do_action( 'wc_category_slider_after_html', $post_id );
@@ -208,7 +215,7 @@ class WC_Category_Slider_Shortcode {
 			'singleItem'         => true,
 			'autoplay'           => 'on' == wc_slider_get_settings( $post_id, 'autoplay' ) ? true : false,
 			'loop'               => 'on' == wc_slider_get_settings( $post_id, 'loop' ) ? true : false,
-			'lazyLoad'           => 'on' == wc_slider_get_settings( $post_id, 'lazy_load' )  ? true : false,
+			'lazyLoad'           => 'on' == wc_slider_get_settings( $post_id, 'lazy_load' ) ? true : false,
 			'margin'             => intval( wc_slider_get_settings( $post_id, 'column_gap', 10 ) ),
 			'autoplayTimeout'    => intval( wc_slider_get_settings( $post_id, 'slider_speed', 2000 ) ),
 			'autoplayHoverPause' => true,
