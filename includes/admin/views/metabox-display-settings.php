@@ -52,7 +52,7 @@ echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_paginate',
 	'label' => __( 'Hide Pagination', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_paginate', 'off' ),
-	'desc' => __('Show/Hide dotted pagination', 'woo-category-slider-by-pluginever' )
+	'desc'  => __( 'Show/Hide dotted pagination', 'woo-category-slider-by-pluginever' )
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
@@ -95,7 +95,6 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_b
 	'name'     => 'button_text',
 	'label'    => __( 'Button Text', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
-	'value'    => wc_category_slider_get_meta( $post->ID, 'button_text', __( 'Shop Now', 'woo-category-slider-by-pluginever' ) ),
 ), $post->ID ) );
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_button_type_args', array(
 	'name'             => 'button_type',
@@ -103,7 +102,6 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	'disabled'         => 'disabled',
 	'show_option_all'  => '',
 	'show_option_none' => '',
-	'selected'         => wc_category_slider_get_meta( $post->ID, 'button_type', 'solid-btn' ),
 	'options'          => array(
 		'solid-btn'       => 'Solid',
 		'transparent-btn' => 'Transparent'
@@ -113,7 +111,6 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_animate_border_args', array(
 	'name'     => 'animate_border',
 	'label'    => __( 'Animate Border', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'animate_border', 'off' ),
 	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
@@ -121,7 +118,6 @@ echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slide
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_show_desc_args', array(
 	'name'     => 'show_desc',
 	'label'    => __( 'Show Category Description', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'animate_border', 'off' ),
 	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
@@ -129,7 +125,6 @@ echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slide
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_button_bg_color_args', array(
 	'name'     => 'button_bg_color',
 	'label'    => __( 'Button Background', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'button_bg_color', '#b0589f' ),
 	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
@@ -137,7 +132,6 @@ echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_sl
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_button_color_args', array(
 	'name'     => 'button_color',
 	'label'    => __( 'Button Color', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'button_color', '#fff' ),
 	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
@@ -145,7 +139,6 @@ echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_sl
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_name_color_args', array(
 	'name'     => 'name_color',
 	'label'    => __( 'Category Name Color', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'name_color', '#000' ),
 	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
@@ -153,7 +146,6 @@ echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_sl
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_description_color_args', array(
 	'name'     => 'description_color',
 	'label'    => __( 'Description Color', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'description_color', '#000' ),
 	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
@@ -161,39 +153,33 @@ echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_sl
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_content_bg_args', array(
 	'name'     => 'content_bg',
 	'label'    => __( 'Content Background Color', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'primary_color', 'rgba(237,237,237,1)' ),
-	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_border_color_args', array(
 	'name'     => 'border_color',
 	'label'    => __( 'Border Color', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'border_color', '#ddd' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_border_hover_color_args', array(
 	'name'     => 'border_hover_color',
 	'label'    => __( 'Border Hover Color', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'border_hover_color', '#ddd' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_border_width_args', array(
-	'name'     => 'border_width',
-	'label'    => __( 'Border Width', 'woo-category-slider-by-pluginever' ),
-	'type'     => 'number',
-	'value'    => wc_category_slider_get_meta( $post->ID, 'border_width', '1' ),
-	'desc'     => __( 'Unit is in px. only input number', 'woo-category-slider-by-pluginever' ),
-	'disabled' => 'disabled',
+	'name'        => 'border_width',
+	'label'       => __( 'Border Width', 'woo-category-slider-by-pluginever' ),
+	'type'        => 'number',
+	'placeholder' => '1',
+	'desc'        => __( 'Unit is in px. only input number', 'woo-category-slider-by-pluginever' ),
+	'disabled'    => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_custom_class_args', array(
 	'name'     => 'custom_class',
 	'label'    => __( 'Custom CSS Class', 'woo-category-slider-by-pluginever' ),
-	'value'    => wc_category_slider_get_meta( $post->ID, 'custom_class', '' ),
-	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
 
@@ -204,7 +190,6 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	'placeholder'      => '',
 	'show_option_all'  => '',
 	'show_option_none' => '',
-	'selected'         => wc_category_slider_get_meta( $post->ID, 'image_size', 'default' ),
 	'options'          => array(
 		'default'             => 'Default',
 		'custom_image_size_1' => 'Custom Image Size 1',

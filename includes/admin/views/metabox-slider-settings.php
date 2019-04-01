@@ -41,6 +41,14 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_p
 	'placeholder' => '1',
 ), $post->ID ) );
 
+echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_autoplay_speed_args', array(
+	'name'     => 'autoplay_speed',
+	'label'    => __( 'AutoPlay Speed', 'woo-category-slider-by-pluginever' ),
+	'type'     => 'number',
+	'disabled' => 'disabled',
+	'placeholder' => '3000',
+), $post->ID ) );
+
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_slider_speed_args', array(
 	'name'     => 'slider_speed',
 	'label'    => __( 'Slider Speed', 'woo-category-slider-by-pluginever' ),
@@ -60,6 +68,7 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_c
 	'type'     => 'number',
 	'label'    => __( 'Column Gap', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
+	'placeholder' => '10',
 ), $post->ID ) );
 
 
