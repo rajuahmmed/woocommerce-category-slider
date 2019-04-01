@@ -70,7 +70,7 @@ class WC_Category_Slider_Shortcode {
 		$empty_product_count = wc_category_slider_get_meta( $post_id, 'empty_product_count', 'off' );
 		$empty_border        = wc_category_slider_get_meta( $post_id, 'empty_border', 'off' );
 		$empty_button        = wc_category_slider_get_meta( $post_id, 'empty_button', 'off' );
-		$empty_icon        = wc_category_slider_get_meta( $post_id, 'empty_icon', 'off' );
+		$empty_icon          = wc_category_slider_get_meta( $post_id, 'empty_icon', 'off' );
 		$button_text         = wc_category_slider_get_meta( $post_id, 'button_text', __( 'Shop Now', 'woo-category-slider-by-pluginever' ) );
 		$image_size          = 'large';
 		if ( 'all' != $selection_type ) {
@@ -89,7 +89,6 @@ class WC_Category_Slider_Shortcode {
 			'include'    => $selected_categories,
 			'number'     => $limit_number,
 			//'child_of'   => $include_child == 'on' ? $selected_categories : 0,
-			'child_of'   => 0,
 			'childless'  => false,
 		), $post_id ) );
 
@@ -121,9 +120,7 @@ class WC_Category_Slider_Shortcode {
 
 					<!--Image-->
 					<div class="wc-slide-image-wrapper">
-						<?php if ( 'on' !== $empty_image && ! empty( $term['image_id'] ) ) { ?>
-							<?php echo sprintf( '<a class="wc-slide-link" href="%s">%s</a>', $term['url'], wp_get_attachment_image($term['image_id'], $image_size) ) ?>
-						<?php } ?>
+						<?php if ( 'on' !== $empty_image && ! empty( $term['image_id'] ) ) { ?><?php echo sprintf( '<a class="wc-slide-link" href="%s">%s</a>', $term['url'], wp_get_attachment_image( $term['image_id'], $image_size ) ) ?><?php } ?>
 					</div>
 
 					<div class="wc-slide-content-wrapper">
@@ -142,6 +139,21 @@ class WC_Category_Slider_Shortcode {
 						<!--Product Count-->
 						<?php if ( $empty_product_count != 'on' ) { ?>
 							<span class="wc-slide-product-count"><?php _e( sprintf( '%s Products', $term['count'] ), 'woo-category-slider-by-pluginever' ); ?></span>
+						<?php } ?>
+
+						<!--Child Terms-->
+						<?php if ( $include_child == 'on' ) {
+							$taxonomy = 'product_cat';
+							$children = array_filter( get_term_children( $term['term_id'], $taxonomy ) );
+							?>
+							<ul class="wc-slide-child-items">
+								<?php
+								foreach ( $children as $child ) {
+									$child_term = get_term_by( 'id', $child, $taxonomy );
+									echo sprintf( ' <li class="wc-slide-child-item"><a href="%s" class="wc-slide-link">%s (%s)</a></li> ', get_term_link( $child, $taxonomy ), $child_term->name, $child_term->count );
+								}
+								?>
+							</ul>
 						<?php } ?>
 
 						<!--Description-->
@@ -189,7 +201,7 @@ class WC_Category_Slider_Shortcode {
 			'margin'             => intval( wc_category_slider_get_meta( $post_id, 'column_gap', 10 ) ),
 			'autoplayTimeout'    => intval( wc_category_slider_get_meta( $post_id, 'slider_speed', 2000 ) ),
 			'autoplayHoverPause' => true,
-//			'nav'                => 'on' == wc_category_slider_get_meta( $post_id, 'hide_nav' ) ? true : false,
+			//			'nav'                => 'on' == wc_category_slider_get_meta( $post_id, 'hide_nav' ) ? true : false,
 			'nav'                => true,
 			'navText'            => [ '<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>' ],
 			'stagePadding'       => 4,
@@ -207,10 +219,10 @@ class WC_Category_Slider_Shortcode {
 			],
 		);
 
-//		if ( ! empty( $settings['fluid_speed'] ) ) {
-//			$config['fluidSpeed'] = intval( wc_category_slider_get_meta( $post_id, 'slider_speed' ) );
-//			$config['smartSpeed'] = intval( wc_category_slider_get_meta( $post_id, 'slider_speed' ) );
-//		}
+		//		if ( ! empty( $settings['fluid_speed'] ) ) {
+		//			$config['fluidSpeed'] = intval( wc_category_slider_get_meta( $post_id, 'slider_speed' ) );
+		//			$config['smartSpeed'] = intval( wc_category_slider_get_meta( $post_id, 'slider_speed' ) );
+		//		}
 
 		$config = apply_filters( 'wc_slider_config', $config );
 
