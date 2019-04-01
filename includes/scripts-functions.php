@@ -58,6 +58,7 @@ function wc_slider_load_admin_assets( $hook ) {
 	wp_enqueue_style( 'wc-category-slider' );
 	wp_enqueue_media();
 	wp_enqueue_style( 'wp-color-picker');
+	wp_enqueue_script( 'wp-color-picker-alpha', WC_SLIDER_ASSETS_URL . '/js/wp-color-picker-alpha.min.js', [ 'jquery', 'wp-color-picker' ], date( 'i' ) , true );
 	wp_enqueue_script( 'wc-category-slider' );
 }
 

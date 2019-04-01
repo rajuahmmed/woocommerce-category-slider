@@ -59,7 +59,7 @@ jQuery(document).ready(function ($, window, document, undefined) {
 
 			$('.selected_categories_field').css('display', $display);
 
-		},
+		}
 
 	};
 

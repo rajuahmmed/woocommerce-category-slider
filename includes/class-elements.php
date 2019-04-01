@@ -851,6 +851,7 @@ class WC_Slider_Elements {
 			'id'             => '',
 			'name'           => '',
 			'value'          => '',
+			'alpha'          => true,
 			'type'           => 'text',
 			'required'       => false,
 			'label'          => '',
@@ -895,6 +896,10 @@ class WC_Slider_Elements {
 
 		if ( isset( $args['disabled'] ) && $args['disabled'] ) {
 			$args['attrs']['disabled'] = 'disabled';
+		}
+
+		if ( isset( $args['alpha'] ) && $args['alpha'] ) {
+			$args['data']['alpha'] = 'true';
 		}
 
 		$args['wrapper_class'] .= ' ever-form-group ever-colorpicker-container ';
