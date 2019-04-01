@@ -68,5 +68,6 @@ jQuery(document).ready(function ($, window, document, undefined) {
 	$.wc_category_slider_admin.regenerateSlides();
 	$('.select-2').select2();
 	$('.ever-colorpicker').wpColorPicker();
+	$('.ever-colorpicker:disabled').parentsUntil('.wp-picker-container').prev().prop('disabled', 'disabled');
 
 });

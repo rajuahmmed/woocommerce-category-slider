@@ -56,7 +56,6 @@ function wc_slider_load_admin_assets( $hook ) {
 	], date( 'i' ), true );
 	//wp_localize_script('wc-category-slider', 'WCS', ['ajaxurl' => admin_url( 'admin-ajax.php' ), 'nonce' => 'wc-category-slider']);
 	wp_enqueue_style( 'wc-category-slider' );
-
 	wp_enqueue_media();
 	wp_enqueue_style( 'wp-color-picker');
 	wp_enqueue_script( 'wc-category-slider' );

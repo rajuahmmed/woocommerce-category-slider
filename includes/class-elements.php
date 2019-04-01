@@ -466,7 +466,7 @@ class WC_Slider_Elements {
 			'label'          => 'Switcher',
 			'desc'           => null,
 			'class'          => '',
-			'disabled'       => true,
+			'disabled'       => false,
 			'readonly'       => false,
 			'double_columns' => false,
 			'required'       => false,
@@ -486,10 +486,6 @@ class WC_Slider_Elements {
 
 		if ( $args['required'] ) {
 			$args['attrs']['required'] = 'required';
-		}
-
-		if ( $args['disabled'] ) {
-			$args['attrs']['disabled'] = 'disabled';
 		}
 
 		if ( isset( $args['readonly'] ) && $args['readonly'] ) {
@@ -524,7 +520,7 @@ class WC_Slider_Elements {
 
 		$output
 			.= '<div class="ever-col-7 switch-container"><label class="switch" for="' . $args['id'] . '" class="ever-label">
-					  ' . '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" value= "' . $args['value'] . '" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '" ' . $checked . '  />' . '
+					  ' . '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" value= "' . $args['value'] . '" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '" ' . $checked . ' ' . $attributes . '  />' . '
 					  <span class="slider round"></span>
 					  <span class="switch-text"></span>
 					</label>

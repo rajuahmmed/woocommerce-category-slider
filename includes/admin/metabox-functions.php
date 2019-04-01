@@ -63,7 +63,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 			'custom' => 'Custom'
 		),
 		'required'         => true,
-		'selected'         => get_post_meta( $post->ID, 'selection_type', true ),
+		'selected'         => wc_category_slider_get_meta( $post->ID, 'selection_type' ),
 		'desc'             => __( 'Select all categories or any custom categories', 'woo-category-slider-by-pluginever' ),
 	) );
 
@@ -77,7 +77,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		'multiple'         => true,
 		'options'          => wc_slider_get_category_list(),
 		'required'         => false,
-		'selected'         => get_post_meta( $post->ID, 'selected_categories', true ),
+		'selected'         => wc_category_slider_get_meta( $post->ID, 'selected_categories' ),
 		'desc'             => __( '', 'woo-category-slider-by-pluginever' ),
 		'attrs'            => array(
 			'multiple' => 'multiple'
@@ -89,7 +89,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		'label'          => __( 'Limit Items', 'woo-category-slider-by-pluginever' ),
 		'double_columns' => false,
 		'type'           => 'number',
-		'value'          => get_post_meta( $post->ID, 'limit_number', true ),
+		'value'          => wc_category_slider_get_meta( $post->ID, 'limit_number', 10 ),
 		'desc'           => __( 'Limit the number of category appear on the slider', 'woo-category-slider-by-pluginever' ),
 	) );
 
@@ -97,7 +97,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		'label'          => __( 'Include Children', 'woo-category-slider-by-pluginever' ),
 		'name'           => 'include_child',
 		'double_columns' => false,
-		'value'          => get_post_meta( $post->ID, 'include_child', true ),
+		'value'          => wc_category_slider_get_meta( $post->ID, 'include_child', 'on' ),
 		'desc'           => __( 'Will include subcategories of the selected categories', 'woo-category-slider-by-pluginever' ),
 	) );
 
@@ -140,7 +140,6 @@ function wc_slider_render_category_settings_metabox( $post ) {
 			'asc'  => 'ASC',
 			'desc' => 'DESC',
 		),
-		'selected'         => 'aa',
 		'required'         => false,
 		'disabled'         => true,
 		'desc'             => __( 'Order category slider according to the selection type', 'woo-category-slider-by-pluginever' ),

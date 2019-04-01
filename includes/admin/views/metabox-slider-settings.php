@@ -11,44 +11,55 @@ echo wc_category_slider()->elements->switcher( array(
 echo wc_category_slider()->is_pro_installed() ? '' : sprintf( '<h2 class="pro-feat-title">%s</h2>', __( 'Pro Features', 'woo-category-slider-by-pluginever' ) );
 
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_lazy_load_args', array(
-	'name'  => 'lazy_load',
-	'label' => __( 'Lazy Load', 'woo-category-slider-by-pluginever' ),
-	'value' => wc_category_slider_get_meta( $post->ID, 'lazy_load', 'off' ),
+	'name'     => 'lazy_load',
+	'label'    => __( 'Lazy Load', 'woo-category-slider-by-pluginever' ),
+	'value'    => wc_category_slider_get_meta( $post->ID, 'lazy_load', 'off' ),
+	'disabled' => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_cols_args', array(
-	'name'  => 'cols',
-	'type'  => 'number',
-	'label' => __( 'Number of Column (Desktop)', 'woo-category-slider-by-pluginever' ),
+	'name'        => 'cols',
+	'type'        => 'number',
+	'label'       => __( 'Number of Column (Desktop)', 'woo-category-slider-by-pluginever' ),
+	'disabled'    => 'disabled',
+	'placeholder' => '4',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_tab_cols_args', array(
-	'name'  => 'tab_cols',
-	'type'  => 'number',
-	'label' => __( 'Number of Column (Tablet)', 'woo-category-slider-by-pluginever' ),
+	'name'        => 'tab_cols',
+	'type'        => 'number',
+	'label'       => __( 'Number of Column (Tablet)', 'woo-category-slider-by-pluginever' ),
+	'disabled'    => 'disabled',
+	'placeholder' => '2',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_phone_cols_args', array(
-	'name'  => 'phone_cols',
-	'type'  => 'number',
-	'label' => __( 'Number of Column (Phone)', 'woo-category-slider-by-pluginever' ),
+	'name'        => 'phone_cols',
+	'type'        => 'number',
+	'label'       => __( 'Number of Column (Phone)', 'woo-category-slider-by-pluginever' ),
+	'disabled'    => 'disabled',
+	'placeholder' => '1',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_slider_speed_args', array(
-	'name'  => 'slider_speed',
-	'label' => __( 'Slider Speed', 'woo-category-slider-by-pluginever' ),
-	'type'  => 'number',
+	'name'     => 'slider_speed',
+	'label'    => __( 'Slider Speed', 'woo-category-slider-by-pluginever' ),
+	'type'     => 'number',
+	'disabled' => 'disabled',
+	'placeholder' => '2000',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_loop_args', array(
-	'name'  => 'loop',
-	'label' => __( 'Loop', 'woo-category-slider-by-pluginever' ),
+	'name'     => 'loop',
+	'label'    => __( 'Loop', 'woo-category-slider-by-pluginever' ),
+	'disabled' => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_column_gap_args', array(
-	'name'  => 'column_gap',
-	'type'  => 'number',
-	'label' => __( 'Column Gap', 'woo-category-slider-by-pluginever' ),
+	'name'     => 'column_gap',
+	'type'     => 'number',
+	'label'    => __( 'Column Gap', 'woo-category-slider-by-pluginever' ),
+	'disabled' => 'disabled',
 ), $post->ID ) );
 
 
