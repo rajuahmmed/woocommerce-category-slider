@@ -17,32 +17,34 @@ echo wc_category_slider()->elements->switcher( array(
 	'label'   => __( 'Hide Content', 'woo-category-slider-by-pluginever' ),
 	'value'   => wc_category_slider_get_meta( $post->ID, 'empty_content', 'off' ),
 	'default' => 'no',
-	'desc'    => __( '', 'woo-category-slider-by-pluginever' ),
 ) );
+
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_button',
 	'label' => __( 'Hide Button', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_button', 'off' ),
-	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
+) );
+
+echo wc_category_slider()->elements->switcher( array(
+	'name'  => 'empty_icon',
+	'label' => __( 'Hide Icon', 'woo-category-slider-by-pluginever' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'empty_icon', 'off' ),
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_name',
 	'label' => __( 'Hide Category Name', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_name', 'off' ),
-	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ) );
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_product_count',
 	'label' => __( 'Hide Product Count', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_product_count', 'off' ),
-	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ) );
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_nav',
 	'label' => __( 'Hide Navigation', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_nav', 'off' ),
-	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ) );
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_border',
