@@ -39,11 +39,13 @@ jQuery(document).ready(function ($, window, document, undefined) {
 					maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
 				});
 
-				if (maxHeight < 300) {
-					maxHeight = 300;
+				console.log(maxHeight);
+
+				if (maxHeight < 250) {
+					maxHeight = 250;
 				}
 
-				//slider.find('.wc-slide-image-wrapper').css('min-height', maxHeight);
+				slider.find('.wc-slide-image-wrapper').css('height', maxHeight);
 				// slider.find('.wc-slide-image-wrapper img').css('height', maxHeight);
 				// slider.find('.wc-slide-image-wrapper img').css('width', 'auto');
 

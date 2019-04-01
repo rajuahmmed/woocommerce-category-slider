@@ -111,15 +111,14 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_animate_border_args', array(
 	'name'     => 'animate_border',
 	'label'    => __( 'Animate Border', 'woo-category-slider-by-pluginever' ),
-	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
-	'disabled' => 'disabled',
+	'disabled' => true,
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_show_desc_args', array(
 	'name'     => 'show_desc',
 	'label'    => __( 'Show Category Description', 'woo-category-slider-by-pluginever' ),
 	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
-	'disabled' => 'disabled',
+	'disabled' => true,
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_button_bg_color_args', array(

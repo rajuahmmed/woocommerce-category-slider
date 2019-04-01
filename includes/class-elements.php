@@ -462,7 +462,7 @@ class WC_Slider_Elements {
 	public function switcher( $args = array() ) {
 		$defaults = array(
 			'name'           => 'switcher',
-			'value'          => 'on',
+			'value'          => '',
 			'label'          => 'Switcher',
 			'desc'           => null,
 			'class'          => '',
