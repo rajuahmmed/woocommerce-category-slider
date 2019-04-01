@@ -163,7 +163,7 @@ class WC_Category_Slider_Shortcode {
 
 						<!--Button-->
 						<?php if ( $empty_button != 'on' ) {
-							echo sprintf( '<a href="%s" class="wc-slide-button">%s</a>', esc_url( $term['url'] ), 'Shop Now' );
+							echo sprintf( '<a href="%s" class="wc-slide-button">%s</a>', esc_url( $term['url'] ), $button_text );
 						} ?>
 
 					</div>
