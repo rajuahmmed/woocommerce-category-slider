@@ -74,6 +74,7 @@ class WC_Category_Slider_Shortcode {
 		$empty_icon          = wc_category_slider_get_meta( $post_id, 'empty_icon', 'off' );
 		$button_text         = wc_category_slider_get_meta( $post_id, 'button_text', __( 'Shop Now', 'woo-category-slider-by-pluginever' ) );
 		$hover_style         = wc_category_slider_get_meta( $post_id, 'hover_style', 'no-hover' );
+		$icon_size           = wc_category_slider_get_meta( $post_id, 'icon_size', '2x' );
 		$image_size          = 'large';
 
 		if ( 'all' != $selection_type ) {
@@ -136,7 +137,7 @@ class WC_Category_Slider_Shortcode {
 
 							<!--Icon-->
 							<?php if ( 'off' == $empty_icon && ! empty( $term['icon'] ) ) {
-								echo sprintf( '<i class="fa %s wc-slide-icon fa-2x" aria-hidden="true"></i>', esc_attr( $term['icon'] ) );
+								echo sprintf( '<i class="fa %s wc-slide-icon fa-%s" aria-hidden="true"></i>', esc_attr( $term['icon'] ), $icon_size );
 							} ?>
 
 							<!--Title-->

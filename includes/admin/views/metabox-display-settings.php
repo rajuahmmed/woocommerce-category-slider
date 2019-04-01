@@ -142,6 +142,31 @@ echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_sl
 	'disabled' => 'disabled',
 ), $post->ID ) );
 
+echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_icon_color_args', array(
+	'name'     => 'icon_color',
+	'label'    => __( 'Icon Color', 'woo-category-slider-by-pluginever' ),
+	'disabled' => 'disabled',
+), $post->ID ) );
+
+echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_icon_size_args', array(
+	'label'            => __( 'Icon Size', 'woo-category-slider-by-pluginever' ),
+	'name'             => 'icon_size',
+	'show_option_all'  => '',
+	'show_option_none' => '',
+	'options'          => array(
+		'1x'  => '1x',
+		'2x'  => '2x',
+		'3x'  => '3x',
+		'4x'  => '4x',
+		'5x'  => '5x',
+		'6x'  => '6x',
+		'7x'  => '7x',
+		'8x'  => '8x',
+		'9x'  => '9x',
+		'10x' => '10x',
+	)
+), $post->ID ) );
+
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_description_color_args', array(
 	'name'     => 'description_color',
 	'label'    => __( 'Description Color', 'woo-category-slider-by-pluginever' ),
@@ -176,11 +201,13 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_b
 	'disabled'    => 'disabled',
 ), $post->ID ) );
 
-echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_custom_class_args', array(
-	'name'     => 'custom_class',
-	'label'    => __( 'Custom CSS Class', 'woo-category-slider-by-pluginever' ),
-	'disabled' => 'disabled',
-), $post->ID ) );
+echo wc_category_slider()->elements->textarea( array(
+	'name'     => 'fancy-textarea',
+	'label'    => __( 'Custom CSS', 'woo-category-slider-by-pluginever' ),
+	'disabled' => false,
+	'required' => false,
+	'desc' => 'Add custom css',
+) );
 
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_image_size_args', array(
@@ -197,5 +224,4 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	),
 	'disabled'         => 'disabled',
 ), $post->ID ) );
-
 
