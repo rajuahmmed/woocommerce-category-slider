@@ -215,6 +215,7 @@ function wc_category_slider_update_settings( $post_id ) {
 	update_post_meta( $post_id, 'empty_name', empty( $posted['empty_name'] ) ? 'off' : 'on' );
 	update_post_meta( $post_id, 'empty_product_count', empty( $posted['empty_product_count'] ) ? 'off' : 'on' );
 	update_post_meta( $post_id, 'empty_nav', empty( $posted['empty_nav'] ) ? 'off' : 'on' );
+	update_post_meta( $post_id, 'empty_paginate', empty( $posted['empty_paginate'] ) ? 'off' : 'on' );
 	update_post_meta( $post_id, 'empty_border', empty( $posted['empty_border'] ) ? 'off' : 'on' );
 	update_post_meta( $post_id, 'hover_style', empty( $posted['hover_style'] ) ? '' : sanitize_key( $posted['hover_style'] ) );
 	update_post_meta( $post_id, 'theme', empty( $posted['theme'] ) ? '' : sanitize_key( $posted['theme'] ) );

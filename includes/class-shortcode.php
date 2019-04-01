@@ -192,7 +192,7 @@ class WC_Category_Slider_Shortcode {
 	protected function get_slider_config( $post_id ) {
 
 		$config = array(
-			'dots'               => true,
+			'dots'               => 'off' == wc_category_slider_get_meta( $post_id, 'empty_paginate', 'off' ) ? true : false,
 			'autoHeight'         => true,
 			'singleItem'         => true,
 			'autoplay'           => 'on' == wc_category_slider_get_meta( $post_id, 'autoplay' ) ? true : false,
@@ -201,8 +201,7 @@ class WC_Category_Slider_Shortcode {
 			'margin'             => intval( wc_category_slider_get_meta( $post_id, 'column_gap', 10 ) ),
 			'autoplayTimeout'    => intval( wc_category_slider_get_meta( $post_id, 'slider_speed', 2000 ) ),
 			'autoplayHoverPause' => true,
-			//			'nav'                => 'on' == wc_category_slider_get_meta( $post_id, 'hide_nav' ) ? true : false,
-			'nav'                => true,
+			'nav'                => 'off' == wc_category_slider_get_meta( $post_id, 'empty_nav', 'off' ) ? true : false,
 			'navText'            => [ '<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>' ],
 			'stagePadding'       => 4,
 			'items'              => intval( wc_category_slider_get_meta( $post_id, 'cols', 3 ) ),

@@ -41,11 +41,20 @@ echo wc_category_slider()->elements->switcher( array(
 	'label' => __( 'Hide Product Count', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_product_count', 'off' ),
 ) );
+
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_nav',
 	'label' => __( 'Hide Navigation', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_nav', 'off' ),
 ) );
+
+echo wc_category_slider()->elements->switcher( array(
+	'name'  => 'empty_paginate',
+	'label' => __( 'Hide Pagination', 'woo-category-slider-by-pluginever' ),
+	'value' => wc_category_slider_get_meta( $post->ID, 'empty_paginate', 'off' ),
+	'desc' => __('Show/Hide dotted pagination', 'woo-category-slider-by-pluginever' )
+) );
+
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_border',
 	'label' => __( 'Hide Border', 'woo-category-slider-by-pluginever' ),
