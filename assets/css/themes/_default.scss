@@ -48,17 +48,18 @@ $theme_color: #b0589f;
 			color: #333;
 			background-color: #ededed;
 			text-align: center;
-			height: 100%;
-			width: 100%;
 			flex: 1;
-			display: flex;
-			flex-flow: column;
-			justify-content: flex-end;
+			//height: 100%;
+			//width: 100%;
+			//display: flex;
+			//flex-flow: column;
+			//justify-content: flex-end;
 		}
 
 		&-icon {
 			display: block;
 			color: inherit;
+			padding-bottom: 5px;
 		}
 
 		&-link {
