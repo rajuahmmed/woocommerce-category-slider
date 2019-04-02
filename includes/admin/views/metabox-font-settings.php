@@ -5,7 +5,7 @@ global $post;
 echo wc_category_slider()->is_pro_installed() ? '' : sprintf( '<h2 class="pro-feat-title">%s</h2>', 'Pro Features', 'woo-category-slider-by-pluginever' );
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_title_font_args', array(
-	'label'            => __( 'Title Font', 'woo-category-slider-by-pluginever' ),
+	'label'            => __( 'Title Font Family', 'woo-category-slider-by-pluginever' ),
 	'name'             => 'title_font',
 	'class'            => 'select-2 title-font',
 	'show_option_all'  => '',
@@ -18,7 +18,7 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_description_font_args', array(
-	'label'            => __( 'Description Font', 'woo-category-slider-by-pluginever' ),
+	'label'            => __( 'Description Font Family', 'woo-category-slider-by-pluginever' ),
 	'name'             => 'description_font',
 	'class'            => 'select-2 description-font',
 	'show_option_all'  => '',
@@ -31,7 +31,7 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 ), $post->ID ));
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_button_font_args', array(
-	'label'            => __( 'Button Font', 'woo-category-slider-by-pluginever' ),
+	'label'            => __( 'Button Font Family', 'woo-category-slider-by-pluginever' ),
 	'name'             => 'button_font',
 	'class'            => 'select-2 description-font',
 	'show_option_all'  => '',

@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array|int|\WP_Error
  */
 function wc_category_slider_get_categories( $args = array() ) {
-	$default    = array(
+	$default = array(
 		'number'     => '20',
 		'orderby'    => 'name',
 		'order'      => 'ASC',
@@ -31,7 +31,7 @@ function wc_category_slider_get_categories( $args = array() ) {
 	$results = [];
 	foreach ( $categories as $category ) {
 		$thumbnail_id = ! empty( $meta['image_id'] ) ? $meta['image_id'] : get_term_meta( $category->term_id, 'thumbnail_id', true );
-		$results[] = [
+		$results[]    = [
 			'term_id'     => $category->term_id,
 			'name'        => $category->name,
 			'url'         => get_term_link( $category->term_id, 'product_cat' ),
@@ -730,16 +730,18 @@ function wc_slider_get_icon_list() {
  */
 
 function wc_slider_get_font_list() {
+
 	$fonts = file_get_contents( WC_SLIDER_INCLUDES . '/admin/views/json-google-fonts.php' );
 
 	$fonts = wp_list_pluck( json_decode( $fonts )->items, 'family' );
 
-	$font_list = array();
+	$font_list = array( __( 'None', 'woo-category-slider-by-pluginever' ) );
 
 	foreach ( $fonts as $font ) {
 		$key               = urlencode( $font );
 		$font_list[ $key ] = $font;
 	}
+
 
 	return $font_list;
 
