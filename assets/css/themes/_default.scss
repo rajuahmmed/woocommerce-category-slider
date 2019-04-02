@@ -208,8 +208,33 @@ $theme_color: #b0589f;
 
 	//conditional show hide
 	&.hide-image {
-		.wc-slide-image-wrapper {
-			display: none;
+
+		&.hide-image {
+			.wc-slide {
+
+				&:before, &:after {
+					border: 0;
+				}
+
+				.wc-slide-content-wrapper {
+					position: relative;
+					right: 0;
+					left: 0;
+					background: 0 0;
+					transform: translateY(-50%);
+					transition: all .3s ease 0s;
+					padding: 15px;
+					display: flex;
+					flex-flow: column;
+					justify-content: center;
+				}
+
+				&:hover {
+					&:before, &:after {
+						border: 0;
+					}
+				}
+			}
 		}
 	}
 
