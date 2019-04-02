@@ -174,6 +174,18 @@ echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_sl
 	'disabled' => 'disabled',
 ), $post->ID ) );
 
+echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_product_count_color_args', array(
+	'name'     => 'product_count_color',
+	'label'    => __( 'Product Count Color', 'woo-category-slider-by-pluginever' ),
+	'disabled' => 'disabled',
+), $post->ID ) );
+
+echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_children_category_color_args', array(
+	'name'     => 'children_category_color',
+	'label'    => __( 'Children Category Color', 'woo-category-slider-by-pluginever' ),
+	'disabled' => 'disabled',
+), $post->ID ) );
+
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_content_bg_args', array(
 	'name'     => 'content_bg',
 	'label'    => __( 'Content Background Color', 'woo-category-slider-by-pluginever' ),
@@ -198,17 +210,11 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_b
 	'type'        => 'number',
 	'placeholder' => '1',
 	'desc'        => __( 'Unit is in px. only input number', 'woo-category-slider-by-pluginever' ),
-	'disabled'    => 'disabled',
+	'disabled'    => true,
+	'attrs' => (array(
+		'min' => 0
+	))
 ), $post->ID ) );
-
-echo wc_category_slider()->elements->textarea( array(
-	'name'     => 'fancy-textarea',
-	'label'    => __( 'Custom CSS', 'woo-category-slider-by-pluginever' ),
-	'disabled' => false,
-	'required' => false,
-	'desc' => 'Add custom css',
-) );
-
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_image_size_args', array(
 	'name'             => 'image_size',
@@ -224,4 +230,12 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	),
 	'disabled'         => 'disabled',
 ), $post->ID ) );
+
+echo wc_category_slider()->elements->textarea( apply_filters( 'wc_category_slider_custom_css_args',array(
+	'name'     => 'custom_css',
+	'label'    => __( 'Custom CSS', 'woo-category-slider-by-pluginever' ),
+	'disabled' => false,
+	'required' => false,
+	'desc'     => __( 'Add Custom CSS', 'woo-category-slider-by-pluginever' ),
+), $post->ID) );
 

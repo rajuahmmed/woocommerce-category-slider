@@ -92,12 +92,9 @@ $navs = array(
 			var $target = jQuery(this).data('target');
 			CategorySliderSetActiveTab($target);
 		});
+
+		wp.codeEditor.initialize($('body #custom_css'), WCS.codeEditor);
 	});
-
-	jQuery(document).ready(function($) {
-		wp.codeEditor.initialize($('body #fancy_textarea'), WCS.codeEditor);
-	})
-
 </script>
 
 
