@@ -123,63 +123,84 @@ class WC_Category_Slider_Shortcode {
 		?>
 
 		<div class="wc-category-slider <?php echo $wrapper_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>" data-slider-config='<?php echo $this->get_slider_config( $post_id ); ?>'>
+
 			<?php
-			foreach ( $terms as $term ) { ?>
+
+			foreach ( $terms as $term ) {
+
+				$image          = 'on' !== $empty_image && ! empty( $term['image_id'] ) ? sprintf( '<a class="wc-slide-link" href="%s">%s</a>', $term['url'], wp_get_attachment_image( $term['image_id'], $image_size ) ) : '';
+
+				$icon           = 'off' == $empty_icon && ! empty( $term['icon'] ) ? sprintf( '<i class="fa %s wc-slide-icon fa-%s" aria-hidden="true"></i>', esc_attr( $term['icon'] ), $icon_size ) : '';
+
+				$title          = $empty_name != 'on' ? sprintf( '<a href="%s" class="wc-slide-link"><h3 class="wc-slide-title">%s</h3></a>', $term['url'], $term['name'] ) : '';
+
+				$products_count = $empty_product_count != 'on' ? sprintf( '<span class="wc-slide-product-count">%s</span>', __( sprintf( '%s Products', $term['count'] ), 'woo-category-slider-by-pluginever' ) ) : '';
+
+				$child_terms = '';
+				if ( $include_child == 'on' ) {
+
+					$taxonomy = 'product_cat';
+					$children = array_filter( get_term_children( $term['term_id'], $taxonomy ) );
+
+					$child_terms .= '<ul class="wc-slide-child-items">';
+
+					foreach ( $children as $child ) {
+						$child_term  = get_term_by( 'id', $child, $taxonomy );
+						$child_terms .= sprintf( ' <li class="wc-slide-child-item"><a href="%s" class="wc-slide-link">%s (%s)</a></li> ', get_term_link( $child, $taxonomy ), $child_term->name, $child_term->count );
+					}
+
+					$child_terms .= '</ul>';
+				}
+
+				$description = $show_desc == 'on' && ! empty( $term['description'] ) ? sprintf( '<p class="wc-slide-description">%s</p>', $term['description'] ) : '';
+				$button      = $empty_button != 'on' ? sprintf( '<a href="%s" class="wc-slide-button">%s</a>', esc_url( $term['url'] ), $button_text ) : '';
+
+				?>
+
 				<div class="wc-slide">
 
-					<!--Image-->
-					<div class='wc-slide-image-wrapper'>
-						<?php if ( 'on' !== $empty_image && ! empty( $term['image_id'] ) ) { ?><?php echo sprintf( '<a class="wc-slide-link" href="%s">%s</a>', $term['url'], wp_get_attachment_image( $term['image_id'], $image_size ) ) ?><?php } ?>
-					</div>
-
-					<?php if ( 'off' == $empty_content ) { ?>
-						<div class="wc-slide-content-wrapper">
-
-							<!--Icon-->
-							<?php if ( 'off' == $empty_icon && ! empty( $term['icon'] ) ) {
-								echo sprintf( '<i class="fa %s wc-slide-icon fa-%s" aria-hidden="true"></i>', esc_attr( $term['icon'] ), $icon_size );
-							} ?>
-
-							<!--Title-->
-							<?php if ( $empty_name != 'on' ) { ?>
-								<a href="#" class="wc-slide-link">
-									<h3 class="wc-slide-title"><?php echo $term['name'] ?></h3></a>
-							<?php } ?>
-
-							<!--Product Count-->
-							<?php if ( $empty_product_count != 'on' ) { ?>
-								<span class="wc-slide-product-count"><?php _e( sprintf( '%s Products', $term['count'] ), 'woo-category-slider-by-pluginever' ); ?></span>
-							<?php } ?>
-
-							<!--Child Terms-->
-							<?php if ( $include_child == 'on' ) {
-								$taxonomy = 'product_cat';
-								$children = array_filter( get_term_children( $term['term_id'], $taxonomy ) );
-								?>
-								<ul class="wc-slide-child-items">
-									<?php
-									foreach ( $children as $child ) {
-										$child_term = get_term_by( 'id', $child, $taxonomy );
-										echo sprintf( ' <li class="wc-slide-child-item"><a href="%s" class="wc-slide-link">%s (%s)</a></li> ', get_term_link( $child, $taxonomy ), $child_term->name, $child_term->count );
-									}
-									?>
-								</ul>
-							<?php } ?>
-
-							<!--Description-->
-							<?php if ( $show_desc == 'on' && ! empty( $term['description'] ) ) {
-								echo sprintf( '<p class="wc-slide-description">%s</p>', $term['description'] );
-							} ?>
-
-							<!--Button-->
-							<?php if ( $empty_button != 'on' ) {
-								echo sprintf( '<a href="%s" class="wc-slide-button">%s</a>', esc_url( $term['url'] ), $button_text );
-							} ?>
-
-						</div>
-					<?php } ?>
+				<!--Image-->
+				<div class='wc-slide-image-wrapper'>
+					<?php echo $image; ?>
 				</div>
-			<?php }
+
+				<?php if ( 'off' == $empty_content ) { ?>
+					<div class="wc-slide-content-wrapper">
+
+						<?php
+
+						//For theme 6-8
+						if ( in_array( $theme, array( 'pro-6', 'pro-7', 'pro-8' ) ) ) {
+
+							echo '<div class="wc-slide-before-hover">';
+							echo $icon;
+							echo $title;
+							echo $products_count;
+							echo $child_terms;
+							echo $description;
+							echo '</div>';
+
+							echo '<div class="wc-slide-after-hover">';
+							echo $title;
+							echo $products_count;
+							echo $button;
+							echo '</div>';
+
+						} else {
+
+							echo $icon;
+							echo $title;
+							echo $products_count;
+							echo $child_terms;
+							echo $description;
+							echo $button;
+
+						}
+
+						?>
+					</div>                </div>
+				<?php }
+			}
 
 			?>
 		</div>
@@ -201,7 +222,10 @@ class WC_Category_Slider_Shortcode {
 	 *
 	 * @return object
 	 */
-	protected function get_slider_config( $post_id ) {
+	protected
+	function get_slider_config(
+		$post_id
+	) {
 
 		$config = array(
 			'dots'               => 'off' == wc_category_slider_get_meta( $post_id, 'empty_paginate', 'off' ) ? true : false,
@@ -248,7 +272,10 @@ class WC_Category_Slider_Shortcode {
 	 *
 	 */
 
-	public function get_slider_styles( $post_id ) {
+	public
+	function get_slider_styles(
+		$post_id
+	) {
 		$theme        = wc_category_slider_get_meta( $post_id, 'theme' );
 		$empty_border = wc_category_slider_get_meta( $post_id, 'empty_border', 'off' );
 
