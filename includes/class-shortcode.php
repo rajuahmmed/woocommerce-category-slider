@@ -128,13 +128,10 @@ class WC_Category_Slider_Shortcode {
 
 			foreach ( $terms as $term ) {
 
-				$image          = 'on' !== $empty_image && ! empty( $term['image_id'] ) ? sprintf( '<a class="wc-slide-link" href="%s">%s</a>', $term['url'], wp_get_attachment_image( $term['image_id'], $image_size ) ) : '';
-
-				$icon           = 'off' == $empty_icon && ! empty( $term['icon'] ) ? sprintf( '<i class="fa %s wc-slide-icon fa-%s" aria-hidden="true"></i>', esc_attr( $term['icon'] ), $icon_size ) : '';
-
-				$title          = $empty_name != 'on' ? sprintf( '<a href="%s" class="wc-slide-link"><h3 class="wc-slide-title">%s</h3></a>', $term['url'], $term['name'] ) : '';
-
-				$products_count = $empty_product_count != 'on' ? sprintf( '<span class="wc-slide-product-count">%s</span>', __( sprintf( '%s Products', $term['count'] ), 'woo-category-slider-by-pluginever' ) ) : '';
+				$image = 'on' !== $empty_image && ! empty( $term['image_id'] ) ? sprintf( '<div class="wc-slide-image-wrapper"><a class="wc-slide-link" href="%s">%s</a></div>', $term['url'], wp_get_attachment_image( $term['image_id'], $image_size ) ) : '';
+				$icon  = 'off' == $empty_icon && ! empty( $term['icon'] ) ? sprintf( '<i class="fa %s wc-slide-icon fa-%s" aria-hidden="true"></i>', esc_attr( $term['icon'] ), $icon_size ) : '';
+				$title = $empty_name != 'on' ? sprintf( '<a href="%s" class="wc-slide-link"><h3 class="wc-slide-title">%s</h3></a>', $term['url'], $term['name'] ) : '';
+				$count = $empty_product_count != 'on' ? sprintf( '<span class="wc-slide-product-count">%s</span>', __( sprintf( '<span>%s</span> Products', $term['count'] ), 'woo-category-slider-by-pluginever' ) ) : '';
 
 				$child_terms = '';
 				if ( $include_child == 'on' ) {
@@ -160,29 +157,68 @@ class WC_Category_Slider_Shortcode {
 				<div class="wc-slide">
 
 				<!--Image-->
-				<div class='wc-slide-image-wrapper'>
-					<?php echo $image; ?>
-				</div>
+				<?php echo $image; ?>
+
+				<?php if ( $theme == 'pro-18' )  {
+					echo $count;
+				} ?>
 
 				<?php if ( 'off' == $empty_content ) { ?>
 					<div class="wc-slide-content-wrapper">
 
 						<?php
 
-						//For theme 6-8
-						if ( in_array( $theme, array( 'pro-6', 'pro-7', 'pro-8' ) ) ) {
+						//generate markup based on theme check
+						if ( in_array( $theme, array( 'pro-6', 'pro-7', 'pro-8', 'pro-9', 'pro-10' ) ) ) {
 
 							echo '<div class="wc-slide-before-hover">';
 							echo $icon;
 							echo $title;
-							echo $products_count;
+							echo $count;
 							echo $child_terms;
 							echo $description;
 							echo '</div>';
 
 							echo '<div class="wc-slide-after-hover">';
 							echo $title;
-							echo $products_count;
+							echo $count;
+							echo $button;
+							echo '</div>';
+
+						} elseif ( in_array( $theme, array( 'pro-14', 'pro-15' ) ) ) {
+							echo '<div class="wc-slide-header">';
+							echo $title;
+							echo $icon;
+							echo '</div>';
+
+							echo '<div class="wc-slide-footer">';
+							echo $count;
+							echo $child_terms;
+							echo $description;
+							echo $button;
+							echo '</div>';
+
+						} elseif ( in_array( $theme, array( 'pro-16' ) ) ) {
+							echo '<div class="wc-slide-content-bottom">';
+							echo $title;
+							echo $icon;
+							echo $count;
+							echo '<div class="content-footer">';
+							echo $child_terms;
+							echo $description;
+							echo $button;
+							echo '</div>';
+							echo '</div>';
+						} elseif ( in_array( $theme, array( 'pro-17' ) ) ) {
+							echo '<div class="wc-slide-content-top">';
+							echo $icon;
+							echo $count;
+							echo '</div>';
+							echo "<div class='wc-slide-heading'>$title</div>";
+							echo '<div class="wc-slide-content-bottom">';
+							echo $title;
+							echo $child_terms;
+							echo $description;
 							echo $button;
 							echo '</div>';
 
@@ -190,7 +226,7 @@ class WC_Category_Slider_Shortcode {
 
 							echo $icon;
 							echo $title;
-							echo $products_count;
+							echo $count;
 							echo $child_terms;
 							echo $description;
 							echo $button;
