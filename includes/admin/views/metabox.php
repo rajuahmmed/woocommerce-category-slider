@@ -41,18 +41,21 @@ $navs = array(
 						break;
 				}
 
-				$label = sprintf( __( '%s', 'woo-category-slider-by-pluginever' ), $nav ); //tab nav label
+				//=== tab nav label ===
+				$label = sprintf( __( '%s', 'woo-category-slider-by-pluginever' ), $nav );
 
 				$template = sanitize_title( $nav );
 
 				ob_start();
 
 				echo "<div class='tab-content-item {$active}' id='{$template}'>";
-				include WC_SLIDER_INCLUDES . "/admin/views/metabox-{$template}.php"; //include metabox template file
+				//=== include meta box template file ===
+				include WC_SLIDER_INCLUDES . "/admin/views/metabox-{$template}.php";
 				echo '</div>';
 
 				$content .= ob_get_clean();
 
+				//=== tab nav item ===
 				echo sprintf( '<a href="#" class="tab-item %s" data-target="%s"><span class="fa fa-%s"></span> %s</a>', $active, $template, $icon, $label );
 
 				$active = '';
@@ -63,8 +66,13 @@ $navs = array(
 		</div>
 
 		<div class="tab-content">
-			<?php echo $content ?>
+			<?php
+			//=== Meta box tab content ===
+			echo $content
+
+			?>
 		</div>
+
 	</div>
 </div>
 
@@ -93,7 +101,7 @@ $navs = array(
 			CategorySliderSetActiveTab($target);
 		});
 
-		wp.codeEditor.initialize($('body #custom_css'), WCS.codeEditor);
+		wp.codeEditor.initialize($('#custom_css'), WCS.codeEditor);
 	});
 </script>
 
