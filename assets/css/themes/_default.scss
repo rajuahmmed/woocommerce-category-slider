@@ -238,6 +238,12 @@ $theme_color: #b0589f;
 		}
 	}
 
+	&.hide-border{
+		.wc-slide{
+			border: none !important;
+		}
+	}
+
 	//image hover
 	&.hover-zoom-in {
 		.wc-slide:hover .wc-slide-image-wrapper {

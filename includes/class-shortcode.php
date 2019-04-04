@@ -133,6 +133,7 @@ class WC_Category_Slider_Shortcode {
 				$title = $empty_name != 'on' ? sprintf( '<a href="%s" class="wc-slide-link"><h3 class="wc-slide-title">%s</h3></a>', $term['url'], $term['name'] ) : '';
 				$count = $empty_product_count != 'on' ? sprintf( '<span class="wc-slide-product-count">%s</span>', __( sprintf( '<span>%s</span> Products', $term['count'] ), 'woo-category-slider-by-pluginever' ) ) : '';
 
+				//==== Child Term Items ===
 				$child_terms = '';
 				if ( $include_child == 'on' ) {
 
@@ -163,12 +164,14 @@ class WC_Category_Slider_Shortcode {
 					echo $count;
 				} ?>
 
-				<?php if ( 'off' == $empty_content ) { ?>
+				<?php
+
+				if ( 'off' == $empty_content ) { ?>
 					<div class="wc-slide-content-wrapper">
 
 						<?php
 
-						//generate markup based on theme check
+						//=== Generate html markup based on theme===
 						if ( in_array( $theme, array( 'pro-6', 'pro-7', 'pro-8', 'pro-9', 'pro-10' ) ) ) {
 
 							echo '<div class="wc-slide-before-hover">';
@@ -222,19 +225,31 @@ class WC_Category_Slider_Shortcode {
 							echo $button;
 							echo '</div>';
 
-						} else {
+						}elseif ( in_array( $theme, array( 'pro-19' ) ) ) {
+							echo '<div class="wc-slide-header">';
+							echo $icon;
+							echo $title;
+							echo $child_terms;
+							echo '</div>';
 
+							echo '<div class="wc-slide-footer">';
+							echo $description;
+							echo $count;
+							echo $button;
+							echo '</div>';
+
+						} else {
 							echo $icon;
 							echo $title;
 							echo $count;
 							echo $child_terms;
 							echo $description;
 							echo $button;
-
 						}
 
 						?>
-					</div>                </div>
+					</div><!--end content-wrapper-->
+					</div><!--end wc-slide-->
 				<?php }
 			}
 
@@ -259,9 +274,7 @@ class WC_Category_Slider_Shortcode {
 	 * @return object
 	 */
 	protected
-	function get_slider_config(
-		$post_id
-	) {
+	function get_slider_config( $post_id ) {
 
 		$config = array(
 			'dots'               => 'off' == wc_category_slider_get_meta( $post_id, 'empty_paginate', 'off' ) ? true : false,
