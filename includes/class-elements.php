@@ -468,7 +468,7 @@ class WC_Slider_Elements {
 			'class'          => '',
 			'disabled'       => false,
 			'readonly'       => false,
-			'double_columns' => false,
+			'double_columns' => true,
 			'required'       => false,
 			'data'           => array(),
 			'attrs'          => array(),
@@ -516,19 +516,28 @@ class WC_Slider_Elements {
 
 		$checked = $args['value'] == 'on' ? 'checked="checked" ' : '';
 
-		$output .= '<div class="ever-col-1">:</div>';
+		$output .= '<div class="ever-col-1">:</div><div class="ever-col-7 switch-container">';
 
 		$output
-			.= '<div class="ever-col-7 switch-container"><label class="switch" for="' . $args['id'] . '" class="ever-label">
+			.= '<label class="switch" for="' . $args['id'] . '" class="ever-label">
 					  ' . '<input type="checkbox"' . ' name="' . esc_attr( $args['name'] ) . '" value= "' . $args['value'] . '" id="' . esc_attr( $args['id'] ) . '" class="' . $class . ' ' . esc_attr( $args['name'] ) . '" ' . $checked . ' ' . $attributes . '  />' . '
 					  <span class="slider round"></span>
 					  <span class="switch-text"></span>
 					</label>
-					</div>';
+					
+					';
 
-		if ( $args['desc'] ) {
+		if ( $args['desc'] && $args['double_columns']) {
+			$output .= '<br /><span class="ever-field-description">' . sanitize_text_field( $args['desc'] ) . '</span>';
+		}
+
+
+		$output .= '</div>';
+
+		if ( $args['desc'] && !$args['double_columns']) {
 			$output .= '<div class="ever-col-12 switch-desc"><span class="ever-field-description">' . sanitize_text_field( $args['desc'] ) . '</span></div>';
 		}
+
 		$output .= '</div></div>';
 
 		return $output;
