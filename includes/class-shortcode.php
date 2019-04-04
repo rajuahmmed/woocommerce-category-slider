@@ -171,8 +171,8 @@ class WC_Category_Slider_Shortcode {
 
 						<?php
 
-						//=== Generate html markup based on theme===
-						if ( in_array( $theme, array( 'pro-6', 'pro-7', 'pro-8', 'pro-9', 'pro-10' ) ) ) {
+						//=== Generate html markup based on theme ===
+						if ( in_array( $theme, array( 'pro-6', 'pro-7', 'pro-8', 'pro-9', 'pro-10', 'pro-21', 'pro-22', 'pro-24' ) ) ) {
 
 							echo '<div class="wc-slide-before-hover">';
 							echo $icon;
@@ -225,15 +225,16 @@ class WC_Category_Slider_Shortcode {
 							echo $button;
 							echo '</div>';
 
-						}elseif ( in_array( $theme, array( 'pro-19' ) ) ) {
+						}elseif ( in_array( $theme, array( 'pro-19', 'pro-20' ) ) ) {
 							echo '<div class="wc-slide-header">';
 							echo $icon;
 							echo $title;
 							echo $child_terms;
+							echo 'pro-20' == $theme ? $description : '';
 							echo '</div>';
 
 							echo '<div class="wc-slide-footer">';
-							echo $description;
+							echo 'pro-19' == $theme ? $description : '';
 							echo $count;
 							echo $button;
 							echo '</div>';
