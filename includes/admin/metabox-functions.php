@@ -28,6 +28,7 @@ function wc_slider_register_meta_boxes() {
 
 	add_meta_box( 'wc-slider-settings', __( 'Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_settings_metabox', $post_type, 'normal', 'high' );
 	add_meta_box( 'wc_slider_category_settings', __( 'Category Settings', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_category_settings_metabox', $post_type, 'side', 'high' );
+	add_meta_box( 'wc_slider_shortcode', __( 'Shortcode', 'woo-category-slider-by-pluginever' ), 'wc_slider_render_shortcode_metabox', $post_type, 'side', 'high' );
 }
 
 add_action( 'add_meta_boxes', 'wc_slider_register_meta_boxes', 10 );
@@ -160,6 +161,17 @@ function wc_slider_render_category_settings_metabox( $post ) {
 		<?php submit_button( __( 'Update Slider', 'woo-category-slider-by-pluginever' ), 'primary button-large', 'publish', false );
 	}
 
+}
+
+function wc_slider_render_shortcode_metabox( $post ) {
+	echo wc_category_slider()->elements->input( array(
+		'name'           => 'shortcode',
+		'label'          => '',
+		'double_columns' => false,
+		'readonly'       => true,
+		'value'          => wc_category_slider_get_meta( $post->ID, 'shortcode', "[woo_category_slider id='$post->ID']" ),
+		'desc'           => __( 'Use the shortocode to render the slider anywhere in the page or post.', 'woo-category-slider-by-pluginever' ),
+	) );
 }
 
 /**

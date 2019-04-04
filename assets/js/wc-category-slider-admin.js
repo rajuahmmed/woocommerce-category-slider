@@ -16,6 +16,7 @@ jQuery(document).ready(function ($, window, document, undefined) {
 		init: function () {
 			$('#selection_type, #selected_categories, #limit_number, #include_child, #hide_empty, #orderby, #order').on('change', this.regenerateSlides);
 			$('#selection_type').on('change', this.handleSelectionType);
+			$('#shortcode').click(this.selectShortcode);
 		},
 
 		regenerateSlides: function () {
@@ -59,6 +60,10 @@ jQuery(document).ready(function ($, window, document, undefined) {
 
 			$('.selected_categories_field').css('display', $display);
 
+		},
+
+		selectShortcode: function () {
+			$(this).select();
 		}
 
 	};
