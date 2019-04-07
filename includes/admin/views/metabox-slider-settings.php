@@ -46,7 +46,7 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_a
 	'label'    => __( 'AutoPlay Speed', 'woo-category-slider-by-pluginever' ),
 	'type'     => 'number',
 	'disabled' => 'disabled',
-	'placeholder' => '3000',
+	'placeholder' => '600',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_slider_speed_args', array(
@@ -54,7 +54,7 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_s
 	'label'    => __( 'Slider Speed', 'woo-category-slider-by-pluginever' ),
 	'type'     => 'number',
 	'disabled' => 'disabled',
-	'placeholder' => '2000',
+	'placeholder' => '3000',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_loop_args', array(
