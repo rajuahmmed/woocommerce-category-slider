@@ -75,7 +75,7 @@ class WC_Category_Slider_Shortcode {
 		$button_text         = wc_category_slider_get_meta( $post_id, 'button_text', __( 'Shop Now', 'woo-category-slider-by-pluginever' ) );
 		$hover_style         = wc_category_slider_get_meta( $post_id, 'hover_style', 'no-hover' );
 		$icon_size           = wc_category_slider_get_meta( $post_id, 'icon_size', '2x' );
-		$image_size          = 'large';
+		$image_size          = wc_category_slider_get_meta( $post_id, 'image_size', 'large' );
 
 		if ( 'all' != $selection_type ) {
 			$selected_category_ids = wc_category_slider_get_meta( $post_id, 'selected_categories', [] );
@@ -128,14 +128,36 @@ class WC_Category_Slider_Shortcode {
 
 			foreach ( $terms as $term ) {
 
-				$image = 'on' !== $empty_image && ! empty( $term['image_id'] ) ? sprintf( '<div class="wc-slide-image-wrapper"><a class="wc-slide-link" href="%s">%s</a></div>', $term['url'], wp_get_attachment_image( $term['image_id'], $image_size ) ) : '';
-				$icon  = 'off' == $empty_icon && ! empty( $term['icon'] ) ? sprintf( '<i class="fa %s wc-slide-icon fa-%s" aria-hidden="true"></i>', esc_attr( $term['icon'] ), $icon_size ) : '';
-				$title = $empty_name != 'on' ? sprintf( '<a href="%s" class="wc-slide-link"><h3 class="wc-slide-title">%s</h3></a>', $term['url'], $term['name'] ) : '';
-				$count = $empty_product_count != 'on' ? sprintf( '<span class="wc-slide-product-count">%s</span>', __( sprintf( '<span>%s</span> Products', $term['count'] ), 'woo-category-slider-by-pluginever' ) ) : '';
+
+				//=== Slider Components ===
+				if ( 'on' != $empty_image && ! empty( $term['image_id'] ) ) {
+					$image = sprintf( '<div class="wc-slide-image-wrapper"><a class="wc-slide-link" href="%s">%s</a></div>', $term['url'], wp_get_attachment_image( $term['image_id'], $image_size ) );
+				} else {
+					$image = '';
+				}
+
+				if ( 'off' == $empty_icon && ! empty( $term['icon'] ) ) {
+					$icon = sprintf( '<i class="fa %s wc-slide-icon fa-%s" aria-hidden="true"></i>', esc_attr( $term['icon'] ), $icon_size );
+				} else {
+					$icon = '';
+				}
+
+				if ( 'on' != $empty_name ) {
+					$title = sprintf( '<a href="%s" class="wc-slide-link"><h3 class="wc-slide-title">%s</h3></a>', $term['url'], $term['name'] );
+				} else {
+					$title = '';
+				}
+
+				if ( 'on' != $empty_product_count ) {
+					$count = sprintf( '<span class="wc-slide-product-count">%s</span>', __( sprintf( '<span>%s</span> Products', $term['count'] ), 'woo-category-slider-by-pluginever' ) );
+				} else {
+					$count = '';
+				}
 
 				//==== Child Term Items ===
 				$child_terms = '';
-				if ( $include_child == 'on' ) {
+
+				if ( 'on' == $include_child ) {
 
 					$taxonomy = 'product_cat';
 					$children = array_filter( get_term_children( $term['term_id'], $taxonomy ) );
@@ -283,9 +305,7 @@ class WC_Category_Slider_Shortcode {
 	 * @return object
 	 */
 	protected
-	function get_slider_config(
-		$post_id
-	) {
+	function get_slider_config( $post_id ) {
 
 		$config = array(
 			'dots'               => 'off' == wc_category_slider_get_meta( $post_id, 'empty_paginate', 'off' ) ? true : false,

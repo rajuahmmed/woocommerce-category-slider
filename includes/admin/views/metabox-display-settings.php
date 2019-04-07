@@ -96,6 +96,7 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_b
 	'label'    => __( 'Button Text', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
+
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_button_type_args', array(
 	'name'             => 'button_type',
 	'label'            => __( 'Button Type', 'woo-category-slider-by-pluginever' ),
@@ -108,6 +109,7 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	),
 
 ), $post->ID ) );
+
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_animate_border_args', array(
 	'name'     => 'animate_border',
 	'label'    => __( 'Animate Border', 'woo-category-slider-by-pluginever' ),
@@ -222,12 +224,7 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	'placeholder'      => '',
 	'show_option_all'  => '',
 	'show_option_none' => '',
-	'options'          => array(
-		'default'             => 'Default',
-		'custom_image_size_1' => 'Custom Image Size 1',
-		'custom_image_size_2' => 'Custom Image Size 2',
-		'custom_image_size_3' => 'Custom Image Size 3',
-	),
+	'options'          => wc_category_slider_get_image_sizes(),
 	'disabled'         => 'disabled',
 ), $post->ID ) );
 

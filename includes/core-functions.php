@@ -778,3 +778,37 @@ function wc_slider_get_categories_data( $categories, $slider_id ) {
 }
 
 add_filter( 'wc_category_slider_categories', 'wc_slider_get_categories_data', 10, 2 );
+
+/**
+ * Get all registered image sizes
+ *
+ * @since 3.1.3
+ *
+ * @return array
+ */
+
+function wc_category_slider_get_image_sizes() {
+	global $_wp_additional_image_sizes;
+
+	$sizes = array('default' => __('Default', 'woo-category-slider-by-pluginever'));
+
+	foreach ( get_intermediate_image_sizes() as $_size ) {
+		if ( in_array( $_size, array( 'thumbnail', 'medium', 'medium_large', 'large' ) ) ) {
+
+			$width  = get_option( "{$_size}_size_w" );
+			$height = get_option( "{$_size}_size_h" );
+
+			$sizes[$_size] = ucwords(str_replace('_', ' ', $_size)) . " ($width x $height)";
+
+		} elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
+			$width  = $_wp_additional_image_sizes[ $_size ]['width'];
+			$height = $_wp_additional_image_sizes[ $_size ]['height'];
+
+			$sizes[$_size] = ucwords(preg_replace('/[_\-]/', ' ', $_size)) . " ($width x $height)";
+		}
+	}
+
+	return $sizes;
+}
+
+add_image_size( 'wc-thumb', 590, 9999 );

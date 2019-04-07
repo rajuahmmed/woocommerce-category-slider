@@ -12,20 +12,12 @@ $theme_color: #b0589f;
 		border: 1px solid #ddd;
 		display: flex;
 		flex-flow: column;
+		transition: all .4s ease;
+
 		* {
 			box-sizing: border-box;
 			box-shadow: none !important;
 			text-shadow: none !important;
-		}
-		&.empty-image {
-			.wc-slide-content-wrapper {
-				height: 100%;
-				position: relative;
-			}
-		}
-
-		&.empty-border {
-			border: none;
 		}
 
 		&-image-wrapper {
