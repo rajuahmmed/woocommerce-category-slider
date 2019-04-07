@@ -12,6 +12,7 @@ echo wc_category_slider()->elements->switcher( array(
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_image', 'off' ),
 	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
 ) );
+
 echo wc_category_slider()->elements->switcher( array(
 	'name'    => 'empty_content',
 	'label'   => __( 'Hide Content', 'woo-category-slider-by-pluginever' ),
@@ -36,6 +37,7 @@ echo wc_category_slider()->elements->switcher( array(
 	'label' => __( 'Hide Category Name', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_name', 'off' ),
 ) );
+
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_product_count',
 	'label' => __( 'Hide Product Count', 'woo-category-slider-by-pluginever' ),
@@ -61,6 +63,7 @@ echo wc_category_slider()->elements->switcher( array(
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_border', 'off' ),
 	'desc'  => __( 'Border around slider image?', 'woo-category-slider-by-pluginever' ),
 ) );
+
 echo wc_category_slider()->elements->select( array(
 	'label'            => __( 'Image Hover effect', 'woo-category-slider-by-pluginever' ),
 	'name'             => 'hover_style',
@@ -70,10 +73,11 @@ echo wc_category_slider()->elements->select( array(
 	'value'            => 'default',
 	'selected'         => wc_category_slider_get_meta( $post->ID, 'hover_style', 'no-hover' ),
 	'options'          => apply_filters( 'wc_category_slider_hover_styles', array(
-		'no-hover'      => 'No Hover',
-		'hover-zoom-in' => 'Zoom In',
+		'no-hover'      => __( 'No Hover', 'woo-category-slider-by-pluginever' ),
+		'hover-zoom-in' => __( 'Zoom In', 'woo-category-slider-by-pluginever' ),
 	) )
 ) );
+
 echo wc_category_slider()->elements->select( array(
 	'name'             => 'theme',
 	'label'            => __( 'Theme', 'woo-category-slider-by-pluginever' ),

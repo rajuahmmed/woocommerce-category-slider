@@ -810,5 +810,3 @@ function wc_category_slider_get_image_sizes() {
 
 	return $sizes;
 }
-
-add_image_size( 'wc-thumb', 590, 9999 );

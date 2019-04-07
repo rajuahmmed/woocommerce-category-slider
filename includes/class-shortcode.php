@@ -100,11 +100,7 @@ class WC_Category_Slider_Shortcode {
 
 		$theme_class   = 'wc-category-' . $theme;
 		$slider_class  = 'wc-category-slider-' . $post_id;
-		$wrapper_class = $theme_class . ' ' . $slider_class;
-
-		if ( 'hover-zoom-in' == $hover_style ) {
-			$wrapper_class .= " $hover_style ";
-		}
+		$wrapper_class = "$theme_class $slider_class $hover_style";
 
 		if ( 'on' == $empty_image ) {
 			$wrapper_class .= ' hide-image ';
@@ -305,7 +301,9 @@ class WC_Category_Slider_Shortcode {
 	 * @return object
 	 */
 	protected
-	function get_slider_config( $post_id ) {
+	function get_slider_config(
+		$post_id
+	) {
 
 		$config = array(
 			'dots'               => 'off' == wc_category_slider_get_meta( $post_id, 'empty_paginate', 'off' ) ? true : false,
