@@ -56,10 +56,10 @@ class WC_Slider_Elements {
 			'selected'         => array(),
 			'chosen'           => false,
 			'wrapper_class'    => '',
-			'placeholder'      => __( '- Please Select -', 'wp-content-pilot' ),
+			'placeholder'      => __( '- Please Select -', 'woo-category-slider-by-pluginever' ),
 			'multiple'         => false,
-			'show_option_all'  => _x( 'All', 'all dropdown items', 'wp-content-pilot' ),
-			'show_option_none' => _x( 'None', 'no dropdown items', 'wp-content-pilot' ),
+			'show_option_all'  => _x( 'All', 'all dropdown items', 'woo-category-slider-by-pluginever' ),
+			'show_option_none' => _x( 'None', 'no dropdown items', 'woo-category-slider-by-pluginever' ),
 			'data'             => array(),
 			'attrs'            => array(),
 			'readonly'         => false,
@@ -241,11 +241,11 @@ class WC_Slider_Elements {
 		$defaults = array(
 			'name'        => 'users',
 			'id'          => 'users',
-			'placeholder' => __( 'Select a User', 'wp-content-pilot' ),
+			'placeholder' => __( 'Select a User', 'woo-category-slider-by-pluginever' ),
 			'number'      => 30,
 			'data'        => array(
 				'search-type'        => 'user',
-				'search-placeholder' => __( 'Type to search all Users', 'wp-content-pilot' ),
+				'search-placeholder' => __( 'Type to search all Users', 'woo-category-slider-by-pluginever' ),
 			),
 		);
 
@@ -263,7 +263,7 @@ class WC_Slider_Elements {
 				$options[ $user->ID ] = esc_html( $user->display_name );
 			}
 		} else {
-			$options[0] = __( 'No users found', 'wp-content-pilot' );
+			$options[0] = __( 'No users found', 'woo-category-slider-by-pluginever' );
 		}
 
 		// If a selected user has been specified, we need to ensure it's in the initial list of user displayed

@@ -47,11 +47,6 @@ $theme_color: #b0589f;
 			background-color: #ededed;
 			text-align: center;
 			flex: 1;
-			//height: 100%;
-			//width: 100%;
-			//display: flex;
-			//flex-flow: column;
-			//justify-content: flex-end;
 		}
 
 		&-icon {
@@ -80,7 +75,6 @@ $theme_color: #b0589f;
 			line-height: 1.2;
 			margin: 0 0 10px 0;
 			padding: 0;
-			// font-family: initial;
 			color: inherit;
 			font-weight: 600;
 		}
@@ -148,12 +142,23 @@ $theme_color: #b0589f;
 		}
 	}
 
+	//only for default theme
+	&.wc-category-default{
+		.wc-slide {
+			&-content-wrapper {
+				display: flex;
+				flex-flow: column;
+				justify-content: flex-end;
+			}
+		}
+	}
+
 	.owl-stage {
 		display: flex;
 		flex-wrap: wrap;
 	}
 
-	//navigation
+	//owl carousel navigation
 	.owl-nav {
 		position: absolute;
 		top: -60px;
@@ -182,6 +187,7 @@ $theme_color: #b0589f;
 		}
 	}
 
+	//owl carousel pagination
 	.owl-dots {
 		margin-top: 12px;
 		button.owl-dot {
@@ -271,6 +277,8 @@ $theme_color: #b0589f;
 		}
 
 	}
+
+
 
 }
 

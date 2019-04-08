@@ -24,27 +24,27 @@ class WC_Category_Slider_CPT {
 	 */
 	public function register_shortcode_post() {
 		$labels = array(
-			'name'               => _x( 'WooCommerce Category Slider Shortcode', 'post type general name', 'wc_category_slider' ),
-			'singular_name'      => _x( 'WooCommerce Category Slider', 'post type singular name', 'wc_category_slider' ),
-			'menu_name'          => _x( 'WC Cat Slider', 'admin menu', 'wc_category_slider' ),
-			'name_admin_bar'     => _x( 'WooCommerce Category Slider', 'add new on admin bar', 'wc_category_slider' ),
-			'add_new'            => _x( 'Add New', 'book', 'wc_category_slider' ),
-			'add_new_item'       => __( 'Add New Slider', 'wc_category_slider' ),
-			'new_item'           => __( 'New Slider', 'wc_category_slider' ),
-			'edit_item'          => __( 'Edit Slider', 'wc_category_slider' ),
-			'view_item'          => __( 'View Slider', 'wc_category_slider' ),
-			'all_items'          => __( 'All Sliders', 'wc_category_slider' ),
-			'search_items'       => __( 'Search Slider', 'wc_category_slider' ),
-			'parent_item_colon'  => __( 'Parent Slider:', 'wc_category_slider' ),
-			'not_found'          => __( 'No Slider found.', 'wc_category_slider' ),
-			'not_found_in_trash' => __( 'No Slider found in Trash.', 'wc_category_slider' ),
-			'item_published'     => __( 'Slider published.', 'wc_category_slider' ),
-			'item_updated'       => __( 'Slider updated.', 'wc_category_slider' ),
+			'name'               => _x( 'WooCommerce Category Slider Shortcode', 'post type general name', 'woo-category-slider-by-pluginever' ),
+			'singular_name'      => _x( 'WooCommerce Category Slider', 'post type singular name', 'woo-category-slider-by-pluginever' ),
+			'menu_name'          => _x( 'WC Cat Slider', 'admin menu', 'woo-category-slider-by-pluginever' ),
+			'name_admin_bar'     => _x( 'WooCommerce Category Slider', 'add new on admin bar', 'woo-category-slider-by-pluginever' ),
+			'add_new'            => _x( 'Add New', 'book', 'woo-category-slider-by-pluginever' ),
+			'add_new_item'       => __( 'Add New Slider', 'woo-category-slider-by-pluginever' ),
+			'new_item'           => __( 'New Slider', 'woo-category-slider-by-pluginever' ),
+			'edit_item'          => __( 'Edit Slider', 'woo-category-slider-by-pluginever' ),
+			'view_item'          => __( 'View Slider', 'woo-category-slider-by-pluginever' ),
+			'all_items'          => __( 'All Sliders', 'woo-category-slider-by-pluginever' ),
+			'search_items'       => __( 'Search Slider', 'woo-category-slider-by-pluginever' ),
+			'parent_item_colon'  => __( 'Parent Slider:', 'woo-category-slider-by-pluginever' ),
+			'not_found'          => __( 'No Slider found.', 'woo-category-slider-by-pluginever' ),
+			'not_found_in_trash' => __( 'No Slider found in Trash.', 'woo-category-slider-by-pluginever' ),
+			'item_published'     => __( 'Slider published.', 'woo-category-slider-by-pluginever' ),
+			'item_updated'       => __( 'Slider updated.', 'woo-category-slider-by-pluginever' ),
 		);
 
 		$args = array(
 			'labels'                => $labels,
-			'description'           => __( 'Description.', 'wc_category_slider' ),
+			'description'           => __( 'Description.', 'woo-category-slider-by-pluginever' ),
 			'public'                => false,
 			'publicly_queryable'    => false,
 			'show_ui'               => true,
@@ -73,8 +73,8 @@ class WC_Category_Slider_CPT {
 	 */
 	public function set_shortocode_column( $columns ) {
 		unset( $columns['date'] );
-		$columns['shortcode'] = __( 'Shortcode', 'wc_category_slider' );
-		$columns['date']      = __( 'Date', 'wc_category_slider' );
+		$columns['shortcode'] = __( 'Shortcode', 'woo-category-slider-by-pluginever' );
+		$columns['date']      = __( 'Date', 'woo-category-slider-by-pluginever' );
 
 		return $columns;
 	}

@@ -228,9 +228,9 @@ class Woocommerce_Category_Slider {
 	 * @return array
 	 */
 	public function plugin_action_links( $links ) {
-		$links[] = '<a href="https://www.pluginever.com/docs/woocommerce-serial-numbers/">' . __( 'Documentation', 'wc-serial-numbers' ) . '</a>';
+		$links[] = '<a href="https://www.pluginever.com/plugins/woocommerce-category-slider-pro/">' . __( 'Documentation', 'woo-category-slider-by-pluginever' ) . '</a>';
 		if ( ! $this->is_pro_installed() ) {
-			$links[] = '<a href="https://www.pluginever.com/plugins/woocommerce-serial-numbers-pro/?utm_source=plugin_action_link&utm_medium=link&utm_campaign=wc-serial-numbers&utm_content=Upgrade%20to%20Pro" style="color: red;font-weight: bold;" target="_blank">' . __( 'Upgrade to PRO', 'wc-serial-numbers' ) . '</a>';
+			$links[] = '<a href="https://www.pluginever.com/plugins/woocommerce-category-slider-pro/" style="color: red;font-weight: bold;" target="_blank">' . __( 'Upgrade to PRO', 'woo-category-slider-by-pluginever' ) . '</a>';
 		}
 
 		return $links;

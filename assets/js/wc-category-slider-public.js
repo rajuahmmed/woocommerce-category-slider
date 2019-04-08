@@ -35,7 +35,7 @@ jQuery(document).ready(function ($, window, document, undefined) {
 
 				var maxHeight = 0;
 				slider.find('.owl-item.active').each(function () {
-					var thisHeight = parseInt(slider.find('img').height());
+					var thisHeight = parseInt(slider.find('img').height(), 10);
 					maxHeight = (maxHeight >= thisHeight ? maxHeight : thisHeight);
 				});
 

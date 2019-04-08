@@ -155,7 +155,7 @@ function wc_slider_render_category_settings_metabox( $post ) {
 	<input type="hidden" name="hidden_post_status" id="hidden_post_status" value="publish"/>
 
 	<?php if ( $action !== 'edit' ) { ?>
-		<input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e( 'Publish' ) ?>"/>
+		<input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e( 'Publish', 'woo-category-slider-by-pluginever' ) ?>"/>
 		<?php submit_button( __( 'Create Slider', 'woo-category-slider-by-pluginever' ), 'primary button-large', 'publish', false ); ?><?php
 	} else { ?>
 		<input name="original_publish" type="hidden" id="original_publish" value="publish"/>
