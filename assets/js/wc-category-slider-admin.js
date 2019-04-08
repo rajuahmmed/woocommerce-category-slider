@@ -23,13 +23,14 @@ jQuery(document).ready(function ($, window, document, undefined) {
 			var data = {
 				selection_type: $('#selection_type').val() || 'all',
 				selected_categories: $('#selected_categories').val() || [],
-				include_child: $('#include_child').val() || 'no',
-				hide_empty: $('#hide_empty').val() || 'no',
+				include_child: $('#include_child').attr('checked') ? 'on' : 'off',
+				hide_empty: $('#hide_empty').attr('checked') ? 'on' : 'off',
 				number: $('#limit_number').val() || 10,
 				orderby: $('#orderby').val() || 'name',
 				order: $('#order').val() || 'ASC',
 				slider_id: $('#post_ID').val() || null
 			};
+
 			var mountPoint = $('.wc-category-slides-wrapper');
 			mountPoint.removeClass('loaded');
 			wp.ajax.send('wc_slider_get_categories', {

@@ -63,7 +63,7 @@ class WC_Category_Slider_Shortcode {
 		$orderby             = wc_category_slider_get_meta( $post_id, 'orderby', 'name' );
 		$order               = wc_category_slider_get_meta( $post_id, 'order', 'asc' );
 		$include_child       = wc_category_slider_get_meta( $post_id, 'include_child', 'on' );
-		$show_empty          = wc_category_slider_get_meta( $post_id, 'show_empty', 'on' );
+		$hide_empty          = wc_category_slider_get_meta( $post_id, 'hide_empty', 'on' );
 		$empty_name          = wc_category_slider_get_meta( $post_id, 'empty_name', 'off' );
 		$empty_image         = wc_category_slider_get_meta( $post_id, 'empty_image', 'off' );
 		$empty_content       = wc_category_slider_get_meta( $post_id, 'empty_content', 'off' );
@@ -89,7 +89,7 @@ class WC_Category_Slider_Shortcode {
 			'taxonomy'   => 'product_cat',
 			'orderby'    => $orderby,
 			'order'      => $order,
-			'hide_empty' => $show_empty == 'on' ? false : true,
+			'hide_empty' => $hide_empty == 'on' ? false : true,
 			'include'    => $selected_categories,
 			'number'     => $limit_number,
 			//'child_of'   => $include_child == 'on' ? $selected_categories : 0,

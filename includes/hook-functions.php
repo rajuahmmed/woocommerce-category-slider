@@ -1,14 +1,16 @@
 <?php
 
 function wc_slider_get_categories_ajax_callback() {
+
 	$selection_type      = empty( $_REQUEST['selection_type'] ) ? 'all' : sanitize_key( $_REQUEST['selection_type'] );
 	$selected_categories = empty( $_REQUEST['selected_categories'] ) ? [] : wp_parse_id_list( $_REQUEST['selected_categories'] );
 	$include_child       = empty( $_REQUEST['include_child'] ) || 'on' !== $_REQUEST['include_child'] ? false : true;
-	$show_empty          = empty( $_REQUEST['show_empty'] ) || 'on' !== $_REQUEST['show_empty'] ? false : true;
 	$number              = empty( $_REQUEST['number'] ) ? 10 : intval( $_REQUEST['number'] );
 	$orderby             = empty( $_REQUEST['orderby'] ) ? 'name' : sanitize_key( $_REQUEST['orderby'] );
 	$order               = empty( $_REQUEST['order'] ) ? 'ASC' : sanitize_key( $_REQUEST['order'] );
 	$slider_id           = empty( $_REQUEST['slider_id'] ) ? null : sanitize_key( $_REQUEST['slider_id'] );
+	$hide_empty          = ! empty( $_REQUEST['hide_empty'] ) && 'on' == $_REQUEST['hide_empty'] ? false : true;
+
 	if ( $selection_type == 'all' ) {
 		$selected_categories = [];
 	}
@@ -18,7 +20,7 @@ function wc_slider_get_categories_ajax_callback() {
 		'number'     => $number,
 		'orderby'    => $orderby,
 		'order'      => $order,
-		'show_empty' => $show_empty,
+		'hide_empty' => $hide_empty,
 		'include'    => $selected_categories,
 		'exclude'    => array(),
 		'child_of'   => 0,
@@ -56,12 +58,12 @@ function wc_category_slider_load_custom_category_attributes( $categories, $slide
 			continue;
 		}
 		$custom_category_props = $custom_categories_props[ $term_id ];
-		foreach ($category as $category_key => $value ){
-			if(!isset($custom_category_props[$category_key]) || empty($custom_category_props[$category_key])){
+		foreach ( $category as $category_key => $value ) {
+			if ( ! isset( $custom_category_props[ $category_key ] ) || empty( $custom_category_props[ $category_key ] ) ) {
 				continue;
 			}
 
-			$categories[$key][$category_key] = $custom_category_props[$category_key];
+			$categories[ $key ][ $category_key ] = $custom_category_props[ $category_key ];
 		}
 
 	}
@@ -125,7 +127,6 @@ function wc_category_slider_print_js_template() {
 								<option value="">No Icon</option>
 								<?php
 
-								//todo before release block pro icons
 								$icons = wc_slider_get_icon_list();
 
 								ob_start();
@@ -180,41 +181,22 @@ function wc_category_slider_print_js_template() {
 		<?php if ( wc_category_slider()->is_pro_installed() ) { ?>
 			<#
 
-			$(document).on('click', '.edit-image', function (e) {
-			e.preventDefault();
-			e.stopPropagation();
-			e.stopImmediatePropagation();
+			$(document).on('click', '.edit-image', function (e) {			e.preventDefault();			e.stopPropagation();			e.stopImmediatePropagation();
 
 
 			var $parent = jQuery(this).parentsUntil('.ever-slide-thumbnail');
 
-			var $img_prev = $parent.siblings('.img-prev');
-			var $img_id = $parent.siblings('.img-id');
+			var $img_prev = $parent.siblings('.img-prev');			var $img_id = $parent.siblings('.img-id');
 
-			var image = wp.media({
-			title: 'Upload Image'
-			})
-			.open().on('select', function () {
-			var uploaded_image = image.state().get('selection').first();
-			var image_url = uploaded_image.toJSON().url;
-			var image_id = uploaded_image.toJSON().id;
-			$img_prev.prop('src', image_url);
-			$img_id.val(image_id);
-			});
+			var image = wp.media({			title: 'Upload Image'			})			.open().on('select', function () {			var uploaded_image = image.state().get('selection').first();			var image_url = uploaded_image.toJSON().url;			var image_id = uploaded_image.toJSON().id;			$img_prev.prop('src', image_url);			$img_id.val(image_id);			});
 
 			});
 
-			$(document).on('click', '.delete-image', function(e){
-			e.preventDefault();
-			e.stopPropagation();
-			e.stopImmediatePropagation();
+			$(document).on('click', '.delete-image', function(e){			e.preventDefault();			e.stopPropagation();			e.stopImmediatePropagation();
 
 			var $parent = jQuery(this).parentsUntil('.ever-slide-thumbnail');
 
-			var $img_prev = $parent.siblings('.img-prev');
-			var $img_id = $parent.siblings('.img-id');
-			$img_prev.prop('src', '<?php echo WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg'; ?>');
-			$img_id.val('');
+			var $img_prev = $parent.siblings('.img-prev');			var $img_id = $parent.siblings('.img-id');			$img_prev.prop('src', '<?php echo WC_SLIDER_ASSETS_URL . '/images/no-image-placeholder.jpg'; ?>');			$img_id.val('');
 
 			});
 

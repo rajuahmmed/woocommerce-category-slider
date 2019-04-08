@@ -103,9 +103,9 @@ function wc_slider_render_category_settings_metabox( $post ) {
 	) );
 
 	echo wc_category_slider()->elements->switcher( array(
-		'name'           => 'show_empty',
+		'name'           => 'hide_empty',
 		'double_columns' => false,
-		'value'          => wc_category_slider_get_meta( $post->ID, 'show_empty', 'on' ),
+		'value'          => wc_category_slider_get_meta( $post->ID, 'hide_empty', 'on' ),
 		'label'          => __( 'Empty Categories', 'woo-category-slider-by-pluginever' ),
 		'desc'           => __( 'Show/hide Category without products', 'woo-category-slider-by-pluginever' ),
 	) );
@@ -220,7 +220,7 @@ function wc_category_slider_update_settings( $post_id ) {
 	update_post_meta( $post_id, 'selected_categories', empty( $posted['selected_categories'] ) ? '' : $posted['selected_categories'] );
 	update_post_meta( $post_id, 'limit_number', empty( $posted['limit_number'] ) ? '' : intval( $posted['limit_number'] ) );
 	update_post_meta( $post_id, 'include_child', empty( $posted['include_child'] ) ? 'off' : 'on' );
-	update_post_meta( $post_id, 'show_empty', empty( $posted['show_empty'] ) ? 'off' : 'on' );
+	update_post_meta( $post_id, 'hide_empty', empty( $posted['hide_empty'] ) ? 'off' : 'on' );
 	update_post_meta( $post_id, 'empty_image', empty( $posted['empty_image'] ) ? 'off' : 'on' );
 	update_post_meta( $post_id, 'empty_content', empty( $posted['empty_content'] ) ? 'off' : 'on' );
 	update_post_meta( $post_id, 'empty_button', empty( $posted['empty_button'] ) ? 'off' : 'on' );
