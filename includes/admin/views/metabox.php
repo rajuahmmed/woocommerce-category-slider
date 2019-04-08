@@ -77,12 +77,13 @@ $navs = array(
 </div>
 
 <script>
-	jQuery(document).ready(function () {
+
+	jQuery(document).ready(function ($) {
 
 		function CategorySliderSetActiveTab($target) {
-			jQuery('.tab-item, .tab-content-item').removeClass('active');
-			jQuery('.tab-item[data-target="' + $target + '"]').addClass('active');
-			jQuery('.tab-content-item[id="' + $target + '"]').addClass('active');
+			$('.tab-item, .tab-content-item').removeClass('active');
+			$('.tab-item[data-target="' + $target + '"]').addClass('active');
+			$('.tab-content-item[id="' + $target + '"]').addClass('active');
 			if (typeof(localStorage) !== 'undefined') {
 				localStorage.setItem("wc_category_slider_active_tab", $target);
 			}
@@ -95,13 +96,19 @@ $navs = array(
 
 		CategorySliderSetActiveTab(activeTab);
 
-		jQuery('.tab-item').on('click', function (e) {
+		$('.tab-item').on('click', function (e) {
 			e.preventDefault();
-			var $target = jQuery(this).data('target');
+			var $target = $(this).data('target');
 			CategorySliderSetActiveTab($target);
 		});
 
+		//=== prevent leave page warning message ===
+		window.onbeforeunload = null;
+		$('#publish').click(() => {
+		});
+
 		wp.codeEditor.initialize($('#custom_css'), WCS.codeEditor);
+
 	});
 </script>
 

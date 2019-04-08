@@ -176,8 +176,16 @@
 		margin-bottom: 15px;
 	}
 
-	.CodeMirror{
-		border: 1px solid #ddd;
+	.custom_css_field {
+		.CodeMirror {
+			border: 1px solid #ddd;
+		}
+		.disable#custom_css + .CodeMirror {
+			 .CodeMirror-line{
+				 display: none;
+			 }
+		}
+
 	}
 }
 

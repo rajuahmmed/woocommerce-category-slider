@@ -159,6 +159,7 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	'name'             => 'icon_size',
 	'show_option_all'  => '',
 	'show_option_none' => '',
+	'disabled'         => true,
 	'options'          => array(
 		'1x'  => '1x',
 		'2x'  => '2x',
@@ -217,9 +218,9 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_b
 	'placeholder' => '1',
 	'desc'        => __( 'Unit is in px. only input number', 'woo-category-slider-by-pluginever' ),
 	'disabled'    => true,
-	'attrs' => (array(
+	'attrs'       => ( array(
 		'min' => 0
-	))
+	) )
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_image_size_args', array(
@@ -232,11 +233,12 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	'disabled'         => 'disabled',
 ), $post->ID ) );
 
-echo wc_category_slider()->elements->textarea( apply_filters( 'wc_category_slider_custom_css_args',array(
+echo wc_category_slider()->elements->textarea( apply_filters( 'wc_category_slider_custom_css_args', array(
 	'name'     => 'custom_css',
 	'label'    => __( 'Custom CSS', 'woo-category-slider-by-pluginever' ),
-	'disabled' => false,
+	'disabled' => true,
+	'class' => 'disable',
 	'required' => false,
 	'desc'     => __( 'Add Custom CSS', 'woo-category-slider-by-pluginever' ),
-), $post->ID) );
+), $post->ID ) );
 
