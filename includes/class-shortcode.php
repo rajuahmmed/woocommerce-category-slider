@@ -75,7 +75,7 @@ class WC_Category_Slider_Shortcode {
 		$button_text         = wc_category_slider_get_meta( $post_id, 'button_text', __( 'Shop Now', 'woo-category-slider-by-pluginever' ) );
 		$hover_style         = wc_category_slider_get_meta( $post_id, 'hover_style', 'no-hover' );
 		$icon_size           = wc_category_slider_get_meta( $post_id, 'icon_size', '2x' );
-		$image_size          = wc_category_slider_get_meta( $post_id, 'image_size', 'large' );
+		$image_size          = wc_category_slider_get_meta( $post_id, 'image_size', 'default' );
 
 		if ( 'all' != $selection_type ) {
 			$selected_category_ids = wc_category_slider_get_meta( $post_id, 'selected_categories', [] );
@@ -118,169 +118,171 @@ class WC_Category_Slider_Shortcode {
 
 		?>
 
-		<div class="wc-category-slider <?php echo $wrapper_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>" data-slider-config='<?php echo $this->get_slider_config( $post_id ); ?>'>
+	<div class="wc-category-slider <?php echo $wrapper_class; ?>" id="<?php echo 'wc-category-slider-' . $post_id ?>" data-slider-config='<?php echo $this->get_slider_config( $post_id ); ?>'>
 
-			<?php
+		<?php
 
-			foreach ( $terms as $term ) {
+	foreach ( $terms
+
+		as $term ) {
 
 
-				//=== Slider Components ===
-				if ( 'on' != $empty_image && ! empty( $term['image_id'] ) ) {
-					$image = sprintf( '<div class="wc-slide-image-wrapper"><a class="wc-slide-link" href="%s">%s</a></div>', $term['url'], wp_get_attachment_image( $term['image_id'], $image_size ) );
-				} else {
-					$image = '';
-				}
+		//=== Slider Components ===
+		if ( 'on' != $empty_image && ! empty( $term['image_id'] ) ) {
+			$image = sprintf( '<div class="wc-slide-image-wrapper"><a class="wc-slide-link" href="%s">%s</a></div>', $term['url'], wp_get_attachment_image( $term['image_id'], $image_size, '', array( 'class' => $image_size ) ) );
+		} else {
+			$image = '';
+		}
 
-				if ( 'off' == $empty_icon && ! empty( $term['icon'] ) ) {
-					$icon = sprintf( '<i class="fa %s wc-slide-icon fa-%s" aria-hidden="true"></i>', esc_attr( $term['icon'] ), $icon_size );
-				} else {
-					$icon = '';
-				}
+		if ( 'off' == $empty_icon && ! empty( $term['icon'] ) ) {
+			$icon = sprintf( '<i class="fa %s wc-slide-icon fa-%s" aria-hidden="true"></i>', esc_attr( $term['icon'] ), $icon_size );
+		} else {
+			$icon = '';
+		}
 
-				if ( 'on' != $empty_name ) {
-					$title = sprintf( '<a href="%s" class="wc-slide-link"><h3 class="wc-slide-title">%s</h3></a>', $term['url'], $term['name'] );
-				} else {
-					$title = '';
-				}
+		if ( 'on' != $empty_name ) {
+			$title = sprintf( '<a href="%s" class="wc-slide-link"><h3 class="wc-slide-title">%s</h3></a>', $term['url'], $term['name'] );
+		} else {
+			$title = '';
+		}
 
-				if ( 'on' != $empty_product_count ) {
-					$count = sprintf( '<span class="wc-slide-product-count">%s</span>', __( sprintf( '<span>%s</span> Products', $term['count'] ), 'woo-category-slider-by-pluginever' ) );
-				} else {
-					$count = '';
-				}
+		if ( 'on' != $empty_product_count ) {
+			$count = sprintf( '<span class="wc-slide-product-count">%s</span>', __( sprintf( '<span>%s</span> Products', $term['count'] ), 'woo-category-slider-by-pluginever' ) );
+		} else {
+			$count = '';
+		}
 
-				//==== Child Term Items ===
-				$child_terms = '';
+		//==== Child Term Items ===
+		$child_terms = '';
 
-				if ( 'on' == $include_child ) {
+		if ( 'on' == $include_child ) {
 
-					$taxonomy = 'product_cat';
-					$children = array_filter( get_term_children( $term['term_id'], $taxonomy ) );
+			$taxonomy = 'product_cat';
+			$children = array_filter( get_term_children( $term['term_id'], $taxonomy ) );
 
-					$child_terms .= '<ul class="wc-slide-child-items">';
+			$child_terms .= '<ul class="wc-slide-child-items">';
 
-					foreach ( $children as $child ) {
-						$child_term  = get_term_by( 'id', $child, $taxonomy );
-						$child_terms .= sprintf( ' <li class="wc-slide-child-item"><a href="%s" class="wc-slide-link">%s (%s)</a></li> ', get_term_link( $child, $taxonomy ), $child_term->name, $child_term->count );
-					}
+			foreach ( $children as $child ) {
+				$child_term  = get_term_by( 'id', $child, $taxonomy );
+				$child_terms .= sprintf( ' <li class="wc-slide-child-item"><a href="%s" class="wc-slide-link">%s (%s)</a></li> ', get_term_link( $child, $taxonomy ), $child_term->name, $child_term->count );
+			}
 
-					$child_terms .= '</ul>';
-				}
+			$child_terms .= '</ul>';
+		}
 
-				$description = $show_desc == 'on' && ! empty( $term['description'] ) ? sprintf( '<p class="wc-slide-description">%s</p>', $term['description'] ) : '';
-				$button      = $empty_button != 'on' ? sprintf( '<a href="%s" class="wc-slide-button">%s</a>', esc_url( $term['url'] ), $button_text ) : '';
+		$description = $show_desc == 'on' && ! empty( $term['description'] ) ? sprintf( '<p class="wc-slide-description">%s</p>', $term['description'] ) : '';
+		$button      = $empty_button != 'on' ? sprintf( '<a href="%s" class="wc-slide-button">%s</a>', esc_url( $term['url'] ), $button_text ) : '';
 
-				?>
+		?>
 
-				<div class="wc-slide">
+		<div class="wc-slide">
 
-				<!--Image-->
-				<?php echo $image; ?>
+		<!--Image-->                <?php echo $image; ?>
 
-				<?php if ( $theme == 'pro-18' ) {
-					echo $count;
-				} ?>
+		<?php if ( $theme == 'pro-18' ) {
+			echo $count;
+		} ?>
+
+		<?php
+
+		if ( 'off' == $empty_content ) { ?>
+			<div class="wc-slide-content-wrapper">
 
 				<?php
 
-				if ( 'off' == $empty_content ) { ?>
-					<div class="wc-slide-content-wrapper">
+				//=== Generate html markup based on theme ===
+				if ( in_array( $theme, array(
+					'pro-6',
+					'pro-7',
+					'pro-8',
+					'pro-9',
+					'pro-10',
+					'pro-21',
+					'pro-22',
+					'pro-24'
+				) ) ) {
 
-						<?php
+					echo '<div class="wc-slide-before-hover">';
+					echo $icon;
+					echo $title;
+					echo $count;
+					echo $child_terms;
+					echo $description;
+					echo '</div>';
 
-						//=== Generate html markup based on theme ===
-						if ( in_array( $theme, array(
-							'pro-6',
-							'pro-7',
-							'pro-8',
-							'pro-9',
-							'pro-10',
-							'pro-21',
-							'pro-22',
-							'pro-24'
-						) ) ) {
+					echo '<div class="wc-slide-after-hover">';
+					echo $title;
+					echo $count;
+					echo $button;
+					echo '</div>';
 
-							echo '<div class="wc-slide-before-hover">';
-							echo $icon;
-							echo $title;
-							echo $count;
-							echo $child_terms;
-							echo $description;
-							echo '</div>';
+				} elseif ( in_array( $theme, array( 'pro-14', 'pro-15' ) ) ) {
+					echo '<div class="wc-slide-header">';
+					echo $title;
+					echo $icon;
+					echo '</div>';
 
-							echo '<div class="wc-slide-after-hover">';
-							echo $title;
-							echo $count;
-							echo $button;
-							echo '</div>';
+					echo '<div class="wc-slide-footer">';
+					echo $count;
+					echo $child_terms;
+					echo $description;
+					echo $button;
+					echo '</div>';
 
-						} elseif ( in_array( $theme, array( 'pro-14', 'pro-15' ) ) ) {
-							echo '<div class="wc-slide-header">';
-							echo $title;
-							echo $icon;
-							echo '</div>';
+				} elseif ( in_array( $theme, array( 'pro-16' ) ) ) {
+					echo '<div class="wc-slide-content-bottom">';
+					echo $title;
+					echo $icon;
+					echo $count;
+					echo '<div class="content-footer">';
+					echo $child_terms;
+					echo $description;
+					echo $button;
+					echo '</div>';
+					echo '</div>';
+				} elseif ( in_array( $theme, array( 'pro-17' ) ) ) {
+					echo '<div class="wc-slide-content-top">';
+					echo $icon;
+					echo $count;
+					echo '</div>';
+					echo "<div class='wc-slide-heading'>$title</div>";
+					echo '<div class="wc-slide-content-bottom">';
+					echo $title;
+					echo $child_terms;
+					echo $description;
+					echo $button;
+					echo '</div>';
 
-							echo '<div class="wc-slide-footer">';
-							echo $count;
-							echo $child_terms;
-							echo $description;
-							echo $button;
-							echo '</div>';
+				} elseif ( in_array( $theme, array( 'pro-19', 'pro-20' ) ) ) {
+					echo '<div class="wc-slide-header">';
+					echo $icon;
+					echo $title;
+					echo $child_terms;
+					echo 'pro-20' == $theme ? $description : '';
+					echo '</div>';
 
-						} elseif ( in_array( $theme, array( 'pro-16' ) ) ) {
-							echo '<div class="wc-slide-content-bottom">';
-							echo $title;
-							echo $icon;
-							echo $count;
-							echo '<div class="content-footer">';
-							echo $child_terms;
-							echo $description;
-							echo $button;
-							echo '</div>';
-							echo '</div>';
-						} elseif ( in_array( $theme, array( 'pro-17' ) ) ) {
-							echo '<div class="wc-slide-content-top">';
-							echo $icon;
-							echo $count;
-							echo '</div>';
-							echo "<div class='wc-slide-heading'>$title</div>";
-							echo '<div class="wc-slide-content-bottom">';
-							echo $title;
-							echo $child_terms;
-							echo $description;
-							echo $button;
-							echo '</div>';
+					echo '<div class="wc-slide-footer">';
+					echo 'pro-19' == $theme ? $description : '';
+					echo $count;
+					echo $button;
+					echo '</div>';
 
-						} elseif ( in_array( $theme, array( 'pro-19', 'pro-20' ) ) ) {
-							echo '<div class="wc-slide-header">';
-							echo $icon;
-							echo $title;
-							echo $child_terms;
-							echo 'pro-20' == $theme ? $description : '';
-							echo '</div>';
+				} else {
+					echo $icon;
+					echo $title;
+					echo $count;
+					echo $child_terms;
+					echo $description;
+					echo $button;
+				}
 
-							echo '<div class="wc-slide-footer">';
-							echo 'pro-19' == $theme ? $description : '';
-							echo $count;
-							echo $button;
-							echo '</div>';
+				?>
+			</div><!--end content-wrapper-->
+		<?php }
+		echo '</div><!--end wc-slide-->';
+	}
 
-						} else {
-							echo $icon;
-							echo $title;
-							echo $count;
-							echo $child_terms;
-							echo $description;
-							echo $button;
-						}
-
-						?>
-					</div><!--end content-wrapper-->                    </div><!--end wc-slide-->
-				<?php }
-			}
-
-			?>
+		?>
 		</div>
 
 		<?php
