@@ -2,7 +2,7 @@
 
 global $post;
 
-echo wc_category_slider()->is_pro_installed() ? '' : sprintf( '<h2 class="pro-feat-title">%s</h2>', 'Pro Features', 'woo-category-slider-by-pluginever' );
+echo wc_get_metabox_promo_text();
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_title_font_args', array(
 	'label'            => __( 'Title Font Family', 'woo-category-slider-by-pluginever' ),

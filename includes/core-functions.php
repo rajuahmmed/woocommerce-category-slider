@@ -790,7 +790,7 @@ add_filter( 'wc_category_slider_categories', 'wc_slider_get_categories_data', 10
 function wc_category_slider_get_image_sizes() {
 	global $_wp_additional_image_sizes;
 
-	$sizes = array('default' => __('Default', 'woo-category-slider-by-pluginever'));
+	$sizes = array( 'default' => __( 'Default', 'woo-category-slider-by-pluginever' ) );
 
 	foreach ( get_intermediate_image_sizes() as $_size ) {
 		if ( in_array( $_size, array( 'thumbnail', 'medium', 'medium_large', 'large' ) ) ) {
@@ -798,15 +798,26 @@ function wc_category_slider_get_image_sizes() {
 			$width  = get_option( "{$_size}_size_w" );
 			$height = get_option( "{$_size}_size_h" );
 
-			$sizes[$_size] = ucwords(str_replace('_', ' ', $_size)) . " ($width x $height)";
+			$sizes[ $_size ] = ucwords( str_replace( '_', ' ', $_size ) ) . " ($width x $height)";
 
 		} elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
 			$width  = $_wp_additional_image_sizes[ $_size ]['width'];
 			$height = $_wp_additional_image_sizes[ $_size ]['height'];
 
-			$sizes[$_size] = ucwords(preg_replace('/[_\-]/', ' ', $_size)) . " ($width x $height)";
+			$sizes[ $_size ] = ucwords( preg_replace( '/[_\-]/', ' ', $_size ) ) . " ($width x $height)";
 		}
 	}
 
 	return $sizes;
+}
+
+function wc_get_metabox_promo_text() {
+
+	$promo_text = sprintf( ' %s <a href="https://www.pluginever.com/plugins/woocommerce-category-slider-pro/" class="button button-primary">%s</a>', __( 'Access <strong>PRO</strong> features by upgrading to PRO ', 'woo-category-slider-by-pluginever' ), __( 'Get The PRO Version.', 'woo-category-slider-by-pluginever' ) );
+
+	if ( ! wc_category_slider()->is_pro_installed() ) {
+		return sprintf( '<h2 class="pro-feat-title"> %s <span>%s</span> </h2>', __( 'Pro Features', 'woo-category-slider-by-pluginever' ), $promo_text );
+	}
+
+	return false;
 }

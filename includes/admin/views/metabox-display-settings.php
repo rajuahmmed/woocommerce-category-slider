@@ -93,12 +93,13 @@ echo wc_category_slider()->elements->select( array(
 
 ) );
 
-echo wc_category_slider()->is_pro_installed() ? '' : sprintf( '<h2 class="pro-feat-title">%s</h2>', __( 'Pro Features', 'woo-category-slider-by-pluginever' ) );
+echo wc_get_metabox_promo_text();
 
 echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_button_text_args', array(
-	'name'     => 'button_text',
-	'label'    => __( 'Button Text', 'woo-category-slider-by-pluginever' ),
-	'disabled' => 'disabled',
+	'name'        => 'button_text',
+	'label'       => __( 'Button Text', 'woo-category-slider-by-pluginever' ),
+	'placeholder' => __( 'Shop Now', 'woo-category-slider-by-pluginever' ),
+	'disabled'    => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_button_type_args', array(
@@ -237,7 +238,7 @@ echo wc_category_slider()->elements->textarea( apply_filters( 'wc_category_slide
 	'name'     => 'custom_css',
 	'label'    => __( 'Custom CSS', 'woo-category-slider-by-pluginever' ),
 	'disabled' => true,
-	'class' => 'disable',
+	'class'    => 'disable',
 	'required' => false,
 	'desc'     => __( 'Add Custom CSS', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );

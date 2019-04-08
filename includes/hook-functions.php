@@ -103,28 +103,28 @@ function wc_category_slider_print_js_template() {
 								</div>
 							<?php } ?>
 							<div class="image-action">
-								<a href="javascript:void(0)" class="edit-image"><span class="dashicons dashicons-edit"></span></a>
-								<a href="javascript:void(0)" class="delete-image"><span class="dashicons dashicons-trash"></span></a>
+								<a href="javascript:void(0)" class="edit-image"><span class="dashicons dashicons-edit" title="<?php _e('Change Image', 'woo-category-slider-by-pluginever') ?>"></span></a>
+								<a href="javascript:void(0)" class="delete-image" title="<?php _e('Delete Image', 'woo-category-slider-by-pluginever') ?>"><span class="dashicons dashicons-trash"></span></a>
 							</div>
 
 						</div>
 					</div>
 					<div class="ever-slide-inner">
+
 						<!--title-->
 						<div class="ever-slide-title">
 							<input class="ever-slide-url-inputbox regular-text" name="categories[{{data.term_id}}][name]" placeholder="{{data.name}}" type="text" value="{{data.name}}" <?php echo $disabled ?>>
-						</div><!--/title-->
+						</div>
 
 						<!--description-->
 						<div class="ever-slide-captionarea">
 							<textarea name="categories[{{data.term_id}}][description]" id="caption-{{data.term_id}}" class="ever-slide-captionarea-textfield" data-gramm_editor="false" placeholder="Description" <?php echo $disabled ?>>{{data.description}}</textarea>
-						</div><!--/description-->
+						</div>
 
 						<!--icon-->
-
 						<div class="ever-slide-icon">
 							<select name="categories[{{data.term_id}}][icon]" id="categories-{{data.term_id}}-icon" class="select-2">
-								<option value="">No Icon</option>
+								<option value=""><?php _e('No Icon', 'woo-category-slider-by-pluginever'); ?></option>
 								<?php
 
 								$icons = wc_slider_get_icon_list();
@@ -166,19 +166,21 @@ function wc_category_slider_print_js_template() {
 							</select>
 
 
-						</div><!--/icon-->
+						</div>
 
 						<!--url-->
 						<div class="ever-slide-url">
 							<input name="categories[{{data.term_id}}][url]" class="ever-slide-url-inputbox regular-text" placeholder="{{data.url}}" value="{{data.url}}" type="url" <?php echo $disabled ?>>
-						</div><!--/url-->
+						</div>
 
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<?php if ( wc_category_slider()->is_pro_installed() ) { ?>
+		<?php if ( wc_category_slider()->is_pro_installed() ) {
+			//=== category image change js scripts ===
+			?>
 			<#
 
 			$(document).on('click', '.edit-image', function (e) {			e.preventDefault();			e.stopPropagation();			e.stopImmediatePropagation();
