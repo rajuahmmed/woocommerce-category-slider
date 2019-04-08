@@ -13,7 +13,8 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	'double_columns'   => false,
 	'options'          => wc_slider_get_font_list(),
 	'required'         => false,
-	'disabled'         => true,
+	'disabled'         => false,
+	'option_disabled'  => true,
 	'desc'             => __( 'Select the font family for title', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 
@@ -26,9 +27,10 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	'double_columns'   => false,
 	'options'          => wc_slider_get_font_list(),
 	'required'         => false,
-	'disabled'         => true,
+	'disabled'         => false,
+	'option_disabled'  => true,
 	'desc'             => __( 'Select the font family for details', 'woo-category-slider-by-pluginever' ),
-), $post->ID ));
+), $post->ID ) );
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_button_font_args', array(
 	'label'            => __( 'Button Font Family', 'woo-category-slider-by-pluginever' ),
@@ -39,7 +41,8 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	'double_columns'   => false,
 	'options'          => wc_slider_get_font_list(),
 	'required'         => false,
-	'disabled'         => true,
+	'disabled'         => false,
+	'option_disabled'  => true,
 	'desc'             => __( 'Select the font family for buttons', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 

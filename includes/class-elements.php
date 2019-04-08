@@ -65,6 +65,7 @@ class WC_Slider_Elements {
 			'readonly'         => false,
 			'required'         => false,
 			'disabled'         => false,
+			'option_disabled'  => false,
 			'double_columns'   => true,
 		);
 
@@ -88,6 +89,11 @@ class WC_Slider_Elements {
 
 		if ( isset( $args['disabled'] ) && $args['disabled'] ) {
 			$args['attrs']['disabled'] = 'disabled';
+		}
+
+		$option_disabled = '';
+		if ( isset( $args['option_disabled'] ) && $args['option_disabled'] ) {
+			$option_disabled = 'disabled';
 		}
 
 		if ( $args['chosen'] ) {
@@ -145,7 +151,7 @@ class WC_Slider_Elements {
 		}
 
 		if ( $args['placeholder'] && ! $args['chosen'] ) {
-			$output .= '<option value="">' . esc_html( $args['placeholder'] ) . '</option>';
+			$output .= '<option value="" >' . esc_html( $args['placeholder'] ) . '</option>';
 		}
 
 		if ( $args['show_option_all'] ) {
@@ -174,7 +180,7 @@ class WC_Slider_Elements {
 					$selected = selected( $args['selected'], $key, false );
 				}
 
-				$output .= '<option value="' . esc_attr( $key ) . '"' . $selected . '>' . esc_html( $option ) . '</option>';
+				$output .= sprintf( '<option value="%s" %s %s>' . esc_html( $option ) . '</option>', esc_attr( $key ), $selected, $option_disabled, esc_html( $option ) );
 			}
 		}
 
@@ -527,14 +533,14 @@ class WC_Slider_Elements {
 					
 					';
 
-		if ( $args['desc'] && $args['double_columns']) {
+		if ( $args['desc'] && $args['double_columns'] ) {
 			$output .= '<br /><span class="ever-field-description">' . sanitize_text_field( $args['desc'] ) . '</span>';
 		}
 
 
 		$output .= '</div>';
 
-		if ( $args['desc'] && !$args['double_columns']) {
+		if ( $args['desc'] && ! $args['double_columns'] ) {
 			$output .= '<div class="ever-col-12 switch-desc"><span class="ever-field-description">' . sanitize_text_field( $args['desc'] ) . '</span></div>';
 		}
 
