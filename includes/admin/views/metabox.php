@@ -79,7 +79,7 @@ $navs = array(
 <script>
 
 	jQuery(document).ready(function ($) {
-
+		//===  handle active tab ===
 		function CategorySliderSetActiveTab($target) {
 			$('.tab-item, .tab-content-item').removeClass('active');
 			$('.tab-item[data-target="' + $target + '"]').addClass('active');
@@ -102,11 +102,7 @@ $navs = array(
 			CategorySliderSetActiveTab($target);
 		});
 
-		//=== prevent leave page warning message ===
-		window.onbeforeunload = null;
-		$('#publish').click(() => {
-		});
-
+		//=== Custom css editor ===
 		wp.codeEditor.initialize($('#custom_css'), WCS.codeEditor);
 
 	});
