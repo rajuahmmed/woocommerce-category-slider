@@ -421,7 +421,7 @@ input[type="checkbox"].ever-checkbox {
 	}
 
 	input:checked + .slider {
-		background-color: #2196F3;
+		background: linear-gradient(to right, #4481eb 0%, #04befe 100%);
 	}
 
 	input:focus + .slider {

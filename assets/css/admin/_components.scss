@@ -3,12 +3,11 @@ $primary: #2196f3;
 *Tabs
 */
 
-
-.ever-tabs{
+.ever-tabs {
 	display: flex;
-	background: $primary;
+	background: linear-gradient(to right, #4481eb 0%, #04befe 100%);;
 	border: 1px solid white;
-	.tab-item{
+	.tab-item {
 		padding: 15px;
 		color: white;
 		font-size: 16px;
@@ -17,32 +16,40 @@ $primary: #2196f3;
 		border-right-color: white;
 		text-transform: uppercase;
 		transition: all .3s ease-in-out;
+
+		& > span {
+			color: #fff;
+			padding: 8px;
+			border-radius: 50%;
+			background-image: linear-gradient(to right, #4481eb 0%, #04befe 100%);
+		}
+
 		&.active, &:hover {
 			background: white;
 			color: $primary;
 			border: 1px solid $primary;
 			border-left-color: white;
-			&:first-child{
+			&:first-child {
 				border-left-color: $primary;
 			}
 		}
-		&:focus{
+		&:focus {
 			box-shadow: none;
 		}
 	}
 }
 
-.tab-content{
+.tab-content {
 	background: white;
 	padding: 20px 15px;
-	&-item{
+	&-item {
 		overflow: hidden;
 		display: none;
-		&.active{
+		&.active {
 			display: block;
 		}
 
-		.ever-form-group{
+		.ever-form-group {
 			max-width: 600px;
 		}
 	}

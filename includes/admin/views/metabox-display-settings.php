@@ -10,7 +10,7 @@ echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_image',
 	'label' => __( 'Hide Image', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_image', 'off' ),
-	'desc'  => __( '', 'woo-category-slider-by-pluginever' ),
+	'desc'  => __( 'Show/Hide image', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
@@ -18,50 +18,56 @@ echo wc_category_slider()->elements->switcher( array(
 	'label'   => __( 'Hide Content', 'woo-category-slider-by-pluginever' ),
 	'value'   => wc_category_slider_get_meta( $post->ID, 'empty_content', 'off' ),
 	'default' => 'no',
+	'desc'    => __( 'Show/Hide titile, button, description, icon', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_button',
 	'label' => __( 'Hide Button', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_button', 'off' ),
+	'desc'  => __( 'Show/Hide button', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_icon',
 	'label' => __( 'Hide Icon', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_icon', 'off' ),
+	'desc'  => __( 'Show/Hide icon', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_name',
 	'label' => __( 'Hide Category Name', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_name', 'off' ),
+	'desc'  => __( 'Show/Hide category name', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_product_count',
 	'label' => __( 'Hide Product Count', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_product_count', 'off' ),
+	'desc'  => __( 'Show/Hide slider product count', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_nav',
 	'label' => __( 'Hide Navigation', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_nav', 'off' ),
+	'desc'  => __( 'Show/Hide slider navigation', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_paginate',
 	'label' => __( 'Hide Pagination', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_paginate', 'off' ),
-	'desc'  => __( 'Show/Hide dotted pagination', 'woo-category-slider-by-pluginever' )
+	'desc'  => __( 'Show/Hide dotted pagination', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->switcher( array(
 	'name'  => 'empty_border',
 	'label' => __( 'Hide Border', 'woo-category-slider-by-pluginever' ),
 	'value' => wc_category_slider_get_meta( $post->ID, 'empty_border', 'off' ),
-	'desc'  => __( 'Border around slider image?', 'woo-category-slider-by-pluginever' ),
+	'desc'  => __( 'Border around slider image.', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->select( array(
@@ -75,7 +81,8 @@ echo wc_category_slider()->elements->select( array(
 	'options'          => apply_filters( 'wc_category_slider_hover_styles', array(
 		'no-hover'      => __( 'No Hover', 'woo-category-slider-by-pluginever' ),
 		'hover-zoom-in' => __( 'Zoom In', 'woo-category-slider-by-pluginever' ),
-	) )
+	) ),
+	'desc'             => __( 'Choose image hover effects.', 'woo-category-slider-by-pluginever' ),
 ) );
 
 echo wc_category_slider()->elements->select( array(
@@ -86,6 +93,7 @@ echo wc_category_slider()->elements->select( array(
 	'show_option_none' => '',
 	'selected'         => wc_category_slider_get_meta( $post->ID, 'theme', 'default' ),
 	'value'            => 'default',
+	'desc'             => __( 'Choose theme for the slider', 'woo-category-slider-by-pluginever' ),
 	'options'          => apply_filters( 'wc_category_slider_themes', array(
 		'default' => 'Default',
 		'basic'   => 'Basic',
@@ -100,6 +108,7 @@ echo wc_category_slider()->elements->input( apply_filters( 'wc_category_slider_b
 	'label'       => __( 'Button Text', 'woo-category-slider-by-pluginever' ),
 	'placeholder' => __( 'Shop Now', 'woo-category-slider-by-pluginever' ),
 	'disabled'    => 'disabled',
+	'desc'        => __( 'Text for the slide button', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_button_type_args', array(
@@ -112,47 +121,49 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 		'solid-btn'       => 'Solid',
 		'transparent-btn' => 'Transparent'
 	),
+	'desc'             => __( 'Choose button type.', 'woo-category-slider-by-pluginever' ),
 
 ), $post->ID ) );
 
-echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_animate_border_args', array(
-	'name'     => 'animate_border',
-	'label'    => __( 'Animate Border', 'woo-category-slider-by-pluginever' ),
-	'disabled' => true,
-), $post->ID ) );
+//echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_animate_border_args', array(
+//	'name'     => 'animate_border',
+//	'label'    => __( 'Animate Border', 'woo-category-slider-by-pluginever' ),
+//	'disabled' => true,
+//), $post->ID ) );
 
 echo wc_category_slider()->elements->switcher( apply_filters( 'wc_category_slider_show_desc_args', array(
 	'name'     => 'show_desc',
 	'label'    => __( 'Show Category Description', 'woo-category-slider-by-pluginever' ),
-	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
+	'desc'     => __( 'Show/ Hide category description', 'woo-category-slider-by-pluginever' ),
 	'disabled' => true,
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_button_bg_color_args', array(
 	'name'     => 'button_bg_color',
 	'label'    => __( 'Button Background', 'woo-category-slider-by-pluginever' ),
-	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
+	'desc'     => __( 'Choose color for button background.', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_button_color_args', array(
 	'name'     => 'button_color',
 	'label'    => __( 'Button Color', 'woo-category-slider-by-pluginever' ),
-	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
+	'desc'     => __( 'Choose color for button.', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_name_color_args', array(
 	'name'     => 'name_color',
 	'label'    => __( 'Category Name Color', 'woo-category-slider-by-pluginever' ),
-	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
+	'desc'     => __( 'Choose color for category name.', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_icon_color_args', array(
 	'name'     => 'icon_color',
 	'label'    => __( 'Icon Color', 'woo-category-slider-by-pluginever' ),
-	'disabled' => 'disabled',
+	'disabled' => true,
+	'desc'     => __( 'Choose color for icon.', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_icon_size_args', array(
@@ -161,6 +172,7 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 	'show_option_all'  => '',
 	'show_option_none' => '',
 	'disabled'         => true,
+	'desc'             => __( 'Choose size for icons.', 'woo-category-slider-by-pluginever' ),
 	'options'          => array(
 		'1x'  => '1x',
 		'2x'  => '2x',
@@ -178,14 +190,15 @@ echo wc_category_slider()->elements->select( apply_filters( 'wc_category_slider_
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_description_color_args', array(
 	'name'     => 'description_color',
 	'label'    => __( 'Description Color', 'woo-category-slider-by-pluginever' ),
-	'desc'     => __( '', 'woo-category-slider-by-pluginever' ),
 	'disabled' => 'disabled',
+	'desc'     => __( 'Choose color for category description.', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_product_count_color_args', array(
 	'name'     => 'product_count_color',
 	'label'    => __( 'Product Count Color', 'woo-category-slider-by-pluginever' ),
-	'disabled' => 'disabled',
+	'disabled' => true,
+	'desc'     => __( 'Choose color for prodcut count number.', 'woo-category-slider-by-pluginever' ),
 ), $post->ID ) );
 
 echo wc_category_slider()->elements->colorpicker( apply_filters( 'wc_category_slider_children_category_color_args', array(
