@@ -94,7 +94,213 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nfunction _typeof(obj) { if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }\n\nfunction _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err); } _next(undefined); }); }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nvar _wp$i18n = wp.i18n,\n    __ = _wp$i18n.__,\n    setLocaleData = _wp$i18n.setLocaleData;\nvar _wp$element = wp.element,\n    Component = _wp$element.Component,\n    Fragment = _wp$element.Fragment;\nvar Placeholder = wp.components.Placeholder;\n\nvar Edit =\n/*#__PURE__*/\nfunction (_Component) {\n  _inherits(Edit, _Component);\n\n  function Edit() {\n    var _getPrototypeOf2;\n\n    var _this;\n\n    _classCallCheck(this, Edit);\n\n    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n      args[_key] = arguments[_key];\n    }\n\n    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Edit)).call.apply(_getPrototypeOf2, [this].concat(args)));\n\n    _defineProperty(_assertThisInitialized(_this), \"state\", {\n      sliders: {}\n    });\n\n    return _this;\n  }\n\n  _createClass(Edit, [{\n    key: \"componentDidMount\",\n    value: function componentDidMount() {\n      this.getSliders();\n    }\n  }, {\n    key: \"getSliders\",\n    value: function () {\n      var _getSliders = _asyncToGenerator(\n      /*#__PURE__*/\n      regeneratorRuntime.mark(function _callee() {\n        var sliders;\n        return regeneratorRuntime.wrap(function _callee$(_context) {\n          while (1) {\n            switch (_context.prev = _context.next) {\n              case 0:\n                _context.next = 2;\n                return wp.apiFetch({\n                  path: 'wc-category-slider/v1/slider/all'\n                });\n\n              case 2:\n                sliders = _context.sent;\n                this.setState({\n                  sliders: sliders.data\n                });\n\n              case 4:\n              case \"end\":\n                return _context.stop();\n            }\n          }\n        }, _callee, this);\n      }));\n\n      function getSliders() {\n        return _getSliders.apply(this, arguments);\n      }\n\n      return getSliders;\n    }()\n  }, {\n    key: \"render\",\n    value: function render() {\n      var sliders = this.state.sliders;\n      return wp.element.createElement(Placeholder, {\n        icon: \"images-alt\",\n        label: __('WooCommerce Category Slider', 'woo-category-slider-by-pluginever')\n      }, wp.element.createElement(\"select\", null, wp.element.createElement(\"option\", null, \"--- Select a slider ---\"), sliders && Object.keys(sliders).length > 0 && wp.element.createElement(Fragment, null, Object.keys(sliders).map(function (slider_id) {\n        return wp.element.createElement(\"option\", {\n          key: slider_id,\n          value: slider_id\n        }, sliders[slider_id]);\n      }))));\n    }\n  }]);\n\n  return Edit;\n}(Component);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Edit);\n\n//# sourceURL=webpack:///./src/block/components/Edit.jsx?");
+__webpack_require__.r(__webpack_exports__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _wp$i18n = wp.i18n,
+    __ = _wp$i18n.__,
+    setLocaleData = _wp$i18n.setLocaleData;
+var _wp$element = wp.element,
+    Component = _wp$element.Component,
+    Fragment = _wp$element.Fragment,
+    createRef = _wp$element.createRef;
+var _wp$components = wp.components,
+    Placeholder = _wp$components.Placeholder,
+    Spinner = _wp$components.Spinner;
+
+var Edit =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Edit, _Component);
+
+  function Edit() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, Edit);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Edit)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      sliders: {},
+      loadingSliderList: true,
+      htmlView: '',
+      height: 0,
+      sliderInit: false
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "iframe", createRef());
+
+    return _this;
+  }
+
+  _createClass(Edit, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getSliders();
+    }
+  }, {
+    key: "getSliders",
+    value: function () {
+      var _getSliders = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var sliders;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return wp.apiFetch({
+                  path: 'wc-category-slider/v1/slider/all'
+                });
+
+              case 2:
+                sliders = _context.sent;
+                this.setState({
+                  sliders: sliders.success !== undefined && sliders.success === true ? sliders.data : {},
+                  loadingSliderList: false
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getSliders() {
+        return _getSliders.apply(this, arguments);
+      }
+
+      return getSliders;
+    }()
+  }, {
+    key: "getSliderView",
+    value: function () {
+      var _getSliderView = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        var attributes, slider_view;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                attributes = this.props.attributes;
+                _context2.next = 3;
+                return wp.apiFetch({
+                  path: 'wc-category-slider/v1/slider/' + attributes.slider
+                });
+
+              case 3:
+                slider_view = _context2.sent;
+                this.setState({
+                  htmlView: slider_view.success !== undefined && slider_view.success === true ? slider_view.data : ''
+                });
+                console.log(slider_view);
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getSliderView() {
+        return _getSliderView.apply(this, arguments);
+      }
+
+      return getSliderView;
+    }()
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var attributes = this.props.attributes;
+
+      if (attributes.slider !== undefined && this.state.htmlView === '') {
+        this.getSliderView();
+        console.log(jQuery.wc_category_slider_public);
+      }
+
+      if (this.state.htmlView !== '' && !this.state.sliderInit) {
+        jQuery.wc_category_slider_public.init();
+        this.setState({
+          sliderInit: true
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          attributes = _this$props.attributes,
+          setAttributes = _this$props.setAttributes;
+      var _this$state = this.state,
+          sliders = _this$state.sliders,
+          loadingSliderList = _this$state.loadingSliderList,
+          htmlView = _this$state.htmlView,
+          height = _this$state.height;
+      console.log(attributes);
+      return wp.element.createElement(Fragment, null, attributes.slider === undefined ? wp.element.createElement(Placeholder, {
+        icon: "images-alt",
+        label: __('WooCommerce Category Slider', 'woo-category-slider-by-pluginever')
+      }, loadingSliderList ? wp.element.createElement(Spinner, null) : wp.element.createElement("select", {
+        onChange: function onChange(e) {
+          e.preventDefault();
+          setAttributes({
+            slider: e.target.value
+          });
+        }
+      }, wp.element.createElement("option", null, __('--- Select a slider ---', 'woo-category-slider-by-pluginever')), sliders && Object.keys(sliders).length > 0 && wp.element.createElement(Fragment, null, Object.keys(sliders).map(function (slider_id) {
+        return wp.element.createElement("option", {
+          key: slider_id,
+          value: slider_id
+        }, sliders[slider_id]);
+      })))) : wp.element.createElement("div", {
+        onLoad: function onLoad() {
+          jQuery.wc_category_slider_public.init();
+          console.log('Hi');
+        },
+        dangerouslySetInnerHTML: {
+          __html: htmlView
+        }
+      }));
+    }
+  }]);
+
+  return Edit;
+}(Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Edit);
 
 /***/ }),
 
@@ -106,7 +312,24 @@ eval("__webpack_require__.r(__webpack_exports__);\nfunction _typeof(obj) { if (t
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_Edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Edit */ \"./src/block/components/Edit.jsx\");\nvar _wp$i18n = wp.i18n,\n    __ = _wp$i18n.__,\n    setLocaleData = _wp$i18n.setLocaleData;\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  title: __('WooCommerce Category Slider', 'woo-category-slider-by-pluginever'),\n  icon: 'images-alt',\n  category: 'layout',\n  attributes: {\n    slider: {\n      type: 'number'\n    }\n  },\n  edit: _components_Edit__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  save: function save() {}\n});\n\n//# sourceURL=webpack:///./src/block/index.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_Edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Edit */ "./src/block/components/Edit.jsx");
+var _wp$i18n = wp.i18n,
+    __ = _wp$i18n.__,
+    setLocaleData = _wp$i18n.setLocaleData;
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  title: __('WooCommerce Category Slider', 'woo-category-slider-by-pluginever'),
+  icon: 'images-alt',
+  category: 'layout',
+  attributes: {
+    slider: {
+      type: 'number'
+    }
+  },
+  edit: _components_Edit__WEBPACK_IMPORTED_MODULE_0__["default"],
+  save: function save() {}
+});
 
 /***/ }),
 
@@ -118,8 +341,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _com
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./block */ \"./src/block/index.js\");\nvar registerBlockType = wp.blocks.registerBlockType;\n\nregisterBlockType('pluginever/wc-category-slider', _block__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\n//# sourceURL=webpack:///./src/index.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./block */ "./src/block/index.js");
+var registerBlockType = wp.blocks.registerBlockType;
+
+registerBlockType('pluginever/wc-category-slider', _block__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ })
 
 /******/ });
+//# sourceMappingURL=wc-category-slider-block.js.map

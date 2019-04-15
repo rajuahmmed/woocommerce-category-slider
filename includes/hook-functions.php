@@ -237,6 +237,13 @@ function wc_category_slider_rest_api() {
 			'callback' => 'wc_category_slider_rest_api_get_all_sliders'
 		)
 	));
+
+	register_rest_route($namespace, '/slider/(?P<id>\d+)', array(
+		array(
+			'methods' => 'GET',
+			'callback' => 'wc_category_slider_rest_api_get_slider_preview'
+		)
+	));
 }
 add_action( 'rest_api_init', 'wc_category_slider_rest_api' );
 
@@ -261,4 +268,46 @@ function wc_category_slider_rest_api_get_all_sliders() {
 
 
 	return wp_send_json_success( $sliders );
+}
+
+function wc_category_slider_rest_api_get_slider_preview( $data ) {
+	$capability = 'edit_others_posts';
+	if ( ! current_user_can( $capability ) ) {
+		return wp_send_json_error(array(
+			'message' => __('You do not have access to this resource.', 'woo-category-slider-by-pluginever')
+		), 401);
+	}
+
+	$slider_id = isset( $data['id'] ) ? $data['id'] : false;
+
+	if ( $slider_id === false ) {
+		return wp_send_json_error(array(
+			'message' => __('Given slider ID is not valid.', 'woo-category-slider-by-pluginever')
+		), 404);
+	}
+
+	
+	// $slide_view = wc_category_slider_get_slider_preview_html( $slider_id );
+	
+
+	return wp_send_json_success( do_shortcode( '[woo_category_slider id="' . $slider_id . '"]' ) );
+}
+
+function wc_category_slider_get_slider_preview_html( $id ) {
+	ob_start();
+	?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<?php wp_head(); ?>
+	</head>
+	<body>
+		<?php echo do_shortcode( '[woo_category_slider id="' . $id . '"]' ); ?>
+
+		<?php wp_footer(); ?>
+	</body>
+</html>
+	<?php
+
+	return preg_replace('/\s+/S', " ", ob_get_clean());
 }
