@@ -228,3 +228,37 @@ function wc_category_slider_print_js_template() {
 
 add_action( 'admin_footer', 'wc_category_slider_print_js_template' );
 
+function wc_category_slider_rest_api() {
+	$namespace = 'wc-category-slider/v1';
+
+	register_rest_route($namespace, '/slider/all', array(
+		array(
+			'methods' => 'GET',
+			'callback' => 'wc_category_slider_rest_api_get_all_sliders'
+		)
+	));
+}
+add_action( 'rest_api_init', 'wc_category_slider_rest_api' );
+
+function wc_category_slider_rest_api_get_all_sliders() {
+	$capability = 'edit_others_posts';
+	if ( ! current_user_can( $capability ) ) {
+		return wp_send_json_error(array(
+			'message' => __('You do not have access to this resource.', 'woo-category-slider-by-pluginever')
+		), 401);
+	}
+
+	$slider_posts = get_posts( array(
+		'post_type' => 'wc_category_slider',
+		'posts_per_page' => -1,
+	) );
+
+	$sliders = array();
+
+	foreach ($slider_posts as $slider_post) {
+		$sliders[ $slider_post->ID ] = $slider_post->post_title;
+	}
+
+
+	return wp_send_json_success( $sliders );
+}

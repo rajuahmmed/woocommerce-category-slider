@@ -83,3 +83,30 @@ function wc_slider_load_admin_assets( $hook ) {
 add_action( 'admin_enqueue_scripts', 'wc_slider_load_admin_assets' );
 
 
+function wc_slider_register_block() {
+	if ( ! function_exists( 'register_block_type' ) ) {
+		// Gutenberg is not active.
+		return;
+	}
+
+	wp_register_script(
+		'wc-category-slider-block',
+		WC_SLIDER_ASSETS_URL . '/js/wc-category-slider-block.js',
+		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-api-fetch' ),
+		filemtime( WC_SLIDER_PATH . '/assets/js/wc-category-slider-block.js' )
+	);
+
+	register_block_type( 'pluginever/wc-category-slider', array(
+		'editor_script' => 'wc-category-slider-block',
+	) );
+
+	if ( function_exists( 'wp_set_script_translations' ) ) {
+		/**
+		 * May be extended to wp_set_script_translations( 'my-handle', 'my-domain',
+		 * plugin_dir_path( MY_PLUGIN ) . 'languages' ) ). For details see
+		 * https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+		 */
+		wp_set_script_translations( 'wc-category-slider-block', 'woo-category-slider-by-pluginever' );
+	}
+}
+add_action( 'init', 'wc_slider_register_block' );
