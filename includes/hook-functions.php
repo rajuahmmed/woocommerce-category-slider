@@ -287,10 +287,10 @@ function wc_category_slider_rest_api_get_slider_preview( $data ) {
 	}
 
 	
-	// $slide_view = wc_category_slider_get_slider_preview_html( $slider_id );
+	$slide_view = wc_category_slider_get_slider_preview_html( $slider_id );
 	
 
-	return wp_send_json_success( do_shortcode( '[woo_category_slider id="' . $slider_id . '"]' ) );
+	return wp_send_json_success( $slide_view );
 }
 
 function wc_category_slider_get_slider_preview_html( $id ) {

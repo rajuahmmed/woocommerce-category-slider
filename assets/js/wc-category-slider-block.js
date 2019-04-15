@@ -164,7 +164,12 @@ function (_Component) {
   _createClass(Edit, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var attributes = this.props.attributes;
       this.getSliders();
+
+      if (attributes.slider !== 0 && this.state.htmlView === '') {
+        this.getSliderView();
+      }
     }
   }, {
     key: "getSliders",
@@ -225,9 +230,8 @@ function (_Component) {
                 this.setState({
                   htmlView: slider_view.success !== undefined && slider_view.success === true ? slider_view.data : ''
                 });
-                console.log(slider_view);
 
-              case 6:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -243,24 +247,18 @@ function (_Component) {
     }()
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
+    value: function componentDidUpdate(prevProps) {
       var attributes = this.props.attributes;
 
-      if (attributes.slider !== undefined && this.state.htmlView === '') {
+      if (attributes.slider !== 0 && prevProps.attributes.slider !== attributes.slider && this.state.htmlView === '') {
         this.getSliderView();
-        console.log(jQuery.wc_category_slider_public);
-      }
-
-      if (this.state.htmlView !== '' && !this.state.sliderInit) {
-        jQuery.wc_category_slider_public.init();
-        this.setState({
-          sliderInit: true
-        });
       }
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           attributes = _this$props.attributes,
           setAttributes = _this$props.setAttributes;
@@ -268,16 +266,16 @@ function (_Component) {
           sliders = _this$state.sliders,
           loadingSliderList = _this$state.loadingSliderList,
           htmlView = _this$state.htmlView,
-          height = _this$state.height;
-      console.log(attributes);
-      return wp.element.createElement(Fragment, null, attributes.slider === undefined ? wp.element.createElement(Placeholder, {
+          height = _this$state.height; // console.log(attributes)
+
+      return wp.element.createElement(Fragment, null, attributes.slider === 0 ? wp.element.createElement(Placeholder, {
         icon: "images-alt",
         label: __('WooCommerce Category Slider', 'woo-category-slider-by-pluginever')
       }, loadingSliderList ? wp.element.createElement(Spinner, null) : wp.element.createElement("select", {
         onChange: function onChange(e) {
           e.preventDefault();
           setAttributes({
-            slider: e.target.value
+            slider: parseInt(e.target.value)
           });
         }
       }, wp.element.createElement("option", null, __('--- Select a slider ---', 'woo-category-slider-by-pluginever')), sliders && Object.keys(sliders).length > 0 && wp.element.createElement(Fragment, null, Object.keys(sliders).map(function (slider_id) {
@@ -285,15 +283,16 @@ function (_Component) {
           key: slider_id,
           value: slider_id
         }, sliders[slider_id]);
-      })))) : wp.element.createElement("div", {
+      })))) : wp.element.createElement("div", null, wp.element.createElement("iframe", {
+        height: height,
+        ref: this.iframe,
         onLoad: function onLoad() {
-          jQuery.wc_category_slider_public.init();
-          console.log('Hi');
+          _this2.setState({
+            height: _this2.iframe.current.contentDocument.documentElement.offsetHeight
+          });
         },
-        dangerouslySetInnerHTML: {
-          __html: htmlView
-        }
-      }));
+        srcdoc: htmlView
+      })));
     }
   }]);
 
@@ -317,6 +316,7 @@ __webpack_require__.r(__webpack_exports__);
 var _wp$i18n = wp.i18n,
     __ = _wp$i18n.__,
     setLocaleData = _wp$i18n.setLocaleData;
+var Fragment = wp.element.Fragment;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: __('WooCommerce Category Slider', 'woo-category-slider-by-pluginever'),
@@ -324,11 +324,16 @@ var _wp$i18n = wp.i18n,
   category: 'layout',
   attributes: {
     slider: {
-      type: 'number'
+      type: 'number',
+      default: 0
     }
   },
   edit: _components_Edit__WEBPACK_IMPORTED_MODULE_0__["default"],
-  save: function save() {}
+  save: function save(_ref) {
+    var attributes = _ref.attributes,
+        className = _ref.className;
+    return wp.element.createElement(Fragment, null, attributes.slider !== 0 && wp.element.createElement("div", null, "[woo_category_slider id=\"".concat(attributes.slider || '', "\"]")));
+  }
 });
 
 /***/ }),

@@ -1,4 +1,5 @@
 const { __, setLocaleData } = wp.i18n;
+const { Fragment } = wp.element;
 
 import Edit from "./components/Edit";
 
@@ -8,9 +9,19 @@ export default {
     category: 'layout',
     attributes: {
 		slider: {
-			type: 'number',
+            type: 'number',
+            default: 0
 		},
     },
     edit: Edit,
-    save: () => {},
+    save: ( { attributes, className  } ) => {
+        return (
+            <Fragment>
+                {
+                   attributes.slider !==  0 &&
+                    <div>{ `[woo_category_slider id="${ attributes.slider || '' }"]` }</div>
+                }
+            </Fragment>
+        )
+    },
 }
