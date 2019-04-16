@@ -13,6 +13,9 @@ export default {
       default: 0
     },
   },
+  supports: {
+		align: [ 'center', 'wide', 'full' ],
+	},
   edit: Edit,
   save: ( { attributes  } ) => {
       return (

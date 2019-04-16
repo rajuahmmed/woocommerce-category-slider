@@ -113,10 +113,15 @@ function wc_slider_register_block() {
 		filemtime( WC_SLIDER_PATH . '/assets/js/wc-category-slider-block.js' )
 	);
 
+	$inline_scripts = 'var isWCCategorySliderPro=' . ( wc_category_slider()->is_pro_installed() ? 'true' : 'false' ) . ';';
+
+	wp_add_inline_script( 'wc-category-slider-block', $inline_scripts, 'before' );
+
 	register_block_type( 'pluginever/wc-category-slider', array(
 		'editor_script' => 'wc-category-slider-block',
 		'editor_style' => 'wc-category-slider-editor'
 	) );
+
 
 	if ( function_exists( 'wp_set_script_translations' ) ) {
 		/**

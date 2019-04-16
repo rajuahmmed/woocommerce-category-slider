@@ -1,7 +1,8 @@
 import { sanitize } from 'dompurify'
 const { __, setLocaleData } = wp.i18n;
 const { Component, Fragment, createRef } = wp.element;
-const { Placeholder, Spinner } = wp.components;
+const { Placeholder, Spinner, PanelBody, SelectControl } = wp.components;
+const { InspectorControls } = wp.editor;
 
 class Edit extends Component {
     state = {
@@ -42,29 +43,63 @@ class Edit extends Component {
             loadingSliderView: false
         } );
     }
-    componentDidUpdate() {
+    componentDidUpdate( prevProps ) {
         const { attributes } = this.props;
+        
         if ( attributes.slider !==  0 && this.state.htmlView === '' ) {
             this.getSliderView();
-            console.log( jQuery.wc_category_slider_public )
         }
 
         if ( this.state.htmlView !== '' && ! this.state.sliderInit  ) {
             setTimeout( () => {
                 jQuery.wc_category_slider_public.init();
-            }, 10 );
+            }, 100 );
 
             this.setState( {
                 sliderInit: true,
             } )
         }
+
+        if ( attributes.align !== prevProps.attributes.align && this.state.htmlView !== '' && this.state.sliderInit ) {
+            jQuery.wc_category_slider_public.reInit();
+        }
     }
     render() {
         const { attributes, setAttributes } = this.props;
         const { sliders, loadingSliderList, htmlView, loadingSliderView } = this.state;
+
+        let options = Object.keys( sliders ).map( ( slider_id ) => ( { value: slider_id, label: sliders[ slider_id ] } ) );
+
+        options = [
+            {
+                value: 0,
+                label: __( '--- Select a slider ---', 'woo-category-slider-by-pluginever' )
+            },
+            ...options
+        ]
         
         return (
             <Fragment>
+                <InspectorControls>
+                    <PanelBody title={ __( 'Slider Settings' ) }>
+                    <SelectControl
+                        label={ __( 'Slider ID', 'woo-category-slider-by-pluginever' ) }
+                        options={ options }
+                        value={ attributes.slider }
+                        onChange={ ( newValue ) => {
+
+                            this.setState( {
+                                htmlView: '',
+                                sliderInit: false,
+                                loadingSliderView: true,
+                            } );
+
+                            setAttributes( {
+                                slider: parseInt( newValue ),
+                            } );
+                        } } />
+                    </PanelBody>
+                </InspectorControls>
                 {
                     attributes.slider ===  0 ?
                     <Placeholder
@@ -74,24 +109,14 @@ class Edit extends Component {
                             loadingSliderList ?
                             <Spinner />
                             :
-                            <select onChange={ ( e ) => {
-                                e.preventDefault();
-
-                                setAttributes( {
-                                    slider: parseInt( e.target.value ),
-                                } );
-                            } }>
-                                <option>{ __( '--- Select a slider ---', 'woo-category-slider-by-pluginever' ) }</option>
-                                {
-                                    sliders && Object.keys( sliders ).length > 0 &&
-                                    <Fragment>
-                                        {
-                                            Object.keys( sliders ).map( ( slider_id ) => ( <option key={ slider_id } value={ slider_id }>{ sliders[ slider_id ] }</option> ) )
-                                        }
-                                    </Fragment>
-                                }
-                                
-                            </select>
+                            <SelectControl
+                                options={ options }
+                                onChange={ ( newValue ) => {
+    
+                                    setAttributes( {
+                                        slider: parseInt( newValue ),
+                                    } );
+                                } } />
                         }
                     </Placeholder>
                     :
@@ -104,7 +129,9 @@ class Edit extends Component {
                                     <Spinner />
                                 </Placeholder>
                                 :
-                                <div dangerouslySetInnerHTML={ { __html: sanitize( htmlView ) } } />
+                                <div style={ {
+                                    paddingTop: '1px',
+                                } } className="wc-category-slider-view-container" dangerouslySetInnerHTML={ { __html: sanitize( htmlView ) } } />
                         }
                     </Fragment>
                 }

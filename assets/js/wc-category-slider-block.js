@@ -1290,6 +1290,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1322,7 +1330,10 @@ var _wp$element = wp.element,
     createRef = _wp$element.createRef;
 var _wp$components = wp.components,
     Placeholder = _wp$components.Placeholder,
-    Spinner = _wp$components.Spinner;
+    Spinner = _wp$components.Spinner,
+    PanelBody = _wp$components.PanelBody,
+    SelectControl = _wp$components.SelectControl;
+var InspectorControls = wp.editor.InspectorControls;
 
 var Edit =
 /*#__PURE__*/
@@ -1442,26 +1453,31 @@ function (_Component) {
     }()
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
+    value: function componentDidUpdate(prevProps) {
       var attributes = this.props.attributes;
 
       if (attributes.slider !== 0 && this.state.htmlView === '') {
         this.getSliderView();
-        console.log(jQuery.wc_category_slider_public);
       }
 
       if (this.state.htmlView !== '' && !this.state.sliderInit) {
         setTimeout(function () {
           jQuery.wc_category_slider_public.init();
-        }, 10);
+        }, 100);
         this.setState({
           sliderInit: true
         });
+      }
+
+      if (attributes.align !== prevProps.attributes.align && this.state.htmlView !== '' && this.state.sliderInit) {
+        jQuery.wc_category_slider_public.reInit();
       }
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           attributes = _this$props.attributes,
           setAttributes = _this$props.setAttributes;
@@ -1470,25 +1486,51 @@ function (_Component) {
           loadingSliderList = _this$state.loadingSliderList,
           htmlView = _this$state.htmlView,
           loadingSliderView = _this$state.loadingSliderView;
-      return wp.element.createElement(Fragment, null, attributes.slider === 0 ? wp.element.createElement(Placeholder, {
-        icon: "images-alt",
-        label: __('WooCommerce Category Slider', 'woo-category-slider-by-pluginever')
-      }, loadingSliderList ? wp.element.createElement(Spinner, null) : wp.element.createElement("select", {
-        onChange: function onChange(e) {
-          e.preventDefault();
+      var options = Object.keys(sliders).map(function (slider_id) {
+        return {
+          value: slider_id,
+          label: sliders[slider_id]
+        };
+      });
+      options = [{
+        value: 0,
+        label: __('--- Select a slider ---', 'woo-category-slider-by-pluginever')
+      }].concat(_toConsumableArray(options));
+      return wp.element.createElement(Fragment, null, wp.element.createElement(InspectorControls, null, wp.element.createElement(PanelBody, {
+        title: __('Slider Settings')
+      }, wp.element.createElement(SelectControl, {
+        label: __('Slider ID', 'woo-category-slider-by-pluginever'),
+        options: options,
+        value: attributes.slider,
+        onChange: function onChange(newValue) {
+          _this2.setState({
+            htmlView: '',
+            sliderInit: false,
+            loadingSliderView: true
+          });
+
           setAttributes({
-            slider: parseInt(e.target.value)
+            slider: parseInt(newValue)
           });
         }
-      }, wp.element.createElement("option", null, __('--- Select a slider ---', 'woo-category-slider-by-pluginever')), sliders && Object.keys(sliders).length > 0 && wp.element.createElement(Fragment, null, Object.keys(sliders).map(function (slider_id) {
-        return wp.element.createElement("option", {
-          key: slider_id,
-          value: slider_id
-        }, sliders[slider_id]);
-      })))) : wp.element.createElement(Fragment, null, loadingSliderView ? wp.element.createElement(Placeholder, {
+      }))), attributes.slider === 0 ? wp.element.createElement(Placeholder, {
+        icon: "images-alt",
+        label: __('WooCommerce Category Slider', 'woo-category-slider-by-pluginever')
+      }, loadingSliderList ? wp.element.createElement(Spinner, null) : wp.element.createElement(SelectControl, {
+        options: options,
+        onChange: function onChange(newValue) {
+          setAttributes({
+            slider: parseInt(newValue)
+          });
+        }
+      })) : wp.element.createElement(Fragment, null, loadingSliderView ? wp.element.createElement(Placeholder, {
         icon: "images-alt",
         label: __('WooCommerce Category Slider', 'woo-category-slider-by-pluginever')
       }, wp.element.createElement(Spinner, null)) : wp.element.createElement("div", {
+        style: {
+          paddingTop: '1px'
+        },
+        className: "wc-category-slider-view-container",
         dangerouslySetInnerHTML: {
           __html: Object(dompurify__WEBPACK_IMPORTED_MODULE_0__["sanitize"])(htmlView)
         }
@@ -1527,6 +1569,9 @@ var Fragment = wp.element.Fragment;
       type: 'number',
       default: 0
     }
+  },
+  supports: {
+    align: ['center', 'wide', 'full']
   },
   edit: _components_Edit__WEBPACK_IMPORTED_MODULE_0__["default"],
   save: function save(_ref) {
